@@ -1,15 +1,57 @@
+import "./Plan.css"
 
 export const Plan = () => {
     return (
-    <div>
-        <h2>Trening A</h2>
-        <ul className="exercises-list">
-            <li>1a lat pulldown</li>
-            <li>1b push up</li>
-            <li>2 KB romanian deadlift</li>
-            <li>3a reverse lunges</li>
-            <li>3b dead bug</li>
-        </ul>
+    <div className="plan">
+        <h1>Trening A</h1>
+        <h2>Exercises</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Series
+                </th>
+                <th>
+                    Repetitions
+                </th>
+                <th>
+                    Tempo
+                </th>
+                <th>
+                    Break between series
+                </th>
+                <th>
+                    Link to the exercise
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <th>
+                    1a lat pulldown
+                </th>
+                <td>
+                    3s
+                </td>
+                <td>
+                    6-12
+                </td>
+                <td>
+                    3011
+                </td>
+                <td>
+                    30-45s
+                </td>
+                <td>
+                    https://www.youtube.com/watch?v=c-vC_9mavoc
+                </td>
+            </tr>
+                </tbody>
+                </table>
     </div>
     )
 }

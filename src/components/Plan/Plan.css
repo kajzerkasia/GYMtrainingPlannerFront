@@ -1,0 +1,25 @@
+table {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+tr {
+    margin: 2px;
+    background-color: #f1cdcd;
+}
+
+tr:nth-child(2n) {
+    background-color: #eadbdb;
+}
+
+thead tr,
+.header-of-left th {
+    background-color: #cd7c7c;
+}
+
+td, th {
+    padding: 10px;
+}
+
+/*@TODO Think about colors of table*/
