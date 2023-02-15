@@ -1,3 +1,15 @@
+.plan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh;
+}
+
+h1, h2 {
+    padding-bottom: 2vh;
+}
+
 table {
     text-align: center;
     width: 80%;
