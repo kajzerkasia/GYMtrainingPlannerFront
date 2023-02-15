@@ -8,6 +8,7 @@ interface Props {
 }
 
 export const Logo = (props: Props) => (
+
     props.to
         ? <Link className="logo" to={props.to}>{props.text}</Link>
         : <h1>{props.text}</h1>

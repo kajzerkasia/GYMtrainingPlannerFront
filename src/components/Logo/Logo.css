@@ -1,5 +1,10 @@
 .logo {
+    display: flex;
+    justify-content: center;
+    padding-top: 40vh;
     font-size: 60px;
     color: white;
     text-decoration: none;
 }
+
+/* @TODO - wycentrować logo*/
