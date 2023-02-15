@@ -1,3 +1,5 @@
-h1 {
+.logo {
     font-size: 60px;
+    color: white;
+    text-decoration: none;
 }

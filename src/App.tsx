@@ -5,7 +5,7 @@ import {Logo} from "./components/Logo/Logo";
 const App = () => {
 
   return (
-      <Logo/>
+      <Logo to="/plans" text="GYM training Planner"/>
   )
 }
 
