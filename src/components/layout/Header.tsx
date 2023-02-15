@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css'
+import {Logo} from "../Logo/Logo";
 
 export const Header = () => {
     return (
@@ -7,7 +8,7 @@ export const Header = () => {
             <header>
                 <h1>GYM training Planner</h1>
                 <h2>Your plans:</h2>
-                <button>Add new training plan</button>
+                <Logo to="/add-plan" text="Add new training plan"/>
             </header>
             <div className="plans"></div>
         </div>

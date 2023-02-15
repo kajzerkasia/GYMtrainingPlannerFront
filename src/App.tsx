@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import {PlansArea} from "./components/PlansArea/PlansArea";
 import {Exercise} from "./components/Exercise/Exercise";
 import {Progression} from "./components/Progression/Progression";
+import {AddPlanForm} from "./components/AddPlanForm/AddPlanForm";
 
 export const App = () => {
 
@@ -15,6 +16,7 @@ export const App = () => {
                 <Route path="/plans" element={<PlansArea/>}/>
                 <Route path="/exercises" element={<Exercise/>}/>
                 <Route path="/progression" element={<Progression/>}/>
+                <Route path="/add-plan" element={<AddPlanForm/>}/>
             </Routes>
         </>
     )
