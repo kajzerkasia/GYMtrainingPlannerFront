@@ -3,6 +3,7 @@ export const TableBody = () => {
     return (
         <tbody>
         <tr>
+            <td className="hidden"></td>
             <td>
                 1a lat pulldown
             </td>
