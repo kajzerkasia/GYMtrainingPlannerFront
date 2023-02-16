@@ -1,7 +1,11 @@
+import './TableHeader.css';
+
 export const TableHeader = () => {
     return (
             <thead>
             <tr>
+                <th className="hidden">
+                </th>
                 <th>
                     Nazwa
                 </th>
@@ -19,6 +23,8 @@ export const TableHeader = () => {
                 </th>
                 <th>
                     Link do instrukcji jak ćwiczyć
+                </th>
+                <th className="hidden">
                 </th>
             </tr>
             </thead>

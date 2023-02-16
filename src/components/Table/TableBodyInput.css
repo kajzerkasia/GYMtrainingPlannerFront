@@ -1,10 +1,20 @@
 input {
     border:none;
-    background-color: #f1cdcd;
     color: white;
     font-size: 16px;
+    background-color: transparent;
 }
 
 input:focus {
     outline: none;
+}
+
+.icon {
+    padding: 5px;
+    font-size: 30px;
+}
+
+.mini-icon {
+    padding-left: 5px;
+    padding-right: 5px;
 }

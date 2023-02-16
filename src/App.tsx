@@ -8,6 +8,7 @@ import {Progression} from "./components/Progression/Progression";
 import {AddPlanForm} from "./components/AddPlanForm/AddPlanForm";
 import {AddExercise} from "./components/Exercise/AddExercise";
 import {AddProgression} from "./components/Progression/AddProgression";
+import {Instruction} from "./components/Instruction/Instruction";
 
 export const App = () => {
 
@@ -21,6 +22,7 @@ export const App = () => {
                 <Route path="/progression" element={<Progression/>}/>
                 <Route path="/add-progression" element={<AddProgression/>}/>
                 <Route path="/add-plan" element={<AddPlanForm/>}/>
+                <Route path="/instruction" element={<Instruction/>}/>
             </Routes>
         </>
     )
