@@ -1,7 +1,8 @@
-import {Plan} from "../Plan/Plan";
+
+import {AddPlan} from "../Plan/AddPlan";
 
 export const AddPlanForm = () => {
     return (
-        <Plan/>
+        <AddPlan/>
     );
 }

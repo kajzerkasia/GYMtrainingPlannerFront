@@ -6,6 +6,8 @@ import {PlansArea} from "./components/PlansArea/PlansArea";
 import {Exercise} from "./components/Exercise/Exercise";
 import {Progression} from "./components/Progression/Progression";
 import {AddPlanForm} from "./components/AddPlanForm/AddPlanForm";
+import {AddExercise} from "./components/Exercise/AddExercise";
+import {AddProgression} from "./components/Progression/AddProgression";
 
 export const App = () => {
 
@@ -15,10 +17,13 @@ export const App = () => {
                 <Route path="/" element={<Logo to="/plans" text="GYM training Planner"/>}/>
                 <Route path="/plans" element={<PlansArea/>}/>
                 <Route path="/exercises" element={<Exercise/>}/>
+                <Route path="/add-exercises" element={<AddExercise/>}/>
                 <Route path="/progression" element={<Progression/>}/>
+                <Route path="/add-progression" element={<AddProgression/>}/>
                 <Route path="/add-plan" element={<AddPlanForm/>}/>
             </Routes>
         </>
     )
 }
+
 
