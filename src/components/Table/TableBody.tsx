@@ -3,9 +3,9 @@ export const TableBody = () => {
     return (
         <tbody>
         <tr>
-            <th>
+            <td>
                 1a lat pulldown
-            </th>
+            </td>
             <td>
                 3s
             </td>

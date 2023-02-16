@@ -17,7 +17,9 @@ table {
     text-align: center;
     width: 80%;
     margin: 0 auto;
-    border: 1px solid white;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    /*border: 1px solid white;*/
 }
 
 tr {
@@ -37,6 +39,10 @@ thead tr,
 td, th {
     padding: 10px;
     border: 1px solid white;
+}
+
+.hidden {
+    border: none;
 }
 
 

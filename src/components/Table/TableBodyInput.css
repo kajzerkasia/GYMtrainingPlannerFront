@@ -8,3 +8,13 @@ input {
 input:focus {
     outline: none;
 }
+
+.icon {
+    padding: 5px;
+    font-size: 30px;
+}
+
+.mini-icon {
+    padding-left: 5px;
+    padding-right: 5px;
+}

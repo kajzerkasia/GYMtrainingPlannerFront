@@ -1,16 +1,17 @@
 import {TableHeader} from "../Table/TableHeader";
 import {TableBodyInput} from "../Table/TableBodyInput";
 import './AddExercise.css';
+import {Logo} from "../Logo/Logo";
 
 export const AddExercise = () => {
     return (
         <>
-        <p>Kliknij w dane pole aby dodać do niego zawartość.</p>
-        <p>Kliknij ikonkę + aby dodać kolejny wiersz do tabeli (kolejne ćwiczenie).</p>
-        <table>
-            <TableHeader/>
-            <TableBodyInput/>
-        </table>
+            <Logo to="/instruction" text="Jak to działa?"></Logo>
+            <table>
+                <TableHeader/>
+                <TableBodyInput/>
+            </table>
+            <Logo to="/plans" text="GOTOWE"/>
         </>
     )
 }
