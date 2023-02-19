@@ -2,6 +2,7 @@ import './TableBodyInput.css';
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 
 export const TableBodyInput = () => {
+
     return (
         <>
             <tbody>
