@@ -8,7 +8,7 @@ export const TableBody = () => {
                 1a lat pulldown
             </td>
             <td>
-                3s
+                3
             </td>
             <td>
                 6-12
