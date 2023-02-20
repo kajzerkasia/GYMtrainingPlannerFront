@@ -2,7 +2,7 @@ import {Logo} from "../Logo/Logo";
 import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 
-export const TableForm = ({savePartOfPlan, form, updateForm}: any) => {
+export const TableFormInputs = ({savePartOfPlan, form, updateForm }: any) => {
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"></Logo>
@@ -11,7 +11,7 @@ export const TableForm = ({savePartOfPlan, form, updateForm}: any) => {
                     <TableHeader/>
                     <tbody>
                     <tr>
-                        <VscAdd className="icon"/>
+                        <td><VscAdd className="icon"/></td>
                         <td>
                             <input
                                 type="text"

@@ -1,9 +1,9 @@
-import './TableBodyInput.css';
+import './AddExercisesTable.css';
 import React, {SyntheticEvent, useState} from "react";
-import {TableForm} from "./TableForm";
-import {Table} from "./Table";
+import {TableFormInputs} from "./TableFormInputs";
+import {TableBody} from "./TableBody";
 
-export const TableBodyInput = () => {
+export const AddExercisesTable = () => {
     const[tableData, setTableData] = useState([]);
     const [id, setId] = useState('');
     const [form, setForm] = useState({
@@ -45,13 +45,13 @@ export const TableBodyInput = () => {
     };
 
     return (
-        <>
-            <TableForm
+        <div className="container">
+            <TableFormInputs
                 savePartOfPlan={savePartOfPlan}
                 form={form}
                 updateForm={updateForm}
             />
-            <Table tableData={tableData}/>
-        </>
+            <TableBody tableData={tableData}/>
+        </div>
     )
 }
