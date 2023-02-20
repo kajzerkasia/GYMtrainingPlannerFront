@@ -6,11 +6,12 @@ import {PlansArea} from "./components/PlansArea/PlansArea";
 import {Exercise} from "./components/Exercise/Exercise";
 import {Progression} from "./components/Progression/Progression";
 import {AddPlanForm} from "./components/AddPlanForm/AddPlanForm";
-import {AddExercise} from "./components/Exercise/AddExercise";
 import {AddProgression} from "./components/Progression/AddProgression";
 import {Instruction} from "./components/Instruction/Instruction";
-import {Table} from "./components/Table/Table";
 import {Profile} from "./components/Profile/Profile";
+import {TableBodyInput} from "./components/Table/TableBodyInput";
+import {TableForm} from "./components/Table/TableForm";
+import {Table} from "./components/Table/Table";
 
 export const App = () => {
 
@@ -19,8 +20,8 @@ export const App = () => {
             <Routes>
                 <Route path="/" element={<Logo to="/plans" text="GYM training Planner"/>}/>
                 <Route path="/plans" element={<PlansArea/>}/>
-                <Route path="/exercises" element={<Exercise/>}/>
-                <Route path="/add-exercises" element={<AddExercise/>}/>
+                <Route path="/exercises" element={<Table/>}/>
+                <Route path="/add-exercises" element={<TableBodyInput/>}/>
                 <Route path="/progression" element={<Progression/>}/>
                 <Route path="/add-progression" element={<AddProgression/>}/>
                 <Route path="/add-plan" element={<AddPlanForm/>}/>
