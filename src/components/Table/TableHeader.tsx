@@ -7,7 +7,10 @@ export const TableHeader = () => {
                 <th className="hidden">
                 </th>
                 <th>
-                    Nazwa
+                    Kolejność
+                </th>
+                <th>
+                    Ćwiczenie
                 </th>
                 <th>
                     Serie
@@ -22,7 +25,7 @@ export const TableHeader = () => {
                     Przerwa między seriami
                 </th>
                 <th>
-                    Link do instrukcji jak ćwiczyć
+                    Poprawne wykonanie ćwiczenia (link)
                 </th>
                 <th className="hidden">
                 </th>

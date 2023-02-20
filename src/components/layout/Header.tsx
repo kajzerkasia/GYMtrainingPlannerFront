@@ -7,8 +7,8 @@ export const Header = () => {
         <div className="header">
             <header>
                 <h1>GYM training Planner</h1>
-                <h2>Your plans:</h2>
-                <Logo to="/add-plan" text="Add new training plan"/>
+                <h2>Moje plany treningowe:</h2>
+                <Logo to="/add-plan" text="Dodaj nowy plan trenignowy"/>
             </header>
             <div className="plans"></div>
         </div>

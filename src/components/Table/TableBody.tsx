@@ -1,27 +1,22 @@
 
-export const TableBody = () => {
+
+export const TableBody = ({ tableData }: any) => {
     return (
-        <tbody>
-        <tr>
-            <td>
-                1a lat pulldown
-            </td>
-            <td>
-                3s
-            </td>
-            <td>
-                6-12
-            </td>
-            <td>
-                3011
-            </td>
-            <td>
-                30-45s
-            </td>
-            <td>
-                https://www.youtube.com/watch?v=c-vC_9mavoc
-            </td>
-        </tr>
-        </tbody>
+        <>
+            {tableData.map((data: any) => {
+                return (
+                    <tr key={data.name}>
+                        <td className="hidden"></td>
+                        <td>{data.order}</td>
+                        <td>{data.exercise}</td>
+                        <td>{data.series}</td>
+                        <td>{data.repetitions}</td>
+                        <td>{data.tempo}</td>
+                        <td>{data.break}</td>
+                        <td>{data.url}</td>
+                    </tr>
+                )
+            })}
+        </>
     )
-}
+};
