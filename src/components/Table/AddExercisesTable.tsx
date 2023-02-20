@@ -1,5 +1,5 @@
-import './AddExercisesTable.css';
-import React, {SyntheticEvent, useState} from "react";
+import './TableFormInputs.css';
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import {TableFormInputs} from "./TableFormInputs";
 import {TableBody} from "./TableBody";
 
@@ -15,6 +15,18 @@ export const AddExercisesTable = () => {
         break: '',
         url: '',
     })
+
+    const handleReset = (e: SyntheticEvent) => {
+        setForm({
+            order: '',
+            exercise: '',
+            series: 0,
+            repetitions: '',
+            tempo: 0,
+            break: '',
+            url: '',
+        });
+    }
 
     const savePartOfPlan = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -45,13 +57,14 @@ export const AddExercisesTable = () => {
     };
 
     return (
-        <div className="container">
+        <>
             <TableFormInputs
                 savePartOfPlan={savePartOfPlan}
                 form={form}
                 updateForm={updateForm}
+                // handleReset={handleReset}
+                tableData={tableData}
             />
-            <TableBody tableData={tableData}/>
-        </div>
+        </>
     )
 }
