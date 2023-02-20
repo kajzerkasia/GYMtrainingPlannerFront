@@ -4,8 +4,6 @@ export const TableHeader = () => {
     return (
             <thead>
             <tr>
-                <th className="hidden">
-                </th>
                 <th>
                     Kolejność
                 </th>

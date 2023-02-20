@@ -13,34 +13,3 @@ h1, h2 {
     font-size: 20px;
 }
 
-table {
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    /*border: 1px solid white;*/
-}
-
-tr {
-    margin: 2px;
-    /*background-color: #f1cdcd;*/
-}
-
-tr:nth-child(2n) {
-    /*background-color: #eadbdb;*/
-}
-
-thead tr,
-.header-of-left th {
-    /*background-color: #cd7c7c;*/
-}
-
-td, th {
-    padding: 10px;
-    border: 1px solid white;
-}
-
-.hidden {
-    border: none;
-}

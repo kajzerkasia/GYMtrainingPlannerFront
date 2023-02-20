@@ -1,8 +1,11 @@
 import {Logo} from "../Logo/Logo";
 import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
+import {TableBody} from "./TableBody";
 
-export const TableFormInputs = ({savePartOfPlan, form, updateForm }: any) => {
+
+export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset, tableData }: any) => {
+
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"></Logo>
@@ -11,7 +14,6 @@ export const TableFormInputs = ({savePartOfPlan, form, updateForm }: any) => {
                     <TableHeader/>
                     <tbody>
                     <tr>
-                        <td><VscAdd className="icon"/></td>
                         <td>
                             <input
                                 type="text"
@@ -82,11 +84,11 @@ export const TableFormInputs = ({savePartOfPlan, form, updateForm }: any) => {
                                 onChange={e => updateForm('url', e.target.value)}
                             />
                         </td>
-                        <VscChromeClose className="icon"/>
+                        <button type="submit"><VscAdd className="icon" onClick={handleReset}/></button>
                     </tr>
+                    <TableBody tableData={tableData}/>
                     </tbody>
                 </table>
-                <button type="submit">Gotowe</button>
             </form>
         </>
     )

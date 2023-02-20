@@ -3,10 +3,9 @@
 export const TableBody = ({ tableData }: any) => {
     return (
         <>
-            {tableData.map((data: any) => {
+            {tableData.map((data: any, index: number) => {
                 return (
-                    <tr key={data.name}>
-                        <td className="hidden"></td>
+                    <tr key={index}>
                         <td>{data.order}</td>
                         <td>{data.exercise}</td>
                         <td>{data.series}</td>
