@@ -2,9 +2,10 @@ import {Logo} from "../Logo/Logo";
 import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {TableBody} from "./TableBody";
+import './TableFormInputs.css';
 
 
-export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset, tableData }: any) => {
+export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }: any) => {
 
     return (
         <>
@@ -38,7 +39,6 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset,
                             <input
                                 type="number"
                                 name="series"
-                                required
                                 maxLength={3}
                                 value={form.series}
                                 onChange={e => updateForm('series', e.target.value)}
@@ -48,7 +48,6 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset,
                             <input
                                 type="text"
                                 name="repetitions"
-                                required
                                 maxLength={49}
                                 value={form.repetitions}
                                 onChange={e => updateForm('repetitions', e.target.value)}
@@ -58,7 +57,6 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset,
                             <input
                                 type="number"
                                 name="tempo"
-                                required
                                 maxLength={9}
                                 value={form.tempo}
                                 onChange={e => updateForm('tempo', e.target.value)}
@@ -68,7 +66,6 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset,
                             <input
                                 type="text"
                                 name="break"
-                                required
                                 maxLength={49}
                                 value={form.break}
                                 onChange={e => updateForm('break', e.target.value)}
@@ -78,17 +75,16 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, handleReset,
                             <input
                                 type="url"
                                 name="url"
-                                required
                                 maxLength={99}
                                 value={form.url}
                                 onChange={e => updateForm('url', e.target.value)}
                             />
                         </td>
-                        <button type="submit"><VscAdd className="icon" onClick={handleReset}/></button>
                     </tr>
-                    <TableBody tableData={tableData}/>
+                    <TableBody partsList={partsList}/>
                     </tbody>
                 </table>
+                <button type="submit"><VscAdd className="icon"/></button>
             </form>
         </>
     )

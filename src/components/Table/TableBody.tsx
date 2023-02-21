@@ -1,18 +1,18 @@
+import { ArrayOfParts } from 'types';
 
-
-export const TableBody = ({ tableData }: any) => {
+export const TableBody = ({ partsList }: ArrayOfParts) => {
     return (
         <>
-            {tableData.map((data: any, index: number) => {
+            {partsList.map((part, index: number) => {
                 return (
                     <tr key={index}>
-                        <td>{data.order}</td>
-                        <td>{data.exercise}</td>
-                        <td>{data.series}</td>
-                        <td>{data.repetitions}</td>
-                        <td>{data.tempo}</td>
-                        <td>{data.break}</td>
-                        <td>{data.url}</td>
+                        <td>{part.order}</td>
+                        <td>{part.exercise}</td>
+                        <td>{part.series}</td>
+                        <td>{part.repetitions}</td>
+                        <td>{part.tempo}</td>
+                        <td>{part.break}</td>
+                        <td>{part.url}</td>
                     </tr>
                 )
             })}
