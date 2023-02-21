@@ -10,7 +10,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"></Logo>
-            <form action="" onSubmit={savePartOfPlan}>
+            <form action="" onSubmit={savePartOfPlan} autoComplete="off">
                 <table>
                     <TableHeader/>
                     <tbody>
