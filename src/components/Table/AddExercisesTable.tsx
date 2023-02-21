@@ -1,12 +1,12 @@
 import './TableFormInputs.css';
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, {SyntheticEvent, useState} from "react";
 import {TableFormInputs} from "./TableFormInputs";
-import {TableBody} from "./TableBody";
+import {PartOfPlanEntity} from 'types';
 
 export const AddExercisesTable = () => {
-    const[tableData, setTableData] = useState([]);
+    const[partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
     const [id, setId] = useState('');
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<PartOfPlanEntity>({
         order: '',
         exercise: '',
         series: 0,
@@ -44,12 +44,12 @@ export const AddExercisesTable = () => {
         const data = await res.json();
         setId(data.id);
 
-        const dataObj: any = (data: any) => [...data, form];
-        setTableData(dataObj);
+        const dataObj = (data: PartOfPlanEntity[]) => [...data, form];
+        setPartsList(dataObj);
 
     };
 
-    const updateForm = (key: string, value: any) => {
+    const updateForm = (key: string, value: PartOfPlanEntity) => {
         setForm(form => ({
             ...form,
             [key]: value,
@@ -63,7 +63,7 @@ export const AddExercisesTable = () => {
                 form={form}
                 updateForm={updateForm}
                 // handleReset={handleReset}
-                tableData={tableData}
+                partsList={partsList}
             />
         </>
     )
