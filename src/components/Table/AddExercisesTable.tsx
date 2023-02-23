@@ -16,18 +16,6 @@ export const AddExercisesTable = () => {
         url: '',
     })
 
-    const handleReset = (e: SyntheticEvent) => {
-        setForm({
-            order: '',
-            exercise: '',
-            series: 0,
-            repetitions: '',
-            tempo: 0,
-            break: '',
-            url: '',
-        });
-    }
-
     const savePartOfPlan = async (e: SyntheticEvent) => {
         e.preventDefault();
 
@@ -46,6 +34,16 @@ export const AddExercisesTable = () => {
 
         const dataObj = (data: PartOfPlanEntity[]) => [...data, form];
         setPartsList(dataObj);
+
+        setForm({
+            order: '',
+            exercise: '',
+            series: 0,
+            repetitions: '',
+            tempo: 0,
+            break: '',
+            url: '',
+        });
 
     };
 
