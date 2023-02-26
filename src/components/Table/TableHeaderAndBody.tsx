@@ -5,7 +5,12 @@ import React from "react";
 export const TableHeaderAndBody = () => {
     return (
         <>
-            <TableHeader/>
+            <table>
+                <TableHeader/>
+                <tbody>
+
+                </tbody>
+            </table>
         </>
     )
 }

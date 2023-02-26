@@ -10,7 +10,8 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"></Logo>
-            <form action="" onSubmit={savePartOfPlan} autoComplete="off">
+            <form action="" onSubmit={savePartOfPlan}>
+                {/*autoComplete="off"*/}
                 <table>
                     <TableHeader/>
                     <tbody>
@@ -80,11 +81,11 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                                 onChange={e => updateForm('url', e.target.value)}
                             />
                         </td>
+                        <button type="submit"><VscAdd className="icon"/></button>
                     </tr>
                     <TableBody partsList={partsList}/>
                     </tbody>
                 </table>
-                <button type="submit"><VscAdd className="icon"/></button>
             </form>
         </>
     )
