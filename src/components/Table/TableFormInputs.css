@@ -3,6 +3,7 @@ input {
     color: white;
     font-size: 16px;
     background-color: transparent;
+    text-align: center;
 }
 
 input:focus {
@@ -32,7 +33,7 @@ input:focus {
 
 h1, h2 {
     padding-bottom: 2vh;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 table {
@@ -65,4 +66,10 @@ td, th {
 
 .hidden {
     border: none;
+}
+
+button {
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
 }

@@ -60,7 +60,6 @@ export const AddExercisesTable = () => {
                 savePartOfPlan={savePartOfPlan}
                 form={form}
                 updateForm={updateForm}
-                // handleReset={handleReset}
                 partsList={partsList}
             />
         </>
