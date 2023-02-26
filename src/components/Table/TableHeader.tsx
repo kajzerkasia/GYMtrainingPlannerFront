@@ -17,10 +17,10 @@ export const TableHeader = () => {
                     Powtórzenia
                 </th>
                 <th>
-                    Tempo
+                    Przerwa między seriami
                 </th>
                 <th>
-                    Przerwa między seriami
+                    Wskazówki dotyczące ćwiczenia
                 </th>
                 <th>
                     Poprawne wykonanie ćwiczenia (link)

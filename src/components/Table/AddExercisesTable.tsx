@@ -9,10 +9,10 @@ export const AddExercisesTable = () => {
     const [form, setForm] = useState<PartOfPlanEntity>({
         order: '',
         exercise: '',
-        series: 0,
+        series: 1,
         repetitions: '',
-        tempo: 0,
         break: '',
+        tips: '',
         url: '',
     })
 
@@ -38,10 +38,10 @@ export const AddExercisesTable = () => {
         setForm({
             order: '',
             exercise: '',
-            series: 0,
+            series: 1,
             repetitions: '',
-            tempo: 0,
             break: '',
+            tips: '',
             url: '',
         });
 

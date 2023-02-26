@@ -4,6 +4,7 @@
 }
 
 body {
+  overflow: hidden;
   padding-top: 3vh;
   display: flex;
   flex-direction: column;

@@ -15,7 +15,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                 <table>
                     <TableHeader/>
                     <tbody>
-                    <tr>
+                    <tr className="input">
                         <td>
                             <input
                                 type="text"
@@ -39,6 +39,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                         <td>
                             <input
                                 type="number"
+                                min={1}
                                 name="series"
                                 maxLength={3}
                                 value={form.series}
@@ -56,20 +57,20 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                         </td>
                         <td>
                             <input
-                                type="number"
-                                name="tempo"
-                                maxLength={9}
-                                value={form.tempo}
-                                onChange={e => updateForm('tempo', e.target.value)}
-                            />
-                        </td>
-                        <td>
-                            <input
                                 type="text"
                                 name="break"
                                 maxLength={49}
                                 value={form.break}
                                 onChange={e => updateForm('break', e.target.value)}
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="text"
+                                name="tips"
+                                maxLength={49}
+                                value={form.tips}
+                                onChange={e => updateForm('tips', e.target.value)}
                             />
                         </td>
                         <td>
@@ -81,7 +82,9 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                                 onChange={e => updateForm('url', e.target.value)}
                             />
                         </td>
-                        <button type="submit"><VscAdd className="icon"/></button>
+                        <td>
+                            <button type="submit"><VscAdd className="icon"/></button>
+                        </td>
                     </tr>
                     <TableBody partsList={partsList}/>
                     </tbody>

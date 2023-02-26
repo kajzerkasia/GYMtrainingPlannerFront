@@ -1,6 +1,7 @@
 input {
     border:none;
     color: white;
+    /*color: #DA70D6;*/
     font-size: 16px;
     background-color: transparent;
     text-align: center;
@@ -12,8 +13,7 @@ input:focus {
 }
 
 .icon {
-    padding: 5px;
-    font-size: 30px;
+    font-size: 16px;
 }
 
 .mini-icon {
@@ -45,24 +45,11 @@ table {
     /*border: 1px solid white;*/
 }
 
-tr {
-    margin: 2px;
-    /*background-color: #f1cdcd;*/
-}
-
-tr:nth-child(2n) {
-    /*background-color: #eadbdb;*/
-}
-
-thead tr,
-.header-of-left th {
-    /*background-color: #cd7c7c;*/
-}
-
 td, th {
     padding: 10px;
     border: 1px solid white;
 }
+
 
 .hidden {
     border: none;
@@ -71,5 +58,11 @@ td, th {
 button {
     background-color: transparent;
     color: white;
-    border: 1px solid white;
+    border: none;
+    cursor: pointer;
 }
+
+/*.input {*/
+/*    background-color: white;*/
+/*    color: #DA70D6;*/
+/*}*/
