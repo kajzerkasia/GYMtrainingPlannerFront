@@ -14,14 +14,14 @@ export const TableBody = () => {
             })
     }, [])
 
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/exercises`, {
-            method: 'GET'
-        }).then(res => res.json())
-            .then((parts) => {
-                setPartsList(parts)
-            })
-    }, []);
+    // useEffect(() => {
+    //     fetch(`${process.env.REACT_APP_API_URL}/exercises`, {
+    //         method: 'GET'
+    //     }).then(res => res.json())
+    //         .then((parts) => {
+    //             setPartsList(parts)
+    //         })
+    // }, []);
 
     return (
         <>
