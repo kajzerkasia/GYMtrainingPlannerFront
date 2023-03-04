@@ -1,15 +1,13 @@
 import {TableHeader} from "./TableHeader";
 import {TableBody} from "./TableBody";
-import React from "react";
 
-export const TableHeaderAndBody = () => {
+export const TableOfExercises = () => {
+
     return (
         <>
             <table>
                 <TableHeader/>
-                <tbody>
-
-                </tbody>
+                <TableBody/>
             </table>
         </>
     )
