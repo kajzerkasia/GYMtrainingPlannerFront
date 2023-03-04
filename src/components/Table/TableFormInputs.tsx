@@ -3,9 +3,10 @@ import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {TableBody} from "./TableBody";
 import './TableFormInputs.css';
+import {PartOfPlanEntity} from 'types';
 
 
-export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }: any) => {
+export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }: PartOfPlanEntity[] | any) => {
 
     return (
         <>
@@ -86,7 +87,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                             <button type="submit"><VscAdd className="icon"/></button>
                         </td>
                     </tr>
-                    <TableBody partsList={partsList}/>
+                    <TableBody/>
                     </tbody>
                 </table>
             </form>
