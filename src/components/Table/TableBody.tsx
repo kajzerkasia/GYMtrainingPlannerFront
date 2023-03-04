@@ -1,31 +1,11 @@
 import { ArrayOfParts } from 'types';
-import {useEffect, useState} from "react";
-import {PartOfPlanEntity} from 'types';
+import {useEffect} from "react";
 
-export const TableBody = () => {
-    const[partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/add-exercise`, {
-            method: 'GET'
-        }).then(res => res.json())
-            .then((parts) => {
-                setPartsList(parts)
-            })
-    }, [])
-
-    useEffect(() => {
-        fetch(`${process.env.REACT_APP_API_URL}/exercises`, {
-            method: 'GET'
-        }).then(res => res.json())
-            .then((parts) => {
-                setPartsList(parts)
-            })
-    }, []);
+export const TableBody = ({ partsList }: ArrayOfParts) => {
 
     return (
         <>
-            {partsList.map((part: any, index: number) => {
+            {partsList.map((part, index: number) => {
                 return (
                     <tr key={index}>
                         <td>{part.order}</td>
