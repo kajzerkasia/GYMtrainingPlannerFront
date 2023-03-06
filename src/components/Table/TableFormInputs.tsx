@@ -3,9 +3,10 @@ import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {TableBody} from "./TableBody";
 import './TableFormInputs.css';
+import {PartOfPlanEntity} from 'types';
 
 
-export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }: any) => {
+export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList, updateTable, editTable }: PartOfPlanEntity[] | any) => {
 
     return (
         <>
@@ -20,7 +21,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                             <input
                                 type="text"
                                 name="order"
-                                required
+                                // required
                                 maxLength={49}
                                 value={form.order}
                                 onChange={e => updateForm('order', e.target.value)}
@@ -30,7 +31,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                             <input
                                 type="text"
                                 name="exercise"
-                                required
+                                // required
                                 maxLength={99}
                                 value={form.exercise}
                                 onChange={e => updateForm('exercise', e.target.value)}
@@ -86,7 +87,11 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList }:
                             <button type="submit"><VscAdd className="icon"/></button>
                         </td>
                     </tr>
-                    <TableBody partsList={partsList}/>
+                    <TableBody
+                        partsList={partsList}
+                        updateTable={updateTable}
+                        editTable={editTable}
+                    />
                     </tbody>
                 </table>
             </form>
