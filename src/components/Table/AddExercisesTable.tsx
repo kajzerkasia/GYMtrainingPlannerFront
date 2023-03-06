@@ -1,11 +1,10 @@
 import './TableFormInputs.css';
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, {SyntheticEvent, useState} from "react";
 import {TableFormInputs} from "./TableFormInputs";
 import {PartOfPlanEntity} from 'types';
 
-
-export const AddExercisesTable = ({partsList, setPartsList}: any) => {
-
+export const AddExercisesTable = () => {
+    const[partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
     const [id, setId] = useState('');
     const [form, setForm] = useState<PartOfPlanEntity>({
         order: '',
