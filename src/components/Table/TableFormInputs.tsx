@@ -3,15 +3,15 @@ import {TableHeader} from "./TableHeader";
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {TableBody} from "./TableBody";
 import './TableFormInputs.css';
-import {PartOfPlanEntity} from 'types';
+import {ExerciseEntity} from 'types';
 
 
-export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList, updateTable, editTable }: PartOfPlanEntity[] | any) => {
+export const TableFormInputs = ({ saveExercise, form, updateForm, exercisesList, updateTable, editTable }: ExerciseEntity[] | any) => {
 
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"></Logo>
-            <form action="" onSubmit={savePartOfPlan}>
+            <form action="" onSubmit={saveExercise}>
                 {/*autoComplete="off"*/}
                 <table>
                     <TableHeader/>
@@ -88,7 +88,7 @@ export const TableFormInputs = ({ savePartOfPlan, form, updateForm, partsList, u
                         </td>
                     </tr>
                     <TableBody
-                        partsList={partsList}
+                        exercisesList={exercisesList}
                         updateTable={updateTable}
                         editTable={editTable}
                     />
