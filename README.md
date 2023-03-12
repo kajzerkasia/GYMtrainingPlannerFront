@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Gym Training Planner
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is an application for managing training plans. You can add new plan, edit existing or delete plan. 
 
 ## Available Scripts
 
