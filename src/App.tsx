@@ -5,7 +5,6 @@ import {Route, Routes} from "react-router-dom";
 import {Progression} from "./components/Progression/Progression";
 import {AddProgression} from "./components/Progression/AddProgression";
 import {Instruction} from "./components/Instruction/Instruction";
-import {AddPlan} from "./components/Plan/AddPlan";
 import {AddExercisesTable} from "./components/Table/AddExercisesTable";
 import {Plan} from "./components/Plan/Plan";
 
@@ -20,7 +19,6 @@ export const App = () => {
                 <Route path="/exercises" element={<AddExercisesTable/>}/>
                 <Route path="/progression" element={<Progression/>}/>
                 <Route path="/add-progression" element={<AddProgression/>}/>
-                <Route path="/add-plan" element={<AddPlan/>}/>
                 <Route path="/instruction" element={<Instruction/>}/>
             </Routes>
         </>

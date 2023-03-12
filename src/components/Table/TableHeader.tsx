@@ -25,8 +25,6 @@ export const TableHeader = () => {
                 <th>
                     Poprawne wykonanie ćwiczenia (link)
                 </th>
-                <th className="hidden">
-                </th>
             </tr>
             </thead>
     )

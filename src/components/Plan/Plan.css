@@ -2,10 +2,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40%;
+    width: 60%;
     margin: 0 auto;
     border: 1px solid white;
-    /*padding-right: 10vw;*/
+    padding-right: 7vw;
 }
 
 
@@ -16,20 +16,28 @@ h1, h2 {
     align-items: center;
 }
 
-h2 {
-    margin-top: 2vh;
-    margin-bottom: 2vh;
+.main-h1 {
+    margin-bottom: 10vh;
 }
 
 .wrapper {
-    margin-top: 5vh;
+    margin-top: 7vh;
 }
 
 .gradient-bgc-tr {
     background-image: linear-gradient(200deg, #87CEEB 15%, #DA70D6 82%);
 }
 
-table {
+.main-table {
     margin-right: 2vw;
+    width: 30vw;
+}
+
+.icon {
+    font-size: 22px;
+}
+
+.add {
+    width: 1vw;
 }
 

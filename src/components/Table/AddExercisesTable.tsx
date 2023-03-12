@@ -1,14 +1,13 @@
 import './TableFormInputs.css';
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {TableFormInputs} from "./TableFormInputs";
-import {PartOfPlanEntity} from 'types';
-
+import {ExerciseEntity} from 'types';
 
 export const AddExercisesTable = () => {
 
-    const [partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
+    const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
     const [id, setId] = useState('');
-    const [form, setForm] = useState<PartOfPlanEntity>({
+    const [form, setForm] = useState<ExerciseEntity>({
         order: '',
         exercise: '',
         series: 1,
@@ -17,21 +16,21 @@ export const AddExercisesTable = () => {
         tips: '',
         url: '',
     })
+
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-exercise`, {
             method: 'GET'
         }).then(res => res.json())
-            .then((parts) => {
-                setPartsList(parts)
+            .then((exercises) => {
+                setExercisesList(exercises)
             })
-
 
     }, [])
 
-    const savePartOfPlan = async (e: SyntheticEvent) => {
+    const saveExercise = async (e: SyntheticEvent) => {
         e.preventDefault();
 
-        const res = await fetch(`http://localhost:3001/add-exercise`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,8 +43,8 @@ export const AddExercisesTable = () => {
         const data = await res.json();
         setId(data.id);
 
-        const dataObj = (data: PartOfPlanEntity[]) => [...data, form];
-        setPartsList(dataObj);
+        const dataObj = (data: ExerciseEntity[]) => [...data, form];
+        setExercisesList(dataObj);
 
         setForm({
             order: '',
@@ -59,15 +58,15 @@ export const AddExercisesTable = () => {
 
     };
 
-    const updateForm = (key: string, value: PartOfPlanEntity) => {
+    const updateForm = (key: string, value: ExerciseEntity) => {
         setForm(form => ({
             ...form,
             [key]: value,
         }))
     };
 
-    const updateTable = (key: string, value: PartOfPlanEntity) => {
-        setPartsList((data: PartOfPlanEntity[]) => [...data])
+    const updateTable = (key: string, value: ExerciseEntity) => {
+        setExercisesList((data: ExerciseEntity[]) => [...data])
     };
 
     const editTable = () => {
@@ -77,21 +76,21 @@ export const AddExercisesTable = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                ...partsList
+                ...exercisesList
             })
         }).then(res => res.json())
-            .then((parts) => {
-                setPartsList(parts)
+            .then((exercises) => {
+                setExercisesList(exercises)
             });
     }
 
     return (
         <>
             <TableFormInputs
-                savePartOfPlan={savePartOfPlan}
+                saveExercise={saveExercise}
                 form={form}
                 updateForm={updateForm}
-                partsList={partsList}
+                exercisesList={exercisesList}
                 updateTable={updateTable}
                 editTable={editTable}
             />
