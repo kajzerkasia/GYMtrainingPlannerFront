@@ -10,7 +10,6 @@ export const Header = () => {
                 <h2>Moje plany treningowe:</h2>
                 <Logo to="/add-plan" text="Dodaj nowy plan trenignowy"/>
             </header>
-            <div className="plans"></div>
         </div>
     )
 }

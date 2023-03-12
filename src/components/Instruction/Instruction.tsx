@@ -1,5 +1,6 @@
 import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {Logo} from "../Logo/Logo";
+// import 'Instruction.css';
 
 export const Instruction = () => {
     return (
