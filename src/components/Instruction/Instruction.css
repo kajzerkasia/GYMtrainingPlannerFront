@@ -1,0 +1,18 @@
+.instruction-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20vh;
+    padding: 5vh 5vw;
+    width: 100%;
+}
+
+ul {
+    border: 1px solid white;
+    padding: 5vh 5vw;
+}
+
+li {
+    padding-bottom: 2vh;
+}
