@@ -1,6 +1,4 @@
-import "./Plan.css"
 import {Logo} from "../Logo/Logo";
-import  './AddPlan.css';
 
 export const AddPlan = () => {
     return (

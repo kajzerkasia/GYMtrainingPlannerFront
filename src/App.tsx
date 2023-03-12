@@ -7,10 +7,8 @@ import {Progression} from "./components/Progression/Progression";
 import {AddProgression} from "./components/Progression/AddProgression";
 import {Instruction} from "./components/Instruction/Instruction";
 import {AddPlan} from "./components/Plan/AddPlan";
-import {TableHeaderAndBody} from "./components/Table/TableHeaderAndBody";
-import {TableBody} from "./components/Table/TableBody";
-import {TableOfExercises} from "./components/Table/TableOfExercises";
 import {AddExercisesTable} from "./components/Table/AddExercisesTable";
+import {Plan} from "./components/Plan/Plan";
 
 
 export const App = () => {
@@ -19,7 +17,7 @@ export const App = () => {
         <>
             <Routes>
                 <Route path="/" element={<Logo to="/plans" text="GYM training Planner"/>}/>
-                <Route path="/plans" element={<PlansArea/>}/>
+                <Route path="/plans" element={<Plan/>}/>
                 {/*<Route path="/exercises" element={<TableOfExercises/>}/>*/}
                 <Route path="/add-exercises" element={<AddExercisesTable/>}/>
                 <Route path="/progression" element={<Progression/>}/>

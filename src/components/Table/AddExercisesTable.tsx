@@ -1,10 +1,12 @@
 import './TableFormInputs.css';
-import React, {SyntheticEvent, useState} from "react";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import {TableFormInputs} from "./TableFormInputs";
 import {PartOfPlanEntity} from 'types';
 
+
 export const AddExercisesTable = () => {
-    const[partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
+
+    const [partsList, setPartsList] = useState<PartOfPlanEntity[]>([]);
     const [id, setId] = useState('');
     const [form, setForm] = useState<PartOfPlanEntity>({
         order: '',
@@ -15,6 +17,16 @@ export const AddExercisesTable = () => {
         tips: '',
         url: '',
     })
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/add-exercise`, {
+            method: 'GET'
+        }).then(res => res.json())
+            .then((parts) => {
+                setPartsList(parts)
+            })
+
+
+    }, [])
 
     const savePartOfPlan = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -54,6 +66,25 @@ export const AddExercisesTable = () => {
         }))
     };
 
+    const updateTable = (key: string, value: PartOfPlanEntity) => {
+        setPartsList((data: PartOfPlanEntity[]) => [...data])
+    };
+
+    const editTable = () => {
+        fetch(`${process.env.REACT_APP_API_URL}/add-exercise/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                ...partsList
+            })
+        }).then(res => res.json())
+            .then((parts) => {
+                setPartsList(parts)
+            });
+    }
+
     return (
         <>
             <TableFormInputs
@@ -61,6 +92,8 @@ export const AddExercisesTable = () => {
                 form={form}
                 updateForm={updateForm}
                 partsList={partsList}
+                updateTable={updateTable}
+                editTable={editTable}
             />
         </>
     )
