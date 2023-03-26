@@ -44,19 +44,17 @@ export const AddExercisesTable = () => {
             throw new Error('Wystąpił błąd podczas próby zaktualizowania ćwiczenia.');
         }
 
-        const data = await res.json();
-        console.log(data);
-
-        // const updateExercise = exercisesList.map((exercise) => exercise.id === values.id ? values : exercise);
-        //
-        // console.log(updateExercise);
+        return await res.json();
 
     };
 
-    const handleUpdateExercise = async (updatedExercise: ExerciseEntity) => {
-        const updateExercise = exercisesList.map((exercise) => exercise.id === updatedExercise.id ? updatedExercise : exercise);
-        setExercisesList(updateExercise);
-    }
+    const handleUpdateExercise = (updatedExercise: ExerciseEntity) => {
+        setExercisesList((exercisesList) =>
+            exercisesList.map((exercise) =>
+                exercise.id === updatedExercise.id ? updatedExercise : exercise
+            )
+        );
+    };
 
     return (
         <>
@@ -111,8 +109,8 @@ export const AddExercisesTable = () => {
                         <ExerciseForm
                             initialValues={exercise}
                             onSubmit={async (values) => {
-                                await handleUpdateExercise(values);
                                 await editExercise(values);
+                                await handleUpdateExercise(values);
                             }}
                         />
                     </tr>

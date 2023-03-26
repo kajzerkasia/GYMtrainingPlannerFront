@@ -89,7 +89,7 @@ export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => 
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>action</button>
+                <button type='button' onClick={() => onSubmit(values, reset)}>Dodaj</button>
             </td>
         </>
     );
