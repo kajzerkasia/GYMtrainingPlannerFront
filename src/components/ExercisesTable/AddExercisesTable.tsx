@@ -1,6 +1,8 @@
-import './TableFormInputs.css';
 import React, {useEffect, useState} from "react";
 import {ExerciseEntity} from 'types';
+import {Logo} from "../Logo/Logo";
+import {ExerciseForm} from "./ExerciseForm";
+import './AddExercisesTable.css';
 
 export const AddExercisesTable = () => {
 

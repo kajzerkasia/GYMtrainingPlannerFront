@@ -21,7 +21,7 @@ export const Plan = () => {
                     </thead>
                     <tbody>
                     <tr>
-                        <td><Logo to="/progression" text="Progresja"/></td>
+                        <td><Logo to="/rules" text="Zasady progresji"/></td>
                     </tr>
                     <tr>
                         <td><Logo to="/exercises" text="Rozgrzewka"/></td>
