@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ExerciseEntity} from 'types';
+import {ExerciseEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
 import './AddExercisesTable.css';
@@ -17,7 +17,7 @@ export const AddExercisesTable = () => {
             })
     }, [])
 
-    const saveExercise = async (values: ExerciseEntity) => {
+    const addExercise = async (values: ExerciseEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
             method: 'POST',
             headers: {
@@ -56,12 +56,28 @@ export const AddExercisesTable = () => {
         );
     };
 
+    const deleteExercise = async (values: ExerciseEntity) => {
+
+        if (!window.confirm(`Czy na pewno chcesz usunąć ćwiczenie ${values.name}?`)) {
+            return;
+        }
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
+            method: 'DELETE',
+        });
+        if ([400, 500].includes(res.status)) {
+            const error = await res.json();
+            alert(`Wystąpił błąd: ${error.message}`);
+            return;
+        }
+    };
+
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"/>
             <table>
                 <thead>
                 <tr>
+                    <th className="hidden"></th>
                     <th>
                         Kolejność
                     </th>
@@ -87,6 +103,7 @@ export const AddExercisesTable = () => {
                 </thead>
                 <tbody>
                 <tr>
+                    <td className="hidden"></td>
                     <ExerciseForm
                         initialValues={{
                             order: '',
@@ -98,20 +115,25 @@ export const AddExercisesTable = () => {
                             url: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            await saveExercise(values);
+                            await addExercise(values);
                             reset();
                         }}
+                        actionType={Status.Add}
                     />
                 </tr>
 
                 {exercisesList.map((exercise, idx) => (
                     <tr key={`row-${idx}`}>
+                        <td>
+                            <button onClick={() => deleteExercise(exercise)}>{Status.Delete}</button>
+                        </td>
                         <ExerciseForm
                             initialValues={exercise}
                             onSubmit={async (values) => {
                                 await editExercise(values);
                                 await handleUpdateExercise(values);
                             }}
+                            actionType={Status.Save}
                         />
                     </tr>
                 ))}

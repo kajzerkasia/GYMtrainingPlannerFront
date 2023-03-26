@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {ExerciseEntity} from 'types';
+import {ExerciseEntity, Status} from 'types';
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;
     onSubmit: (values: ExerciseEntity, reset: () => void) => void | Promise<void>;
+    actionType: Status;
 };
 
-export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => {
+export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFormProps) => {
     const [values, setValues] = useState<ExerciseEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -26,7 +27,7 @@ export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => 
                 <input
                     type="text"
                     name="order"
-                    // required
+                    required
                     maxLength={49}
                     value={values.order}
                     onChange={(event) => handleChange('order', event.target.value)}
@@ -36,7 +37,7 @@ export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => 
                 <input
                     type="text"
                     name="name"
-                    // required
+                    required
                     maxLength={99}
                     value={values.name}
                     onChange={(event) => handleChange('name', event.target.value)}
@@ -89,7 +90,7 @@ export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => 
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>Dodaj</button>
+                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
             </td>
         </>
     );
