@@ -6,7 +6,7 @@ export type ExerciseFormProps = {
     onSubmit: (values: ExerciseEntity, reset: () => void) => void | Promise<void>;
 };
 
-const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => {
+export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => {
     const [values, setValues] = useState<ExerciseEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -89,10 +89,8 @@ const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => {
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>action</button>
+                <button type='button' onClick={() => onSubmit(values, reset)}>Dodaj</button>
             </td>
         </>
     );
 };
-
-export default ExerciseForm;
