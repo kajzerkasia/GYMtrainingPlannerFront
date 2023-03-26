@@ -30,6 +30,7 @@ export const AddRulesTable = () => {
     };
 
     const editRule = async (values: RuleEntity) => {
+
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
             method: 'PUT',
             headers: {
@@ -39,22 +40,20 @@ export const AddRulesTable = () => {
         })
 
         if (!res.ok) {
-            throw new Error('Wystąpił błąd podczas próby zaktualizowania ćwiczenia.');
+            throw new Error('Wystąpił błąd podczas próby zaktualizowania zasady.');
         }
 
-        const data = await res.json();
-        console.log(data);
-
-        // const updateExercise = exercisesList.map((exercise) => exercise.id === values.id ? values : exercise);
-        //
-        // console.log(updateExercise);
+        return await res.json();
 
     };
 
-    const handleUpdateRule = async (updatedRule: RuleEntity) => {
-        const updateRule = rulesList.map((rule) => rule.id === updatedRule.id ? updatedRule : rule);
-        setRulesList(updateRule);
-    }
+    const handleUpdateRule = (updatedRule: RuleEntity) => {
+        setRulesList((rulesList) =>
+            rulesList.map((rule) =>
+                rule.id === updatedRule.id ? updatedRule : rule
+            )
+        );
+    };
 
     return (
         <>
@@ -85,8 +84,8 @@ export const AddRulesTable = () => {
                         <RulesForm
                             initialValues={rule}
                             onSubmit={async (values) => {
-                                await handleUpdateRule(values);
                                 await editRule(values);
+                                await handleUpdateRule(values);
                             }}
                         />
                     </tr>

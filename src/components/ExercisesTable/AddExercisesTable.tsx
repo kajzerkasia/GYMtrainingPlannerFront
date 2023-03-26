@@ -31,7 +31,7 @@ export const AddExercisesTable = () => {
     };
 
     const editExercise = async (values: ExerciseEntity) => {
-        console.log(values);
+
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
             method: 'PUT',
             headers: {
