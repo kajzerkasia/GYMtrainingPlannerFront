@@ -17,8 +17,9 @@ export const App = () => {
                 <Route path="/" element={<Logo to="/plans" text="GYM training Planner"/>}/>
                 <Route path="/plans" element={<Plan/>}/>
                 <Route path="/exercises" element={<AddExercisesTable/>}/>
-                <Route path="/progression" element={<Progression/>}/>
-                <Route path="/add-progression" element={<AddProgression/>}/>
+                <Route path="/exercises/:id" element={<AddExercisesTable/>}/>
+                <Route path="/rules" element={<Progression/>}/>
+                <Route path="/progression" element={<AddProgression/>}/>
                 <Route path="/instruction" element={<Instruction/>}/>
             </Routes>
         </>
