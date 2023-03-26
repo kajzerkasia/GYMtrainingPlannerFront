@@ -1,13 +1,8 @@
 import React, {useEffect, useState} from "react";
-import {ExerciseEntity} from 'types';
+import {ExerciseEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
 import './AddExercisesTable.css';
-
-export enum Status {
-    Saved = 'Dodaj',
-    Edited = 'Edytuj',
-}
 
 export const AddExercisesTable = () => {
 
@@ -22,7 +17,7 @@ export const AddExercisesTable = () => {
             })
     }, [])
 
-    const saveExercise = async (values: ExerciseEntity) => {
+    const addExercise = async (values: ExerciseEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
             method: 'POST',
             headers: {
@@ -74,7 +69,6 @@ export const AddExercisesTable = () => {
             alert(`Wystąpił błąd: ${error.message}`);
             return;
         }
-        return await res.json();
     };
 
     return (
@@ -121,17 +115,17 @@ export const AddExercisesTable = () => {
                             url: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            await saveExercise(values);
+                            await addExercise(values);
                             reset();
                         }}
-                        actionType={Status.Saved}
+                        actionType={Status.Add}
                     />
                 </tr>
 
                 {exercisesList.map((exercise, idx) => (
                     <tr key={`row-${idx}`}>
                         <td>
-                            <button onClick={() => deleteExercise(exercise)}>Usuń</button>
+                            <button onClick={() => deleteExercise(exercise)}>{Status.Delete}</button>
                         </td>
                         <ExerciseForm
                             initialValues={exercise}
@@ -139,7 +133,7 @@ export const AddExercisesTable = () => {
                                 await editExercise(values);
                                 await handleUpdateExercise(values);
                             }}
-                            actionType={Status.Edited}
+                            actionType={Status.Save}
                         />
                     </tr>
                 ))}

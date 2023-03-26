@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import {ExerciseEntity} from 'types';
-import {Button} from "../common/Button";
-import {Status} from "./AddExercisesTable";
+import {ExerciseEntity, Status} from 'types';
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;
@@ -29,7 +27,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                 <input
                     type="text"
                     name="order"
-                    // required
+                    required
                     maxLength={49}
                     value={values.order}
                     onChange={(event) => handleChange('order', event.target.value)}
@@ -39,7 +37,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                 <input
                     type="text"
                     name="name"
-                    // required
+                    required
                     maxLength={99}
                     value={values.name}
                     onChange={(event) => handleChange('name', event.target.value)}

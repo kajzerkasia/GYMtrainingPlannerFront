@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import {RuleEntity} from 'types';
+import {RuleEntity, Status} from 'types';
 
 export type RuleFormProps = {
     initialValues: RuleEntity;
     onSubmit: (values: RuleEntity, reset: () => void) => void | Promise<void>;
+    actionType: Status;
 };
 
-export const RulesForm = ({ initialValues, onSubmit }: RuleFormProps) => {
+export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps) => {
     const [values, setValues] = useState<RuleEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -33,7 +34,7 @@ export const RulesForm = ({ initialValues, onSubmit }: RuleFormProps) => {
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>action</button>
+                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
             </td>
         </>
     );

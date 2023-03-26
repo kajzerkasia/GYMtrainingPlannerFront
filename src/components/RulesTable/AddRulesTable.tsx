@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {RuleEntity} from 'types';
+import {RuleEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {RulesForm} from "./RulesForm";
 
@@ -16,7 +16,7 @@ export const AddRulesTable = () => {
             })
     }, [])
 
-    const saveRule = async (values: RuleEntity) => {
+    const addRule = async (values: RuleEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
             method: 'POST',
             headers: {
@@ -55,12 +55,28 @@ export const AddRulesTable = () => {
         );
     };
 
+    const deleteRule = async (values: RuleEntity) => {
+
+        if (!window.confirm(`Czy na pewno chcesz usunąć zasadę?`)) {
+            return;
+        }
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
+            method: 'DELETE',
+        });
+        if ([400, 500].includes(res.status)) {
+            const error = await res.json();
+            alert(`Wystąpił błąd: ${error.message}`);
+            return;
+        }
+    };
+
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"/>
             <table>
                 <thead>
                 <tr>
+                    <th className="hidden"></th>
                     <th>
                         Zasada
                     </th>
@@ -68,25 +84,31 @@ export const AddRulesTable = () => {
                 </thead>
                 <tbody>
                 <tr>
+                    <td className="hidden"></td>
                     <RulesForm
                         initialValues={{
                             rule: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            await saveRule(values);
+                            await addRule(values);
                             reset();
                         }}
+                        actionType={Status.Add}
                     />
                 </tr>
 
                 {rulesList.map((rule, idx) => (
                     <tr key={`row-${idx}`}>
+                        <td className="button">
+                            <button onClick={() => deleteRule(rule)}>{Status.Delete}</button>
+                        </td>
                         <RulesForm
                             initialValues={rule}
                             onSubmit={async (values) => {
                                 await editRule(values);
                                 await handleUpdateRule(values);
                             }}
+                            actionType={Status.Save}
                         />
                     </tr>
                 ))}
