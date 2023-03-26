@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {ExerciseEntity} from 'types';
+import {Button} from "../common/Button";
+import {Status} from "./AddExercisesTable";
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;
     onSubmit: (values: ExerciseEntity, reset: () => void) => void | Promise<void>;
+    actionType: Status;
 };
 
-export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => {
+export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFormProps) => {
     const [values, setValues] = useState<ExerciseEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -89,7 +92,7 @@ export const ExerciseForm = ({ initialValues, onSubmit }: ExerciseFormProps) => 
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>Dodaj</button>
+                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
             </td>
         </>
     );

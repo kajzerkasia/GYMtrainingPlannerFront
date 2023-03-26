@@ -11,6 +11,7 @@ export const Instruction = () => {
                 <li>W każdym kolejnym wierszu tabeli możesz edytować jego zawartość klikając w dane pole i zmieniając zawarty w nim tekst.</li>
                 <li>W każdym kolejnym wierszu tabeli ikonka <VscChromeClose className="mini-icon"/> po prawej stronie tabeli służy do tego aby zapisać zmiany z danego wiersza tabeli.</li>
                 <li>W każdym kolejnym wierszu tabeli ikonka po lewej stronie służy do usuwania wierszy.</li>
+                <li>Jeśli ćwiczenia po dodaniu lub zmianie kolejności nie są wyświetlane w odpowiedniej kolejności - odśwież stronę.</li>
                 <Logo to="/exercises" text="Powrót do tabeli z ćwiczeniami"></Logo>
             </ul>
 
