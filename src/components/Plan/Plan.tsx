@@ -11,12 +11,15 @@ export const Plan = () => {
 
             <div className="main-plan">
                 <table className="main-table">
-                    <tr className="gradient-bgc-tr">
+                    <thead className="gradient-bgc-tr">
+                    <tr>
                         <td><h1>Mój plan</h1></td>
                         <td className="add">
                             <button type="submit"><VscAdd className="icon"/></button>
                         </td>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
                         <td><Logo to="/progression" text="Progresja"/></td>
                     </tr>
@@ -31,6 +34,7 @@ export const Plan = () => {
                     <tr>
                         <td><Logo to="/exercises" text="Dzień B"/></td>
                     </tr>
+                    </tbody>
                 </table>
                 <Calendar/>
             </div>
