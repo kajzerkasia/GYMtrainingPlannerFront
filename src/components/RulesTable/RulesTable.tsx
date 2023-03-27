@@ -3,7 +3,7 @@ import {RuleEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {RulesForm} from "./RulesForm";
 
-export const AddRulesTable = () => {
+export const RulesTable = () => {
 
     const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
 
@@ -67,6 +67,11 @@ export const AddRulesTable = () => {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
+        } else {
+            const data = await res.json();
+            setRulesList(
+                rulesList => rulesList.filter(rule => rule.id !== data.id)
+            )
         }
     };
 
