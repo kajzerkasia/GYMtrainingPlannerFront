@@ -6,6 +6,9 @@ import {PartOfPlanEntity, Status} from 'types';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import './PartsOfPlanTable.css';
 
+import {TbQuestionMark, TbX} from "react-icons/tb";
+import {IconContext} from "react-icons";
+
 export const PartsOfPlanTable = () => {
 
     const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
@@ -86,8 +89,7 @@ export const PartsOfPlanTable = () => {
                 <table className="main-table">
 
                     <thead>
-                    <td className="hidden"></td>
-                    <th className="gradient-bgc-tr">
+                    <th colSpan={3} className="gradient-bgc-tr">
                         <h1>Plan treningowy</h1>
                     </th>
                     </thead>
@@ -95,7 +97,11 @@ export const PartsOfPlanTable = () => {
                     <tbody>
 
                     <tr>
-                        <td className="hidden"></td>
+                        <td>
+                        <IconContext.Provider value={{ className: 'react-icons' }}>
+                            <TbQuestionMark/>
+                        </IconContext.Provider>
+                        </td>
                         <PartsOfPlanForm
                             initialValues={{
                                 name: '',
@@ -112,7 +118,9 @@ export const PartsOfPlanTable = () => {
                     {partsOfPlanList.map((part, idx) => (
                         <tr key={`row-${idx}`}>
                         <td>
-                            <button onClick={() => deletePartOfPlan(part)}>{Status.Delete}</button>
+                            <IconContext.Provider value={{ className: 'react-icons' }}>
+                            <button onClick={() => deletePartOfPlan(part)}><TbX/></button>
+                            </IconContext.Provider>
                         </td>
                         <PartsOfPlanForm
                             initialValues={part}

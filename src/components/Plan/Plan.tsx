@@ -1,10 +1,14 @@
 import {Logo} from "../Logo/Logo";
 import './Plan.css';
-import React from "react";
+import React, {useEffect} from "react";
 import {Calendar} from "../Calendar/Calendar";
 import {VscAdd} from "react-icons/vsc";
 
 export const Plan = () => {
+    useEffect(() => {
+        // todo: fetch all parts_of_plan
+    }, [])
+
     return (
         <div className="wrapper">
             <h1 className="main-h1">GYM training Planner</h1>
@@ -24,7 +28,7 @@ export const Plan = () => {
                         <td><Logo to="/rules" text="Zasady progresji"/></td>
                     </tr>
                     <tr>
-                        <td><Logo to="/exercises" text="Rozgrzewka"/></td>
+                        <td><Logo to={`/exercises/${'warm-up'}`} text="Rozgrzewka"/></td>
                     </tr>
                     <tr>
                         <td>
