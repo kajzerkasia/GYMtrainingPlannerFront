@@ -36,7 +36,7 @@ export const Plan = () => {
                     </tr>
                     </tbody>
                 </table>
-                <Calendar/>
+                {/*<Calendar/>*/}
             </div>
         </div>
     )

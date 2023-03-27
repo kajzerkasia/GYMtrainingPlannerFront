@@ -1,0 +1,136 @@
+import React, {useEffect, useState} from 'react';
+import {VscAdd} from "react-icons/vsc";
+import {Logo} from "../Logo/Logo";
+import {Calendar} from "../Calendar/Calendar";
+import {PartOfPlanEntity, Status} from 'types';
+import {PartsOfPlanForm} from "./PartsOfPlanForm";
+import './PartsOfPlanTable.css';
+
+export const PartsOfPlanTable = () => {
+
+    const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
+
+    useEffect(() => {
+        fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
+            method: 'GET'
+        }).then(res => res.json())
+            .then((parts) => {
+                setPartsOfPlanList(parts)
+            })
+    }, [])
+
+    const addPartOfPlan = async (values: PartOfPlanEntity) => {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        })
+
+        const data = await res.json();
+        setPartsOfPlanList(list => [...list, data]);
+    };
+
+    const editPartOfPlan = async (values: PartOfPlanEntity) => {
+
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans/${values.id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+        })
+
+        if (!res.ok) {
+            throw new Error('Wystąpił błąd podczas próby zaktualizowania części planu.');
+        }
+
+        return await res.json();
+
+    };
+
+    const handleUpdatePartOfPlan = (updatedPart: PartOfPlanEntity) => {
+        setPartsOfPlanList((partsOfPlanList) =>
+            partsOfPlanList.map((part) =>
+                part.id === updatedPart.id ? updatedPart : part
+            )
+        );
+    };
+
+    const deletePartOfPlan = async (values: PartOfPlanEntity) => {
+
+        if (!window.confirm(`Czy na pewno chcesz usunąć część planu: ${values.name}? Spowoduje to usunięcie zarówno tej części planu, jak i ćwiczeń przypisanych do niej.`)) {
+            return;
+        }
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans/${values.id}`, {
+            method: 'DELETE',
+        });
+        if ([400, 500].includes(res.status)) {
+            const error = await res.json();
+            alert(`Wystąpił błąd: ${error.message}`);
+            return;
+        } else {
+            const data = await res.json();
+            setPartsOfPlanList(
+                partsOfPlanList => partsOfPlanList.filter(part => part.id !== data.id)
+            )
+        }
+    };
+
+    return (
+        <div className="wrapper">
+            <h1 className="main-h1">GYM training Planner</h1>
+
+            <div className="main-plan">
+                <table className="main-table">
+
+                    <thead>
+                    <td className="hidden"></td>
+                    <th className="gradient-bgc-tr">
+                        <h1>Plan treningowy</h1>
+                    </th>
+                    </thead>
+
+                    <tbody>
+
+                    <tr>
+                        <td className="hidden"></td>
+                        <PartsOfPlanForm
+                            initialValues={{
+                                name: '',
+                            }}
+                            onSubmit={async (values, reset) => {
+                                await addPartOfPlan(values);
+                                reset();
+                            }}
+                            actionType={Status.Add}
+                        />
+                    </tr>
+
+
+                    {partsOfPlanList.map((part, idx) => (
+                        <tr key={`row-${idx}`}>
+                        <td>
+                            <button onClick={() => deletePartOfPlan(part)}>{Status.Delete}</button>
+                        </td>
+                        <PartsOfPlanForm
+                            initialValues={part}
+                            onSubmit={async (values) => {
+                                await editPartOfPlan(values);
+                                await handleUpdatePartOfPlan(values);
+                            }}
+                            actionType={Status.Save}
+                        />
+                        </tr>
+                    ))}
+                    </tbody>
+
+                </table>
+                {/*<Calendar/>*/}
+            </div>
+        </div>
+    )
+
+}
+

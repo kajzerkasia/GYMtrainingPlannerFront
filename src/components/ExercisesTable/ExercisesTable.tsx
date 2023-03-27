@@ -2,19 +2,51 @@ import React, {useEffect, useState} from "react";
 import {ExerciseEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
-import './AddExercisesTable.css';
+import './ExercisesTable.css';
+import {useParams} from "react-router-dom";
 
-export const AddExercisesTable = () => {
+export const ExercisesTable = () => {
+
+
+    // TODO: change /exercises to /exercises/:slug
 
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
+    const params = useParams();
 
     useEffect(() => {
+        const abortController = new AbortController();
+
         fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
-            method: 'GET'
+            method: 'GET',
+            signal: abortController.signal
         }).then(res => res.json())
             .then((exercises) => {
                 setExercisesList(exercises)
             })
+
+        // // first we need to check if part of plan's slug exists in DB - and get its ID
+        // fetch(`${process.env.REACT_APP_API_URL}/parts_of_plan?slug=${params.slug}`, {
+        //     method: 'GET',
+        //     signal: abortController.signal
+        // }).then(res => res.json())
+        //     .then((planPart) => {
+        //         if (!planPart) {
+        //             // todo: what happens when parts is NULL/undefined
+        //             return Promise.reject('no plan part')
+        //         } else {
+        //             return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?planOfPartId=${planPart.id}`, {
+        //                 method: 'GET',
+        //                 signal: abortController.signal
+        //             }).then(res => res.json())
+        //                 .then((exercises) => {
+        //                     setExercisesList(exercises)
+        //                 })
+        //         }
+        //     })
+
+        return () => {
+            abortController.abort();
+        };
     }, [])
 
     const addExercise = async (values: ExerciseEntity) => {
@@ -58,7 +90,7 @@ export const AddExercisesTable = () => {
 
     const deleteExercise = async (values: ExerciseEntity) => {
 
-        if (!window.confirm(`Czy na pewno chcesz usunąć ćwiczenie ${values.name}?`)) {
+        if (!window.confirm(`Czy na pewno chcesz usunąć ćwiczenie: ${values.name}?`)) {
             return;
         }
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
@@ -68,6 +100,11 @@ export const AddExercisesTable = () => {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
+        } else {
+            const data = await res.json();
+            setExercisesList(
+                exercisesList => exercisesList.filter(exercise => exercise.id !== data.id)
+            )
         }
     };
 
