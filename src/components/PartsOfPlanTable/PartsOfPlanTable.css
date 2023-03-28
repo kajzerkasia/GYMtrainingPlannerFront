@@ -49,6 +49,11 @@ button {
 
 .react-icons {
     font-size: 22px;
+    transition: color 0.4s;
+}
+
+.react-icons:hover {
+    color: #d495e2;
 }
 
 .main-h1 {

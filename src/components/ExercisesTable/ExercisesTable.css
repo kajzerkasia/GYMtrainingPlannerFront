@@ -62,6 +62,11 @@ button {
 
 .react-icons-smaller {
     font-size: 20px;
+    transition: color 0.4s;
+}
+
+.react-icons-smaller:hover {
+    color: #d495e2;
 }
 
 

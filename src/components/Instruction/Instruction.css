@@ -3,17 +3,22 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 5vh 5vw;
     width: 100%;
 }
 
 ul {
     border: 1px solid white;
     padding: 5vh 5vw;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
 }
 
 li {
     padding-bottom: 5vh;
+}
+
+.last {
+    padding-bottom: 0;
 }
 
 .instruction-h2 {

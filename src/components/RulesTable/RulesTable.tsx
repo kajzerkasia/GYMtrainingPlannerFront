@@ -129,3 +129,5 @@ export const RulesTable = () => {
         </>
     )
 }
+
+// TODO: Myślę, że warto wszędzie dodać jakieś przykładowe ćwiczenia. Chyba jedynie w bazie danych mogę na wstępie dodać.

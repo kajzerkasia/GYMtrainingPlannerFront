@@ -7,6 +7,7 @@ import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable} from "./components/ExercisesTable/ExercisesTable";
 import {Plan} from "./components/Plan/Plan";
 import {PartsOfPlanTable} from "./components/PartsOfPlanTable/PartsOfPlanTable";
+import { Navigate } from 'react-router-dom';
 
 
 export const App = () => {
@@ -14,7 +15,7 @@ export const App = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<Logo to="/plans" text="GYM Training Planner"/>}/>
+                <Route path="/" element={ <Navigate to="/plans" />}/>
                 <Route path="/plans" element={<PartsOfPlanTable/>}/>
                 <Route path="/exercises" element={<ExercisesTable/>}/>
                 <Route path="/rules" element={<RulesTable/>}/>

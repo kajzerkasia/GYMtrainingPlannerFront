@@ -5,5 +5,10 @@
     text-decoration: none;
     display: flex;
     justify-content: center;
+    transition: color 0.4s;
+}
+
+.logo:hover {
+    color: #d495e2;
 }
 
