@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {PartOfPlanEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
-// import { RxPaperPlane } from "react-icons/rx";
+
 import { TbBarbell, TbPlus, TbCheck} from "react-icons/tb";
 import { IconContext } from "react-icons";
 // tb:
