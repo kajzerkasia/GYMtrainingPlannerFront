@@ -83,7 +83,7 @@ export const PartsOfPlanTable = () => {
 
     return (
         <div className="wrapper">
-            <h1 className="main-h1">GYM training Planner</h1>
+            <h1 className="main-h1">GYM Training Planner</h1>
 
             <div className="main-plan">
                 <table className="main-table">
@@ -115,6 +115,8 @@ export const PartsOfPlanTable = () => {
                             actionType={Status.Add}
                         />
                     </tr>
+
+
 
 
                     {partsOfPlanList.map((part, idx) => (

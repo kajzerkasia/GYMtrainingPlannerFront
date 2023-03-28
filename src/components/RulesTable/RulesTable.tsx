@@ -2,6 +2,8 @@ import React, {useEffect, useState} from "react";
 import {RuleEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
 import {RulesForm} from "./RulesForm";
+import {TbQuestionMark, TbX} from "react-icons/tb";
+import {IconContext} from "react-icons";
 
 export const RulesTable = () => {
 
@@ -77,19 +79,22 @@ export const RulesTable = () => {
 
     return (
         <>
-            <Logo to="/instruction" text="Jak to działa?"/>
-            <table>
+            <table className="rules-table">
                 <thead>
                 <tr>
-                    <th className="hidden"></th>
-                    <th>
-                        Zasada
-                    </th>
+                    <td colSpan={3} className="gradient-bgc-tr">
+                        <h1 className="h1-rules">Zasady progresji</h1>
+                    </td>
                 </tr>
                 </thead>
+
                 <tbody>
                 <tr>
-                    <td className="hidden"></td>
+                    <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                        <td>
+                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                        </td>
+                    </IconContext.Provider>
                     <RulesForm
                         initialValues={{
                             rule: '',
@@ -104,8 +109,10 @@ export const RulesTable = () => {
 
                 {rulesList.map((rule, idx) => (
                     <tr key={`row-${idx}`}>
-                        <td className="button">
-                            <button onClick={() => deleteRule(rule)}>{Status.Delete}</button>
+                        <td>
+                            <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                                <button onClick={() => deleteRule(rule)}><TbX/></button>
+                            </IconContext.Provider>
                         </td>
                         <RulesForm
                             initialValues={rule}
