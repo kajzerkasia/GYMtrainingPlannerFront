@@ -5,6 +5,7 @@
     font-size: 26px;
     background-color: transparent;
     text-align: center;
+    width: 100%;
 }
 
 input:focus {
@@ -55,6 +56,11 @@ button {
 
 .main-h1 {
     padding-top: 7vh;
+}
+
+.td-progression-rules {
+    padding-top: 2.5vh;
+    padding-bottom: 2.5vh;
 }
 
 

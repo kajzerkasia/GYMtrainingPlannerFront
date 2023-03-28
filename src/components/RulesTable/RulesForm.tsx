@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
 import {RuleEntity, Status} from 'types';
+import './RulesTable.css';
+import {IconContext} from "react-icons";
+import {TbCheck, TbPlus} from "react-icons/tb";
 
 export type RuleFormProps = {
     initialValues: RuleEntity;
@@ -24,7 +27,7 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
     return (
         <>
             <td>
-                <input
+                <input className="input-rule"
                     type="text"
                     name="rule"
                     // required
@@ -33,8 +36,10 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
                     onChange={(event) => handleChange('rule', event.target.value)}
                 />
             </td>
-            <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
+            <td className="td-rule">
+                <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
+                </IconContext.Provider>
             </td>
         </>
     );

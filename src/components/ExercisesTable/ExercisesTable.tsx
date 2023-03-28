@@ -4,7 +4,7 @@ import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
 import './ExercisesTable.css';
 import {useParams} from "react-router-dom";
-import {TbQuestionMark, TbX} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 export const ExercisesTable = () => {
@@ -25,7 +25,7 @@ export const ExercisesTable = () => {
             .then((exercises) => {
                 setExercisesList(exercises)
             })
-
+        //
         // // first we need to check if part of plan's slug exists in DB - and get its ID
         // fetch(`${process.env.REACT_APP_API_URL}/parts_of_plan?slug=${params.slug}`, {
         //     method: 'GET',
@@ -112,7 +112,7 @@ export const ExercisesTable = () => {
 
     return (
         <>
-            <Logo to="/instruction" text="Jak to działa?"/>
+            <Logo to="/plans" text="GYM Training Planner"/>
             <table className="exercises-table">
                 <thead>
                 <tr>
