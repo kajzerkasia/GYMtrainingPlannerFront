@@ -2,7 +2,7 @@ import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {Logo} from "../Logo/Logo";
 import './Instruction.css';
 
-import {TbBarbell, TbPlus, TbCheck, TbX} from "react-icons/tb";
+import {TbBarbell, TbPlus, TbCheck, TbX, TbQuestionMark} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import React from "react";
 // tb:
@@ -16,8 +16,10 @@ import React from "react";
 export const Instruction = () => {
     return (
         <div className="instruction-wrapper">
+            <h1><Logo to="/plans" text="GYM Training Planner"/></h1>
+            <h2 className="instruction-h2">Jak to działa?</h2>
             <ul>
-                <li>Pierwszy wiersz tabeli służy do dodawania nowego wiersza.</li>
+                <li>Pierwszy wiersz tabeli służy do dodawania nowego wiersza - w puste pole należy wpisać żądaną wartość nowego wiersza.</li>
                 <li>Kliknij ikonkę
                     <IconContext.Provider value={{className: 'react-icons-instruction'}}>
                         <TbPlus/>
@@ -41,7 +43,8 @@ export const Instruction = () => {
                         <TbBarbell/>
                     </IconContext.Provider>
                     to odnośnik do listy ćwiczeń danej części planu.</li>
-                <Logo to="/plans" text="Powrót"></Logo>
+                <li>W przypadku strony głównej możesz edytować/usuwać wszystkie nazwy wierszy z wyjątkiem wiersza "Zasady progresji"</li>
+                <Logo to="/plans" text="Powrót do strony głównej"></Logo>
             </ul>
 
         </div>

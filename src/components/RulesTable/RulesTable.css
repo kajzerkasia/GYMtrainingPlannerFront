@@ -27,7 +27,7 @@ h1, h2 {
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
-    width: 90%;
+    width: 70%;
     /*border: 1px solid white;*/
 }
 
@@ -65,6 +65,10 @@ button {
     padding-bottom: 1vh;
     font-size: 20px;
     text-align: center;
+}
+
+.td-rule {
+    width:2vw;
 }
 
 /*// TODO: Powiększyć inputy żeby można tam było wpisać więcej tekstu - pomyśleć o co chodzi, od czego to zależy.*/

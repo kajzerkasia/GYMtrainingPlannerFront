@@ -91,7 +91,7 @@ export const RulesTable = () => {
                 <tbody>
                 <tr>
                     <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
-                        <td>
+                        <td className="td-rule">
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </td>
                     </IconContext.Provider>
@@ -109,7 +109,7 @@ export const RulesTable = () => {
 
                 {rulesList.map((rule, idx) => (
                     <tr key={`row-${idx}`}>
-                        <td>
+                        <td className="td-rule">
                             <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                                 <button onClick={() => deleteRule(rule)}><TbX/></button>
                             </IconContext.Provider>

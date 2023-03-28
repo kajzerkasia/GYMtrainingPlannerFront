@@ -36,7 +36,7 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
                     onChange={(event) => handleChange('rule', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="td-rule">
                 <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
                 </IconContext.Provider>
