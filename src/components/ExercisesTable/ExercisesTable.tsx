@@ -4,6 +4,8 @@ import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
 import './ExercisesTable.css';
 import {useParams} from "react-router-dom";
+import {TbQuestionMark, TbX} from "react-icons/tb";
+import {IconContext} from "react-icons";
 
 export const ExercisesTable = () => {
 
@@ -14,11 +16,11 @@ export const ExercisesTable = () => {
     const params = useParams();
 
     useEffect(() => {
-        const abortController = new AbortController();
+        // const abortController = new AbortController();
 
         fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
             method: 'GET',
-            signal: abortController.signal
+            // signal: abortController.signal
         }).then(res => res.json())
             .then((exercises) => {
                 setExercisesList(exercises)
@@ -27,7 +29,7 @@ export const ExercisesTable = () => {
         // // first we need to check if part of plan's slug exists in DB - and get its ID
         // fetch(`${process.env.REACT_APP_API_URL}/parts_of_plan?slug=${params.slug}`, {
         //     method: 'GET',
-        //     signal: abortController.signal
+        //     // signal: abortController.signal
         // }).then(res => res.json())
         //     .then((planPart) => {
         //         if (!planPart) {
@@ -36,7 +38,7 @@ export const ExercisesTable = () => {
         //         } else {
         //             return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?planOfPartId=${planPart.id}`, {
         //                 method: 'GET',
-        //                 signal: abortController.signal
+        //                 // signal: abortController.signal
         //             }).then(res => res.json())
         //                 .then((exercises) => {
         //                     setExercisesList(exercises)
@@ -44,9 +46,9 @@ export const ExercisesTable = () => {
         //         }
         //     })
 
-        return () => {
-            abortController.abort();
-        };
+        // return () => {
+        //     abortController.abort();
+        // };
     }, [])
 
     const addExercise = async (values: ExerciseEntity) => {
@@ -111,7 +113,7 @@ export const ExercisesTable = () => {
     return (
         <>
             <Logo to="/instruction" text="Jak to działa?"/>
-            <table>
+            <table className="exercises-table">
                 <thead>
                 <tr>
                     <th className="hidden"></th>
@@ -140,7 +142,11 @@ export const ExercisesTable = () => {
                 </thead>
                 <tbody>
                 <tr>
-                    <td className="hidden"></td>
+                    <td>
+                        <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                        </IconContext.Provider>
+                    </td>
                     <ExerciseForm
                         initialValues={{
                             order: '',
@@ -162,7 +168,9 @@ export const ExercisesTable = () => {
                 {exercisesList.map((exercise, idx) => (
                     <tr key={`row-${idx}`}>
                         <td>
-                            <button onClick={() => deleteExercise(exercise)}>{Status.Delete}</button>
+                            <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                                <button onClick={() => deleteExercise(exercise)}><TbX/></button>
+                            </IconContext.Provider>
                         </td>
                         <ExerciseForm
                             initialValues={exercise}

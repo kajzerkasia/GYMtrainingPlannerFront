@@ -89,9 +89,11 @@ export const PartsOfPlanTable = () => {
                 <table className="main-table">
 
                     <thead>
-                    <th colSpan={3} className="gradient-bgc-tr">
+                    <tr>
+                    <td colSpan={3} className="gradient-bgc-tr">
                         <h1>Plan treningowy</h1>
-                    </th>
+                    </td>
+                    </tr>
                     </thead>
 
                     <tbody>
@@ -99,7 +101,7 @@ export const PartsOfPlanTable = () => {
                     <tr>
                         <td>
                         <IconContext.Provider value={{ className: 'react-icons' }}>
-                            <TbQuestionMark/>
+                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </IconContext.Provider>
                         </td>
                         <PartsOfPlanForm

@@ -36,7 +36,7 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
     return (
         <>
             <td>
-                <input
+                <input className="input-part"
                     type="text"
                     name="name"
                     required

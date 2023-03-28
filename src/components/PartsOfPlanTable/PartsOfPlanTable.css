@@ -1,4 +1,4 @@
-input {
+.input-part {
     border:none;
     color: white;
     /*color: #DA70D6;*/
@@ -19,12 +19,12 @@ h1, h2 {
     text-align: center;
 }
 
-table {
+.main-table {
     text-align: center;
-    width: 40%;
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
+    width: 30%;
     /*border: 1px solid white;*/
 }
 

@@ -33,10 +33,10 @@ input:focus {
 
 h1, h2 {
     padding-bottom: 2vh;
-    font-size: 22px;
+    font-size: 16px;
 }
 
-table {
+.exercises-table {
     text-align: center;
     width: 80%;
     margin: 0 auto;
@@ -60,6 +60,10 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.react-icons-smaller {
+    font-size: 20px;
 }
 
 /*.input {*/
