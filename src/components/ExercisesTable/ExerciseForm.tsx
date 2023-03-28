@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import {ExerciseEntity, Status} from 'types';
+import './ExercisesTable.css';
+import {TbCheck, TbPlus, TbQuestionMark} from "react-icons/tb";
+import {IconContext} from "react-icons";
+import {Logo} from "../Logo/Logo";
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;
@@ -90,7 +94,9 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                 />
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
+                <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
+                </IconContext.Provider>
             </td>
         </>
     );

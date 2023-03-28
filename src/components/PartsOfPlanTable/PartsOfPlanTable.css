@@ -1,8 +1,8 @@
-input {
+.input-part {
     border:none;
     color: white;
     /*color: #DA70D6;*/
-    font-size: 32px;
+    font-size: 26px;
     background-color: transparent;
     text-align: center;
 }
@@ -13,18 +13,18 @@ input:focus {
 }
 
 h1, h2 {
-    padding-top: 5vh;
-    padding-bottom: 5vh;
-    font-size: 32px;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    font-size: 26px;
     text-align: center;
 }
 
-table {
+.main-table {
     text-align: center;
-    width: 40%;
     margin: 0 auto;
-    padding-top: 5vh;
+    padding-top: 15vh;
     padding-bottom: 5vh;
+    width: 30%;
     /*border: 1px solid white;*/
 }
 
@@ -46,15 +46,15 @@ button {
 }
 
 .react-icons {
-    font-size: 32px;
+    font-size: 26px;
 }
-/*.input {*/
-/*    background-color: white;*/
-/*    color: #DA70D6;*/
-/*}*/
 
 .gradient-bgc-tr {
     background-image: linear-gradient(200deg, #87CEEB 15%, #DA70D6 82%);
+}
+
+.main-h1 {
+    padding-top: 7vh;
 }
 
 

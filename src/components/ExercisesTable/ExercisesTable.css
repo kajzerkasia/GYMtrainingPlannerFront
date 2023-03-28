@@ -33,10 +33,10 @@ input:focus {
 
 h1, h2 {
     padding-bottom: 2vh;
-    font-size: 22px;
+    font-size: 16px;
 }
 
-table {
+.exercises-table {
     text-align: center;
     width: 80%;
     margin: 0 auto;
@@ -62,7 +62,13 @@ button {
     cursor: pointer;
 }
 
+.react-icons-smaller {
+    font-size: 20px;
+}
+
 /*.input {*/
 /*    background-color: white;*/
 /*    color: #DA70D6;*/
 /*}*/
+
+/*// TODO: Make CSS fot table of exercises, add icons from PartsOfPlanForm, add colSpan to make prettier table. Think about make less height of th in main table - "Plan treningowy", Make link on click to ? - instruction how to use app - main page. Add part - progression - another link, another record. Think about colors change - to trendy colors of this year.*/

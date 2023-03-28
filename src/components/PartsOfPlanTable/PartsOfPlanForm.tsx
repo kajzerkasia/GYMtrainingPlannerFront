@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
 import {PartOfPlanEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
-// import { RxPaperPlane } from "react-icons/rx";
-import { TbBarbell } from "react-icons/tb";
+
+import { TbBarbell, TbPlus, TbCheck} from "react-icons/tb";
 import { IconContext } from "react-icons";
+// tb:
+// TbBallpen - edytuj
+// TbBulb -  żarówka
+// TbPlus - dodaj
+// TbQuestionMark - pytajnik
+// TbX - x
+// TbCheck - V
 
 
 export type PartsOfPlanFormProps = {
@@ -29,7 +36,7 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
     return (
         <>
             <td>
-                <input
+                <input className="input-part"
                     type="text"
                     name="name"
                     required
@@ -42,7 +49,9 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
                 </IconContext.Provider>
             </td>
             <td>
-                <button type='button' onClick={() => onSubmit(values, reset)}>{actionType}</button>
+                <IconContext.Provider value={{ className: 'react-icons' }}>
+                <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
+                </IconContext.Provider>
             </td>
         </>
     );
