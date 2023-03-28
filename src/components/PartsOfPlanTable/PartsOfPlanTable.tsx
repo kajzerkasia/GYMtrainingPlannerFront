@@ -117,6 +117,11 @@ export const PartsOfPlanTable = () => {
                     </tr>
 
 
+                    <tr>
+                        <td className="td-progression-rules" colSpan={3}>
+                            <Logo to="/rules" text="Zasady progresji"/>
+                        </td>
+                    </tr>
 
 
                     {partsOfPlanList.map((part, idx) => (
