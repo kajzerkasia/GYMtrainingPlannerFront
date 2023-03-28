@@ -114,28 +114,37 @@ export const ExercisesTable = () => {
         <>
             <Logo to="/plans" text="GYM Training Planner"/>
             <table className="exercises-table">
+
+                {/*<thead>*/}
+                {/*<tr>*/}
+                {/*    <td colSpan={3} className="gradient-bgc-tr">*/}
+                {/*        <h1>Plan treningowy</h1>*/}
+                {/*    </td>*/}
+                {/*</tr>*/}
+                {/*</thead>*/}
+
                 <thead>
                 <tr>
                     <th className="hidden"></th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Kolejność
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Ćwiczenie
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Serie
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Powtórzenia
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Przerwa między seriami
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Wskazówki dotyczące ćwiczenia
                     </th>
-                    <th>
+                    <th className="gradient-bgc-tr">
                         Poprawne wykonanie ćwiczenia (link)
                     </th>
                 </tr>
