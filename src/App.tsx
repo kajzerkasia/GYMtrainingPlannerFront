@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Logo} from "./components/Logo/Logo";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useParams} from "react-router-dom";
 import {RulesTable} from "./components/RulesTable/RulesTable";
 import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable} from "./components/ExercisesTable/ExercisesTable";
@@ -16,8 +16,8 @@ export const App = () => {
         <>
             <Routes>
                 <Route path="/" element={ <Navigate to="/plans" />}/>
-                <Route path="/plans" element={<PartsOfPlanTable/>}/>
-                <Route path="/exercises" element={<ExercisesTable/>}/>
+                <Route path="/plans/" element={<PartsOfPlanTable/>}/>
+                <Route path="/exercises/:slug" element={<ExercisesTable/>}/>
                 <Route path="/rules" element={<RulesTable/>}/>
                 <Route path="/instruction" element={<Instruction/>}/>
             </Routes>

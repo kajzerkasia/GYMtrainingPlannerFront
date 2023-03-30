@@ -4,14 +4,6 @@ import {Logo} from "../Logo/Logo";
 
 import { TbBarbell, TbPlus, TbCheck} from "react-icons/tb";
 import { IconContext } from "react-icons";
-// tb:
-// TbBallpen - edytuj
-// TbBulb -  żarówka
-// TbPlus - dodaj
-// TbQuestionMark - pytajnik
-// TbX - x
-// TbCheck - V
-
 
 export type PartsOfPlanFormProps = {
     initialValues: PartOfPlanEntity;

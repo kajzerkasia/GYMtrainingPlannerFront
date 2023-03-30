@@ -9,47 +9,34 @@ import {IconContext} from "react-icons";
 
 export const ExercisesTable = () => {
 
-
-    // TODO: change /exercises to /exercises/:slug
-
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
     const params = useParams();
 
     useEffect(() => {
-        // const abortController = new AbortController();
-
-        fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
+        console.log(params);
+        fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
-            // signal: abortController.signal
-        }).then(res => res.json())
-            .then((exercises) => {
-                setExercisesList(exercises)
-            })
-        //
-        // // first we need to check if part of plan's slug exists in DB - and get its ID
-        // fetch(`${process.env.REACT_APP_API_URL}/parts_of_plan?slug=${params.slug}`, {
-        //     method: 'GET',
-        //     // signal: abortController.signal
-        // }).then(res => res.json())
-        //     .then((planPart) => {
-        //         if (!planPart) {
-        //             // todo: what happens when parts is NULL/undefined
-        //             return Promise.reject('no plan part')
-        //         } else {
-        //             return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?planOfPartId=${planPart.id}`, {
-        //                 method: 'GET',
-        //                 // signal: abortController.signal
-        //             }).then(res => res.json())
-        //                 .then((exercises) => {
-        //                     setExercisesList(exercises)
-        //                 })
-        //         }
-        //     })
+        })
+            .then(r => r.json())
+            .then((planPart) => {
+                console.log(planPart)
+                if (!planPart) {
+                    //             // todo: what happens when parts is NULL/undefined
+                    return Promise.reject('no plan part')
+                } else {
+                    return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?${params.partId}=${planPart.id}`, {
+                        method: 'GET',
 
-        // return () => {
-        //     abortController.abort();
-        // };
-    }, [])
+                    }).then(res => res.json())
+
+                        .then((exercises) => {
+                            setExercisesList(exercises)
+                        })
+                }
+            })
+
+
+            }, [])
 
     const addExercise = async (values: ExerciseEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
@@ -152,7 +139,7 @@ export const ExercisesTable = () => {
                 <tbody>
                 <tr>
                     <td>
-                        <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                        <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </IconContext.Provider>
                     </td>
@@ -177,7 +164,7 @@ export const ExercisesTable = () => {
                 {exercisesList.map((exercise, idx) => (
                     <tr key={`row-${idx}`}>
                         <td>
-                            <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                            <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                                 <button onClick={() => deleteExercise(exercise)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
