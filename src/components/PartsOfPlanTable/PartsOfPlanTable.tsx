@@ -142,7 +142,7 @@ export const PartsOfPlanTable = () => {
                             />
                             <td>
                                 <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <Logo to="/exercises/day-b" text={<TbBarbell/>}/>
+                                    <Logo to={`/exercises/${part.slug}`} text={<TbBarbell/>}/>
                                 </IconContext.Provider>
                             </td>
                         </tr>

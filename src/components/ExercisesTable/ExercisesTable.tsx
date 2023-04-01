@@ -4,7 +4,7 @@ import {Logo} from "../Logo/Logo";
 import {ExerciseForm} from "./ExerciseForm";
 import './ExercisesTable.css';
 import {useParams} from "react-router-dom";
-import {TbBarbell, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 export const ExercisesTable = () => {

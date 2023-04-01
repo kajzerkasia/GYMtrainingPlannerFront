@@ -4,6 +4,7 @@ import {Link} from "react-router-dom";
 
 interface Props {
     text: string | any;
+    relative? : any;
     to?: string;
 }
 
