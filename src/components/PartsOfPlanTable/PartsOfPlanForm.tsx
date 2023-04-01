@@ -36,9 +36,6 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
                     value={values.name}
                     onChange={(event) => handleChange('name', event.target.value)}
                 />
-                <IconContext.Provider value={{ className: 'react-icons' }}>
-                    <Logo to="/exercises" text={<TbBarbell/>}/>
-                </IconContext.Provider>
             </td>
             <td>
                 <IconContext.Provider value={{ className: 'react-icons' }}>

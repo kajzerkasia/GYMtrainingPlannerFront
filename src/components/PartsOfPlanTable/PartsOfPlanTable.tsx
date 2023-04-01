@@ -6,7 +6,7 @@ import {PartOfPlanEntity, Status} from 'types';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import './PartsOfPlanTable.css';
 
-import {TbQuestionMark, TbX} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 export const PartsOfPlanTable = () => {
@@ -20,6 +20,7 @@ export const PartsOfPlanTable = () => {
             .then((parts) => {
                 setPartsOfPlanList(parts)
             })
+
     }, [])
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
@@ -90,9 +91,9 @@ export const PartsOfPlanTable = () => {
 
                     <thead>
                     <tr>
-                    <td colSpan={3} className="gradient-bgc-tr">
-                        <h1>Plan treningowy</h1>
-                    </td>
+                        <td colSpan={3} className="gradient-bgc-tr">
+                            <h1>Plan treningowy</h1>
+                        </td>
                     </tr>
                     </thead>
 
@@ -100,9 +101,9 @@ export const PartsOfPlanTable = () => {
 
                     <tr>
                         <td>
-                        <IconContext.Provider value={{ className: 'react-icons' }}>
-                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
-                        </IconContext.Provider>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                            </IconContext.Provider>
                         </td>
                         <PartsOfPlanForm
                             initialValues={{
@@ -126,20 +127,26 @@ export const PartsOfPlanTable = () => {
 
                     {partsOfPlanList.map((part, idx) => (
                         <tr key={`row-${idx}`}>
-                        <td>
-                            <IconContext.Provider value={{ className: 'react-icons' }}>
-                            <button onClick={() => deletePartOfPlan(part)}><TbX/></button>
-                            </IconContext.Provider>
-                        </td>
-                        <PartsOfPlanForm
-                            initialValues={part}
-                            onSubmit={async (values) => {
-                                await editPartOfPlan(values);
-                                await handleUpdatePartOfPlan(values);
-                            }}
-                            actionType={Status.Save}
-                        />
+                            <td>
+                                <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <button onClick={() => deletePartOfPlan(part)}><TbX/></button>
+                                </IconContext.Provider>
+                            </td>
+                            <PartsOfPlanForm
+                                initialValues={part}
+                                onSubmit={async (values) => {
+                                    await editPartOfPlan(values);
+                                    await handleUpdatePartOfPlan(values);
+                                }}
+                                actionType={Status.Save}
+                            />
+                            <td>
+                                <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <Logo to="/exercises/day-b" text={<TbBarbell/>}/>
+                                </IconContext.Provider>
+                            </td>
                         </tr>
+
                     ))}
                     </tbody>
 

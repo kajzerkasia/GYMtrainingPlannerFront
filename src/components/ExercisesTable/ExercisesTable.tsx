@@ -13,30 +13,28 @@ export const ExercisesTable = () => {
     const params = useParams();
 
     useEffect(() => {
-        console.log(params);
+        // console.log(params);
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
             .then(r => r.json())
             .then((planPart) => {
-                console.log(planPart)
+                // console.log(planPart[0].id);
                 if (!planPart) {
-                    //             // todo: what happens when parts is NULL/undefined
                     return Promise.reject('no plan part')
                 } else {
-                    return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?${params.partId}=${planPart.id}`, {
+
+                    return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'GET',
 
                     }).then(res => res.json())
-
                         .then((exercises) => {
-                            setExercisesList(exercises)
-                        })
+                            setExercisesList(exercises);
+                        });
                 }
             })
 
-
-            }, [])
+    }, [])
 
     const addExercise = async (values: ExerciseEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
@@ -101,14 +99,6 @@ export const ExercisesTable = () => {
         <>
             <Logo to="/plans" text="GYM Training Planner"/>
             <table className="exercises-table">
-
-                {/*<thead>*/}
-                {/*<tr>*/}
-                {/*    <td colSpan={3} className="gradient-bgc-tr">*/}
-                {/*        <h1>Plan treningowy</h1>*/}
-                {/*    </td>*/}
-                {/*</tr>*/}
-                {/*</thead>*/}
 
                 <thead>
                 <tr>
