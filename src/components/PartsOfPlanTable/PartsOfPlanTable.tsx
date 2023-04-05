@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {VscAdd} from "react-icons/vsc";
 import {Logo} from "../Logo/Logo";
-import {Calendar} from "../Calendar/Calendar";
-import {PartOfPlanEntity, Status} from 'types';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
+
+import {PartOfPlanEntity, Status} from 'types';
+
 import './PartsOfPlanTable.css';
 
 import {TbBarbell, TbQuestionMark, TbX} from "react-icons/tb";
@@ -32,7 +32,9 @@ export const PartsOfPlanTable = () => {
             body: JSON.stringify(values),
         })
 
+
         const data = await res.json();
+
         setPartsOfPlanList(list => [...list, data]);
     };
 
@@ -75,9 +77,8 @@ export const PartsOfPlanTable = () => {
             alert(`Wystąpił błąd: ${error.message}`);
             return;
         } else {
-            const data = await res.json();
             setPartsOfPlanList(
-                partsOfPlanList => partsOfPlanList.filter(part => part.id !== data.id)
+                partsOfPlanList => partsOfPlanList.filter(part => part.id !== values.id)
             )
         }
     };
@@ -98,7 +99,6 @@ export const PartsOfPlanTable = () => {
                     </thead>
 
                     <tbody>
-
                     <tr>
                         <td>
                             <IconContext.Provider value={{className: 'react-icons'}}>
@@ -123,7 +123,6 @@ export const PartsOfPlanTable = () => {
                             <Logo to="/rules" text="Zasady progresji"/>
                         </td>
                     </tr>
-
 
                     {partsOfPlanList.map((part, idx) => (
                         <tr key={`row-${idx}`}>
@@ -151,10 +150,11 @@ export const PartsOfPlanTable = () => {
                     </tbody>
 
                 </table>
-                {/*<Calendar/>*/}
             </div>
         </div>
     )
 
 }
+
+// zrobić animację podświetlenia nazwy części planu na inny kolor po zmianie nazwy.
 

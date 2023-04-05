@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {ExerciseEntity, Status} from 'types';
-import './ExercisesTable.css';
-import {TbCheck, TbPlus, TbQuestionMark} from "react-icons/tb";
+import {TbCheck, TbPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Logo} from "../Logo/Logo";
+
+import './ExercisesTable.css';
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;

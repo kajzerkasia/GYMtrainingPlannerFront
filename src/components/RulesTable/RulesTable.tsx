@@ -65,14 +65,14 @@ export const RulesTable = () => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
             method: 'DELETE',
         });
+
         if ([400, 500].includes(res.status)) {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
         } else {
-            const data = await res.json();
             setRulesList(
-                rulesList => rulesList.filter(rule => rule.id !== data.id)
+                rulesList => rulesList.filter(rule => rule.id !== values.id)
             )
         }
     };

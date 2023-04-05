@@ -19,9 +19,9 @@ export const ExercisesTable = () => {
         })
             .then(r => r.json())
             .then((planPart) => {
-                // console.log(planPart[0].id);
-                if (!planPart) {
-                    return Promise.reject('no plan part')
+
+                if (!planPart || planPart.length === 0) {
+                    console.log('Brak części planu.')
                 } else {
 
                     return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?partId=${planPart[0].id}`, {
@@ -29,24 +29,38 @@ export const ExercisesTable = () => {
 
                     }).then(res => res.json())
                         .then((exercises) => {
-                            setExercisesList(exercises);
-                        });
+                            if (!exercises) {
+                                return Promise.reject('Bark ćwiczeń.')
+                            } else {
+                                setExercisesList(exercises);
+                            }
+                        })
+
                 }
             })
 
     }, [])
 
     const addExercise = async (values: ExerciseEntity) => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
+        fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
+            method: 'GET',
         })
+            .then(r => r.json())
+            .then(async (planPart) => {
 
-        const data = await res.json();
-        setExercisesList(list => [...list, data]);
+                const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({...values, partId: planPart[0].id}),
+                })
+
+                const data = await res.json();
+
+                setExercisesList(list => [...list, data]);
+
+            })
     };
 
     const editExercise = async (values: ExerciseEntity) => {
@@ -88,9 +102,8 @@ export const ExercisesTable = () => {
             alert(`Wystąpił błąd: ${error.message}`);
             return;
         } else {
-            const data = await res.json();
             setExercisesList(
-                exercisesList => exercisesList.filter(exercise => exercise.id !== data.id)
+                exercisesList => exercisesList.filter(exercise => exercise.id !== values.id)
             )
         }
     };
