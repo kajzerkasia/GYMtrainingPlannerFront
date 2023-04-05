@@ -6,6 +6,7 @@ import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable} from "./components/ExercisesTable/ExercisesTable";
 import {PartsOfPlanTable} from "./components/PartsOfPlanTable/PartsOfPlanTable";
 import { Navigate } from 'react-router-dom';
+import {Error} from "./components/Error/Error";
 
 
 export const App = () => {
@@ -18,9 +19,12 @@ export const App = () => {
                 <Route path="/exercises/:slug" element={<ExercisesTable/>}/>
                 <Route path="/rules" element={<RulesTable/>}/>
                 <Route path="/instruction" element={<Instruction/>}/>
+                <Route path="*" element={<Error/>}/>
             </Routes>
         </>
     )
 }
+
+// TODO: Change app to English, change main table to look better - center to the Logo, add Sanitize on backend.
 
 
