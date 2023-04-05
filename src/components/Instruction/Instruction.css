@@ -7,7 +7,7 @@
 }
 
 ul {
-    border: 1px solid white;
+    border: 1px dotted white;
     padding: 5vh 5vw;
     margin-top: 1vh;
     margin-bottom: 3vh;
@@ -26,7 +26,9 @@ li {
 }
 
 .react-icons-instruction {
-    font-size: 20px;
+    font-size: 30px;
     margin-left: 10px;
     margin-right: 10px;
+    padding: 5px;
+    border: 1px solid white;
 }

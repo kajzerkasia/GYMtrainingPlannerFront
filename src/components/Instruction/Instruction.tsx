@@ -2,7 +2,7 @@ import {VscAdd, VscChromeClose} from "react-icons/vsc";
 import {Logo} from "../Logo/Logo";
 import './Instruction.css';
 
-import {TbBarbell, TbPlus, TbCheck, TbX, TbQuestionMark} from "react-icons/tb";
+import {TbBarbell, TbPlus, TbCheck, TbX, TbQuestionMark, TbStairsUp} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import React from "react";
 // tb:
@@ -40,9 +40,14 @@ export const Instruction = () => {
                 <li>Jeśli wiersze po dodaniu lub zmianie kolejności nie są wyświetlane w odpowiedniej kolejności - odśwież stronę.</li>
                 <li>W przypadku strony głównej - ikonka
                     <IconContext.Provider value={{className: 'react-icons-instruction'}}>
+                        <TbStairsUp/>
+                    </IconContext.Provider>
+                    to odnośnik do ogólnych zasad progresji w danym planie treningowym,
+                    a ikonka
+                    <IconContext.Provider value={{className: 'react-icons-instruction'}}>
                         <TbBarbell/>
                     </IconContext.Provider>
-                    to odnośnik do listy ćwiczeń danej części planu.</li>
+                    to odnośnik do listy ćwiczeń danej części planu</li>
                 <li>W przypadku strony głównej możesz edytować/usuwać wszystkie nazwy wierszy z wyjątkiem wiersza "Zasady progresji"</li>
                 <li className="last">Elementy klikalne zmieniają kolor po najechaniu na nie kursorem.</li>
             </ul>

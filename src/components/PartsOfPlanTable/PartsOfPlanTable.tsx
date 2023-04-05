@@ -6,12 +6,14 @@ import {PartOfPlanEntity, Status} from 'types';
 
 import './PartsOfPlanTable.css';
 
-import {TbBarbell, TbQuestionMark, TbX} from "react-icons/tb";
+// TbClipboardText, TbList, TbStairsUp, TbBrandSupabase
+import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 export const PartsOfPlanTable = () => {
 
     const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
+    const [isEdited, setIsEdited] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
@@ -39,6 +41,7 @@ export const PartsOfPlanTable = () => {
     };
 
     const editPartOfPlan = async (values: PartOfPlanEntity) => {
+        setIsEdited(false);
 
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans/${values.id}`, {
             method: 'PUT',
@@ -51,6 +54,8 @@ export const PartsOfPlanTable = () => {
         if (!res.ok) {
             throw new Error('Wystąpił błąd podczas próby zaktualizowania części planu.');
         }
+
+        setIsEdited(true);
 
         return await res.json();
 
@@ -85,14 +90,16 @@ export const PartsOfPlanTable = () => {
 
     return (
         <div className="wrapper">
-            <h1 className="main-h1">GYM Training Planner</h1>
+            <IconContext.Provider value={{className: 'react-main-icon'}}>
+                <h1 className="main-h1"><TbHeartbeat/> GYM Training Planner</h1>
+            </IconContext.Provider>
 
             <div className="main-plan">
                 <table className="main-table">
 
                     <thead>
                     <tr>
-                        <td colSpan={3} className="gradient-bgc-tr">
+                        <td colSpan={4} className="gradient-bgc-tr">
                             <h1>Plan treningowy</h1>
                         </td>
                     </tr>
@@ -100,7 +107,7 @@ export const PartsOfPlanTable = () => {
 
                     <tbody>
                     <tr>
-                        <td>
+                        <td className="td-highlight">
                             <IconContext.Provider value={{className: 'react-icons'}}>
                                 <Logo to="/instruction" text={<TbQuestionMark/>}/>
                             </IconContext.Provider>
@@ -115,12 +122,10 @@ export const PartsOfPlanTable = () => {
                             }}
                             actionType={Status.Add}
                         />
-                    </tr>
-
-
-                    <tr>
-                        <td className="td-progression-rules" colSpan={3}>
-                            <Logo to="/rules" text="Zasady progresji"/>
+                        <td className="td-progression-rules">
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <Logo to="/rules" text=<TbStairsUp/>/>
+                            </IconContext.Provider>
                         </td>
                     </tr>
 
@@ -138,6 +143,7 @@ export const PartsOfPlanTable = () => {
                                     await handleUpdatePartOfPlan(values);
                                 }}
                                 actionType={Status.Save}
+                                isEdited={isEdited}
                             />
                             <td>
                                 <IconContext.Provider value={{className: 'react-icons'}}>

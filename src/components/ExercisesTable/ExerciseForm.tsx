@@ -9,9 +9,10 @@ export type ExerciseFormProps = {
     initialValues: ExerciseEntity;
     onSubmit: (values: ExerciseEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
+    isEdited?: boolean;
 };
 
-export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFormProps) => {
+export const ExerciseForm = ({ initialValues, onSubmit, actionType, isEdited }: ExerciseFormProps) => {
     const [values, setValues] = useState<ExerciseEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -27,8 +28,9 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
 
     return (
         <>
-            <td>
+            <td className="exercise-order">
                 <input
+                    className={isEdited ? 'edited-input-exercise' : ''}
                     type="text"
                     name="order"
                     required
@@ -37,7 +39,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('order', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-name">
                 <input
                     type="text"
                     name="name"
@@ -47,7 +49,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('name', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-series">
                 <input
                     type="number"
                     min={1}
@@ -57,7 +59,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('series', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-repetitions">
                 <input
                     type="text"
                     name="repetitions"
@@ -66,7 +68,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('repetitions', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-pause">
                 <input
                     type="text"
                     name="pause"
@@ -75,7 +77,7 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('pause', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-tips">
                 <input
                     type="text"
                     name="tips"
@@ -84,16 +86,16 @@ export const ExerciseForm = ({ initialValues, onSubmit, actionType }: ExerciseFo
                     onChange={(event) => handleChange('tips', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="exercise-url">
                 <input
                     type="url"
                     name="url"
                     maxLength={99}
-                    value={values.url}
+                    value={values.url.replace(/^https?:\/\/(www\.)?/i, '')}
                     onChange={(event) => handleChange('url', event.target.value)}
                 />
             </td>
-            <td>
+            <td className="icon-add-edit">
                 <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
                 </IconContext.Provider>

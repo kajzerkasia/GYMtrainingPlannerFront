@@ -1,7 +1,6 @@
 input {
     border:none;
     color: white;
-    /*color: #DA70D6;*/
     font-size: 16px;
     background-color: transparent;
     text-align: center;
@@ -36,15 +35,15 @@ input:focus {
 
 .exercises-table {
     text-align: center;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding-top: 5vh;
     padding-bottom: 5vh;
-    /*border: 1px solid white;*/
 }
 
 td, th {
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-top: 1px solid white;
 }
 
@@ -69,7 +68,11 @@ button {
     color: #d495e2;
 }
 
-@keyframes changeColor {
+.edited-input-exercise {
+    animation: change-color 1s;
+}
+
+@keyframes change-color {
     0% {
         color: white;
     }
@@ -80,5 +83,40 @@ button {
         color: white;
     }
 }
+
+.exercise-order {
+    width: 1vw;
+}
+
+.exercise-name {
+    width: 15vw;
+}
+
+.exercise-series {
+    width: 1vw;
+}
+
+.exercise-repetitions {
+    width: 10vw;
+}
+
+.exercise-pause {
+    width: 1vw;
+}
+
+.exercise-tips {
+    width: 25vw;
+}
+
+.exercise-url {
+    width: 10vw;
+}
+
+.icon-add-edit,
+.icon-question,
+.icon-delete {
+    width: 1vw;
+}
+
 
 

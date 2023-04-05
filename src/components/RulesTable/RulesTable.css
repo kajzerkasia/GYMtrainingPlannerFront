@@ -8,9 +8,6 @@
     font-family: 'Ubuntu', sans-serif;
 }
 
-input {
-    width: 100%;
-}
 input:focus {
     outline: none;
     background-color: transparent;
@@ -28,8 +25,7 @@ h1, h2 {
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
-    width: 70%;
-    /*border: 1px solid white;*/
+    width: 50%;
 }
 
 td, th {
@@ -51,10 +47,6 @@ button {
 
 .react-icons {
     font-size: 26px;
-}
-
-.main-h1 {
-    padding-top: 7vh;
 }
 
 .h1-rules {

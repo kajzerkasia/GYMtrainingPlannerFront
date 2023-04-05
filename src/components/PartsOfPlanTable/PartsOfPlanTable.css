@@ -1,9 +1,7 @@
 .input-part {
     border:none;
     color: white;
-    /*color: #DA70D6;*/
     font-size: 22px;
-    background-color: transparent;
     text-align: center;
     width: 100%;
     font-family: 'Ubuntu', sans-serif;
@@ -21,17 +19,23 @@ h1, h2 {
     text-align: center;
 }
 
+.main-h1 {
+    font-size: 26px;
+    text-align: left;
+    margin-top: 1vh;
+    padding-left: 2vw;
+}
+
 .main-table {
     text-align: center;
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
     width: 30%;
-    /*border: 1px solid white;*/
 }
 
 td, th {
-    padding: 10px;
+    padding: 15px;
     border: 1px solid white;
 }
 
@@ -56,13 +60,51 @@ button {
     color: #d495e2;
 }
 
-.main-h1 {
-    padding-top: 7vh;
+.td-progression-rules {
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
 }
 
-.td-progression-rules {
-    padding-top: 2.5vh;
-    padding-bottom: 2.5vh;
+.edited-input {
+    border:none;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    animation: highlight 1s;
+}
+
+.td-highlight {
+    animation: td-highlight 1s;
+}
+
+@keyframes highlight {
+    0% {
+        color: #fff;
+    }
+    50% {
+        color: #d495e2;
+    }
+    100% {
+        color: #fff;
+    }
+}
+
+@keyframes td-highlight {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #d495e2;
+    }
+    100% {
+        background-color: transparent;
+    }
+}
+
+.react-main-icon {
+    font-size: 22px;
 }
 
 

@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {PartOfPlanEntity, Status} from 'types';
-import {Logo} from "../Logo/Logo";
 
-import { TbBarbell, TbPlus, TbCheck} from "react-icons/tb";
-import { IconContext } from "react-icons";
+import {TbPlus, TbCheck} from "react-icons/tb";
+import {IconContext} from "react-icons";
 
 export type PartsOfPlanFormProps = {
     initialValues: PartOfPlanEntity;
     onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
+    isEdited?: boolean;
 };
 
-export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOfPlanFormProps) => {
+export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}: PartsOfPlanFormProps) => {
     const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -28,7 +28,8 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
     return (
         <>
             <td>
-                <input className="input-part"
+                <input
+                    className={isEdited ? 'edited-input' : 'input-part'}
                     type="text"
                     name="name"
                     required
@@ -38,8 +39,8 @@ export const PartsOfPlanForm = ({ initialValues, onSubmit, actionType }: PartsOf
                 />
             </td>
             <td>
-                <IconContext.Provider value={{ className: 'react-icons' }}>
-                <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
+                <IconContext.Provider value={{className: 'react-icons'}}>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>

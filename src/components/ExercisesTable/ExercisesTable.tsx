@@ -10,6 +10,8 @@ import {IconContext} from "react-icons";
 export const ExercisesTable = () => {
 
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
+    const [isEdited, setIsEdited] = useState<boolean>(false);
+
     const params = useParams();
 
     useEffect(() => {
@@ -65,6 +67,8 @@ export const ExercisesTable = () => {
 
     const editExercise = async (values: ExerciseEntity) => {
 
+        setIsEdited(false);
+
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
             method: 'PUT',
             headers: {
@@ -76,6 +80,8 @@ export const ExercisesTable = () => {
         if (!res.ok) {
             throw new Error('Wystąpił błąd podczas próby zaktualizowania ćwiczenia.');
         }
+
+        setIsEdited(true);
 
         return await res.json();
 
@@ -141,7 +147,7 @@ export const ExercisesTable = () => {
                 </thead>
                 <tbody>
                 <tr>
-                    <td>
+                    <td className="icon-question">
                         <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </IconContext.Provider>
@@ -166,7 +172,7 @@ export const ExercisesTable = () => {
 
                 {exercisesList.map((exercise, idx) => (
                     <tr key={`row-${idx}`}>
-                        <td>
+                        <td className="icon-delete">
                             <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                                 <button onClick={() => deleteExercise(exercise)}><TbX/></button>
                             </IconContext.Provider>
@@ -178,6 +184,7 @@ export const ExercisesTable = () => {
                                 await handleUpdateExercise(values);
                             }}
                             actionType={Status.Save}
+                            isEdited={isEdited}
                         />
                     </tr>
                 ))}
