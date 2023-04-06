@@ -78,7 +78,8 @@ export const RulesTable = () => {
     };
 
     return (
-        <>
+        <div className="rules-wrapper">
+            <Logo to="/plans" text="GYM Training Planner"/>
             <table className="rules-table">
                 <thead>
                 <tr>
@@ -126,7 +127,7 @@ export const RulesTable = () => {
                 ))}
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }
 

@@ -15,7 +15,7 @@ export const ExercisesTable = () => {
     const params = useParams();
 
     useEffect(() => {
-        // console.log(params);
+
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })

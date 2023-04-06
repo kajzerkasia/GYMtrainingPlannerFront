@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {ExerciseEntity, Status} from 'types';
-import {TbCheck, TbPlus} from "react-icons/tb";
+import {TbCheck, TbPlus, TbLink} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 import './ExercisesTable.css';
@@ -12,7 +12,7 @@ export type ExerciseFormProps = {
     isEdited?: boolean;
 };
 
-export const ExercisesForm = ({ initialValues, onSubmit, actionType, isEdited }: ExerciseFormProps) => {
+export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: ExerciseFormProps) => {
     const [values, setValues] = useState<ExerciseEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -75,22 +75,37 @@ export const ExercisesForm = ({ initialValues, onSubmit, actionType, isEdited }:
             <td className="exercise-tips">
                 <textarea className="exercise-textarea"
                     // type="text"
-                    name="tips"
-                    value={values.tips}
-                    onChange={(event) => handleChange('tips', event.target.value)}
+                          name="tips"
+                          value={values.tips}
+                          onChange={(event) => handleChange('tips', event.target.value)}
                 />
             </td>
             <td className="exercise-url">
                 <input
+                    className="input-url"
                     type="url"
                     name="url"
-                    value={values.url.replace(/^https?:\/\/(www\.)?/i, '')}
+                    value={values.url}
                     onChange={(event) => handleChange('url', event.target.value)}
                 />
+                <div className="exercise-link">
+                    <label htmlFor="url"></label>
+                    <a
+                        href={values.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {actionType === Status.Add || !values.url ? '' :
+                            <IconContext.Provider value={{className: 'react-icons-link'}}>
+                                <TbLink/>
+                            </IconContext.Provider>
+                        }
+                    </a>
+                </div>
             </td>
             <td className="icon-add-edit">
-                <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus/> : <TbCheck/> }</button>
+                <IconContext.Provider value={{className: 'react-icons-smaller'}}>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>

@@ -47,7 +47,6 @@ export const Instruction = () => {
                         <TbBarbell/>
                     </IconContext.Provider>
                     to odnośnik do listy ćwiczeń danej części planu</li>
-                <li>W przypadku strony głównej możesz edytować/usuwać wszystkie nazwy wierszy z wyjątkiem wiersza "Zasady progresji"</li>
                 <li className="last">Elementy klikalne zmieniają kolor po najechaniu na nie kursorem.</li>
             </ul>
             <Logo to="/plans" text="Powrót do strony głównej"></Logo>

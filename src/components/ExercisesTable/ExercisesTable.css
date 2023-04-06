@@ -63,6 +63,14 @@ button {
 .react-icons-smaller {
     font-size: 20px;
     transition: color 0.4s;
+    color: white;
+}
+
+.react-icons-link {
+    font-size: 24px;
+    transition: color 0.4s;
+    color: white;
+    padding-top: 5px;
 }
 
 .react-icons-smaller:hover {
@@ -110,7 +118,7 @@ button {
 }
 
 .exercise-url {
-    width: 10vw;
+    width: 14vw;
 }
 
 .icon-add-edit,
@@ -138,6 +146,16 @@ button {
 .wrapper-exercises-table {
     margin-top: 5vh;
 }
+
+.input-hidden {
+    display: none;
+}
+
+.input-url {
+    font-size: 10px;
+}
+
+
 
 
 
