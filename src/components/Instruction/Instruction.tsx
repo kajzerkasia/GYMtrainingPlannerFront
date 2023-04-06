@@ -1,17 +1,10 @@
-import {VscAdd, VscChromeClose} from "react-icons/vsc";
+
 import {Logo} from "../Logo/Logo";
 import './Instruction.css';
 
-import {TbBarbell, TbPlus, TbCheck, TbX, TbQuestionMark, TbStairsUp} from "react-icons/tb";
+import {TbBarbell, TbPlus, TbCheck, TbX, TbStairsUp} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import React from "react";
-// tb:
-// TbBallpen - edytuj
-// TbBulb -  żarówka
-// TbPlus - dodaj
-// TbQuestionMark - pytajnik
-// TbX - x
-// TbCheck - V
 
 export const Instruction = () => {
     return (
