@@ -108,7 +108,7 @@ export const PartsOfPlanTable = () => {
                     <tbody>
                     <tr className="tr-add">
                         <td className="td-highlight">
-                            <IconContext.Provider value={{className: 'react-icons'}}>
+                            <IconContext.Provider value={{className: 'react-icons dark'}}>
                                 <Logo to="/instruction" text={<TbQuestionMark/>}/>
                             </IconContext.Provider>
                         </td>
@@ -123,7 +123,7 @@ export const PartsOfPlanTable = () => {
                             actionType={Status.Add}
                         />
                         <td className="td-progression-rules">
-                            <IconContext.Provider value={{className: 'react-icons'}}>
+                            <IconContext.Provider value={{className: 'react-icons dark'}}>
                                 <Logo to="/rules" text=<TbStairsUp/>/>
                             </IconContext.Provider>
                         </td>

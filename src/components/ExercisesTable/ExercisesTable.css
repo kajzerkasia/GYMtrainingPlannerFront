@@ -1,6 +1,6 @@
 input {
     border: none;
-    color: white;
+    color: #E6E6FA;
     font-size: 16px;
     background-color: transparent;
     text-align: center;
@@ -55,7 +55,7 @@ td, th {
 
 button {
     background-color: transparent;
-    color: white;
+    color: #E6E6FA;
     border: none;
     cursor: pointer;
 }
@@ -63,13 +63,17 @@ button {
 .react-icons-smaller {
     font-size: 20px;
     transition: color 0.4s;
-    color: white;
+    color: #E6E6FA;
+}
+
+.dark {
+    color: #310942;
 }
 
 .react-icons-link {
     font-size: 24px;
     transition: color 0.4s;
-    color: white;
+    color: #E6E6FA;
     padding-top: 5px;
 }
 
@@ -83,13 +87,13 @@ button {
 
 @keyframes change-color {
     0% {
-        color: white;
+        color: #E6E6FA;
     }
     50% {
         color: #d495e2;
     }
     100% {
-        color: white;
+        color: #E6E6FA;
     }
 }
 
@@ -129,9 +133,9 @@ button {
 
 .exercise-textarea {
     font-family: 'Ubuntu', sans-serif;
-    color: white;
+    color: #E6E6FA;
     width: 30vw;
-    min-width: 5vw;
+    min-width: 30vw;
     height: 4vh;
     min-height: 4vh;
     background-color: transparent;
@@ -141,6 +145,11 @@ button {
 
 .tr-add td {
     border: 1px solid #d495e2;
+    background-color: #d495e2;
+}
+
+.tr-add input {
+    color: #310942;
 }
 
 .wrapper-exercises-table {

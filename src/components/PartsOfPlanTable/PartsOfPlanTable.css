@@ -1,6 +1,6 @@
 .input-part {
     border:none;
-    color: white;
+    color: #E6E6FA;
     font-size: 22px;
     text-align: center;
     width: 100%;
@@ -36,7 +36,7 @@ h1, h2 {
 
 td, th {
     padding: 15px;
-    border: 1px solid white;
+    border: 1px solid #d495e2;
 }
 
 
@@ -46,7 +46,7 @@ td, th {
 
 button {
     background-color: transparent;
-    color: white;
+    color: #E6E6FA;
     border: none;
     cursor: pointer;
 }
@@ -67,7 +67,7 @@ button {
 
 .edited-input {
     border:none;
-    color: white;
+    color: #E6E6FA;
     font-size: 22px;
     text-align: center;
     width: 100%;
@@ -81,13 +81,13 @@ button {
 
 @keyframes highlight {
     0% {
-        color: #fff;
+        color: #E6E6FA;
     }
     50% {
         color: #d495e2;
     }
     100% {
-        color: #fff;
+        color: #E6E6FA;
     }
 }
 

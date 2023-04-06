@@ -39,3 +39,5 @@ export const PlanDetailsTable = () => {
         </div>
     );
 };
+
+// @TODO: Zrobić komponent, może dodać możliwość zmiany nazwy planu lub dodać th właściciel planu czy coś takiego, ogarnąć sytuację w której chcę usunąć część planu, w której są ćwiczenia, może jakieś większe ostrzeżenie wtedy dodać i ogólnie żeby nie wywalało wtedy błedu w bazie danych, ogarnąć długości pól w bazie danych i na BE - zobaczę przy dodawaniu planu Piotrka ile znaków schodzi na dane pola.

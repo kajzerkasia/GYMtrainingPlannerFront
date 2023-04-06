@@ -91,7 +91,7 @@ export const RulesTable = () => {
 
                 <tbody>
                 <tr className="tr-add">
-                    <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                    <IconContext.Provider value={{ className: 'react-icons-smaller dark' }}>
                         <td className="td-rule">
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </td>
@@ -130,5 +130,3 @@ export const RulesTable = () => {
         </div>
     )
 }
-
-// TODO: Myślę, że warto wszędzie dodać jakieś przykładowe ćwiczenia. Chyba jedynie w bazie danych mogę na wstępie dodać.

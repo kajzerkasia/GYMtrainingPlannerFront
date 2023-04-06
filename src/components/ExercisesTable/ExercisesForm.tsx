@@ -105,7 +105,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="icon-add-edit">
                 <IconContext.Provider value={{className: 'react-icons-smaller'}}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus style={{color: "#310942"}}/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>
