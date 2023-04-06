@@ -8,7 +8,7 @@
 }
 
 input:focus {
-    outline: none;
+    outline: transparent;
     background-color: transparent;
 }
 

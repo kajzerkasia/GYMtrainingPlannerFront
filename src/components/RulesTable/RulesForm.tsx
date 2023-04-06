@@ -28,11 +28,9 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
     return (
         <>
             <td>
-                <input className="input-rule"
-                    type="text"
+                <textarea className="textarea-rule"
                     name="rule"
                     required
-                    maxLength={49}
                     value={values.rule}
                     onChange={(event) => handleChange('rule', event.target.value)}
                 />

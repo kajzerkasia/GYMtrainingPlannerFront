@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {ExerciseEntity, Status} from 'types';
 import {Logo} from "../Logo/Logo";
-import {ExerciseForm} from "./ExerciseForm";
+import {ExercisesForm} from "./ExercisesForm";
 import './ExercisesTable.css';
 import {useParams} from "react-router-dom";
 import {TbQuestionMark, TbX} from "react-icons/tb";
@@ -49,19 +49,23 @@ export const ExercisesTable = () => {
         })
             .then(r => r.json())
             .then(async (planPart) => {
+                if (!planPart || planPart.length === 0) {
+                    console.log('Brak części planu.')
+                } else {
 
-                const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({...values, partId: planPart[0].id}),
-                })
+                    const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({...values, partId: planPart[0].id}),
+                    })
 
-                const data = await res.json();
+                    const data = await res.json();
 
-                setExercisesList(list => [...list, data]);
+                    setExercisesList(list => [...list, data]);
 
+                }
             })
     };
 
@@ -115,44 +119,44 @@ export const ExercisesTable = () => {
     };
 
     return (
-        <>
+        <div className="wrapper-exercises-table">
             <Logo to="/plans" text="GYM Training Planner"/>
             <table className="exercises-table">
 
                 <thead>
                 <tr>
                     <th className="hidden"></th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Kolejność
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Ćwiczenie
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Serie
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Powtórzenia
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Przerwa między seriami
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Wskazówki dotyczące ćwiczenia
                     </th>
-                    <th className="gradient-bgc-tr">
+                    <th>
                         Poprawne wykonanie ćwiczenia (link)
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr className="tr-add">
                     <td className="icon-question">
                         <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </IconContext.Provider>
                     </td>
-                    <ExerciseForm
+                    <ExercisesForm
                         initialValues={{
                             order: '',
                             name: '',
@@ -177,7 +181,7 @@ export const ExercisesTable = () => {
                                 <button onClick={() => deleteExercise(exercise)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
-                        <ExerciseForm
+                        <ExercisesForm
                             initialValues={exercise}
                             onSubmit={async (values) => {
                                 await editExercise(values);
@@ -190,6 +194,6 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-        </>
+        </div>
     )
 }

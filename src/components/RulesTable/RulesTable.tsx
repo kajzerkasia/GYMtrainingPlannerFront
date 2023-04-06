@@ -89,7 +89,7 @@ export const RulesTable = () => {
                 </thead>
 
                 <tbody>
-                <tr>
+                <tr className="tr-add">
                     <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                         <td className="td-rule">
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>

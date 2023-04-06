@@ -27,17 +27,16 @@ export const Instruction = () => {
                     w pierwszym wierszu tabeli po prawej stronie aby dodać nowy wiersz do tabeli.
                 </li>
                 <li>W każdym kolejnym wierszu tabeli możesz edytować jego zawartość klikając w dane pole i zmieniając zawarty w nim tekst.</li>
-                <li>W każdym kolejnym wierszu tabeli ikonka
+                <li>Ikonka
                     <IconContext.Provider value={{className: 'react-icons-instruction'}}>
                         <TbCheck/>
                     </IconContext.Provider>
                     po prawej stronie tabeli służy do tego aby zapisać zmiany z danego wiersza tabeli.</li>
-                <li>W każdym kolejnym wierszu tabeli ikonka
+                <li>Ikonka
                     <IconContext.Provider value={{className: 'react-icons-instruction'}}>
                         <TbX/>
                     </IconContext.Provider>
                     po lewej stronie służy do usuwania wierszy.</li>
-                <li>Jeśli wiersze po dodaniu lub zmianie kolejności nie są wyświetlane w odpowiedniej kolejności - odśwież stronę.</li>
                 <li>W przypadku strony głównej - ikonka
                     <IconContext.Provider value={{className: 'react-icons-instruction'}}>
                         <TbStairsUp/>

@@ -106,7 +106,7 @@ export const PartsOfPlanTable = () => {
                     </thead>
 
                     <tbody>
-                    <tr>
+                    <tr className="tr-add">
                         <td className="td-highlight">
                             <IconContext.Provider value={{className: 'react-icons'}}>
                                 <Logo to="/instruction" text={<TbQuestionMark/>}/>

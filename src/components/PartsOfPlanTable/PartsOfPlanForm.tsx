@@ -33,7 +33,6 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
                     type="text"
                     name="name"
                     required
-                    maxLength={99}
                     value={values.name}
                     onChange={(event) => handleChange('name', event.target.value)}
                 />

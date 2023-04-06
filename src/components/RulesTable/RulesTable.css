@@ -1,16 +1,22 @@
-.input-rule {
-    border:none;
-    color: white;
-    /*color: #DA70D6;*/
-    font-size: 16px;
-    background-color: transparent;
-    width: 100%;
+.textarea-rule {
     font-family: 'Ubuntu', sans-serif;
+    color: white;
+    width: 50vw;
+    min-width: 100%;
+    height: 6vh;
+    min-height: 6vh;
+    background-color: transparent;
+    font-size: 14px;
+    border: none;
 }
 
 input:focus {
-    outline: none;
+    outline: transparent;
     background-color: transparent;
+}
+
+textarea:focus {
+    outline: transparent;
 }
 
 h1, h2 {
