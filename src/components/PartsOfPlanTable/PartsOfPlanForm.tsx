@@ -27,7 +27,7 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
 
     return (
         <>
-            <td>
+            <td className="input-part-add">
                 <input
                     className={isEdited ? 'edited-input' : 'input-part'}
                     type="text"

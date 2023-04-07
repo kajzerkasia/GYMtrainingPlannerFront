@@ -98,7 +98,7 @@ export const PartsOfPlanTable = () => {
                 <table className="main-table">
 
                     <thead>
-                    <tr>
+                    <tr className="tr-add">
                         <td colSpan={4} className="gradient-bgc-tr">
                             <h1>Plan treningowy</h1>
                         </td>

@@ -125,26 +125,26 @@ export const ExercisesTable = () => {
 
                 <thead>
                 <tr>
-                    <th className="hidden"></th>
-                    <th>
+                    <td className="hidden"></td>
+                    <th className="tr-add">
                         Kolejność
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Ćwiczenie
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Serie
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Powtórzenia
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Przerwa między seriami
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Wskazówki dotyczące ćwiczenia
                     </th>
-                    <th>
+                    <th className="tr-add">
                         Poprawne wykonanie ćwiczenia (link)
                     </th>
                 </tr>

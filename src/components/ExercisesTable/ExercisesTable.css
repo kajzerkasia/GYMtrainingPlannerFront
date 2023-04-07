@@ -48,11 +48,6 @@ td, th {
     border-top: 1px solid white;
 }
 
-
-.hidden {
-    border: none;
-}
-
 button {
     background-color: transparent;
     color: #E6E6FA;
@@ -143,13 +138,21 @@ button {
     border: none;
 }
 
-.tr-add td {
+.tr-add td, th {
     border: 1px solid #d495e2;
-    background-color: #d495e2;
+    background-image: linear-gradient(200deg, #d495e2 15%, #ca9dd9 82%);
+    color: #310942;
 }
 
-.tr-add input {
+.hidden {
+    border: none;
+    background-color: transparent;
+}
+
+.tr-add input,
+.tr-add textarea {
     color: #310942;
+    font-size: 16px;
 }
 
 .wrapper-exercises-table {
@@ -164,6 +167,7 @@ button {
     font-size: 10px;
 }
 
+/* TODO: Pomyśleć o kolorach, czy tych inputów do dodawania jakoś jeszcze nie zmienić*/
 
 
 
