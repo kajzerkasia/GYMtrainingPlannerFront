@@ -6,13 +6,18 @@ import './ExercisesTable.css';
 import {useParams} from "react-router-dom";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
+import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 
 export const ExercisesTable = () => {
 
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
+    const [confirmDeleteExercise, setConfirmDeleteExercise] = useState<boolean>(false);
+    const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
 
     const params = useParams();
+
+    const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
 
     useEffect(() => {
 
@@ -99,28 +104,34 @@ export const ExercisesTable = () => {
         );
     };
 
-    const deleteExercise = async (values: ExerciseEntity) => {
+    const handleDeleteExercise= async (exerciseId: any) => {
+        setConfirmDeleteExercise(true);
+        setExerciseToDeleteId(exerciseId);
+    };
 
-        if (!window.confirm(`Czy na pewno chcesz usunąć ćwiczenie: ${values.name}?`)) {
-            return;
-        }
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
+    const handleConfirmDelete = async () => {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${exerciseToDeleteId}`, {
             method: 'DELETE',
         });
         if ([400, 500].includes(res.status)) {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
-        } else {
-            setExercisesList(
-                exercisesList => exercisesList.filter(exercise => exercise.id !== values.id)
-            )
         }
+        setExercisesList((exercisesList) =>
+            exercisesList.filter((exercise) => exercise.id !== exerciseToDeleteId)
+        );
+        setConfirmDeleteExercise(false);
+    };
+
+    const handleCancelDelete = () => {
+        setConfirmDeleteExercise(false);
+        setExerciseToDeleteId(null);
     };
 
     return (
         <div className="wrapper-exercises-table">
-            <Logo to="/plans" text="GYM Training Planner"/>
+            <Logo to="/plans" text="Gym Training Planner"/>
             <table className="exercises-table">
 
                 <thead>
@@ -178,7 +189,7 @@ export const ExercisesTable = () => {
                     <tr key={`row-${idx}`}>
                         <td className="icon-delete">
                             <IconContext.Provider value={{className: 'react-icons-smaller'}}>
-                                <button onClick={() => deleteExercise(exercise)}><TbX/></button>
+                                <button onClick={() => handleDeleteExercise(exercise.id)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
                         <ExercisesForm
@@ -195,6 +206,13 @@ export const ExercisesTable = () => {
                 </tbody>
             </table>
             <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <ConfirmationModal
+                isOpen={confirmDeleteExercise}
+                onRequestClose={handleCancelDelete}
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+                text={text}
+            />
         </div>
     )
 }

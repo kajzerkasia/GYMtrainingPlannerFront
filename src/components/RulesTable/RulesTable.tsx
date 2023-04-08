@@ -4,11 +4,16 @@ import {Logo} from "../Logo/Logo";
 import {RulesForm} from "./RulesForm";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
+import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 
 export const RulesTable = () => {
 
     const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
+    const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
+    const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
+
+    const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
@@ -61,29 +66,35 @@ export const RulesTable = () => {
         );
     };
 
-    const deleteRule = async (values: RuleEntity) => {
+    const handleDeleteRule = async (partId: any) => {
+        setConfirmDeleteRule(true);
+        setRuleToDeleteId(partId);
+    };
 
-        if (!window.confirm(`Czy na pewno chcesz usunąć zasadę?`)) {
-            return;
-        }
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
-            method: 'DELETE',
-        });
-
+    const handleConfirmDelete = async () => {
+        const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/add-rule/rules/${ruleToDeleteId}`,
+            { method: "DELETE" }
+        );
         if ([400, 500].includes(res.status)) {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
-        } else {
-            setRulesList(
-                rulesList => rulesList.filter(rule => rule.id !== values.id)
-            )
         }
+        setRulesList((setRulesList) =>
+            setRulesList.filter((rule) => rule.id !== ruleToDeleteId)
+        );
+        setConfirmDeleteRule(false);
+    };
+
+    const handleCancelDelete = () => {
+        setConfirmDeleteRule(false);
+        setRuleToDeleteId(null);
     };
 
     return (
         <div className="rules-wrapper">
-            <Logo to="/plans" text="GYM Training Planner"/>
+            <Logo to="/plans" text="Gym Training Planner"/>
             <table className="rules-table">
                 <thead>
                 <tr className="tr-add">
@@ -116,7 +127,7 @@ export const RulesTable = () => {
                     <tr key={`row-${idx}`}>
                         <td className="td-rule">
                             <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
-                                <button onClick={() => deleteRule(rule)}><TbX/></button>
+                                <button onClick={() => handleDeleteRule(rule.id)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
                         <RulesForm
@@ -133,6 +144,13 @@ export const RulesTable = () => {
                 </tbody>
             </table>
             <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <ConfirmationModal
+                isOpen={confirmDeleteRule}
+                onRequestClose={handleCancelDelete}
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+                text={text}
+            />
         </div>
     )
 }

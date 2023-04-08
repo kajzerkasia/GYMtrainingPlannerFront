@@ -31,7 +31,7 @@
 .ReactModal__Overlay {
     opacity: 0;
     transform: translateX(-100vw);
-    transition: all 1000ms ease-in-out;
+    transition: all 1200ms ease-in-out;
     background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
 }
 

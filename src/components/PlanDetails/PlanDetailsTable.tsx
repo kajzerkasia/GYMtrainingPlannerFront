@@ -48,7 +48,7 @@ export const PlanDetailsTable = () => {
 
     return (
         <div className="details-wrapper">
-            <Logo to="/plans" text="GYM Training Planner"/>
+            <Logo to="/plans" text="Gym Training Planner"/>
             <table className="details-table">
 
                 <thead>

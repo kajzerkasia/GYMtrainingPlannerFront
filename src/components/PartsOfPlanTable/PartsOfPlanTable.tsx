@@ -17,6 +17,8 @@ export const PartsOfPlanTable = () => {
     const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
     const [partToDeleteId, setPartToDeleteId] = useState(null);
 
+    const text = 'Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu';
+
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
             method: 'GET'
@@ -80,7 +82,7 @@ export const PartsOfPlanTable = () => {
         const res = await fetch(
             `${process.env.REACT_APP_API_URL}/add-part/plans/${partToDeleteId}`,
             { method: "DELETE" }
-        );
+        )
         if ([400, 500].includes(res.status)) {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
@@ -100,7 +102,7 @@ export const PartsOfPlanTable = () => {
     return (
         <div className="wrapper">
             <IconContext.Provider value={{className: 'react-main-icon'}}>
-                <h1 className="main-h1"><TbHeartbeat/> GYM Training Planner</h1>
+                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
 
             <div className="main-plan">
@@ -177,6 +179,7 @@ export const PartsOfPlanTable = () => {
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
+                text={text}
             />
         </div>
     )

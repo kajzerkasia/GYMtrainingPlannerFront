@@ -77,6 +77,10 @@ button {
     background-color: transparent;
 }
 
+.question {
+    animation: background-highlight 1s;
+}
+
 .td-highlight {
     background-image: linear-gradient(200deg, #d495e2 15%, #632b7a 82%);
 }
@@ -93,27 +97,22 @@ button {
     }
 }
 
-/*@keyframes td-highlight {*/
-/*    0% {*/
-/*        background-color: transparent;*/
-/*    }*/
-/*    50% {*/
-/*        background-color: #d495e2;*/
-/*    }*/
-/*    100% {*/
-/*        background-color: transparent;*/
-/*    }*/
-/*}*/
-
-.react-main-icon {
-    font-size: 22px;
+@keyframes background-highlight {
+    0% {
+        background-color: transparent;
+    }
+    50% {
+        background-color: #d495e2;
+    }
+    100% {
+        background-color: transparent;
+    }
 }
 
-/*.tr-add td {*/
-/*    border: 1px solid #d495e2;*/
-/*    background-image: linear-gradient(200deg, #d495e2 15%, #ca9dd9 82%);*/
-/*    color: #310942;*/
-/*}*/
+.react-main-icon {
+    font-size: 24px;
+    vertical-align: -2px
+}
 
 .parts-modal {
     text-align: center;
@@ -132,6 +131,8 @@ button {
 .parts-modal h2 {
     margin-bottom: 7vh;
 }
+
+
 
 
 
