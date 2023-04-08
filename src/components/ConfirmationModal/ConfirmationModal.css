@@ -43,7 +43,7 @@
 
 .ReactModal__Overlay--before-close {
     opacity: 0;
-    transform: translateX(-100vw);
+    transform: translateX(100vw);
     background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
 }
 
