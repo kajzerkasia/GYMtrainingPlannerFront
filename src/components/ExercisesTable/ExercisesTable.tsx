@@ -160,7 +160,7 @@ export const ExercisesTable = () => {
                         initialValues={{
                             order: '',
                             name: '',
-                            series: 0,
+                            series: '',
                             repetitions: '',
                             pause: '',
                             tips: '',

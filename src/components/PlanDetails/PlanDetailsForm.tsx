@@ -24,7 +24,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
         <>
             <td className="details-length">
                 <input
-                    className={isEdited ? 'edited-input' : 'input-detail'}
+                    className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="length"
                     value={values.length}
@@ -33,7 +33,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-frequency">
                 <input
-                    className={isEdited ? 'edited-input' : 'input-detail'}
+                    className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="frequency"
                     value={values.frequency}
@@ -42,7 +42,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-schedule">
                 <input
-                    className={isEdited ? 'edited-input' : 'input-detail'}
+                    className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="schedule"
                     value={values.schedule}

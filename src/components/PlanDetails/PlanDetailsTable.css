@@ -66,14 +66,15 @@ button {
     padding-bottom: 1.5vh;
 }
 
-.edited-input {
+.edited-input-details {
     border:none;
     color: #E6E6FA;
-    font-size: 22px;
+    font-size: 16px;
     text-align: center;
     width: 100%;
     font-family: 'Ubuntu', sans-serif;
     animation: highlight 1s;
+    background-color: transparent;
 }
 
 .details-wrapper {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {SetStateAction, useEffect, useState} from 'react';
 import {Logo} from "../Logo/Logo";
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 
@@ -8,11 +8,14 @@ import './PartsOfPlanTable.css';
 
 import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
+import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 
 export const PartsOfPlanTable = () => {
 
     const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
+    const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
+    const [partToDeleteId, setPartToDeleteId] = useState(null);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
@@ -68,25 +71,30 @@ export const PartsOfPlanTable = () => {
         );
     };
 
-    const deletePartOfPlan = async (values: PartOfPlanEntity) => {
+    const handleDeletePart = async (partId: any) => {
+        setConfirmDeletePart(true);
+        setPartToDeleteId(partId);
+    };
 
-        //TODO: Rozważyć zamianę confirma na ładny widoczny popup wszędzie przy confirmach
-
-        if (!window.confirm(`Czy na pewno chcesz usunąć część planu: ${values.name}? Spowoduje to usunięcie zarówno tej części planu, jak i ćwiczeń przypisanych do niej.`)) {
-            return;
-        }
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans/${values.id}`, {
-            method: 'DELETE',
-        });
+    const handleConfirmDelete = async () => {
+        const res = await fetch(
+            `${process.env.REACT_APP_API_URL}/add-part/plans/${partToDeleteId}`,
+            { method: "DELETE" }
+        );
         if ([400, 500].includes(res.status)) {
             const error = await res.json();
             alert(`Wystąpił błąd: ${error.message}`);
             return;
-        } else {
-            setPartsOfPlanList(
-                partsOfPlanList => partsOfPlanList.filter(part => part.id !== values.id)
-            )
         }
+        setPartsOfPlanList((partsOfPlanList) =>
+            partsOfPlanList.filter((part) => part.id !== partToDeleteId)
+        );
+        setConfirmDeletePart(false);
+    };
+
+    const handleCancelDelete = () => {
+        setConfirmDeletePart(false);
+        setPartToDeleteId(null);
     };
 
     return (
@@ -139,7 +147,7 @@ export const PartsOfPlanTable = () => {
                         <tr key={`row-${idx}`}>
                             <td>
                                 <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button onClick={() => deletePartOfPlan(part)}><TbX/></button>
+                                    <button onClick={() => handleDeletePart(part.id)}><TbX/></button>
                                 </IconContext.Provider>
                             </td>
                             <PartsOfPlanForm
@@ -162,9 +170,16 @@ export const PartsOfPlanTable = () => {
                     </tbody>
 
                 </table>
+
             </div>
+            <ConfirmationModal
+                isOpen={confirmDeletePart}
+                onRequestClose={handleCancelDelete}
+                onConfirm={handleConfirmDelete}
+                onCancel={handleCancelDelete}
+            />
         </div>
-)
+    )
 
 }
 

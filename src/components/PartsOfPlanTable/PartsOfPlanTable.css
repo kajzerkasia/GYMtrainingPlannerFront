@@ -115,5 +115,23 @@ button {
 /*    color: #310942;*/
 /*}*/
 
+.parts-modal {
+    text-align: center;
+    margin: 25vh auto 5vh;
+    padding: 40px 40px;
+    width: 30%;
+    background-color: black;
+    font-size: 22px;
+}
+
+.parts-modal button {
+    margin-top: 7vh;
+    font-size: 22px;
+}
+
+.parts-modal h2 {
+    margin-bottom: 7vh;
+}
+
 
 

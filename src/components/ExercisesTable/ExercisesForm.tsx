@@ -33,7 +33,6 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="order"
-                    required
                     value={values.order}
                     onChange={(event) => handleChange('order', event.target.value)}
                 />
@@ -51,8 +50,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             <td className="exercise-series">
                 <input
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
-                    type="number"
-                    min={1}
+                    type="text"
                     name="series"
                     value={values.series}
                     onChange={(event) => handleChange('series', event.target.value)}
