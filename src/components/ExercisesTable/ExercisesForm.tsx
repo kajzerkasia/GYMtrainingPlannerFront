@@ -116,5 +116,3 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
     );
 };
 
-// TODO: change all links to shorter and clickable - it's easy I think, fix inputs - should be able to write more text in it.
-// TODO: WAŻNE!! Ogarnąć żeby dało się usuwać też części planu, które mają ćwiczenia! - na backendzie w record

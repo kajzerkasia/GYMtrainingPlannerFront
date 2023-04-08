@@ -194,6 +194,7 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
+            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
         </div>
     )
 }

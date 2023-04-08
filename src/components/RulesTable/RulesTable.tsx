@@ -132,6 +132,9 @@ export const RulesTable = () => {
                 ))}
                 </tbody>
             </table>
+            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
         </div>
     )
 }
+
+// TODO: Napisać testy

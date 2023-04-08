@@ -1,46 +1,81 @@
-# Gym Training Planner
+# Gym Training Planner 🏋️‍♀️💪
 
-It is an application for managing training plans. You can add new plan, edit existing or delete plan. 
+![img_1.png](img_1.png)
 
-## Available Scripts
+Gym Training Planner is an application for managing your training plan. It
+consists of the following parts and capabilities:
 
-In the project directory, you can run:
+Parts of plan:
+➕
+️✖
+✔ 
 
-### `npm start`
+Exercises:
+️➕
+️✖
+✔
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Progression rules:
+➕
+️✖
+✔
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Training plan details:
+✔
 
-### `npm test`
+## Technologies used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![react](https://img.shields.io/badge/react%20-%23404d59.svg?logo=react&style=for-the-badge&logoColor=cyan)
+![typescript](https://img.shields.io/badge/typescript%20-%23404d59.svg?logo=typescript&style=for-the-badge&logoColor=blue)
+![node.js](https://img.shields.io/badge/node.js%20-%23404d59.svg?logo=node.js&style=for-the-badge&logoColor=green)
+![Express.js](https://img.shields.io/badge/express.js%20-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![npm](https://img.shields.io/badge/npm%20-%23404d59.svg?logo=npm&style=for-the-badge&logoColor=red)
+![sql](https://img.shields.io/badge/sql%20-%23404d59.svg?logo=mysql&style=for-the-badge&logoColor=orange)
+![Jest](https://img.shields.io/badge/-jest%20-%23404d59.svg?style=for-the-badge&logo=jest&logoColor=white)
+![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=white)
 
-### `npm run build`
+## How to reach me
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[<img src="https://img.shields.io/badge/linked%20in-%23404d59.svg?logo=linkedin&style=for-the-badge&logoColor=blue" alt="linked in" />](https://www.linkedin.com/in/katarzyna-kajzer/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Gym Training Planner 🏋️‍♀️💪
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![img_2.png](img_2.png)
 
-### `npm run eject`
+Gym Training Planner to aplikacja do zarządzania planem treningowym. Składa się z następujących części i możliwości:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Części planu:
+➕
+️✖
+✔
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Ćwiczenia:
+️➕
+️✖
+✔
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Zasady progresji:
+➕
+️✖
+✔
 
-## Learn More
+Szczegóły planu treningowego:
+✔
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Zastosowane technologie:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![react](https://img.shields.io/badge/react%20-%23404d59.svg?logo=react&style=for-the-badge&logoColor=cyan)
+![typescript](https://img.shields.io/badge/typescript%20-%23404d59.svg?logo=typescript&style=for-the-badge&logoColor=blue)
+![node.js](https://img.shields.io/badge/node.js%20-%23404d59.svg?logo=node.js&style=for-the-badge&logoColor=green)
+![Express.js](https://img.shields.io/badge/express.js%20-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![npm](https://img.shields.io/badge/npm%20-%23404d59.svg?logo=npm&style=for-the-badge&logoColor=red)
+![sql](https://img.shields.io/badge/sql%20-%23404d59.svg?logo=mysql&style=for-the-badge&logoColor=orange)
+![Jest](https://img.shields.io/badge/-jest%20-%23404d59.svg?style=for-the-badge&logo=jest&logoColor=white)
+![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=white)
+
+## Skontaktuj się ze mną
+
+[<img src="https://img.shields.io/badge/linked%20in-%23404d59.svg?logo=linkedin&style=for-the-badge&logoColor=blue" alt="linked in" />](https://www.linkedin.com/in/katarzyna-kajzer/)
+
+

@@ -45,3 +45,5 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
         </>
     );
 };
+
+// @TODO: Zrobić na pewno tego pop-upa zamiast confirma, może waildować wpisane linki od użytkownika, SANITIZE FIRST! Wszędzie dodać pole "powrót do strony głównej na dole, NAPISAĆ ŁADNE READ ME

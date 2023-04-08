@@ -30,7 +30,8 @@ li {
 .react-icons-instruction {
     font-size: 30px;
     margin-left: 10px;
-    margin-right: 15px;
+    margin-right: 20px;
     padding: 5px;
     border: 1px solid white;
+    vertical-align: -7px
 }
