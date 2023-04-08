@@ -70,5 +70,18 @@ button {
     margin-top: 5vh;
 }
 
+.textarea-rule-edited {
+    font-family: 'Ubuntu', sans-serif;
+    color: #E6E6FA;
+    width: 50vw;
+    min-width: 100%;
+    height: 6vh;
+    min-height: 6vh;
+    background-color: transparent;
+    font-size: 14px;
+    border: none;
+    animation: highlight 1s;
+}
+
 
 

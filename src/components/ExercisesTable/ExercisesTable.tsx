@@ -150,9 +150,9 @@ export const ExercisesTable = () => {
                 </tr>
                 </thead>
                 <tbody>
-                <tr className="tr-add">
+                <tr>
                     <td className="icon-question">
-                        <IconContext.Provider value={{className: 'react-icons-smaller dark'}}>
+                        <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </IconContext.Provider>
                     </td>

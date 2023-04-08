@@ -4,13 +4,14 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    margin-top: 5vh;
 }
 
 ul {
     border: 1px dotted white;
-    padding: 5vh 5vw;
-    margin-top: 1vh;
-    margin-bottom: 3vh;
+    padding: 5vh 3vw;
+    margin-bottom: 5vh;
+    list-style-type: none;
 }
 
 li {
@@ -23,12 +24,13 @@ li {
 
 .instruction-h2 {
     font-size: 20px;
+    margin-bottom: 2vh;
 }
 
 .react-icons-instruction {
     font-size: 30px;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 15px;
     padding: 5px;
     border: 1px solid white;
 }

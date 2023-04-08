@@ -39,7 +39,7 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
             </td>
             <td>
                 <IconContext.Provider value={{className: 'react-icons'}}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus style={{color: "#310942"}}/> : <TbCheck/>}</button>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>

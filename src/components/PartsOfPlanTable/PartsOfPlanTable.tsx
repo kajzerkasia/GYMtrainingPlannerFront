@@ -6,8 +6,7 @@ import {PartOfPlanEntity, Status} from 'types';
 
 import './PartsOfPlanTable.css';
 
-// TbClipboardText, TbList, TbStairsUp, TbBrandSupabase
-import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 
 export const PartsOfPlanTable = () => {
@@ -71,6 +70,8 @@ export const PartsOfPlanTable = () => {
 
     const deletePartOfPlan = async (values: PartOfPlanEntity) => {
 
+        //TODO: Rozważyć zamianę confirma na ładny widoczny popup wszędzie przy confirmach
+
         if (!window.confirm(`Czy na pewno chcesz usunąć część planu: ${values.name}? Spowoduje to usunięcie zarówno tej części planu, jak i ćwiczeń przypisanych do niej.`)) {
             return;
         }
@@ -99,16 +100,21 @@ export const PartsOfPlanTable = () => {
 
                     <thead>
                     <tr className="tr-add">
-                        <td colSpan={4} className="gradient-bgc-tr">
+                        <td colSpan={3} className="gradient-bgc-tr">
                             <h1>Plan treningowy</h1>
+                        </td>
+                        <td colSpan={1}>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <Logo to="/details" text={<TbDotsVertical/>}/>
+                            </IconContext.Provider>
                         </td>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr className="tr-add">
-                        <td className="td-highlight">
-                            <IconContext.Provider value={{className: 'react-icons dark'}}>
+                    <tr>
+                        <td>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
                                 <Logo to="/instruction" text={<TbQuestionMark/>}/>
                             </IconContext.Provider>
                         </td>
@@ -123,7 +129,7 @@ export const PartsOfPlanTable = () => {
                             actionType={Status.Add}
                         />
                         <td className="td-progression-rules">
-                            <IconContext.Provider value={{className: 'react-icons dark'}}>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
                                 <Logo to="/rules" text=<TbStairsUp/>/>
                             </IconContext.Provider>
                         </td>
@@ -158,9 +164,8 @@ export const PartsOfPlanTable = () => {
                 </table>
             </div>
         </div>
-    )
+)
 
 }
 
-// zrobić animację podświetlenia nazwy części planu na inny kolor po zmianie nazwy.
 

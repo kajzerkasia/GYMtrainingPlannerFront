@@ -30,7 +30,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
         <>
             <td className="exercise-order">
                 <input
-                    className={isEdited ? 'edited-input-exercise' : ''}
+                    className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="order"
                     required
@@ -40,6 +40,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-name">
                 <input
+                    className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="name"
                     required
@@ -49,6 +50,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-series">
                 <input
+                    className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="number"
                     min={1}
                     name="series"
@@ -58,6 +60,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-repetitions">
                 <input
+                    className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="repetitions"
                     value={values.repetitions}
@@ -66,6 +69,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-pause">
                 <input
+                    className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="pause"
                     value={values.pause}
@@ -73,16 +77,16 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
                 />
             </td>
             <td className="exercise-tips">
-                <textarea className="exercise-textarea"
-                    // type="text"
-                          name="tips"
-                          value={values.tips}
-                          onChange={(event) => handleChange('tips', event.target.value)}
+                <textarea
+                    className={isEdited ? 'edited-exercise-textarea' : 'exercise-textarea'}
+                    name="tips"
+                    value={values.tips}
+                    onChange={(event) => handleChange('tips', event.target.value)}
                 />
             </td>
             <td className="exercise-url">
                 <input
-                    className="input-url"
+                    className={isEdited ? 'edited-input-exercise-url' : 'input-exercise input-url'}
                     type="url"
                     name="url"
                     value={values.url}
@@ -105,7 +109,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="icon-add-edit">
                 <IconContext.Provider value={{className: 'react-icons-smaller'}}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus style={{color: "#310942"}}/> : <TbCheck/>}</button>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>

@@ -1,4 +1,4 @@
-input {
+.input-exercise {
     border: none;
     color: #E6E6FA;
     font-size: 16px;
@@ -77,7 +77,38 @@ button {
 }
 
 .edited-input-exercise {
-    animation: change-color 1s;
+    border:none;
+    color: #E6E6FA;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    animation: highlight 1s;
+    background-color: transparent;
+}
+
+.edited-input-exercise-url {
+    border:none;
+    color: #E6E6FA;
+    font-size: 10px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    animation: highlight 1s;
+    background-color: transparent;
+}
+
+.edited-exercise-textarea {
+    font-family: 'Ubuntu', sans-serif;
+    color: #E6E6FA;
+    width: 30vw;
+    min-width: 30vw;
+    height: 4vh;
+    min-height: 4vh;
+    background-color: transparent;
+    font-size: 14px;
+    border: none;
+    animation: highlight 1s;
 }
 
 @keyframes change-color {
@@ -138,21 +169,15 @@ button {
     border: none;
 }
 
-.tr-add td, th {
-    border: 1px solid #d495e2;
-    background-image: linear-gradient(200deg, #d495e2 15%, #ca9dd9 82%);
-    color: #310942;
-}
+/*.tr-add td, th {*/
+/*    border: 1px solid #d495e2;*/
+/*    background-image: linear-gradient(200deg, #d495e2 15%, #ca9dd9 82%);*/
+/*    color: #310942;*/
+/*}*/
 
 .hidden {
     border: none;
     background-color: transparent;
-}
-
-.tr-add input,
-.tr-add textarea {
-    color: #310942;
-    font-size: 16px;
 }
 
 .wrapper-exercises-table {

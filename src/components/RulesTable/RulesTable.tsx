@@ -8,6 +8,7 @@ import {IconContext} from "react-icons";
 export const RulesTable = () => {
 
     const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
+    const [isEdited, setIsEdited] = useState<boolean>(false);
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
@@ -32,6 +33,7 @@ export const RulesTable = () => {
     };
 
     const editRule = async (values: RuleEntity) => {
+        setIsEdited(false);
 
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
             method: 'PUT',
@@ -44,6 +46,8 @@ export const RulesTable = () => {
         if (!res.ok) {
             throw new Error('Wystąpił błąd podczas próby zaktualizowania zasady.');
         }
+
+        setIsEdited(true);
 
         return await res.json();
 
@@ -90,8 +94,8 @@ export const RulesTable = () => {
                 </thead>
 
                 <tbody>
-                <tr className="tr-add">
-                    <IconContext.Provider value={{ className: 'react-icons-smaller dark' }}>
+                <tr>
+                    <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                         <td className="td-rule">
                             <Logo to="/instruction" text={<TbQuestionMark/>}/>
                         </td>
@@ -122,6 +126,7 @@ export const RulesTable = () => {
                                 await handleUpdateRule(values);
                             }}
                             actionType={Status.Save}
+                            isEdited={isEdited}
                         />
                     </tr>
                 ))}

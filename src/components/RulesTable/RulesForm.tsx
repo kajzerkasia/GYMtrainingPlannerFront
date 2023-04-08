@@ -9,9 +9,10 @@ export type RuleFormProps = {
     initialValues: RuleEntity;
     onSubmit: (values: RuleEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
+    isEdited?: boolean;
 };
 
-export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps) => {
+export const RulesForm = ({initialValues, onSubmit, actionType, isEdited}: RuleFormProps) => {
     const [values, setValues] = useState<RuleEntity>(() => initialValues);
 
     const reset: () => void = () => {
@@ -28,7 +29,8 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
     return (
         <>
             <td>
-                <textarea className="textarea-rule"
+                <textarea
+                    className={isEdited ? 'textarea-rule-edited' : 'textarea-rule'}
                     name="rule"
                     required
                     value={values.rule}
@@ -36,8 +38,8 @@ export const RulesForm = ({ initialValues, onSubmit, actionType }: RuleFormProps
                 />
             </td>
             <td className="td-rule">
-                <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{ actionType === Status.Add ? <TbPlus style={{color: "#310942"}}/> : <TbCheck/> }</button>
+                <IconContext.Provider value={{className: 'react-icons-smaller'}}>
+                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
         </>
