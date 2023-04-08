@@ -8,12 +8,6 @@ import React from "react";
 
 Modal.setAppElement('#root');
 
-const bg = {
-    overlay: {
-        background: "#d495e2",
-    }
-};
-
 export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel}: any) => {
     return (
         <Modal
@@ -21,7 +15,6 @@ export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel}:
             onRequestClose={onRequestClose}
             className="parts-modal"
             contentLabel="Example Modal"
-            style={bg}
             closeTimeoutMS={1000}
         >
             <h2>Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu</h2>
