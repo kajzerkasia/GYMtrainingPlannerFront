@@ -22,7 +22,7 @@ export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel}:
             className="parts-modal"
             contentLabel="Example Modal"
             style={bg}
-            closeTimeoutMS={500}
+            closeTimeoutMS={1000}
         >
             <h2>Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu</h2>
             <IconContext.Provider value={{className: 'icon-modal'}}>

@@ -19,42 +19,6 @@
     border: 1px solid #d495e2;
 }
 
-/*@keyframes modal-appear {*/
-/*    0% {*/
-/*        opacity: 0;*/
-/*    }*/
-/*    25% {*/
-/*        opacity: 25%;*/
-/*    }*/
-/*    50% {*/
-/*        opacity: 50%;*/
-/*    }*/
-/*    75% {*/
-/*        opacity: 75%;*/
-/*    }*/
-/*    100% {*/
-/*        opacity: 100%;*/
-/*    }*/
-/*}*/
-
-/*@keyframes modal-disappear {*/
-/*    0% {*/
-/*        opacity: 100%;*/
-/*    }*/
-/*    25% {*/
-/*        opacity: 75%;*/
-/*    }*/
-/*    50% {*/
-/*        opacity: 50%;*/
-/*    }*/
-/*    75% {*/
-/*        opacity: 25%;*/
-/*    }*/
-/*    100% {*/
-/*        opacity: 0;*/
-/*    }*/
-/*}*/
-
 .parts-modal h2 {
     margin-bottom: 5vh;
 }
@@ -66,14 +30,17 @@
 
 .ReactModal__Overlay {
     opacity: 0;
-    transition: all 500ms ease-in-out;
+    transform: translateX(-100vw);
+    transition: all 1000ms ease-in-out;
 }
 
 .ReactModal__Overlay--after-open {
     opacity: 1;
+    transform: translateX(0px);
 }
 
 .ReactModal__Overlay--before-close {
     opacity: 0;
+    transform: translateX(-100vw);
 }
 

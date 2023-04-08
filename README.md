@@ -39,6 +39,10 @@ Training plan details:
 
 [<img src="https://img.shields.io/badge/linked%20in-%23404d59.svg?logo=linkedin&style=for-the-badge&logoColor=blue" alt="linked in" />](https://www.linkedin.com/in/katarzyna-kajzer/)
 
+#
+#
+#
+
 # Gym Training Planner 🏋️‍♀️💪
 
 ![img_2.png](public/assets/img_2.png)
