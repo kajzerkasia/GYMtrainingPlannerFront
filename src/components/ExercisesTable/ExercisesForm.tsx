@@ -30,6 +30,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
         <>
             <td className="exercise-order">
                 <input
+                    placeholder="Kolejność?"
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="order"
@@ -39,6 +40,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-name">
                 <input
+                    placeholder="Ćwiczenie?"
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="name"
@@ -49,6 +51,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-series">
                 <input
+                    placeholder="Serie?"
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="series"
@@ -58,6 +61,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-repetitions">
                 <input
+                    placeholder="Powtórzenia?"
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="repetitions"
@@ -67,6 +71,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-pause">
                 <input
+                    placeholder="Długość przerwy?"
                     className={isEdited ? 'edited-input-exercise' : 'input-exercise'}
                     type="text"
                     name="pause"
@@ -76,6 +81,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-tips">
                 <textarea
+                    placeholder="Wskazówki dotyczące ćwiczenia?"
                     className={isEdited ? 'edited-exercise-textarea' : 'exercise-textarea'}
                     name="tips"
                     value={values.tips}
@@ -84,6 +90,7 @@ export const ExercisesForm = ({initialValues, onSubmit, actionType, isEdited}: E
             </td>
             <td className="exercise-url">
                 <input
+                    placeholder="Link do filmu instruktażowego?"
                     className={isEdited ? 'edited-input-exercise-url' : 'input-exercise input-url'}
                     type="url"
                     name="url"

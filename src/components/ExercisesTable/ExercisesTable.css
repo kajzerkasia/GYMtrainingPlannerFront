@@ -101,8 +101,8 @@ button {
 .edited-exercise-textarea {
     font-family: 'Ubuntu', sans-serif;
     color: #E6E6FA;
-    width: 30vw;
-    min-width: 30vw;
+    width: 25vw;
+    min-width: 25vw;
     height: 6vh;
     min-height: 6vh;
     background-color: transparent;
@@ -120,11 +120,11 @@ button {
 }
 
 .exercise-series {
-    width: 1vw;
+    width: 5vw;
 }
 
 .exercise-repetitions {
-    width: 8vw;
+    width: 10vw;
 }
 
 .exercise-pause {
@@ -132,7 +132,7 @@ button {
 }
 
 .exercise-tips {
-    width: 30vw;
+    width: 25vw;
 }
 
 .exercise-url {
@@ -148,8 +148,8 @@ button {
 .exercise-textarea {
     font-family: 'Ubuntu', sans-serif;
     color: #E6E6FA;
-    width: 30vw;
-    min-width: 30vw;
+    width: 25vw;
+    min-width: 25vw;
     height: 6vh;
     min-height: 6vh;
     background-color: transparent;
@@ -177,6 +177,17 @@ button {
 }
 
 .input-url {
+    font-size: 10px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: lighter;
+    color: #E6E6FA;
+    opacity: 40%;
+}
+
+.input-url::placeholder {
     font-size: 10px;
 }
 
