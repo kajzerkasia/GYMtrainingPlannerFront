@@ -14,8 +14,8 @@ input:focus {
 }
 
 h1, h2 {
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    /*padding-top: 2vh;*/
+    /*padding-bottom: 2vh;*/
     font-size: 22px;
     text-align: center;
 }
@@ -31,7 +31,7 @@ h1, h2 {
     text-align: center;
     margin: 0 auto 5vh 26.5vw;
     padding-top: 15vh;
-    padding-bottom: 5vh;
+    padding-bottom: 6vh;
     width: 50%;
 }
 
@@ -78,7 +78,7 @@ button {
 }
 
 .details-wrapper {
-    margin-top: 5vh;
+    margin-top: 15vh;
 }
 
 

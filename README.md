@@ -2,25 +2,37 @@
 
 ![img_2.png](public/assets/img_2.png)
 
-Gym Training Planner to aplikacja do zarządzania planem treningowym. Składa się z następujących części i możliwości:
+Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?  
+Chcesz mieć wszystkie potrzebne informacje o ćwiczeniach, zasadach progresji itd w jednym miejscu?  
+
+A może jesteś trenerem personalnym, rozpisujesz plany treningowe dla swoich podopiecznych i chciałbyś mieć do tego wygodne narzędzie?
+
+Jeśli odpowiedź na chociaż jedno z tych pytań brzmi "tak", to mam dla Ciebie idealne rozwiązanie! Przedstawiam Ci **"Gym Training Planner"** ❤️🤩
+
+Gym Training Planner to aplikacja do zarządzania planem treningowym.  
+Składa się z następujących części i możliwości:
+
+➕ dodawanie  
+️✖ usuwanie  
+✔ edytowanie  
 
 
-Części planu:
+##### Części planu:
 ➕
 ️✖
 ✔
 
-Ćwiczenia:
+##### Ćwiczenia:
 ️➕
 ️✖
 ✔
 
-Zasady progresji:
+##### Zasady progresji:
 ➕
 ️✖
 ✔
 
-Szczegóły planu treningowego:
+##### Szczegóły planu treningowego:
 ✔
 
 ## Zastosowane technologie:
@@ -34,6 +46,15 @@ Szczegóły planu treningowego:
 ![sql](https://img.shields.io/badge/sql%20-%23404d59.svg?logo=mysql&style=for-the-badge&logoColor=orange)
 ![Jest](https://img.shields.io/badge/-jest%20-%23404d59.svg?style=for-the-badge&logo=jest&logoColor=red)
 ![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=red)
+
+## Co mogę poprawić w tym projekcie? 🤔
+* dodać więcej testów
+* uporządkować style
+
+## Pomysły na rozbudowanie aplikacji 📈
+* możliwość dodawania większej ilości planów treningowych
+* tryb admina (trenera) i tryb użytkownika (podopiecznego)
+* dodanie kalendarza do planowania treningów w dane dni oraz zaznaczania początku i końca planu treningowego
 
 ## Fun fact 🤡
 
@@ -51,8 +72,19 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 ![img_1.png](public/assets/img_1.png)
 
-Gym Training Planner is an application for managing your training plan. It
-consists of the following parts and capabilities:
+Do you train at the gym and need to organize your training plan?  
+Do you want to have all the information you need about exercises, rules of progression, etc. in one place?
+
+Or maybe you are a personal trainer, you write training plans for your proteges and would like to have a convenient tool for that?
+
+If the answer to at least one of these questions is "yes", then I have the perfect solution for you! I present to you **"Gym Training Planner"** ❤️🤩
+
+Gym Training Planner is an application to manage your training plan.  
+It consists of the following parts and capabilities:
+
+➕ addition  
+️✖ removal  
+✔ editing  
 
 Parts of plan:
 ➕
@@ -83,6 +115,15 @@ Training plan details:
 ![sql](https://img.shields.io/badge/sql%20-%23404d59.svg?logo=mysql&style=for-the-badge&logoColor=orange)
 ![Jest](https://img.shields.io/badge/-jest%20-%23404d59.svg?style=for-the-badge&logo=jest&logoColor=red)
 ![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=red)
+
+## What can I improve in this project? 🤔
+* add more tests
+* organize styles
+
+## Ideas for extending the application 📈
+* the ability to add more training plans
+* admin (trainer) and user (protege) mode
+* adding a calendar for planning training on given days and marking the beginning and end of the training plan
 
 ## Fun fact 🤡
 

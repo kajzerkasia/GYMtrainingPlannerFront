@@ -1,11 +1,12 @@
 .input-part {
-    border:none;
+    border: none;
     color: #E6E6FA;
     font-size: 22px;
     text-align: center;
     width: 100%;
     font-family: 'Ubuntu', sans-serif;
     background-color: transparent;
+    height: 5vh;
 }
 
 input:focus {
@@ -14,8 +15,8 @@ input:focus {
 }
 
 h1, h2 {
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    padding-top: 1.3vh;
+    padding-bottom: 1vh;
     font-size: 22px;
     text-align: center;
 }
@@ -32,12 +33,16 @@ h1, h2 {
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
-    width: 30%;
+    width: 35%;
 }
 
 td, th {
     padding: 15px;
     border: 1px solid #d495e2;
+}
+
+.training-plan {
+    height: 4vh;
 }
 
 
@@ -55,6 +60,7 @@ button {
 .react-icons {
     font-size: 22px;
     transition: color 0.4s;
+    width: 2vw;
 }
 
 .react-icons:hover {
@@ -67,7 +73,7 @@ button {
 }
 
 .edited-input {
-    border:none;
+    border: none;
     color: #E6E6FA;
     font-size: 22px;
     text-align: center;
@@ -112,6 +118,10 @@ button {
 .react-main-icon {
     font-size: 24px;
     vertical-align: -2px
+}
+
+.dots {
+    height: 3vh;
 }
 
 .parts-modal {

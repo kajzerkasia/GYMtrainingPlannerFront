@@ -24,7 +24,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
         <>
             <td className="details-length">
                 <input
-                    placeholder="Długość cyklu treningowego?"
+                    placeholder="Długość cyklu treningowego"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="length"
@@ -34,7 +34,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-frequency">
                 <input
-                    placeholder="Częstotliwość treningów?"
+                    placeholder="Częstotliwość treningów"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="frequency"
@@ -44,7 +44,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-schedule">
                 <input
-                    placeholder="Rozkład treningów?"
+                    placeholder="Rozkład treningów"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="schedule"

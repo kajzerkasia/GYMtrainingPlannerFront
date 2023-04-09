@@ -100,7 +100,7 @@ export const PartsOfPlanTable = () => {
     };
 
     return (
-        <div className="wrapper">
+        <div className="parts-wrapper">
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
@@ -110,11 +110,11 @@ export const PartsOfPlanTable = () => {
 
                     <thead>
                     <tr className="tr-add">
-                        <td colSpan={3} className="gradient-bgc-tr">
+                        <td colSpan={3} className="training-plan">
                             <h1>Plan treningowy</h1>
                         </td>
-                        <td colSpan={1}>
-                            <IconContext.Provider value={{className: 'react-icons'}}>
+                        <td className="dots" colSpan={1}>
+                            <IconContext.Provider value={{className: 'react-icons-dots'}}>
                                 <Logo to="/details" text={<TbDotsVertical/>}/>
                             </IconContext.Provider>
                         </td>
@@ -133,7 +133,9 @@ export const PartsOfPlanTable = () => {
                                 name: '',
                             }}
                             onSubmit={async (values, reset) => {
-                                await addPartOfPlan(values);
+                                if (values.name) {
+                                    await addPartOfPlan(values);
+                                }
                                 reset();
                             }}
                             actionType={Status.Add}

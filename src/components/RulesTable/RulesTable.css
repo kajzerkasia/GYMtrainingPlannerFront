@@ -20,8 +20,8 @@ textarea:focus {
 }
 
 h1, h2 {
-    padding-top: 2vh;
-    padding-bottom: 2vh;
+    /*padding-top: 2vh;*/
+    /*padding-bottom: 2vh;*/
     font-size: 20px;
     text-align: center;
 }
