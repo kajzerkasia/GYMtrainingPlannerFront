@@ -24,6 +24,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
         <>
             <td className="details-length">
                 <input
+                    placeholder="Długość cyklu treningowego?"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="length"
@@ -33,6 +34,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-frequency">
                 <input
+                    placeholder="Częstotliwość treningów?"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="frequency"
@@ -42,6 +44,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
             </td>
             <td className="details-schedule">
                 <input
+                    placeholder="Rozkład treningów?"
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="schedule"
@@ -49,6 +52,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
                     onChange={(event) => handleChange('schedule', event.target.value)}
                 />
             </td>
+
             <td className="td-detail">
                 <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                     <button type='button' onClick={() => onSubmit(values)}><TbCheck/></button>

@@ -30,6 +30,7 @@ export const RulesForm = ({initialValues, onSubmit, actionType, isEdited}: RuleF
         <>
             <td>
                 <textarea
+                    placeholder="Podaj zasadę progresji w bieżącym planie treningowym"
                     className={isEdited ? 'textarea-rule-edited' : 'textarea-rule'}
                     name="rule"
                     required

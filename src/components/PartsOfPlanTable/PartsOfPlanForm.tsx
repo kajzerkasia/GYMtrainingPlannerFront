@@ -29,6 +29,7 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
         <>
             <td className="input-part-add">
                 <input
+                    placeholder="Podaj nazwę części planu, którą chcesz dodać"
                     className={isEdited ? 'edited-input' : 'input-part'}
                     type="text"
                     name="name"
