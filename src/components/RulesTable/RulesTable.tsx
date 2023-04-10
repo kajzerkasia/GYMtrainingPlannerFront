@@ -8,6 +8,7 @@ import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {Link} from "react-router-dom";
 import './RulesTable.css';
+import {apiUrl} from "../../config/api";
 
 export const RulesTable = () => {
 
@@ -19,13 +20,13 @@ export const RulesTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
 
-    const textInformation = 'Aby dodać nową zasadę progresji - podaj jej treść!'
+    const textInformation = 'Nalezy podać treść zasady progresji!'
 
     useEffect(() => {
 
         const abortController = new AbortController();
 
-        fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
+        fetch(`${apiUrl}/api/add-rule/rules`, {
             method: 'GET'
         }).then(res => res.json())
             .then((rules) => {
@@ -44,7 +45,7 @@ export const RulesTable = () => {
     };
 
     const addRule = async (values: RuleEntity) => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
+        const res = await fetch(`${apiUrl}/api/add-rule/rules`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ export const RulesTable = () => {
     const editRule = async (values: RuleEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules/${values.id}`, {
+        const res = await fetch(`${apiUrl}/api/add-rule/rules/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +93,7 @@ export const RulesTable = () => {
 
     const handleConfirmDelete = async () => {
         const res = await fetch(
-            `${process.env.REACT_APP_API_URL}/add-rule/rules/${ruleToDeleteId}`,
+            `${apiUrl}/api/add-rule/rules/${ruleToDeleteId}`,
             { method: "DELETE" }
         );
         if ([400, 500].includes(res.status)) {
@@ -156,8 +157,13 @@ export const RulesTable = () => {
                         <RulesForm
                             initialValues={rule}
                             onSubmit={async (values) => {
-                                await editRule(values);
-                                await handleUpdateRule(values);
+                                if (values.rule) {
+                                    await editRule(values);
+                                    await handleUpdateRule(values);
+                                } else {
+                                    setInformationModalIsOpen(true);
+                                    values.rule = rule.rule;
+                                }
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}

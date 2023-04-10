@@ -7,6 +7,7 @@ import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
+import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 
 export const ExercisesTable = () => {
@@ -21,13 +22,13 @@ export const ExercisesTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
 
-    const textInformation = 'Aby dodać nowe ćwiczenie - wypełnij wszystkie pola!'
+    const textInformation = 'Należy wypełnić wszystkie pola dotyczące ćwiczenia!'
 
     useEffect(() => {
 
         const abortController = new AbortController();
 
-        fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
+        fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
             .then(r => r.json())
@@ -37,7 +38,7 @@ export const ExercisesTable = () => {
                     console.log('Brak części planu.')
                 } else {
 
-                    return fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises?partId=${planPart[0].id}`, {
+                    return fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'GET',
 
                     }).then(res => res.json())
@@ -64,7 +65,7 @@ export const ExercisesTable = () => {
     };
 
     const addExercise = async (values: ExerciseEntity) => {
-        fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
+        fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
             .then(r => r.json())
@@ -73,7 +74,7 @@ export const ExercisesTable = () => {
                     console.log('Brak części planu.')
                 } else {
 
-                    const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises`, {
+                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ export const ExercisesTable = () => {
 
         setIsEdited(false);
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${values.id}`, {
+        const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -125,7 +126,7 @@ export const ExercisesTable = () => {
     };
 
     const handleConfirmDelete = async () => {
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-exercise/exercises/${exerciseToDeleteId}`, {
+        const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${exerciseToDeleteId}`, {
             method: 'DELETE',
         });
         if ([400, 500].includes(res.status)) {
@@ -214,8 +215,19 @@ export const ExercisesTable = () => {
                         <ExercisesForm
                             initialValues={exercise}
                             onSubmit={async (values) => {
-                                await editExercise(values);
-                                await handleUpdateExercise(values);
+                                if (values.order && values.name && values.series && values.repetitions && values.pause && values.tips && values.url) {
+                                    await editExercise(values);
+                                    await handleUpdateExercise(values);
+                                } else {
+                                    setInformationModalIsOpen(true);
+                                    values.order = exercise.order;
+                                    values.name = exercise.name;
+                                    values.series = exercise.series;
+                                    values.repetitions = exercise.repetitions;
+                                    values.pause = exercise.pause;
+                                    values.tips = exercise.tips;
+                                    values.url = exercise.url;
+                                }
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}
