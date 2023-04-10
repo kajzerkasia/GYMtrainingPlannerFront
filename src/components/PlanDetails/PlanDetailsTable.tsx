@@ -13,12 +13,21 @@ export const PlanDetailsTable = () => {
     const textInformation = 'Podaj informacje o szczegółach planu treningowego!'
 
     useEffect(() => {
+
+        const abortController = new AbortController();
+
         fetch(`${process.env.REACT_APP_API_URL}/add-detail/details`, {
             method: 'GET'
         }).then(res => res.json())
             .then((details) => {
                 setDetailsList(details)
             })
+
+        return () => {
+            try {
+                abortController.abort()
+            } catch {}
+        };
     }, [])
 
     const closeModal = () => {

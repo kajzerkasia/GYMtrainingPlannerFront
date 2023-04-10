@@ -46,5 +46,3 @@ export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}:
         </>
     );
 };
-
-// @TODO: może waildować wpisane linki od użytkownika

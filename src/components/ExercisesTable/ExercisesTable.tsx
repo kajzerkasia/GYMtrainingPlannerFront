@@ -25,6 +25,8 @@ export const ExercisesTable = () => {
 
     useEffect(() => {
 
+        const abortController = new AbortController();
+
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
@@ -46,9 +48,14 @@ export const ExercisesTable = () => {
                                 setExercisesList(exercises);
                             }
                         })
-
                 }
             })
+
+        return () => {
+            try {
+                abortController.abort()
+            } catch {}
+        };
 
     }, [])
 
@@ -112,7 +119,7 @@ export const ExercisesTable = () => {
         );
     };
 
-    const handleDeleteExercise= async (exerciseId: any) => {
+    const handleDeleteExercise = async (exerciseId: any) => {
         setConfirmDeleteExercise(true);
         setExerciseToDeleteId(exerciseId);
     };

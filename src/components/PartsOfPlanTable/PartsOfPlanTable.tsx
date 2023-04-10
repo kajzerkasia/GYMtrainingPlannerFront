@@ -213,10 +213,4 @@ export const PartsOfPlanTable = () => {
 
 }
 
-// TODO: DOMPurify na Frontend, Modale na brak uzupełnionych wszystkich pól formularza, uzupełnić wszystkie tabele, nagrać ekran aplikacji i dodać na github, sprawdzić kod i pousuwać niepotrzebne rzeczy, hosting
-
-// TODO: Modal - coś w stylu - jeśli nie chcesz nic podawać, wpisz po prostu '-';
-
-// TODO: Abort Controller!
-
-// TODO: Najważniejsze to modale, wstawienie danych do tabel i nagranie ekranu!!!!!!!!!!!!!!!
+// TODO: Abort Controller! Posprawdzać wszystko i hosting!!!

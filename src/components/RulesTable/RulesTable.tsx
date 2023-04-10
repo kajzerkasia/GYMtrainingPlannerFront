@@ -20,12 +20,21 @@ export const RulesTable = () => {
     const textInformation = 'Aby dodać nową zasadę progresji - podaj jej treść!'
 
     useEffect(() => {
+
+        const abortController = new AbortController();
+
         fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
             method: 'GET'
         }).then(res => res.json())
             .then((rules) => {
                 setRulesList(rules)
             })
+
+        return () => {
+            try {
+                abortController.abort()
+            } catch {}
+        };
     }, [])
 
     const closeModal = () => {
@@ -173,5 +182,3 @@ export const RulesTable = () => {
         </div>
     )
 }
-
-// TODO: Napisać testy
