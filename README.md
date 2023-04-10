@@ -2,7 +2,7 @@
 
 ## Polish version of README:
 
-### Kliknij w screen z aplikacji poniżej aby przejść do filmu, który przedstawia jej działanie. ⬇️⬇️⬇️
+#### Kliknij w screen z aplikacji poniżej aby przejść do filmu, który przedstawia jej działanie. ⬇️⬇️⬇️
 
 [![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/71d6PY5Z51o)
 
@@ -75,7 +75,7 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 ## English version of README:
 
-### Click on the screen from the application below to go to the video that shows how it works. ⬇️⬇️⬇️
+#### Click on the screen from the application below to go to the video that shows how it works. ⬇️⬇️⬇️
 
 [![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/71d6PY5Z51o)
 
