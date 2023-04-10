@@ -1,8 +1,10 @@
 # Gym Training Planner 🏋️‍♀️💪
 
-[![Watch the video](/public/assets/Podgląd-GymTrainingPlanner.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
+## Polish version of README:
 
-![img_2.png](public/assets/img_2.png)
+### Kliknij w screen z aplikacji poniżej aby przejść do filmu, który przedstawia jej działanie. ⬇️⬇️⬇️
+
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
 
 Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?  
 Chcesz mieć wszystkie potrzebne informacje o ćwiczeniach, zasadach progresji itd w jednym miejscu?  
@@ -71,9 +73,11 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 # Gym Training Planner 🏋️‍♀️💪
 
-[![Watch the video](/public/assets/Podgląd-GymTrainingPlanner.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
+## English version of README:
 
-![img_1.png](public/assets/img_1.png)
+### Click on the screen from the application below to go to the video that shows how it works. ⬇️⬇️⬇️
+
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
 
 Do you train at the gym and need to organize your training plan?  
 Do you want to have all the information you need about exercises, rules of progression, etc. in one place?
