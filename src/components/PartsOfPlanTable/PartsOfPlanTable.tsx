@@ -24,7 +24,7 @@ export const PartsOfPlanTable = () => {
     useEffect(() => {
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-part/plans`, {
+        fetch(`${apiUrl}/add-part/plans`, {
             method: 'GET',
             signal: abortController.signal
         }).then(res => res.json())
