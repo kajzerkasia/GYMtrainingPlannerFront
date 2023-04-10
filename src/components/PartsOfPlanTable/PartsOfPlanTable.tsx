@@ -9,6 +9,7 @@ import './PartsOfPlanTable.css';
 import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
+import {InformationModal} from "../InformationModal/InformationModal";
 
 export const PartsOfPlanTable = () => {
 
@@ -16,18 +17,33 @@ export const PartsOfPlanTable = () => {
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
     const [partToDeleteId, setPartToDeleteId] = useState(null);
+    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
 
     const text = 'Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu';
 
+    const textInformation = 'Aby dodać nową część planu podaj jej nazwę!'
+
     useEffect(() => {
+        const abortController = new AbortController();
+
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
-            method: 'GET'
+            method: 'GET',
+            signal: abortController.signal
         }).then(res => res.json())
             .then((parts) => {
                 setPartsOfPlanList(parts)
             })
 
+        return () => {
+            try {
+                abortController.abort()
+            } catch {}
+        };
     }, [])
+
+    const closeModal = () => {
+        setInformationModalIsOpen(false);
+    };
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
 
@@ -139,8 +155,7 @@ export const PartsOfPlanTable = () => {
                                     await addPartOfPlan(values);
                                     reset();
                                 } else {
-                                    console.log('eh')
-                                    // @TODO: what happen - Modal?
+                                    setInformationModalIsOpen(true);
                                 }
                             }}
                             actionType={Status.Add}
@@ -152,8 +167,8 @@ export const PartsOfPlanTable = () => {
                         </td>
                     </tr>
 
-                    {partsOfPlanList.map((part, idx) => (
-                        <tr key={`row-${idx}`}>
+                    {partsOfPlanList.map((part) => (
+                        <tr key={`${part.id}`}>
                             <td>
                                 <IconContext.Provider value={{className: 'react-icons'}}>
                                     <button onClick={() => handleDeletePart(part.id)}><TbX/></button>
@@ -186,9 +201,22 @@ export const PartsOfPlanTable = () => {
                 onCancel={handleCancelDelete}
                 text={text}
             />
+            <InformationModal
+                isOpen={informationModalIsOpen}
+                onRequestClose={closeModal}
+                onConfirm={closeModal}
+                onCancel={closeModal}
+                text={textInformation}
+            />
         </div>
     )
 
 }
 
+// TODO: DOMPurify na Frontend, Modale na brak uzupełnionych wszystkich pól formularza, uzupełnić wszystkie tabele, nagrać ekran aplikacji i dodać na github, sprawdzić kod i pousuwać niepotrzebne rzeczy, hosting
 
+// TODO: Modal - coś w stylu - jeśli nie chcesz nic podawać, wpisz po prostu '-';
+
+// TODO: Abort Controller!
+
+// TODO: Najważniejsze to modale, wstawienie danych do tabel i nagranie ekranu!!!!!!!!!!!!!!!

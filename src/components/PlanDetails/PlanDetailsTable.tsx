@@ -3,10 +3,14 @@ import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
 import './PlanDetailsTable.css'
 import {Logo} from "../Logo/Logo";
+import {InformationModal} from "../InformationModal/InformationModal";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
+    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+
+    const textInformation = 'Podaj informacje o szczegółach planu treningowego!'
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-detail/details`, {
@@ -16,6 +20,10 @@ export const PlanDetailsTable = () => {
                 setDetailsList(details)
             })
     }, [])
+
+    const closeModal = () => {
+        setInformationModalIsOpen(false);
+    };
 
     const editDetail = async (values: DetailEntity) => {
         setIsEdited(false);
@@ -66,8 +74,12 @@ export const PlanDetailsTable = () => {
                     <PlanDetailsForm
                         initialValues={detail}
                         onSubmit={async (values) => {
-                            await editDetail(values);
-                            await handleUpdateDetail(values);
+                            if (values.length && values.frequency && values.schedule) {
+                                await editDetail(values);
+                                await handleUpdateDetail(values);
+                            } else {
+                                setInformationModalIsOpen(true);
+                            }
                         }}
                         isEdited={isEdited}
                     />
@@ -77,8 +89,15 @@ export const PlanDetailsTable = () => {
                 </tbody>
             </table>
             <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <InformationModal
+                isOpen={informationModalIsOpen}
+                onRequestClose={closeModal}
+                onConfirm={closeModal}
+                onCancel={closeModal}
+                text={textInformation}
+            />
         </div>
     );
 };
 
-// @TODO: ogarnąć długości pól w bazie danych i na BE - zobaczę przy dodawaniu planu Piotrka ile znaków schodzi na dane pola.
+

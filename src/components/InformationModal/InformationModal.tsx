@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 
-import './ConfirmationModal.css'
+import './InformationModal.css'
 
 import {TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
@@ -10,12 +10,12 @@ Modal.setAppElement('#root');
 
 // TODO: Zrobić typy dla propsów poniżej
 
-export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel, text}: any) => {
+export const InformationModal = ({isOpen, onRequestClose, onConfirm, text}: any) => {
     return (
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            className="information-modal"
+            className="parts-modal"
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
         >
@@ -24,8 +24,7 @@ export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel, 
                 <TbAlertTriangle/>
             </IconContext.Provider>
             <div className="modal-buttons">
-                <button className="btn-confirm" onClick={onConfirm}>Tak</button>
-                <button className="btn-decline" onClick={onCancel}>Nie</button>
+                <button className="btn-confirm" onClick={onConfirm}>Rozumiem</button>
             </div>
         </Modal>
     );

@@ -5,6 +5,7 @@ import {RulesForm} from "./RulesForm";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
+import {InformationModal} from "../InformationModal/InformationModal";
 
 export const RulesTable = () => {
 
@@ -12,8 +13,11 @@ export const RulesTable = () => {
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
     const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
+    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
+
+    const textInformation = 'Aby dodać nową zasadę progresji podaj jej treść!'
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
@@ -23,6 +27,10 @@ export const RulesTable = () => {
                 setRulesList(rules)
             })
     }, [])
+
+    const closeModal = () => {
+        setInformationModalIsOpen(false);
+    };
 
     const addRule = async (values: RuleEntity) => {
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {
@@ -120,8 +128,7 @@ export const RulesTable = () => {
                                 await addRule(values);
                                 reset();
                             } else {
-                                console.log('eh')
-                                // @TODO: what happen - Modal?
+                                setInformationModalIsOpen(true);
                             }
                         }}
                         actionType={Status.Add}
@@ -155,6 +162,13 @@ export const RulesTable = () => {
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
+            />
+            <InformationModal
+                isOpen={informationModalIsOpen}
+                onRequestClose={closeModal}
+                onConfirm={closeModal}
+                onCancel={closeModal}
+                text={textInformation}
             />
         </div>
     )

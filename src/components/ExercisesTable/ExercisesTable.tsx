@@ -7,6 +7,7 @@ import {useParams} from "react-router-dom";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
+import {InformationModal} from "../InformationModal/InformationModal";
 
 export const ExercisesTable = () => {
 
@@ -14,10 +15,13 @@ export const ExercisesTable = () => {
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeleteExercise, setConfirmDeleteExercise] = useState<boolean>(false);
     const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
+    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
 
     const params = useParams();
 
     const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
+
+    const textInformation = 'Aby dodać nowe ćwiczenie wypełnij wszystkie pola!'
 
     useEffect(() => {
 
@@ -47,6 +51,10 @@ export const ExercisesTable = () => {
             })
 
     }, [])
+
+    const closeModal = () => {
+        setInformationModalIsOpen(false);
+    };
 
     const addExercise = async (values: ExerciseEntity) => {
         fetch(`${process.env.REACT_APP_API_URL}/add-part/plans?slug=${params.slug}`, {
@@ -182,8 +190,7 @@ export const ExercisesTable = () => {
                                 await addExercise(values);
                                 reset();
                             } else {
-                                console.log('eh')
-                                // @TODO: what happen - Modal?
+                                setInformationModalIsOpen(true);
                             }
                         }}
                         actionType={Status.Add}
@@ -217,6 +224,13 @@ export const ExercisesTable = () => {
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
+            />
+            <InformationModal
+                isOpen={informationModalIsOpen}
+                onRequestClose={closeModal}
+                onConfirm={closeModal}
+                onCancel={closeModal}
+                text={textInformation}
             />
         </div>
     )
