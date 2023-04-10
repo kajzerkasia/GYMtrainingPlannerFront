@@ -81,14 +81,11 @@ button {
     font-family: 'Ubuntu', sans-serif;
     animation: highlight 1s;
     background-color: transparent;
+    height: 5vh;
 }
 
 .question {
     animation: background-highlight 1s;
-}
-
-.td-highlight {
-    background-image: linear-gradient(200deg, #d495e2 15%, #632b7a 82%);
 }
 
 @keyframes highlight {
@@ -100,18 +97,6 @@ button {
     }
     100% {
         color: #E6E6FA;
-    }
-}
-
-@keyframes background-highlight {
-    0% {
-        background-color: transparent;
-    }
-    50% {
-        background-color: #d495e2;
-    }
-    100% {
-        background-color: transparent;
     }
 }
 

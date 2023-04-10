@@ -178,15 +178,20 @@ export const ExercisesTable = () => {
                             url: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            await addExercise(values);
-                            reset();
+                            if (values.order && values.name && values.series && values.repetitions && values.pause && values.tips && values.url) {
+                                await addExercise(values);
+                                reset();
+                            } else {
+                                console.log('eh')
+                                // @TODO: what happen - Modal?
+                            }
                         }}
                         actionType={Status.Add}
                     />
                 </tr>
 
-                {exercisesList.map((exercise, idx) => (
-                    <tr key={`row-${idx}`}>
+                {exercisesList.map((exercise) => (
+                    <tr key={`${exercise.id}`}>
                         <td className="icon-delete">
                             <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                                 <button onClick={() => handleDeleteExercise(exercise.id)}><TbX/></button>

@@ -116,15 +116,20 @@ export const RulesTable = () => {
                             rule: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            await addRule(values);
-                            reset();
+                            if (values.rule) {
+                                await addRule(values);
+                                reset();
+                            } else {
+                                console.log('eh')
+                                // @TODO: what happen - Modal?
+                            }
                         }}
                         actionType={Status.Add}
                     />
                 </tr>
 
-                {rulesList.map((rule, idx) => (
-                    <tr key={`row-${idx}`}>
+                {rulesList.map((rule) => (
+                    <tr key={`${rule.id}`}>
                         <td className="td-rule">
                             <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                                 <button onClick={() => handleDeleteRule(rule.id)}><TbX/></button>

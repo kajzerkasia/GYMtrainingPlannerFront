@@ -61,8 +61,8 @@ export const PlanDetailsTable = () => {
 
                 <tbody>
 
-                {detailsList.map((detail, idx) => (
-                    <tr key={`row-${idx}`}>
+                {detailsList.map((detail) => (
+                    <tr key={`${detail.id}`}>
                     <PlanDetailsForm
                         initialValues={detail}
                         onSubmit={async (values) => {

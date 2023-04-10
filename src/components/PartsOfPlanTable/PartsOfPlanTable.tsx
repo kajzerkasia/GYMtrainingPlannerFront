@@ -1,4 +1,4 @@
-import React, {SetStateAction, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Logo} from "../Logo/Logo";
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 
@@ -30,6 +30,7 @@ export const PartsOfPlanTable = () => {
     }, [])
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
+
         const res = await fetch(`${process.env.REACT_APP_API_URL}/add-part/plans`, {
             method: 'POST',
             headers: {
@@ -38,10 +39,10 @@ export const PartsOfPlanTable = () => {
             body: JSON.stringify(values),
         })
 
-
         const data = await res.json();
 
         setPartsOfPlanList(list => [...list, data]);
+
     };
 
     const editPartOfPlan = async (values: PartOfPlanEntity) => {
@@ -92,6 +93,7 @@ export const PartsOfPlanTable = () => {
             partsOfPlanList.filter((part) => part.id !== partToDeleteId)
         );
         setConfirmDeletePart(false);
+
     };
 
     const handleCancelDelete = () => {
@@ -135,8 +137,11 @@ export const PartsOfPlanTable = () => {
                             onSubmit={async (values, reset) => {
                                 if (values.name) {
                                     await addPartOfPlan(values);
+                                    reset();
+                                } else {
+                                    console.log('eh')
+                                    // @TODO: what happen - Modal?
                                 }
-                                reset();
                             }}
                             actionType={Status.Add}
                         />
@@ -172,9 +177,7 @@ export const PartsOfPlanTable = () => {
 
                     ))}
                     </tbody>
-
                 </table>
-
             </div>
             <ConfirmationModal
                 isOpen={confirmDeletePart}
