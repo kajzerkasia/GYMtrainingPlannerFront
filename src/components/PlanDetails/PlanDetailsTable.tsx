@@ -17,7 +17,7 @@ export const PlanDetailsTable = () => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-detail/details`, {
+        fetch(`${apiUrl}/add-detail/details`, {
             method: 'GET'
         }).then(res => res.json())
             .then((details) => {
@@ -38,7 +38,7 @@ export const PlanDetailsTable = () => {
     const editDetail = async (values: DetailEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/api/add-detail/details/${values.id}`, {
+        const res = await fetch(`${apiUrl}/add-detail/details/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
