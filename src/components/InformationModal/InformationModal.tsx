@@ -8,9 +8,15 @@ import React from "react";
 
 Modal.setAppElement('#root');
 
-// TODO: Zrobić typy dla propsów poniżej
+export type InformationModalProps = {
+    isOpen: boolean;
+    onRequestClose: () => void | Promise<void>;
+    onConfirm: () => void | Promise<void>;
+    onCancel: () => void | Promise<void>;
+    text: string;
+};
 
-export const InformationModal = ({isOpen, onRequestClose, onConfirm, text}: any) => {
+export const InformationModal = ({isOpen, onRequestClose, onConfirm, text}: InformationModalProps) => {
     return (
         <Modal
             isOpen={isOpen}

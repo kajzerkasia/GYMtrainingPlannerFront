@@ -27,6 +27,4 @@ export const App = () => {
     )
 }
 
-// TODO: add Sanitize on backend.
-
 
