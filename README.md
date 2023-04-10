@@ -71,6 +71,8 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 # Gym Training Planner 🏋️‍♀️💪
 
+[![Watch the video](/public/assets/Podgląd-GymTrainingPlanner.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
+
 ![img_1.png](public/assets/img_1.png)
 
 Do you train at the gym and need to organize your training plan?  
