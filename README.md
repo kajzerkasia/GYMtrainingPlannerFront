@@ -56,6 +56,9 @@ Składa się z następujących części i możliwości:
 ## Co mogę poprawić w tym projekcie? 🤔
 * dodać więcej testów
 * uporządkować style
+* dodać walidację adresu URL przy dodawaniu
+* dodać sanitize na frontendzie
+* dodać więcej obsługi błędów
 
 ## Pomysły na rozbudowanie aplikacji 📈
 * możliwość dodawania większej ilości planów treningowych
@@ -131,6 +134,9 @@ Training plan details:
 ## What can I improve in this project? 🤔
 * add more tests
 * organize styles
+* *add url validation on add
+* add sanitize on frontend
+* add more error handling
 
 ## Ideas for extending the application 📈
 * the ability to add more training plans
