@@ -3,7 +3,7 @@ import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
 import {GoBack} from "../GoBack/GoBack";
 import {InformationModal} from "../InformationModal/InformationModal";
-import {apiUrl} from "../../../config/api";
+import {apiUrl} from "../../config/api";
 import './PlanDetailsTable.css'
 
 export const PlanDetailsTable = () => {

@@ -6,7 +6,7 @@ import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {Link} from "react-router-dom";
-import {apiUrl} from "../../../config/api";
+import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 
 export const PartsOfPlanTable = () => {
