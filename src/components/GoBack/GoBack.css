@@ -1,4 +1,4 @@
-.logo {
+.go-back {
     font-size: 22px;
     color: #E6E6FA;
     text-decoration: none;
@@ -7,7 +7,7 @@
     transition: color 0.4s;
 }
 
-.logo:hover {
+.go-back:hover {
     color: #d495e2;
 }
 

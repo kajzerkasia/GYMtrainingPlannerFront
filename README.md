@@ -37,6 +37,8 @@ Składa się z następujących części i możliwości:
 #
 # Gym Training Planner 🏋️‍♀️💪
 
+#### Jest to projekt zaliczeniowy, który stworzyłam w ramach kursu programistycznego "MegaK".
+
 #### Kliknij w screen poniżej aby przejść do filmu, który przedstawia działanie aplikacji. ⬇️⬇️⬇️
 
 [![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/71d6PY5Z51o)
@@ -54,6 +56,7 @@ Składa się z następujących części i możliwości:
 ![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=red)
 
 ## Co mogę poprawić w tym projekcie? 🤔
+#### *czego nie zdążyłam zrobić ze względu na deadline?
 * dodać więcej testów
 * uporządkować style
 * dodać walidację adresu URL przy dodawaniu
@@ -114,6 +117,9 @@ Training plan details:
 ✔
 
 #
+# Gym Training Planner 🏋️‍♀️💪
+
+#### This is a final project that I created as part of the "MegaK" programming course.
 
 #### Click on the screen below to go to the video that shows how the application works. ⬇️⬇️⬇️
 
@@ -132,6 +138,7 @@ Training plan details:
 ![Git](https://img.shields.io/badge/git%20-%23404d59.svg?style=for-the-badge&logo=git&logoColor=red)
 
 ## What can I improve in this project? 🤔
+#### *what I didn't manage to do because of the deadline?
 * add more tests
 * organize styles
 * *add url validation on add

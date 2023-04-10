@@ -1,10 +1,8 @@
+import React from "react";
 import Modal from "react-modal";
-
-import './ConfirmationModal.css'
-
 import {TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import React from "react";
+import './ConfirmationModal.css'
 
 Modal.setAppElement('#root');
 
@@ -21,7 +19,7 @@ export const ConfirmationModal = ({isOpen, onRequestClose, onConfirm, onCancel, 
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            className="information-modal"
+            className="confirmation-modal"
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
         >

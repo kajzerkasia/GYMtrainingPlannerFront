@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {RuleEntity, Status} from 'types';
-import {Logo} from "../Logo/Logo";
+import {GoBack} from "../GoBack/GoBack";
 import {RulesForm} from "./RulesForm";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
+import {Link} from "react-router-dom";
+import './RulesTable.css';
 
 export const RulesTable = () => {
 
@@ -111,7 +113,7 @@ export const RulesTable = () => {
 
     return (
         <div className="rules-wrapper">
-            <Logo to="/plans" text="Gym Training Planner"/>
+            <GoBack to="/plans" text="Gym Training Planner"/>
             <table className="rules-table">
                 <thead>
                 <tr className="tr-add">
@@ -125,7 +127,7 @@ export const RulesTable = () => {
                 <tr>
                     <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
                         <td className="td-rule">
-                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                            <Link to="/instruction"><TbQuestionMark/></Link>
                         </td>
                     </IconContext.Provider>
                     <RulesForm
@@ -164,7 +166,7 @@ export const RulesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
             <ConfirmationModal
                 isOpen={confirmDeleteRule}
                 onRequestClose={handleCancelDelete}

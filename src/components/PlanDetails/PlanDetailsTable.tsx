@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
 import './PlanDetailsTable.css'
-import {Logo} from "../Logo/Logo";
+import {GoBack} from "../GoBack/GoBack";
 import {InformationModal} from "../InformationModal/InformationModal";
 
 export const PlanDetailsTable = () => {
@@ -65,7 +65,7 @@ export const PlanDetailsTable = () => {
 
     return (
         <div className="details-wrapper">
-            <Logo to="/plans" text="Gym Training Planner"/>
+            <GoBack to="/plans" text="Gym Training Planner"/>
             <table className="details-table">
 
                 <thead>
@@ -97,7 +97,7 @@ export const PlanDetailsTable = () => {
 
                 </tbody>
             </table>
-            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
             <InformationModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}

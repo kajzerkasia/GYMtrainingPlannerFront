@@ -1,4 +1,4 @@
-.parts-modal {
+.confirmation-modal {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -11,7 +11,7 @@
     font-size: 22px;
 }
 
-.parts-modal button {
+.confirmation-modal button {
     font-family: 'Ubuntu', sans-serif;
     margin-top: 7vh;
     font-size: 22px;
@@ -19,12 +19,12 @@
     border: 1px solid #d495e2;
 }
 
-.parts-modal h2 {
+.confirmation-modal h2 {
     margin-bottom: 5vh;
 }
 
 .icon-modal {
-   margin: 0 auto;
+    margin: 0 auto;
     font-size: 70px;
 }
 

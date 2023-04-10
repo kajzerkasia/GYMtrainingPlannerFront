@@ -1,10 +1,8 @@
+import React from "react";
 import Modal from "react-modal";
-
-import './InformationModal.css'
-
 import {TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import React from "react";
+import './InformationModal.css'
 
 Modal.setAppElement('#root');
 
@@ -21,7 +19,7 @@ export const InformationModal = ({isOpen, onRequestClose, onConfirm, text}: Info
         <Modal
             isOpen={isOpen}
             onRequestClose={onRequestClose}
-            className="parts-modal"
+            className="information-modal"
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
         >

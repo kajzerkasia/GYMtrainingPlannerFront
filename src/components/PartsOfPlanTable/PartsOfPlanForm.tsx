@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {PartOfPlanEntity, Status} from 'types';
-
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {IconContext} from "react-icons";
+import './PartsOfPlanTable.css';
 
 export type PartsOfPlanFormProps = {
     initialValues: PartOfPlanEntity;

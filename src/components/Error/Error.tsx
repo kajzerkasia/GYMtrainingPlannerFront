@@ -1,9 +1,8 @@
 import React from 'react';
-import {Logo} from "../Logo/Logo";
-import './Error.css';
-
+import {GoBack} from "../GoBack/GoBack";
 import {TbMoodCry} from "react-icons/tb";
 import {IconContext} from "react-icons";
+import './Error.css';
 
 
 export const Error = () => {
@@ -13,7 +12,7 @@ export const Error = () => {
             <IconContext.Provider value={{className: 'react-icons-cry'}}>
                 <TbMoodCry/>
             </IconContext.Provider>
-            <Logo to='plans' text="Powrót do strony głównej"/>
+            <GoBack to='plans' text="Powrót do strony głównej"/>
         </div>
     );
 };

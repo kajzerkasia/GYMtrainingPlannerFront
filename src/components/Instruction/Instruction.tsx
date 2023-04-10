@@ -1,14 +1,13 @@
-import {Logo} from "../Logo/Logo";
-import './Instruction.css';
-
+import React from "react";
+import {GoBack} from "../GoBack/GoBack";
 import {TbBarbell, TbPlus, TbCheck, TbX, TbStairsUp, TbDotsVertical, TbLink} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import React from "react";
+import './Instruction.css';
 
 export const Instruction = () => {
     return (
         <div className="instruction-wrapper">
-            <h1><Logo to="/plans" text="GYM Training Planner"/></h1>
+            <h1><GoBack to="/plans" text="GYM Training Planner"/></h1>
             <h2 className="instruction-h2">Jak to działa?</h2>
             <ul>
                 <li>
@@ -54,7 +53,7 @@ export const Instruction = () => {
                     przejście do podanego adresu URL
                 </li>
             </ul>
-            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Logo} from "../Logo/Logo";
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 
 import {PartOfPlanEntity, Status} from 'types';
@@ -10,6 +9,7 @@ import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical}
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
+import {Link} from "react-router-dom";
 
 export const PartsOfPlanTable = () => {
 
@@ -133,7 +133,7 @@ export const PartsOfPlanTable = () => {
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>
-                                <Logo to="/details" text={<TbDotsVertical/>}/>
+                                <Link to="/details"><TbDotsVertical/></Link>
                             </IconContext.Provider>
                         </td>
                     </tr>
@@ -143,7 +143,7 @@ export const PartsOfPlanTable = () => {
                     <tr>
                         <td>
                             <IconContext.Provider value={{className: 'react-icons'}}>
-                                <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                                <Link to="/instruction"><TbQuestionMark/></Link>
                             </IconContext.Provider>
                         </td>
                         <PartsOfPlanForm
@@ -162,7 +162,7 @@ export const PartsOfPlanTable = () => {
                         />
                         <td className="td-progression-rules">
                             <IconContext.Provider value={{className: 'react-icons'}}>
-                                <Logo to="/rules" text=<TbStairsUp/>/>
+                                <Link to="/rules"><TbStairsUp/></Link>
                             </IconContext.Provider>
                         </td>
                     </tr>
@@ -185,7 +185,7 @@ export const PartsOfPlanTable = () => {
                             />
                             <td>
                                 <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <Logo to={`/exercises/${part.slug}`} text={<TbBarbell/>}/>
+                                    <Link to={`/exercises/${part.slug}`}><TbBarbell/></Link>
                                 </IconContext.Provider>
                             </td>
                         </tr>
@@ -210,7 +210,4 @@ export const PartsOfPlanTable = () => {
             />
         </div>
     )
-
 }
-
-// TODO: Abort Controller! Posprawdzać wszystko i hosting!!!

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {ExerciseEntity, Status} from 'types';
-import {Logo} from "../Logo/Logo";
+import {GoBack} from "../GoBack/GoBack";
 import {ExercisesForm} from "./ExercisesForm";
-import './ExercisesTable.css';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
+import './ExercisesTable.css';
 
 export const ExercisesTable = () => {
 
@@ -146,7 +146,7 @@ export const ExercisesTable = () => {
 
     return (
         <div className="wrapper-exercises-table">
-            <Logo to="/plans" text="Gym Training Planner"/>
+            <GoBack to="/plans" text="Gym Training Planner"/>
             <table className="exercises-table">
 
                 <thead>
@@ -179,7 +179,7 @@ export const ExercisesTable = () => {
                 <tr>
                     <td className="icon-question">
                         <IconContext.Provider value={{className: 'react-icons-smaller'}}>
-                            <Logo to="/instruction" text={<TbQuestionMark/>}/>
+                            <Link to="/instruction"><TbQuestionMark/></Link>
                         </IconContext.Provider>
                     </td>
                     <ExercisesForm
@@ -224,7 +224,7 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <Logo to="/plans" text="Powrót do strony głównej"></Logo>
+            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
             <ConfirmationModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}
