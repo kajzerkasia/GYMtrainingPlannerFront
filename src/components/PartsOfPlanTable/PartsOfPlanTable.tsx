@@ -21,7 +21,7 @@ export const PartsOfPlanTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu';
 
-    const textInformation = 'Aby dodać nową część planu podaj jej nazwę!'
+    const textInformation = 'Aby dodać nową część planu - podaj jej nazwę!'
 
     useEffect(() => {
         const abortController = new AbortController();

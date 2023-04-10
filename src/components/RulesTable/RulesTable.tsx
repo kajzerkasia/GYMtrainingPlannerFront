@@ -17,7 +17,7 @@ export const RulesTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
 
-    const textInformation = 'Aby dodać nową zasadę progresji podaj jej treść!'
+    const textInformation = 'Aby dodać nową zasadę progresji - podaj jej treść!'
 
     useEffect(() => {
         fetch(`${process.env.REACT_APP_API_URL}/add-rule/rules`, {

@@ -21,7 +21,7 @@ export const ExercisesTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
 
-    const textInformation = 'Aby dodać nowe ćwiczenie wypełnij wszystkie pola!'
+    const textInformation = 'Aby dodać nowe ćwiczenie - wypełnij wszystkie pola!'
 
     useEffect(() => {
 

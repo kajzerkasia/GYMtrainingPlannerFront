@@ -1,5 +1,7 @@
 # Gym Training Planner 🏋️‍♀️💪
 
+[![Watch the video](/public/assets/Podgląd-GymTrainingPlanner.png)](https://www.youtube.com/watch?v=xi8IXpW1GvY)
+
 ![img_2.png](public/assets/img_2.png)
 
 Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?  
@@ -14,8 +16,7 @@ Składa się z następujących części i możliwości:
 
 ➕ dodawanie  
 ️✖ usuwanie  
-✔ edytowanie  
-
+✔ edytowanie
 
 ##### Części planu:
 ➕
