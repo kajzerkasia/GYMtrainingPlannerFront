@@ -26,7 +26,7 @@ export const RulesTable = () => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-rule/rules`, {
+        fetch(`${apiUrl}/add-rule/rules`, {
             method: 'GET'
         }).then(res => res.json())
             .then((rules) => {
@@ -45,7 +45,7 @@ export const RulesTable = () => {
     };
 
     const addRule = async (values: RuleEntity) => {
-        const res = await fetch(`${apiUrl}/api/add-rule/rules`, {
+        const res = await fetch(`${apiUrl}/add-rule/rules`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export const RulesTable = () => {
     const editRule = async (values: RuleEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/api/add-rule/rules/${values.id}`, {
+        const res = await fetch(`${apiUrl}/add-rule/rules/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ export const RulesTable = () => {
 
     const handleConfirmDelete = async () => {
         const res = await fetch(
-            `${apiUrl}/api/add-rule/rules/${ruleToDeleteId}`,
+            `${apiUrl}/add-rule/rules/${ruleToDeleteId}`,
             { method: "DELETE" }
         );
         if ([400, 500].includes(res.status)) {
