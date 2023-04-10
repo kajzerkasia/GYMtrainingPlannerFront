@@ -8,7 +8,7 @@ import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {Link} from "react-router-dom";
 import './RulesTable.css';
-import {apiUrl} from "../../config/api";
+import {apiUrl} from "../../../config/api";
 
 export const RulesTable = () => {
 

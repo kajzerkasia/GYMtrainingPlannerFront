@@ -7,7 +7,7 @@ import {TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
-import {apiUrl} from "../../config/api";
+import {apiUrl} from "../../../config/api";
 import './ExercisesTable.css';
 
 export const ExercisesTable = () => {
