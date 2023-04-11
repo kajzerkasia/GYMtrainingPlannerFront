@@ -154,7 +154,7 @@ Training plan details:
 #### *what I didn't manage to do because of the deadline?
 * add more tests
 * organize styles
-* *add url validation on add
+* add url validation on add
 * add sanitize on frontend
 * add more error handling
 
