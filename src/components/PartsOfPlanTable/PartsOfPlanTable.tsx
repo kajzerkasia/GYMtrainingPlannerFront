@@ -24,7 +24,7 @@ export const PartsOfPlanTable = () => {
     useEffect(() => {
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-part/plans`, {
+        fetch(`${apiUrl}/add-part/plans`, {
             method: 'GET',
             signal: abortController.signal
         }).then(res => res.json())
@@ -46,7 +46,7 @@ export const PartsOfPlanTable = () => {
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
 
-        const res = await fetch(`${apiUrl}/api/add-part/plans`, {
+        const res = await fetch(`${apiUrl}/add-part/plans`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const PartsOfPlanTable = () => {
     const editPartOfPlan = async (values: PartOfPlanEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/api/add-part/plans/${values.id}`, {
+        const res = await fetch(`${apiUrl}/add-part/plans/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export const PartsOfPlanTable = () => {
 
     const handleConfirmDelete = async () => {
         const res = await fetch(
-            `${apiUrl}/api/add-part/plans/${partToDeleteId}`,
+            `${apiUrl}/add-part/plans/${partToDeleteId}`,
             {method: "DELETE"}
         )
         if ([400, 500].includes(res.status)) {
