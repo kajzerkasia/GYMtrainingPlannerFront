@@ -1,9 +1,12 @@
 # Gym Training Planner 🏋️‍♀️💪
 
+# ❤️DEMO❤️
+# https://kk.networkmanager.pl/
+
 ## Polish version of README:
 
-#### Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?  
-#### Chcesz mieć wszystkie potrzebne informacje o ćwiczeniach, zasadach progresji itd w jednym miejscu?  
+#### Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?
+#### Chcesz mieć wszystkie potrzebne informacje o ćwiczeniach, zasadach progresji itd w jednym miejscu?
 
 #### A może jesteś trenerem personalnym, rozpisujesz plany treningowe dla swoich podopiecznych i chciałbyś mieć do tego wygodne narzędzie?
 
@@ -41,7 +44,7 @@ Składa się z następujących części i możliwości:
 
 #### Kliknij w screen poniżej aby przejść do filmu, który przedstawia działanie aplikacji. ⬇️⬇️⬇️
 
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/71d6PY5Z51o)
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/fUGJYWbEydE)
 
 ## Zastosowane technologie:
 
@@ -82,9 +85,12 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 # Gym Training Planner 🏋️‍♀️💪
 
+# ❤️DEMO❤️
+# https://kk.networkmanager.pl/
+
 ## English version of README:
 
-#### Do you train at the gym and need to organize your training plan?  
+#### Do you train at the gym and need to organize your training plan?
 #### Do you want to have all the information you need about exercises, rules of progression, etc. in one place?
 
 #### Or maybe you are a personal trainer, you write training plans for your proteges and would like to have a convenient tool for that?
@@ -96,12 +102,12 @@ It consists of the following parts and capabilities:
 
 ➕ addition  
 ️✖ removal  
-✔ editing  
+✔ editing
 
 Parts of plan:
 ➕
 ️✖
-✔ 
+✔
 
 Exercises:
 ️➕
@@ -123,7 +129,7 @@ Training plan details:
 
 #### Click on the screen below to go to the video that shows how the application works. ⬇️⬇️⬇️
 
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/71d6PY5Z51o)
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/fUGJYWbEydE)
 
 ## Technologies used
 
