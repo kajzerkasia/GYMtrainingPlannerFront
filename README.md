@@ -38,7 +38,7 @@ Składa się z następujących części i możliwości:
 ✔
 
 #
-##### Dane są pobierane z bazy danych i zapisywanie w niej ✅
+##### Dane są pobierane z bazy danych i zapisywane w niej ✅
 
 #
 # Gym Training Planner 🏋️‍♀️💪
