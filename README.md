@@ -38,6 +38,9 @@ Składa się z następujących części i możliwości:
 ✔
 
 #
+##### Dane są pobierane z bazy danych i zapisywanie w niej ✅
+
+#
 # Gym Training Planner 🏋️‍♀️💪
 
 #### Jest to projekt zaliczeniowy, który stworzyłam w ramach kursu programistycznego "MegaK".
@@ -70,6 +73,7 @@ Składa się z następujących części i możliwości:
 * możliwość dodawania większej ilości planów treningowych
 * tryb admina (trenera) i tryb użytkownika (podopiecznego)
 * dodanie kalendarza do planowania treningów w dane dni oraz zaznaczania początku i końca planu treningowego
+* możliwość zapisywania swoich postępów przez podopiecznych
 
 ## Fun fact 🤡
 
@@ -123,6 +127,9 @@ Training plan details:
 ✔
 
 #
+##### The data is retrieved from the database and stored in it ✅
+
+#
 # Gym Training Planner 🏋️‍♀️💪
 
 #### This is a final project that I created as part of the "MegaK" programming course.
@@ -155,6 +162,7 @@ Training plan details:
 * the ability to add more training plans
 * admin (trainer) and user (protege) mode
 * adding a calendar for planning training on given days and marking the beginning and end of the training plan
+* proteges can save their progress
 
 ## Fun fact 🤡
 
