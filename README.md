@@ -1,7 +1,7 @@
 # Gym Training Planner 🏋️‍♀️💪
 
-# ❤️DEMO❤️
-# https://kk.networkmanager.pl/
+## ❤️DEMO❤️
+## https://kk.networkmanager.pl/
 
 ## Polish version of README:
 
@@ -85,8 +85,8 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 
 # Gym Training Planner 🏋️‍♀️💪
 
-# ❤️DEMO❤️
-# https://kk.networkmanager.pl/
+## ❤️DEMO❤️
+## https://kk.networkmanager.pl/
 
 ## English version of README:
 
