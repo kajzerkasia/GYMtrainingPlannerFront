@@ -28,7 +28,7 @@ export const ExercisesTable = () => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/add-part/plans?slug=${params.slug}`, {
+        fetch(`${apiUrl}/api/api/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
             .then(r => r.json())
@@ -38,7 +38,7 @@ export const ExercisesTable = () => {
                     console.log('Brak części planu.')
                 } else {
 
-                    return fetch(`${apiUrl}/add-exercise/exercises?partId=${planPart[0].id}`, {
+                    return fetch(`${apiUrl}/api/api/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'GET',
 
                     }).then(res => res.json())
@@ -65,7 +65,7 @@ export const ExercisesTable = () => {
     };
 
     const addExercise = async (values: ExerciseEntity) => {
-        fetch(`${apiUrl}/add-part/plans?slug=${params.slug}`, {
+        fetch(`${apiUrl}/api/api/add-part/plans?slug=${params.slug}`, {
             method: 'GET',
         })
             .then(r => r.json())
@@ -94,7 +94,7 @@ export const ExercisesTable = () => {
 
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/add-exercise/exercises/${values.id}`, {
+        const res = await fetch(`${apiUrl}api/api/add-exercise/exercises/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ export const ExercisesTable = () => {
     };
 
     const handleConfirmDelete = async () => {
-        const res = await fetch(`${apiUrl}/add-exercise/exercises/${exerciseToDeleteId}`, {
+        const res = await fetch(`${apiUrl}api/api/add-exercise/exercises/${exerciseToDeleteId}`, {
             method: 'DELETE',
         });
         if ([400, 500].includes(res.status)) {
