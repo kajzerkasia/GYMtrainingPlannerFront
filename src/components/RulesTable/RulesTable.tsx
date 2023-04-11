@@ -20,7 +20,7 @@ export const RulesTable = () => {
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
 
-    const textInformation = 'Nalezy podać treść zasady progresji!'
+    const textInformation = 'Należy podać treść zasady progresji!'
 
     useEffect(() => {
 
