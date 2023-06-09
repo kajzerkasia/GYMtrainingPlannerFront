@@ -24,7 +24,7 @@ export const PartsOfPlanTable = () => {
     useEffect(() => {
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/add-part/plans`, {
+        fetch(`${apiUrl}/api/add-part/plans`, {
             method: 'GET',
             signal: abortController.signal
         }).then(res => res.json())
@@ -46,7 +46,7 @@ export const PartsOfPlanTable = () => {
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
 
-        const res = await fetch(`${apiUrl}/add-part/plans`, {
+        const res = await fetch(`${apiUrl}/api/add-part/plans`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const PartsOfPlanTable = () => {
     const editPartOfPlan = async (values: PartOfPlanEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/add-part/plans/${values.id}`, {
+        const res = await fetch(`${apiUrl}/api/add-part/plans/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -96,7 +96,7 @@ export const PartsOfPlanTable = () => {
 
     const handleConfirmDelete = async () => {
         const res = await fetch(
-            `${apiUrl}/add-part/plans/${partToDeleteId}`,
+            `${apiUrl}/api/add-part/plans/${partToDeleteId}`,
             {method: "DELETE"}
         )
         if ([400, 500].includes(res.status)) {
@@ -128,7 +128,7 @@ export const PartsOfPlanTable = () => {
                     <thead>
                     <tr className="tr-add">
                         <td colSpan={3} className="training-plan">
-                            <h1>Plan treningowy</h1>
+                            <h1 className="h1-plan">Plan treningowy</h1>
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>
@@ -140,7 +140,7 @@ export const PartsOfPlanTable = () => {
 
                     <tbody>
                     <tr>
-                        <td>
+                        <td className="question-td">
                             <IconContext.Provider value={{className: 'react-icons'}}>
                                 <Link to="/instruction"><TbQuestionMark/></Link>
                             </IconContext.Provider>
@@ -160,7 +160,7 @@ export const PartsOfPlanTable = () => {
                             actionType={Status.Add}
                         />
                         <td className="td-progression-rules">
-                            <IconContext.Provider value={{className: 'react-icons'}}>
+                            <IconContext.Provider value={{className: 'react-icons-progression'}}>
                                 <Link to="/rules"><TbStairsUp/></Link>
                             </IconContext.Provider>
                         </td>

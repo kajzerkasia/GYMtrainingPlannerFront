@@ -35,10 +35,10 @@ h1, h2 {
     width: 50%;
 }
 
-td, th {
-    padding: 15px;
-    border: 1px solid #d495e2;
-}
+/*td, th {*/
+/*    padding: 15px;*/
+/*    border: 1px solid #d495e2;*/
+/*}*/
 
 
 .hidden {
@@ -52,10 +52,10 @@ button {
     cursor: pointer;
 }
 
-.react-icons {
-    font-size: 22px;
-    transition: color 0.4s;
-}
+/*.react-icons {*/
+/*    font-size: 22px;*/
+/*    transition: color 0.4s;*/
+/*}*/
 
 .react-icons:hover {
     color: #d495e2;
