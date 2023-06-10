@@ -190,6 +190,77 @@ textarea::placeholder {
     padding-top: 20px;
 }
 
+@media (max-width: 400px) {
+
+    .exercises-table {
+        display: block;
+        text-align: center;
+        width: 90%;
+        max-width: 90%;
+        margin: 0 auto;
+        padding-top: 5vh;
+        padding-bottom: 2vh;
+    }
+
+    .exercises-table th,
+    .exercises-table td {
+        display: block;
+        text-align: center;
+    }
+
+    .exercises-table tbody tr {
+        display: block;
+        margin-bottom: 10vh;
+        text-align: center;
+    }
+
+    .exercises-table tbody tr:first-child {
+        margin-top: 5vh;
+    }
+
+    .exercises-table tbody td,
+    .exercises-table tbody th {
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .exercises-table tbody .icon-delete {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .exercises-table tbody .react-icons-smaller {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .exercises-table tbody .react-icons-link {
+        display: block;
+        margin: 0 auto;
+        padding-top: 5px;
+    }
+
+    .exercise-order,
+    .exercise-name,
+    .exercise-series,
+    .exercise-repetitions,
+    .exercise-pause,
+    .exercise-tips,
+    .exercise-url,
+    .hidden {
+        width: 100%;
+        text-align: center;
+    }
+
+    .exercise-textarea {
+        width: 100%;
+    }
+
+    .go-back {
+        margin-bottom: 5vh;
+    }
+}
 
 
 
