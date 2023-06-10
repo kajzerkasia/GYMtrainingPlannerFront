@@ -10,6 +10,15 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 
+export const validateURL = (url: string) => {
+    try {
+        new URL(url);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
 export const ExercisesTable = () => {
 
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
@@ -55,7 +64,8 @@ export const ExercisesTable = () => {
         return () => {
             try {
                 abortController.abort()
-            } catch {}
+            } catch {
+            }
         };
 
     }, [params.slug])
@@ -74,7 +84,7 @@ export const ExercisesTable = () => {
                     console.log('Brak części planu.')
                 } else {
 
-                    const res = await fetch(`${apiUrl}/add-exercise/exercises`, {
+                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -172,7 +182,7 @@ export const ExercisesTable = () => {
                         Wskazówki dotyczące ćwiczenia
                     </th>
                     <th className="tr-add">
-                        Poprawne wykonanie ćwiczenia (link)
+                        Poprawne wykonanie ćwiczenia (prawidłowy link)
                     </th>
                 </tr>
                 </thead>
@@ -194,11 +204,21 @@ export const ExercisesTable = () => {
                             url: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            if (values.order && values.name && values.series && values.repetitions && values.pause && values.tips && values.url) {
+                            if (
+                                values.order &&
+                                values.name &&
+                                values.series &&
+                                values.repetitions &&
+                                values.pause &&
+                                values.tips &&
+                                values.url &&
+                                validateURL(values.url)
+                            ) {
                                 await addExercise(values);
                                 reset();
                             } else {
                                 setInformationModalIsOpen(true);
+                                values.url = 'Podaj poprawny adres URL';
                             }
                         }}
                         actionType={Status.Add}
