@@ -65,7 +65,7 @@ Składa się z następujących części i możliwości:
 #### *czego nie zdążyłam zrobić ze względu na deadline?
 * dodać więcej testów
 * uporządkować style
-* dodać walidację adresu URL przy dodawaniu
+* dodać walidację adresu URL przy dodawaniu (zrobione na wersji developerskiej)
 * dodać sanitize na frontendzie
 * dodać więcej obsługi błędów
 
