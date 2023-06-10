@@ -1,22 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
-import './PlanDetailsTable.css'
 import {GoBack} from "../GoBack/GoBack";
 import {InformationModal} from "../InformationModal/InformationModal";
+import {apiUrl} from "../../config/api";
+import './PlanDetailsTable.css'
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
 
-    const textInformation = 'Podaj informacje o szczegółach planu treningowego!'
+    const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'
 
     useEffect(() => {
 
         const abortController = new AbortController();
 
-        fetch(`${process.env.REACT_APP_API_URL}/add-detail/details`, {
+        fetch(`${apiUrl}/api/add-detail/details`, {
             method: 'GET'
         }).then(res => res.json())
             .then((details) => {
@@ -37,7 +38,7 @@ export const PlanDetailsTable = () => {
     const editDetail = async (values: DetailEntity) => {
         setIsEdited(false);
 
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-detail/details/${values.id}`, {
+        const res = await fetch(`${apiUrl}/api/add-detail/details/${values.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -88,6 +89,9 @@ export const PlanDetailsTable = () => {
                                 await handleUpdateDetail(values);
                             } else {
                                 setInformationModalIsOpen(true);
+                                values.length = detail.length;
+                                values.frequency = detail.frequency
+                                values.schedule = detail.schedule;
                             }
                         }}
                         isEdited={isEdited}

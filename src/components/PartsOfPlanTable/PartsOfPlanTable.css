@@ -33,7 +33,6 @@ h1, h2 {
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
-    width: 35%;
 }
 
 td, th {
@@ -60,7 +59,12 @@ button {
 .react-icons {
     font-size: 22px;
     transition: color 0.4s;
-    width: 2vw;
+    width: 30px;
+}
+.react-icons-progression {
+    font-size: 22px;
+    transition: color 0.4s;
+    width: 30px;
 }
 
 .react-icons:hover {
@@ -127,7 +131,72 @@ button {
     margin-bottom: 7vh;
 }
 
+@media (min-width: 1480px) {
+    .main-table {
+        width: 550px;
+    }
+}
 
+@media (max-height: 500px) {
+    .main-table {
+        padding-top: 10vh;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .main-table {
+        width: 100%;
+        padding-top: 2vh;
+    }
+
+    .main-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .main-table td:nth-child(3),
+    .main-table td:nth-child(4),
+    .main-table td:nth-child(5) {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .main-table td:nth-child(1),
+    .main-table td:nth-child(2) {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .main-table td:nth-child(1) {
+        margin-top: 10vh;
+    }
+
+    .tr-add td {
+        width: 100%;
+    }
+
+    .training-plan {
+        height: 75px;
+    }
+
+    .dots {
+        height: 57px;
+    }
+
+    .td-progression-rules {
+        height: 57px;
+    }
+
+    .react-icons-dots {
+        vertical-align: -5px;
+    }
+
+    .react-icons-progression {
+        vertical-align: -12px;
+    }
+
+}
 
 
 
