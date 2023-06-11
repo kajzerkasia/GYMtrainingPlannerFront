@@ -65,12 +65,12 @@ Składa się z następujących części i możliwości:
 #### *czego nie zdążyłam zrobić ze względu na deadline?
 * dodać więcej testów
 * uporządkować style
-* dodać walidację adresu URL przy dodawaniu (zrobione na wersji developerskiej)
+* dodać walidację adresu URL przy dodawaniu (zrobione w wersji developerskiej)
 * dodać sanitize na frontendzie
 * dodać więcej obsługi błędów
 
 ## Pomysły na rozbudowanie aplikacji 📈
-* możliwość dodawania większej ilości planów treningowych
+* możliwość dodawania większej ilości planów treningowych (in progress w wersji developerskiej)
 * tryb admina (trenera) i tryb użytkownika (podopiecznego)
 * dodanie kalendarza do planowania treningów w dane dni oraz zaznaczania początku i końca planu treningowego
 * możliwość zapisywania swoich postępów przez podopiecznych
@@ -159,7 +159,7 @@ Training plan details:
 * add more error handling
 
 ## Ideas for extending the application 📈
-* the ability to add more training plans
+* the ability to add more training plans (in progress in the development version) 
 * admin (trainer) and user (protege) mode
 * adding a calendar for planning training on given days and marking the beginning and end of the training plan
 * proteges can save their progress
