@@ -27,7 +27,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
 
     return (
         <>
-            <td className="input-plan-add">
+            <td className="input-plan-add" colSpan={2}>
                 <input
                     placeholder="Podaj nazwę planu, który chcesz dodać"
                     className={isEdited ? 'edited-input' : 'input-plan'}
@@ -38,7 +38,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
                     onChange={(event) => handleChange('name', event.target.value)}
                 />
             </td>
-            <td>
+            <td colSpan={1}>
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>

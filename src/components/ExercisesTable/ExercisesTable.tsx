@@ -256,7 +256,7 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
+            <GoBack to="/list" text="Powrót do strony głównej"></GoBack>
             <ConfirmationModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}
