@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {PlanEntity, Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
@@ -127,7 +127,7 @@ export const PlansList = () => {
 
                     <thead>
                     <tr className="tr-add">
-                        <td colSpan={3} className="training-plans">
+                        <td className="training-plans" align="center" colSpan={4}>
                             <h1 className="h1-plan">Plany treningowe</h1>
                         </td>
                     </tr>
@@ -177,6 +177,11 @@ export const PlansList = () => {
                                 actionType={Status.Save}
                                 isEdited={isEdited}
                             />
+                            <td className="dots" colSpan={1}>
+                                <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <Link to={`/plans/${plan.slug}`}><TbDotsVertical/></Link>
+                                </IconContext.Provider>
+                            </td>
                         </tr>
 
                     ))}

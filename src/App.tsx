@@ -17,7 +17,7 @@ export const App = () => {
             <Routes>
                 <Route path="/" element={<Navigate to="/list"/>}/>
                 <Route path="/list" element={<PlansList/>}/>
-                <Route path="/plans" element={<PartsOfPlanTable/>}/>
+                <Route path="/plans/:slug" element={<PartsOfPlanTable/>}/>
                 <Route path="/exercises/:slug" element={<ExercisesTable/>}/>
                 <Route path="/rules" element={<RulesTable/>}/>
                 <Route path="/details" element={<PlanDetailsTable/>}/>
