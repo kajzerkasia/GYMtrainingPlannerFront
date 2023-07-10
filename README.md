@@ -1,8 +1,5 @@
 # Gym Training Planner 🏋️‍♀️💪
 
-## ❤️DEMO❤️
-## https://kk.networkmanager.pl/
-
 ## Polish version of README:
 
 #### Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?
@@ -88,9 +85,6 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 #
 
 # Gym Training Planner 🏋️‍♀️💪
-
-## ❤️DEMO❤️
-## https://kk.networkmanager.pl/
 
 ## English version of README:
 
