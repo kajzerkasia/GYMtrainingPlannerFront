@@ -5,7 +5,7 @@ import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical}
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 
@@ -16,20 +16,40 @@ export const PartsOfPlanTable = () => {
     const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
     const [partToDeleteId, setPartToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [trainingPlanName, setTrainingPlanName] = useState('');
+
+    const params = useParams();
 
     const text = 'Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu';
 
     const textInformation = 'Należy podać nazwę części planu!'
 
     useEffect(() => {
+
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-part/plans`, {
+        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
             method: 'GET',
-            signal: abortController.signal
-        }).then(res => res.json())
-            .then((parts) => {
-                setPartsOfPlanList(parts)
+        })
+            .then(r => r.json())
+            .then((plan) => {
+
+                if (!plan || plan.length === 0) {
+                    console.log('Brak planu.')
+                } else {
+                    setTrainingPlanName(plan[0].name);
+                    return fetch(`${apiUrl}/api/add-part/plans?planId=${plan[0].id}`, {
+                        method: 'GET',
+
+                    }).then(res => res.json())
+                        .then((planParts) => {
+                            if (!planParts) {
+                                return Promise.reject('Brak części planów.')
+                            } else {
+                                setPartsOfPlanList(planParts);
+                            }
+                        })
+                }
             })
 
         return () => {
@@ -38,26 +58,37 @@ export const PartsOfPlanTable = () => {
             } catch {
             }
         };
-    }, [])
+
+    }, [params.slug])
 
     const closeModal = () => {
         setInformationModalIsOpen(false);
     };
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
-
-        const res = await fetch(`${apiUrl}/api/add-part/plans`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
+        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
+            method: 'GET',
         })
+            .then(r => r.json())
+            .then(async (plan) => {
+                if (!plan || plan.length === 0) {
+                    console.log('Brak planu.')
+                } else {
 
-        const data = await res.json();
+                    const res = await fetch(`${apiUrl}/api/add-part/plans`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({...values, planId: plan[0].id}),
+                    })
 
-        setPartsOfPlanList(list => [...list, data]);
+                    const data = await res.json();
 
+                    setPartsOfPlanList(list => [...list, data]);
+
+                }
+            })
     };
 
     const editPartOfPlan = async (values: PartOfPlanEntity) => {
@@ -128,7 +159,7 @@ export const PartsOfPlanTable = () => {
                     <thead>
                     <tr className="tr-add">
                         <td colSpan={3} className="training-plan">
-                            <h1 className="h1-plan">Plan treningowy</h1>
+                            <h1 className="h1-plan">{trainingPlanName}</h1>
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>

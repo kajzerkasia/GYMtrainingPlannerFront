@@ -46,14 +46,14 @@ export const ExercisesTable = () => {
                 if (!planPart || planPart.length === 0) {
                     console.log('Brak części planu.')
                 } else {
-
+                    console.log(planPart);
                     return fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'GET',
 
                     }).then(res => res.json())
                         .then((exercises) => {
                             if (!exercises) {
-                                return Promise.reject('Bark ćwiczeń.')
+                                return Promise.reject('Brak ćwiczeń.')
                             } else {
                                 setExercisesList(exercises);
                             }
@@ -83,8 +83,8 @@ export const ExercisesTable = () => {
                 if (!planPart || planPart.length === 0) {
                     console.log('Brak części planu.')
                 } else {
-
-                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises`, {
+                    // `${apiUrl}/api/add-exercise/plans/${params.slug}/exercises`,
+                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`,  {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -99,6 +99,8 @@ export const ExercisesTable = () => {
                 }
             })
     };
+
+    // planPart[0].id} - to jest złe !
 
     const editExercise = async (values: ExerciseEntity) => {
 
@@ -157,7 +159,7 @@ export const ExercisesTable = () => {
 
     return (
         <div className="wrapper-exercises-table">
-            <GoBack to="/plans" text="Gym Training Planner"/>
+            <GoBack to={`/plans/${params.slug}`} text="Gym Training Planner"/>
             <table className="exercises-table">
 
                 <thead>
@@ -256,7 +258,7 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
+            <GoBack to={`/list`} text="Powrót do części planu"></GoBack>
             <ConfirmationModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}

@@ -3,7 +3,7 @@ import './GoBack.css';
 import {Link} from "react-router-dom";
 
 interface Props {
-    text: string;
+    text: string | any;
     to?: string;
 }
 
