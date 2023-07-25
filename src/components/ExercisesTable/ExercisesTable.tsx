@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ExerciseEntity, Status} from 'types';
+import {ExerciseEntity, PlanEntity, Status} from 'types';
 import {GoBack} from "../GoBack/GoBack";
 import {ExercisesForm} from "./ExercisesForm";
 import {Link, useParams} from "react-router-dom";
@@ -26,6 +26,8 @@ export const ExercisesTable = () => {
     const [confirmDeleteExercise, setConfirmDeleteExercise] = useState<boolean>(false);
     const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [partName, setPartName] = useState("");
+    const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null); // Zmieniony stan na pojedynczy obiekt
 
     const params = useParams();
 
@@ -46,7 +48,19 @@ export const ExercisesTable = () => {
                 if (!planPart || planPart.length === 0) {
                     console.log('Brak części planu.')
                 } else {
-                    console.log(planPart);
+                    setPartName(planPart[0].name);
+
+                    fetch(`${apiUrl}/api/add-plan/list`, {
+                        method: 'GET',
+                    })
+                        .then(res => res.json())
+                        .then((plans: Partial<PlanEntity>[]) => {
+                            const foundPlan = plans.find((plan: Partial<PlanEntity>) => plan.id === planPart[0].planId);
+                            if (foundPlan) {
+                                setPlanInfo(foundPlan as PlanEntity);
+                            }
+                        });
+
                     return fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'GET',
 
@@ -83,8 +97,7 @@ export const ExercisesTable = () => {
                 if (!planPart || planPart.length === 0) {
                     console.log('Brak części planu.')
                 } else {
-                    // `${apiUrl}/api/add-exercise/plans/${params.slug}/exercises`,
-                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`,  {
+                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -99,8 +112,6 @@ export const ExercisesTable = () => {
                 }
             })
     };
-
-    // planPart[0].id} - to jest złe !
 
     const editExercise = async (values: ExerciseEntity) => {
 
@@ -160,6 +171,15 @@ export const ExercisesTable = () => {
     return (
         <div className="wrapper-exercises-table">
             <GoBack to={`/plans/${params.slug}`} text="Gym Training Planner"/>
+            <div className="div-plan-info">
+                <div className="inner-container">
+                    {planInfo && ( // Sprawdzamy, czy mamy informacje o planie, zanim wyświetlimy nazwę
+                        <h3>Nazwa planu: {planInfo.name}</h3>
+                    )}
+                    <p>Nazwa części planu: {partName}</p>
+                    <h3>Ćwiczenia:</h3>
+                </div>
+            </div>
             <table className="exercises-table">
 
                 <thead>
