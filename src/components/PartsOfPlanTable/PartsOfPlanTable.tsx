@@ -16,6 +16,7 @@ export const PartsOfPlanTable = () => {
     const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
     const [partToDeleteId, setPartToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [trainingPlanName, setTrainingPlanName] = useState('');
 
     const params = useParams();
 
@@ -27,14 +28,6 @@ export const PartsOfPlanTable = () => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-part/plans`, {
-            method: 'GET',
-            signal: abortController.signal
-        }).then(res => res.json())
-            .then((planParts) => {
-                setPartsOfPlanList(planParts)
-            })
-
         fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
             method: 'GET',
         })
@@ -44,14 +37,14 @@ export const PartsOfPlanTable = () => {
                 if (!plan || plan.length === 0) {
                     console.log('Brak planu.')
                 } else {
-
+                    setTrainingPlanName(plan[0].name);
                     return fetch(`${apiUrl}/api/add-part/plans?planId=${plan[0].id}`, {
                         method: 'GET',
 
                     }).then(res => res.json())
                         .then((planParts) => {
                             if (!planParts) {
-                                return Promise.reject('Bark części planów.')
+                                return Promise.reject('Brak części planów.')
                             } else {
                                 setPartsOfPlanList(planParts);
                             }
@@ -166,7 +159,7 @@ export const PartsOfPlanTable = () => {
                     <thead>
                     <tr className="tr-add">
                         <td colSpan={3} className="training-plan">
-                            <h1 className="h1-plan">Plan treningowy</h1>
+                            <h1 className="h1-plan">{trainingPlanName}</h1>
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>

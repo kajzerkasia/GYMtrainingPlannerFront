@@ -183,7 +183,6 @@ export const PlansList = () => {
                                 </IconContext.Provider>
                             </td>
                         </tr>
-
                     ))}
                     </tbody>
                 </table>
