@@ -262,6 +262,28 @@ textarea::placeholder {
     }
 }
 
+.div-plan-info {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inner-container h3 {
+    margin-bottom: 0.2rem;
+}
+
+.inner-container p {
+    margin-bottom: 1rem;
+}
+
 
 
 
