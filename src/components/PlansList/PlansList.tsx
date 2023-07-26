@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
+import {MoonLoader} from "react-spinners";
 
 export const PlansList = () => {
 
@@ -16,6 +17,7 @@ export const PlansList = () => {
     const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
     const [planToDeleteId, setPlanToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
 
@@ -29,8 +31,13 @@ export const PlansList = () => {
             signal: abortController.signal
         }).then(res => res.json())
             .then((plans) => {
-                setPlansList(plans)
+                setPlansList(plans);
+                setIsLoading(false);
             })
+            .catch((error) => {
+                console.error("An error occurred when fetching plans data:", error);
+                setIsLoading(false);
+            });
 
         return () => {
             try {
@@ -115,6 +122,15 @@ export const PlansList = () => {
         setConfirmDeletePlan(false);
         setPlanToDeleteId(null);
     };
+
+    if (isLoading || !plansList) {
+        return (
+            <div className="spinner_container">
+                <div className="div_loading">Loading plans data...</div>
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+            </div>
+        );
+    }
 
     return (
         <div className="parts-wrapper">
