@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "react-modal";
 import './CalendarModal.css'
+import {BasicCalendar} from "../BasicCalendar/BasicCalendar";
 
 Modal.setAppElement('#root');
 
@@ -21,11 +22,11 @@ export const CalendarModal = ({isOpen, onRequestClose, onConfirm, onCancel, text
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
         >
-            <h2>{text}</h2>
-
-            <div className="modal-buttons">
-                <button className="btn-confirm" onClick={onConfirm}>Tak</button>
-                <button className="btn-decline" onClick={onCancel}>Nie</button>
+            <div style={{ height: "90vh"}} className="div-calendar">
+                <BasicCalendar/>
+            </div>
+            <div className="div-btn-back-container">
+                <button className="btn-back" onClick={onCancel}>Powrót</button>
             </div>
         </Modal>
     );

@@ -4,21 +4,21 @@
     justify-content: flex-start;
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
-    margin: 5vh auto 5vh;
+    margin: 2vh auto 5vh;
     padding: 60px 50px;
-    width: 700px;
-    height: 700px;
+    width: 900px;
+    height: 890px;
     background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
-    font-size: 22px;
+    font-size: 16px;
 }
 
-.calendar-modal button {
-    font-family: 'Ubuntu', sans-serif;
-    margin-top: 7vh;
-    font-size: 22px;
-    padding: 22px 5vw 3vh;
-    border: 1px solid #d495e2;
-}
+/*.calendar-modal button {*/
+/*    font-family: 'Ubuntu', sans-serif;*/
+/*    margin-top: 7vh;*/
+/*    font-size: 22px;*/
+/*    padding: 22px 5vw 3vh;*/
+/*    border: 1px solid #d495e2;*/
+/*}*/
 
 .calendar-modal h2 {
     margin-bottom: 5vh;
@@ -46,5 +46,24 @@
     opacity: 0;
     transform: translateX(100vw);
     background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
+}
+
+.btn-back {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #E6E6FA;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: color 0.4s;
+}
+
+.btn-back:hover {
+    color: #d495e2;
+}
+
+.div-btn-back-container {
+    display: flex;
+    justify-content: center;
 }
 
