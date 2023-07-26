@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {ExerciseEntity, PlanEntity, Status} from 'types';
-import {GoBack} from "../GoBack/GoBack";
 import {ExercisesForm} from "./ExercisesForm";
 import {Link, useParams} from "react-router-dom";
-import {TbQuestionMark, TbX} from "react-icons/tb";
+import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
+import {MoonLoader} from "react-spinners";
 
 export const validateURL = (url: string) => {
     try {
@@ -27,7 +27,8 @@ export const ExercisesTable = () => {
     const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [partName, setPartName] = useState("");
-    const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null); // Zmieniony stan na pojedynczy obiekt
+    const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 
@@ -70,8 +71,13 @@ export const ExercisesTable = () => {
                                 return Promise.reject('Brak ćwiczeń.')
                             } else {
                                 setExercisesList(exercises);
+                                setIsLoading(false);
                             }
                         })
+                        .catch((error) => {
+                            console.error("An error occurred when fetching exercises data:", error);
+                            setIsLoading(false);
+                        });
                 }
             })
 
@@ -168,12 +174,23 @@ export const ExercisesTable = () => {
         setExerciseToDeleteId(null);
     };
 
+    if (isLoading || !exercisesList) {
+        return (
+            <div className="spinner_container">
+                <div className="div_loading">Loading exercises data...</div>
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+            </div>
+        );
+    }
+
     return (
         <div className="wrapper-exercises-table">
-            <GoBack to={`/plans/${params.slug}`} text="Gym Training Planner"/>
+            <IconContext.Provider value={{className: 'react-main-icon'}}>
+                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
+            </IconContext.Provider>
             <div className="div-plan-info">
                 <div className="inner-container">
-                    {planInfo && ( // Sprawdzamy, czy mamy informacje o planie, zanim wyświetlimy nazwę
+                    {planInfo && (
                         <h3>Nazwa planu: {planInfo.name}</h3>
                     )}
                     <p>Nazwa części planu: {partName}</p>
