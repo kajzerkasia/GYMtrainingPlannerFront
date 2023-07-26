@@ -53,7 +53,9 @@ export const Instruction = () => {
                     przejście do podanego adresu URL
                 </li>
             </ul>
-            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
+            <button className="btn-back" onClick={() => window.history.back()}>
+                Powrót
+            </button>
         </div>
     )
 }

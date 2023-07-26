@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {PlanEntity, Status} from 'types';
-import {TbPlus, TbCheck} from "react-icons/tb";
+import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './PlansList.css';
 
@@ -43,6 +43,12 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
                     <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
                 </IconContext.Provider>
             </td>
+            {actionType === Status.Add &&
+                <td>
+                    <IconContext.Provider value={{className: 'react-icons'}}>
+                        <TbCalendarPlus/>
+                    </IconContext.Provider>
+                </td>}
         </>
     );
 };
