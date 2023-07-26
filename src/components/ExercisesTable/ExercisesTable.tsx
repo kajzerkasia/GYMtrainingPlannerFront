@@ -278,7 +278,11 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <GoBack to={`/list`} text="Powrót do części planu"></GoBack>
+            <div className="div-btn-back-container">
+            <button className="btn-back" onClick={() => window.history.back()}>
+                Powrót do części planu
+            </button>
+            </div>
             <ConfirmationModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}

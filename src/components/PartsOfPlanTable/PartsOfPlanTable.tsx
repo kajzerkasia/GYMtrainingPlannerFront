@@ -8,6 +8,7 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {Link, useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
+import {GoBack} from "../GoBack/GoBack";
 
 export const PartsOfPlanTable = () => {
 
@@ -37,7 +38,6 @@ export const PartsOfPlanTable = () => {
                 if (!plan || plan.length === 0) {
                     console.log('Brak planu.')
                 } else {
-                    console.log(plan);
                     setTrainingPlanName(plan[0].name);
                     return fetch(`${apiUrl}/api/add-part/plans?planId=${plan[0].id}`, {
                         method: 'GET',
@@ -230,6 +230,7 @@ export const PartsOfPlanTable = () => {
                     ))}
                     </tbody>
                 </table>
+                <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
             <ConfirmationModal
                 isOpen={confirmDeletePart}

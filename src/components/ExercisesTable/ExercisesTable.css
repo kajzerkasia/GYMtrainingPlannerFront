@@ -284,6 +284,23 @@ textarea::placeholder {
     margin-bottom: 1rem;
 }
 
+.btn-back {
+    font-size: 22px;
+    color: #E6E6FA;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: color 0.4s;
+}
+
+.btn-back:hover {
+    color: #d495e2;
+}
+
+.div-btn-back-container {
+    display: flex;
+    justify-content: center;
+}
 
 
 
