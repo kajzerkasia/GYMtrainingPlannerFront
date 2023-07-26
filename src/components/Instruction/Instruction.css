@@ -36,3 +36,21 @@ li {
     border: 1px solid white;
     vertical-align: -7px
 }
+
+.btn-back {
+    font-size: 22px;
+    color: #E6E6FA;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    transition: color 0.4s;
+}
+
+.btn-back:hover {
+    color: #d495e2;
+}
+
+.div-btn-back-container {
+    display: flex;
+    justify-content: center;
+}
