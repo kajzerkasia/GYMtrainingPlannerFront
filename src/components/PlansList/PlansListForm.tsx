@@ -3,6 +3,7 @@ import {PlanEntity, Status} from 'types';
 import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './PlansList.css';
+import {CalendarModal} from "../CalendarModal/CalendarModal";
 
 export type PlansListFormProps = {
     initialValues: PlanEntity;
@@ -13,6 +14,10 @@ export type PlansListFormProps = {
 
 export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: PlansListFormProps) => {
     const [values, setValues] = useState<PlanEntity>(() => initialValues);
+    const [calendarModalIsOpen, setCalendarModalIsOpen] = useState<boolean>(false);
+
+
+    const text = 'Kalendarz';
 
     const reset: () => void = () => {
         setValues(initialValues);
@@ -24,6 +29,14 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
             [field]: value
         }));
     };
+
+    const openCalendarModal = () => {
+        setCalendarModalIsOpen(true);
+    }
+
+    const closeCalendarModal = () => {
+        setCalendarModalIsOpen(false);
+    }
 
     return (
         <>
@@ -46,9 +59,16 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
             {actionType === Status.Add &&
                 <td>
                     <IconContext.Provider value={{className: 'react-icons'}}>
-                        <TbCalendarPlus/>
+                        <button onClick={() => openCalendarModal()}><TbCalendarPlus/></button>
                     </IconContext.Provider>
                 </td>}
+            <CalendarModal
+                isOpen={calendarModalIsOpen}
+                onRequestClose={closeCalendarModal}
+                onConfirm={closeCalendarModal}
+                onCancel={closeCalendarModal}
+                text={text}
+            />
         </>
     );
 };
