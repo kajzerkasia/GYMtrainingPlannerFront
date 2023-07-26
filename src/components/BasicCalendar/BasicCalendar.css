@@ -1,0 +1,35 @@
+.rbc-header {
+    padding: 10px;
+    font-weight: bold;
+}
+
+.rbc-off-range-bg {
+    background-color: #270b31;
+}
+
+.rbc-today {
+    background-color: #d495e2;
+}
+
+.rbc-btn-group {
+    background-color: transparent;
+}
+
+.rbc-btn-group button {
+    color: #E6E6FA;
+}
+.rbc-btn-group button.rbc-active {
+    background-color: #d495e2;
+}
+
+.rbc-btn-group button:hover {
+    background-color: #d495e2;
+}
+
+.rbc-header {
+    height: 40px;
+}
+
+/*.rbc-events-container {*/
+/*    */
+/*}*/
