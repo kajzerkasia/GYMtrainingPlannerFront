@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {PlanEntity, Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
@@ -145,6 +145,11 @@ export const PlansList = () => {
                     <tr className="tr-add">
                         <td className="training-plans" align="center" colSpan={4}>
                             <h1 className="h1-plan">Plany treningowe</h1>
+                        </td>
+                        <td>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <TbUserCircle/>
+                            </IconContext.Provider>
                         </td>
                     </tr>
                     </thead>
