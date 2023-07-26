@@ -131,6 +131,19 @@ button {
     margin-bottom: 7vh;
 }
 
+.spinner_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    font-size: 18px;
+}
+
+.div_loading {
+    margin-bottom: 20px;
+}
+
 @media (min-width: 1480px) {
     .main-table {
         width: 550px;

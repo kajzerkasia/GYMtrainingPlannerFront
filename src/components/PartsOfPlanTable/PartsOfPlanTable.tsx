@@ -9,6 +9,7 @@ import {Link, useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
+import {MoonLoader} from "react-spinners";
 
 export const PartsOfPlanTable = () => {
 
@@ -18,6 +19,7 @@ export const PartsOfPlanTable = () => {
     const [partToDeleteId, setPartToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [trainingPlanName, setTrainingPlanName] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 
@@ -48,9 +50,13 @@ export const PartsOfPlanTable = () => {
                                 return Promise.reject('Brak części planów.')
                             } else {
                                 setPartsOfPlanList(planParts);
-
+                                setIsLoading(false);
                             }
                         })
+                        .catch((error) => {
+                            console.error("An error occurred when fetching parts of plan data:", error);
+                            setIsLoading(false);
+                        });
                 }
             })
 
@@ -148,6 +154,15 @@ export const PartsOfPlanTable = () => {
         setConfirmDeletePart(false);
         setPartToDeleteId(null);
     };
+
+    if (isLoading || !partsOfPlanList) {
+        return (
+            <div className="spinner_container">
+                <div className="div_loading">Loading parts of plan data...</div>
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+            </div>
+        );
+    }
 
     return (
         <div className="parts-wrapper">
