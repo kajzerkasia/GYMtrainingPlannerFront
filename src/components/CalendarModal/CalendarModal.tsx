@@ -22,6 +22,7 @@ export const CalendarModal = ({isOpen, onRequestClose, onConfirm, onCancel, text
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
         >
+            <p>Kliknij w dany dzień ay dodać określony trening.</p>
             <div style={{ height: "90vh"}} className="div-calendar">
                 <BasicCalendar/>
             </div>
