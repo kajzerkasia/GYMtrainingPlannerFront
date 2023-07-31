@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {RuleEntity, Status} from 'types';
-import {GoBack} from "../GoBack/GoBack";
 import {RulesForm} from "./RulesForm";
-import {TbQuestionMark, TbX} from "react-icons/tb";
+import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
@@ -114,7 +113,9 @@ export const RulesTable = () => {
 
     return (
         <div className="rules-wrapper">
-            <GoBack to="/plans" text="Gym Training Planner"/>
+            <IconContext.Provider value={{className: 'react-main-icon'}}>
+                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
+            </IconContext.Provider>
             <table className="rules-table">
                 <thead>
                 <tr className="tr-add">
@@ -172,7 +173,9 @@ export const RulesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
+            <button className="btn-back-exercises" onClick={() => window.history.back()}>
+                Powrót
+            </button>
             <ConfirmationModal
                 isOpen={confirmDeleteRule}
                 onRequestClose={handleCancelDelete}
@@ -190,3 +193,5 @@ export const RulesTable = () => {
         </div>
     )
 }
+
+// Powrót do strony głównej - zmienić link
