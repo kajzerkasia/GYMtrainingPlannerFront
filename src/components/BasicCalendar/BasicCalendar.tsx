@@ -6,6 +6,13 @@ import { PlanEntity, PartOfPlanEntity } from 'types';
 import { fetchPlanParts, fetchTrainingPlans } from "../hooks/fetchingFunctions";
 import { PlanSelector } from "../PlanSelector/PlanSelector";
 
+moment.locale('en-GB', {
+    week: {
+        dow: 1,
+        doy: 1,
+    },
+});
+
 interface MyEvent {
     start: Date;
     end: Date;
