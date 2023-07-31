@@ -5,20 +5,12 @@
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
     margin: 2vh auto 5vh;
-    padding: 60px 50px;
+    padding: 20px 20px;
     width: 900px;
     height: 890px;
     background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
     font-size: 16px;
 }
-
-/*.calendar-modal button {*/
-/*    font-family: 'Ubuntu', sans-serif;*/
-/*    margin-top: 7vh;*/
-/*    font-size: 22px;*/
-/*    padding: 22px 5vw 3vh;*/
-/*    border: 1px solid #d495e2;*/
-/*}*/
 
 .calendar-modal h2 {
     margin-bottom: 5vh;
@@ -49,14 +41,22 @@
 }
 
 .btn-back {
-    margin-top: 20px;
-    font-size: 16px;
+    margin-top: 10px;
     color: #E6E6FA;
     text-decoration: none;
     display: flex;
     justify-content: center;
     transition: color 0.4s;
+    position: fixed;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: 1px solid #E6E6FA;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+    font-size: 14px;
 }
+
 
 .btn-back:hover {
     color: #d495e2;
@@ -66,4 +66,9 @@
     display: flex;
     justify-content: center;
 }
+
+.div-calendar-info {
+    margin-bottom: 2rem;
+}
+
 

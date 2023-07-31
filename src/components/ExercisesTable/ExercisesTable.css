@@ -293,16 +293,20 @@ textarea::placeholder {
     margin-bottom: 1rem;
 }
 
-.btn-back {
-    font-size: 22px;
-    color: #E6E6FA;
-    text-decoration: none;
+.btn-back-exercises {
     display: flex;
     justify-content: center;
-    transition: color 0.4s;
+    margin: 0 auto;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #E6E6FA;
+    border: 1px solid #E6E6FA;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.btn-back:hover {
+.btn-back-exercises:hover {
     color: #d495e2;
 }
 

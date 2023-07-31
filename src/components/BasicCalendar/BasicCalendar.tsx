@@ -134,3 +134,5 @@ export const BasicCalendar = () => {
         </>
     );
 };
+
+// @TODO: Baza danych dla eventów, określanie godzin eventów.

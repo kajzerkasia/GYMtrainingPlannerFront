@@ -35,13 +35,13 @@
 }
 
 .rbc-day-bg:hover {
-    background-color: #c92ad4 !important;
+    background-color: #8549b6 !important;
 }
 
-/*.rbc-events-container {*/
-/*    */
-/*}*/
+.rbc-events-container {
+    cursor: pointer;
+}
 
 .selected-date {
-    background-color: #c92ad4 !important;
+    background-color: #8549b6 !important;
 }

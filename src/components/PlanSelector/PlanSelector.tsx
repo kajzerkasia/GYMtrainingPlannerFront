@@ -1,5 +1,5 @@
 import React from "react";
-import { PlanEntity, PartOfPlanEntity } from 'types';
+import {PlanEntity, PartOfPlanEntity} from 'types';
 import './PlanSelector.css';
 
 interface PlanSelectorProps {
@@ -13,19 +13,18 @@ interface PlanSelectorProps {
     onAddEvent: () => void;
 }
 
-export const PlanSelector: React.FC<PlanSelectorProps> = ({
-                                                              trainingPlans,
-                                                              planParts,
-                                                              selectedTrainingPlan,
-                                                              selectedPlanPart,
-                                                              onTrainingPlanChange,
-                                                              onPlanPartChange,
-                                                              isOpen,
-                                                              onAddEvent // Dodanie propa isOpen
-                                                          }) => {
+export const PlanSelector = ({
+                                 trainingPlans,
+                                 planParts,
+                                 selectedTrainingPlan,
+                                 selectedPlanPart,
+                                 onTrainingPlanChange,
+                                 onPlanPartChange,
+                                 isOpen,
+                                 onAddEvent
+                             }: PlanSelectorProps) => {
     return (
         <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
-            {/* Wyświetl rozwijalny select dla planów treningowych */}
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
                 onChange={(e) => onTrainingPlanChange(e.target.value)}
@@ -37,7 +36,6 @@ export const PlanSelector: React.FC<PlanSelectorProps> = ({
                     </option>
                 ))}
             </select>
-            {/* Wyświetl rozwijalny select dla części planów */}
             <select
                 value={selectedPlanPart !== null ? selectedPlanPart : ''}
                 onChange={(e) => onPlanPartChange(e.target.value)}
