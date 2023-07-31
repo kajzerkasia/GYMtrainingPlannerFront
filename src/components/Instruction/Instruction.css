@@ -37,20 +37,33 @@ li {
     vertical-align: -7px
 }
 
-.btn-back {
-    font-size: 22px;
+.btn-instruction-back {
+    font-size: 14px;
     color: #E6E6FA;
     text-decoration: none;
     display: flex;
     justify-content: center;
+    margin: 0 auto;
     transition: color 0.4s;
+    padding: 8px 12px;
+    background-color: transparent;
+    border: 1px solid #E6E6FA;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-.btn-back:hover {
+.btn-instruction-back:hover {
     color: #d495e2;
 }
 
 .div-btn-back-container {
     display: flex;
     justify-content: center;
+}
+
+.main-h1 {
+    font-size: 26px;
+    text-align: left;
+    margin-top: 1vh;
+    padding-left: 2vw;
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import {PlanEntity, PartOfPlanEntity} from 'types';
+import './PlanSelector.css';
 
 interface PlanSelectorProps {
     trainingPlans: PlanEntity[];
@@ -8,6 +9,8 @@ interface PlanSelectorProps {
     selectedPlanPart: string | null;
     onTrainingPlanChange: (planId: string) => void;
     onPlanPartChange: (partId: string) => void;
+    isOpen: boolean;
+    onAddEvent: () => void;
 }
 
 export const PlanSelector = ({
@@ -17,25 +20,14 @@ export const PlanSelector = ({
                                  selectedPlanPart,
                                  onTrainingPlanChange,
                                  onPlanPartChange,
+                                 isOpen,
+                                 onAddEvent
                              }: PlanSelectorProps) => {
-
-    const handleTrainingPlanChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const planId = e.target.value; // Pobierz id jako string
-        console.log('Selected training plan:', planId);
-        onTrainingPlanChange(planId); // Przekazanie stringa jako id
-    };
-
-    const handlePlanPartChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const planPartId = e.target.value; // Pobierz id jako string
-        console.log('Selected plan part:', planPartId);
-        onPlanPartChange(planPartId); // Przekazanie stringa jako id
-    };
-
     return (
-        <div>
+        <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
-                onChange={handleTrainingPlanChange}
+                onChange={(e) => onTrainingPlanChange(e.target.value)}
             >
                 <option value="">Wybierz plan treningowy</option>
                 {trainingPlans.map((plan) => (
@@ -46,7 +38,7 @@ export const PlanSelector = ({
             </select>
             <select
                 value={selectedPlanPart !== null ? selectedPlanPart : ''}
-                onChange={handlePlanPartChange}
+                onChange={(e) => onPlanPartChange(e.target.value)}
             >
                 <option value="">Wybierz część planu</option>
                 {planParts.map((part) => (
@@ -55,6 +47,7 @@ export const PlanSelector = ({
                     </option>
                 ))}
             </select>
+            <button className="add-event-button" onClick={onAddEvent}>Dodaj</button>
         </div>
     );
 };

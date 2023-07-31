@@ -1,0 +1,56 @@
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.plan-selector-container {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: slideInRight 0.3s forwards;
+    z-index: 999;
+}
+
+
+.plan-selector-container.open {
+    display: block;
+}
+
+.plan-selector-container.open select {
+    margin-bottom: 10px;
+    background-color: transparent;
+    color: #E6E6FA;
+    border: 1px solid #E6E6FA;
+    padding: 8px 12px;
+    outline: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.plan-selector-container.open select option {
+    font-size: 14px;
+    color: #310942;
+}
+
+.add-event-button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #E6E6FA;
+    border: 1px solid #E6E6FA;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.add-event-button:hover {
+    background-color: #d495e2;
+}

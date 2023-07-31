@@ -295,8 +295,8 @@ export const ExercisesTable = () => {
                 ))}
                 </tbody>
             </table>
-            <div className="div-btn-back-container">
-            <button className="btn-back" onClick={() => window.history.back()}>
+            <div className="div-btn-back-exercises-container">
+            <button className="btn-back-exercises" onClick={() => window.history.back()}>
                 Powrót do części planu
             </button>
             </div>

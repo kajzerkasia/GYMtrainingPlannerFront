@@ -34,6 +34,14 @@
     cursor: pointer;
 }
 
-/*.rbc-events-container {*/
-/*    */
-/*}*/
+.rbc-day-bg:hover {
+    background-color: #8549b6 !important;
+}
+
+.rbc-events-container {
+    cursor: pointer;
+}
+
+.selected-date {
+    background-color: #8549b6 !important;
+}
