@@ -169,7 +169,6 @@ export const PartsOfPlanTable = () => {
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
-
             <div className="main-plan">
                 <table className="main-table">
 
