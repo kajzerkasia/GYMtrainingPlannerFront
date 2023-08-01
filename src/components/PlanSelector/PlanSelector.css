@@ -17,11 +17,15 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     animation: slideInRight 0.3s forwards;
     z-index: 999;
+    text-align: center;
 }
 
 
 .plan-selector-container.open {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    width: 280px;
+    margin: 0 auto;
 }
 
 .plan-selector-container.open select {
@@ -33,6 +37,7 @@
     outline: none;
     cursor: pointer;
     border-radius: 4px;
+    width: 100%;
 }
 
 .plan-selector-container.open select option {
@@ -48,7 +53,7 @@
     border: 1px solid #E6E6FA;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 1rem;
+    width: 100%;
 }
 
 .add-event-button:hover {
@@ -70,4 +75,24 @@ input[type="time"]:focus {
 
 input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
+}
+
+.plan-selector-container.open select,
+.plan-selector-container.open input[type="time"],
+.plan-selector-container.open .add-event-button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.label-date {
+    width: 60%;
+    padding-right: 10px;
+    box-sizing: border-box;
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.input-date {
+    width: 40%;
 }
