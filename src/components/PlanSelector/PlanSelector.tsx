@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {PlanEntity, PartOfPlanEntity} from 'types';
 import './PlanSelector.css';
 
@@ -10,7 +10,7 @@ interface PlanSelectorProps {
     onTrainingPlanChange: (planId: string) => void;
     onPlanPartChange: (partId: string) => void;
     isOpen: boolean;
-    onAddEvent: () => void;
+    onAddEvent: (startTime: string, endTime: string) => void;
 }
 
 export const PlanSelector = ({
@@ -23,6 +23,9 @@ export const PlanSelector = ({
                                  isOpen,
                                  onAddEvent
                              }: PlanSelectorProps) => {
+    const [startTime, setStartTime] = useState<string>("");
+    const [endTime, setEndTime] = useState<string>("");
+
     return (
         <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
             <select
@@ -47,7 +50,22 @@ export const PlanSelector = ({
                     </option>
                 ))}
             </select>
-            <button className="add-event-button" onClick={onAddEvent}>Dodaj</button>
+            <input
+                className="input-date"
+                type="time"
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+            />
+            <input
+                className="input-date"
+                type="time"
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+            />
+            <button
+                className="add-event-button"
+                onClick={() => onAddEvent(startTime, endTime)}
+            >Dodaj</button>
         </div>
     );
 };
