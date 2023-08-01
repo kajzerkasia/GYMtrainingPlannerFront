@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Calendar } from "../Calendar/Calendar";
 import moment from "moment";
+import "moment/locale/pl";
 import './BasicCalendar.css';
 import { PlanEntity, PartOfPlanEntity } from 'types';
 import { fetchPlanParts, fetchTrainingPlans } from "../hooks/fetchingFunctions";
 import { PlanSelector } from "../PlanSelector/PlanSelector";
 
-moment.locale('en-GB', {
+moment.locale('pl', {
     week: {
         dow: 1,
         doy: 1,
     },
+});
+
+moment.updateLocale('pl', {
+    weekdaysShort: ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'],
 });
 
 interface MyEvent {
@@ -136,6 +141,14 @@ export const BasicCalendar = () => {
                 dayPropGetter={(date) => {
                     const isSelectedDate = selectedDate ? moment(selectedDate).isSame(date, 'day') : false;
                     return isSelectedDate ? { className: 'selected-date' } : {};
+                }}
+                messages={{
+                    next: "Następny",
+                    previous: "Poprzedni",
+                    today: "Obecny",
+                    month: "Miesiąc",
+                    week: "Tydzień",
+                    day: "Dzień",
                 }}
             />
         </>
