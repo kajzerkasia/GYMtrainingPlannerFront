@@ -3,9 +3,10 @@ import { Calendar } from "../Calendar/Calendar";
 import moment from "moment";
 import "moment/locale/pl";
 import './BasicCalendar.css';
-import { PlanEntity, PartOfPlanEntity } from 'types';
+import { PlanEntity, PartOfPlanEntity, EventEntity } from 'types';
 import { fetchPlanParts, fetchTrainingPlans } from "../hooks/fetchingFunctions";
 import { PlanSelector } from "../PlanSelector/PlanSelector";
+import {apiUrl} from "../../config/api";
 
 moment.locale('pl', {
     week: {
@@ -22,6 +23,8 @@ interface MyEvent {
     start: Date;
     end: Date;
     title: string;
+    startTime: string;
+    endTime: string;
 }
 
 export const BasicCalendar = () => {
@@ -32,10 +35,7 @@ export const BasicCalendar = () => {
     const [selectedPlanPartId, setSelectedPlanPartId] = useState<string | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-    const currentDate = new Date();
-
     useEffect(() => {
-        // Pobieramy listę planów treningowych z bazy danych
         fetchTrainingPlans()
             .then((plans) => {
                 setTrainingPlans(plans);
@@ -47,7 +47,6 @@ export const BasicCalendar = () => {
 
     useEffect(() => {
         if (selectedTrainingPlan !== null) {
-            // Pobieramy listę części planów dla wybranego planu treningowego
             fetchPlanParts(selectedTrainingPlan)
                 .then((parts) => {
                     setPlanParts(parts);
@@ -57,6 +56,26 @@ export const BasicCalendar = () => {
                 });
         }
     }, [selectedTrainingPlan]);
+
+    useEffect(() => {
+
+        fetch(`${apiUrl}/api/add-event/events`)
+            .then((response) => response.json())
+            .then((data) => {
+
+                const formattedEvents: MyEvent[] = data.map((event: EventEntity) => ({
+                    start: new Date(event.startDate),
+                    end: new Date(event.endDate),
+                    title: `${event.planName} - ${event.partName}`,
+                    startTime: event.startDate,
+                    endTime: event.endDate,
+                }));
+                setEvents(formattedEvents);
+            })
+            .catch((error) => {
+                console.error("An error occurred when fetching events data:", error);
+            });
+    }, []);
 
     const handleSelect = ({ start }: { start: Date; end: Date }) => {
         // Sprawdzamy, czy kliknięto w ten sam dzień, który został już wcześniej wybrany
@@ -82,7 +101,7 @@ export const BasicCalendar = () => {
         setSelectedPlanPartId(partId);
     };
 
-    const handleAddEvent = (startTime: string, endTime: string) => {
+    const handleAddEvent = async (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
             // Pobierz nazwę planu treningowego na podstawie wybranego id
             const selectedTrainingPlanName =
@@ -96,7 +115,9 @@ export const BasicCalendar = () => {
             const newEvent: MyEvent = {
                 start: new Date(selectedDate),
                 end: new Date(selectedDate),
-                title: `Plan: ${selectedTrainingPlanName}, Trening: ${selectedPlanPartName}`,
+                title: `${selectedTrainingPlanName} - ${selectedPlanPartName}`,
+                startTime: startTime,
+                endTime: endTime,
             };
 
             // Dodajemy godziny rozpoczęcia i zakończenia do nowego wydarzenia
@@ -105,13 +126,36 @@ export const BasicCalendar = () => {
                 newEvent.end.setHours(Number(endTime.split(":")[0]), Number(endTime.split(":")[1]));
             }
 
-            // Dodajemy nowe wydarzenie do stanu events
-            setEvents([...events, newEvent]);
+            // Wysyłamy żądanie do backendu, aby dodać event do bazy danych
+            try {
+                const response = await fetch(`${apiUrl}/api/add-event/events`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        planName: selectedTrainingPlanName,
+                        partName: selectedPlanPartName,
+                        startDate: newEvent.start,
+                        endDate: newEvent.end,
+                    }),
+                });
 
-            // Resetujemy wybrane wartości po dodaniu wydarzenia
-            setSelectedTrainingPlan(null);
-            setSelectedPlanPartId(null);
-            setSelectedDate(null);
+                if (!response.ok) {
+                    throw new Error("Nie udało się dodać wydarzenia.");
+                }
+
+                // Dodajemy nowe wydarzenie do stanu events
+                setEvents([...events, newEvent]);
+                console.log(events);
+
+                // Resetujemy wybrane wartości po dodaniu wydarzenia
+                setSelectedTrainingPlan(null);
+                setSelectedPlanPartId(null);
+                setSelectedDate(null);
+            } catch (error) {
+                console.error('Wystąpił błąd podczas dodawania wydarzenia:', error);
+            }
         }
     };
 
@@ -158,4 +202,4 @@ export const BasicCalendar = () => {
     );
 };
 
-// @TODO: Baza danych dla eventów, określanie godzin eventów, zmienić wygląd eventów!
+// @TODO: Wyświetlanie godzin eventów, zmienić wygląd eventów!
