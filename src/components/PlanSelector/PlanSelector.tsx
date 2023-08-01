@@ -50,13 +50,25 @@ export const PlanSelector = ({
                     </option>
                 ))}
             </select>
+            <label
+                className="label-date"
+                htmlFor="start">
+                Godzina ropoczęcia
+            </label>
             <input
+                id="start"
                 className="input-date"
                 type="time"
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
             />
+            <label
+                className="label-date"
+                htmlFor="end">
+                Godzina zakończenia
+            </label>
             <input
+                id="end"
                 className="input-date"
                 type="time"
                 value={endTime}
