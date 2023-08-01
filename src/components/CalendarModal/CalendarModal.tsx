@@ -25,7 +25,7 @@ export const CalendarModal = ({isOpen, onRequestClose, onConfirm, onCancel, text
             <div className="div-calendar-info">
                 <p>Kliknij w dany dzień, a następnie wybierz plan treningowy oraz część planu.</p>
             </div>
-            <div style={{ height: "83vh"}} className="div-calendar">
+            <div style={{ height: "80vh"}} className="div-calendar">
                 <BasicCalendar/>
             </div>
             <div className="div-btn-back-container">
