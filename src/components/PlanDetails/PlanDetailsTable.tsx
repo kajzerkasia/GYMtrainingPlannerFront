@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
-import {GoBack} from "../GoBack/GoBack";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {apiUrl} from "../../config/api";
 import './PlanDetailsTable.css'
+import {IconContext} from "react-icons";
+import {TbHeartbeat} from "react-icons/tb";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -66,7 +67,9 @@ export const PlanDetailsTable = () => {
 
     return (
         <div className="details-wrapper">
-            <GoBack to="/plans" text="Gym Training Planner"/>
+            <IconContext.Provider value={{className: 'react-main-icon'}}>
+                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
+            </IconContext.Provider>
             <table className="details-table">
 
                 <thead>
@@ -101,7 +104,9 @@ export const PlanDetailsTable = () => {
 
                 </tbody>
             </table>
-            <GoBack to="/plans" text="Powrót do strony głównej"></GoBack>
+            <button className="btn-back-exercises" onClick={() => window.history.back()}>
+                Powrót
+            </button>
             <InformationModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}

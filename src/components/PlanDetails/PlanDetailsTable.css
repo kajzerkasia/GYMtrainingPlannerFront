@@ -14,8 +14,6 @@ input:focus {
 }
 
 h1, h2 {
-    /*padding-top: 2vh;*/
-    /*padding-bottom: 2vh;*/
     font-size: 22px;
     text-align: center;
 }
@@ -75,10 +73,6 @@ button {
     font-family: 'Ubuntu', sans-serif;
     animation: highlight 1s;
     background-color: transparent;
-}
-
-.details-wrapper {
-    margin-top: 15vh;
 }
 
 

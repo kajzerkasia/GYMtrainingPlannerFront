@@ -194,4 +194,4 @@ export const RulesTable = () => {
     )
 }
 
-// Powrót do strony głównej - zmienić link
+// Nagrac na youtube obecną wersję
