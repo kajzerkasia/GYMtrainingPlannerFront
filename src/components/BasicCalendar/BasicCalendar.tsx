@@ -33,8 +33,6 @@ export const BasicCalendar = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
     const currentDate = new Date();
-    const startDate = moment(currentDate).hour(6).minute(0).toDate();
-    const endDate = moment(currentDate).hour(23).minute(0).toDate();
 
     useEffect(() => {
         // Pobieramy listę planów treningowych z bazy danych
@@ -84,21 +82,28 @@ export const BasicCalendar = () => {
         setSelectedPlanPartId(partId);
     };
 
-    const handleAddEvent = () => {
+    const handleAddEvent = (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
-
             // Pobierz nazwę planu treningowego na podstawie wybranego id
-            const selectedTrainingPlanName = trainingPlans.find(plan => plan.id === selectedTrainingPlan)?.name || '';
+            const selectedTrainingPlanName =
+                trainingPlans.find((plan) => plan.id === selectedTrainingPlan)?.name || "";
 
             // Pobierz nazwę części planu na podstawie wybranego id
-            const selectedPlanPartName = planParts.find(part => part.id === selectedPlanPartId)?.name || '';
+            const selectedPlanPartName =
+                planParts.find((part) => part.id === selectedPlanPartId)?.name || "";
 
             // Tworzymy nowe wydarzenie, które będzie dodane do kalendarza
             const newEvent: MyEvent = {
-                start: selectedDate,
-                end: selectedDate,
+                start: new Date(selectedDate),
+                end: new Date(selectedDate),
                 title: `Plan: ${selectedTrainingPlanName}, Trening: ${selectedPlanPartName}`,
             };
+
+            // Dodajemy godziny rozpoczęcia i zakończenia do nowego wydarzenia
+            if (startTime && endTime) {
+                newEvent.start.setHours(Number(startTime.split(":")[0]), Number(startTime.split(":")[1]));
+                newEvent.end.setHours(Number(endTime.split(":")[0]), Number(endTime.split(":")[1]));
+            }
 
             // Dodajemy nowe wydarzenie do stanu events
             setEvents([...events, newEvent]);
@@ -135,8 +140,6 @@ export const BasicCalendar = () => {
                 onSelectSlot={handleSelect}
                 defaultView="month"
                 views={["month", "week", "day"]}
-                min={startDate}
-                max={endDate}
                 formats={{ dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do') }}
                 dayPropGetter={(date) => {
                     const isSelectedDate = selectedDate ? moment(selectedDate).isSame(date, 'day') : false;
@@ -155,4 +158,4 @@ export const BasicCalendar = () => {
     );
 };
 
-// @TODO: Baza danych dla eventów, określanie godzin eventów.
+// @TODO: Baza danych dla eventów, określanie godzin eventów, zmienić wygląd eventów!
