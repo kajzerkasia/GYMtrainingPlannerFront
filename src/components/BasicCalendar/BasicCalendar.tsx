@@ -63,17 +63,23 @@ export const BasicCalendar = () => {
             .then((response) => response.json())
             .then((data) => {
 
-                const formattedEvents: MyEvent[] = data.map((event: EventEntity) => ({
-                    start: new Date(event.startDate),
-                    end: new Date(event.endDate),
-                    title: `${event.planName} - ${event.partName}`,
-                    startTime: event.startDate,
-                    endTime: event.endDate,
-                }));
+                const formattedEvents: MyEvent[] = data.map((event: EventEntity) => {
+
+                    const startTime = moment(event.startDate).format('HH:mm');
+                    const endTime = moment(event.endDate).format('HH:mm');
+
+                    return {
+                        start: new Date(event.startDate),
+                        end: new Date(event.endDate),
+                        title: `${event.planName} - ${event.partName} ${startTime} - ${endTime}`,
+                        startTime: startTime,
+                        endTime: endTime,
+                    };
+                });
                 setEvents(formattedEvents);
             })
             .catch((error) => {
-                console.error("An error occurred when fetching events data:", error);
+                console.error("Wystąpił błąd podczas pobierania danych eventów:", error);
             });
     }, []);
 
@@ -102,6 +108,7 @@ export const BasicCalendar = () => {
     };
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
+
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
             // Pobierz nazwę planu treningowego na podstawie wybranego id
             const selectedTrainingPlanName =
@@ -115,7 +122,7 @@ export const BasicCalendar = () => {
             const newEvent: MyEvent = {
                 start: new Date(selectedDate),
                 end: new Date(selectedDate),
-                title: `${selectedTrainingPlanName} - ${selectedPlanPartName}`,
+                title: `${selectedTrainingPlanName} - ${selectedPlanPartName} ${startTime} - ${endTime}`,
                 startTime: startTime,
                 endTime: endTime,
             };
@@ -183,7 +190,7 @@ export const BasicCalendar = () => {
                 selectable={true}
                 onSelectSlot={handleSelect}
                 defaultView="month"
-                views={["month", "week", "day"]}
+                views={["month",]}
                 formats={{ dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do') }}
                 dayPropGetter={(date) => {
                     const isSelectedDate = selectedDate ? moment(selectedDate).isSame(date, 'day') : false;
