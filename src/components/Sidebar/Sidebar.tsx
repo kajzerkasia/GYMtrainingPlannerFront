@@ -32,31 +32,44 @@ export const Sidebar: React.FC<SidebarProps> = ({
     }
 
     return (
-        <div className={`sidebar-content ${isOpen ? "open" : ""}`}>
-            <h2>Edytuj wydarzenie</h2>
-            <div>
-                <label htmlFor="startTime">Godzina rozpoczęcia:</label>
+        <div className={`sidebar-container ${isOpen ? "open" : ""}`}>
+            <h1>Edytuj trening</h1>
+                <label
+                    className="label-date"
+                    htmlFor="startTime"
+                >Godzina rozpoczęcia
+                </label>
                 <input
+                    className="input-date"
                     type="time"
                     id="startTime"
                     value={startTime}
                     onChange={onStartTimeChange}
                 />
-            </div>
-            <div>
-                <label htmlFor="endTime">Godzina zakończenia:</label>
+                <label
+                    className="label-date"
+                    htmlFor="endTime"
+                >Godzina zakończenia
+                </label>
                 <input
+                    className="input-date"
                     type="time"
                     id="endTime"
                     value={endTime}
                     onChange={onEndTimeChange}
                 />
-            </div>
-            <button onClick={() => onEditEvent(id, {...selectedEvent, start: new Date(selectedEvent.start), end: new Date(selectedEvent.end), startTime, endTime})}>
+            <button
+                className="sidebar-button"
+                onClick={() => onEditEvent(id, {...selectedEvent, start: new Date(selectedEvent.start), end: new Date(selectedEvent.end), startTime, endTime})}>
                 Zapisz zmiany
             </button>
-            <button onClick={() => onDeleteEvent(id)}>Usuń wydarzenie</button>
-            <button onClick={onClose}>Zamknij</button>
+            <button
+                className="sidebar-button"
+                onClick={() => onDeleteEvent(id)}>Usuń wydarzenie
+            </button>
+            <button
+                className="sidebar-button"
+                onClick={onClose}>Zamknij</button>
         </div>
     );
 };
