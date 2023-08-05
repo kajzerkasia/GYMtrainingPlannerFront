@@ -1,0 +1,14 @@
+.sidebar-content {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 300px;
+    background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
+    transition: right 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-content.open {
+    right: 0;
+}
