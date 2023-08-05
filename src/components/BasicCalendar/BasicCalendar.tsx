@@ -350,3 +350,5 @@ export const BasicCalendar = () => {
         </>
     );
 };
+
+//@TODO: Break this code into smaller parts - refactor it, add more styles to Sidebar.css

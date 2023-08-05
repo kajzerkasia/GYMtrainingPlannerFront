@@ -28,6 +28,7 @@ export const PlanSelector = ({
 
     return (
         <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
+            <h1>Dodaj trening</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
                 onChange={(e) => onTrainingPlanChange(e.target.value)}
