@@ -10,7 +10,11 @@ export type DetailFormProps = {
     isEdited?: boolean;
 };
 
-export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailFormProps) => {
+export const PlanDetailsForm = ({ initialValues = {
+    length: '',
+    frequency: '',
+    schedule: ''
+}, onSubmit, isEdited}: DetailFormProps) => {
     const [values, setValues] = useState<DetailEntity>(() => initialValues);
 
     const handleChange: (field: keyof DetailEntity, value: string) => void = (field, value) => {
@@ -28,7 +32,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="length"
-                    value={values.length}
+                    value={values.length || ''}
                     onChange={(event) => handleChange('length', event.target.value)}
                 />
             </td>
@@ -38,7 +42,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="frequency"
-                    value={values.frequency}
+                    value={values.frequency || ''}
                     onChange={(event) => handleChange('frequency', event.target.value)}
                 />
             </td>
@@ -48,7 +52,7 @@ export const PlanDetailsForm = ({ initialValues, onSubmit, isEdited}: DetailForm
                     className={isEdited ? 'edited-input-details' : 'input-detail'}
                     type="text"
                     name="schedule"
-                    value={values.schedule}
+                    value={values.schedule || ''}
                     onChange={(event) => handleChange('schedule', event.target.value)}
                 />
             </td>

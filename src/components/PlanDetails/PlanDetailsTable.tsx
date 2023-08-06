@@ -6,6 +6,7 @@ import {apiUrl} from "../../config/api";
 import './PlanDetailsTable.css'
 import {IconContext} from "react-icons";
 import {TbHeartbeat} from "react-icons/tb";
+import {useParams} from "react-router-dom";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -14,23 +15,48 @@ export const PlanDetailsTable = () => {
 
     const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'
 
+    const params = useParams();
+
     useEffect(() => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-detail/details`, {
-            method: 'GET'
-        }).then(res => res.json())
-            .then((details) => {
-                setDetailsList(details)
+        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
+            method: 'GET',
+        })
+            .then(r => r.json())
+            .then((plan) => {
+
+                if (!plan || plan.length === 0) {
+                    console.log('Brak planu.')
+                } else {
+                    return fetch(`${apiUrl}/api/add-detail/details?planId=${plan[0].id}`, {
+                        method: 'GET',
+
+                    }).then(res => res.json())
+                        .then((details) => {
+                            if (!details) {
+                                return Promise.reject('Brak szczegółów planu.')
+                            } else {
+                                setDetailsList(details);
+                                // setIsLoading(false);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("An error occurred when fetching details", error);
+                            // setIsLoading(false);
+                        });
+                }
             })
 
         return () => {
             try {
                 abortController.abort()
-            } catch {}
+            } catch {
+            }
         };
-    }, [])
+
+    }, [params.slug])
 
     const closeModal = () => {
         setInformationModalIsOpen(false);
