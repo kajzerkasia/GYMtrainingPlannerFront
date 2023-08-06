@@ -62,14 +62,11 @@ Składa się z następujących części i możliwości:
 #### *czego nie zdążyłam zrobić ze względu na deadline?
 * dodać więcej testów
 * uporządkować style
-* dodać walidację adresu URL przy dodawaniu (zrobione w wersji developerskiej)
 * dodać sanitize na frontendzie
 * dodać więcej obsługi błędów
 
 ## Pomysły na rozbudowanie aplikacji 📈
-* możliwość dodawania większej ilości planów treningowych (done)
 * tryb admina (trenera) i tryb użytkownika (podopiecznego)
-* dodanie kalendarza do planowania treningów w dane dni oraz zaznaczania początku i końca planu treningowego (in progress)
 * możliwość zapisywania swoich postępów przez podopiecznych
 
 ## Fun fact 🤡
@@ -148,14 +145,11 @@ Training plan details:
 #### *what I didn't manage to do because of the deadline?
 * add more tests
 * organize styles
-* add url validation on add (made on development version)
 * add sanitize on frontend
 * add more error handling
 
 ## Ideas for extending the application 📈
-* the ability to add more training plans (done)
 * admin (trainer) and user (protege) mode
-* adding a calendar for planning training on given days and marking the beginning and end of the training plan (in progress)
 * proteges can save their progress
 
 ## Fun fact 🤡
