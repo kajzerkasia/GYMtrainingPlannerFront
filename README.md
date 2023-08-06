@@ -47,7 +47,7 @@ Składa się z następujących części i możliwości:
 
 #### Kliknij w screen poniżej aby przejść do filmu, który przedstawia działanie aplikacji. ⬇️⬇️⬇️
 
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/fUGJYWbEydE)
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/bYCs57uR3gE)
 
 ## Zastosowane technologie:
 
@@ -136,7 +136,7 @@ Training plan details:
 
 #### Click on the screen below to go to the video that shows how the application works. ⬇️⬇️⬇️
 
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/fUGJYWbEydE)
+[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/bYCs57uR3gE)
 
 ## Technologies used
 
