@@ -5,7 +5,6 @@ import './Sidebar.css';
 interface SidebarProps {
     id: string;
     isOpen: boolean;
-    onClose: () => void;
     selectedEvent: MyEvent | null;
     onEditEvent: (id: string, eventToUpdate: MyEvent) => Promise<void>;
     onDeleteEvent: (id: string) => Promise<void>;
@@ -18,7 +17,6 @@ interface SidebarProps {
 export const Sidebar: React.FC<SidebarProps> = ({
                                                     id,
                                                     isOpen,
-                                                    onClose,
                                                     selectedEvent,
                                                     onEditEvent,
                                                     onDeleteEvent,
@@ -27,7 +25,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                                     onStartTimeChange,
                                                     onEndTimeChange,
                                                 }) => {
-    if (!isOpen || !selectedEvent) {
+
+    if (!isOpen || !selectedEvent || id !== selectedEvent.id) {
         return null;
     }
 
@@ -65,11 +64,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </button>
             <button
                 className="sidebar-button"
-                onClick={() => onDeleteEvent(id)}>Usuń wydarzenie
+                onClick={() => onDeleteEvent(id)}>Usuń trening
             </button>
-            <button
-                className="sidebar-button"
-                onClick={onClose}>Zamknij</button>
         </div>
     );
 };

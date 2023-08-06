@@ -76,9 +76,10 @@ export const PlanSelector = ({
                 onChange={(e) => setEndTime(e.target.value)}
             />
             <button
-                className="add-event-button"
+                className="plan-selector-button"
                 onClick={() => onAddEvent(startTime, endTime)}
-            >Dodaj</button>
+            >Dodaj
+            </button>
         </div>
     );
 };

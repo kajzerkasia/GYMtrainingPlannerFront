@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import Modal from "react-modal";
 import './CalendarModal.css'
 import {BasicCalendar} from "../BasicCalendar/BasicCalendar";
+import {Accordion} from "../Accordion/Accordion";
 
 Modal.setAppElement('#root');
 
@@ -13,7 +14,14 @@ export type CalendarModalProps = {
     text: string;
 };
 
-export const CalendarModal = ({isOpen, onRequestClose, onConfirm, onCancel, text}: CalendarModalProps) => {
+export const CalendarModal = ({ isOpen, onRequestClose, onCancel }: CalendarModalProps) => {
+
+    const [showInstructions, setShowInstructions] = useState(true);
+
+    const toggleInstructions = () => {
+        setShowInstructions(!showInstructions);
+    };
+
     return (
         <Modal
             isOpen={isOpen}
@@ -23,7 +31,13 @@ export const CalendarModal = ({isOpen, onRequestClose, onConfirm, onCancel, text
             closeTimeoutMS={1200}
         >
             <div className="div-calendar-info">
-                <p>Kliknij w dany dzień, a następnie wybierz plan treningowy, część planu oraz planowaną godzinę ropoczęcia i zakończenia treningu. Zawsze możesz edytować dany trening klikając na niego i zmieniając jego godziny.</p>
+                <Accordion
+                    title="Jak to działa?"
+                    isOpen={showInstructions}
+                    toggleAccordion={toggleInstructions}
+                >
+                <p>Kliknij w dany dzień, a następnie wybierz plan treningowy, część planu oraz planowaną godzinę ropoczęcia i zakończenia treningu. Zawsze możesz edytować dany trening klikając w niego i zmieniając jego godziny. Klikając ponownie w dany dzień bez treningu lub w istniejący trening zamykasz okno dodawnia/edytowania treningu.</p>
+                </Accordion>
             </div>
             <div style={{ height: "80vh"}} className="div-calendar">
                 <BasicCalendar/>
