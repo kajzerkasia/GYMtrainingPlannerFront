@@ -1,0 +1,43 @@
+/* Add this class to the parent container of the Accordion */
+.accordion-container {
+    position: relative;
+}
+
+/* Styling for the Accordion */
+.accordion {
+    border: 1px solid #ccc;
+    margin-bottom: 3px;
+}
+
+.accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.accordion-title {
+    font-weight: bold;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion-icon {
+    font-size: 18px;
+}
+
+.accordion-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 10px;
+    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+    z-index: 1;
+}

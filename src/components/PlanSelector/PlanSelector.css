@@ -48,7 +48,7 @@
     color: #310942;
 }
 
-.add-event-button {
+.plan-selector-button {
     margin-top: 10px;
     padding: 8px 12px;
     background-color: transparent;
@@ -59,7 +59,7 @@
     width: 100%;
 }
 
-.add-event-button:hover {
+.plan-selector-button:hover {
     background-color: #d495e2;
 }
 

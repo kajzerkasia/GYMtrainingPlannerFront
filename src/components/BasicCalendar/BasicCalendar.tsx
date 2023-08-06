@@ -42,6 +42,7 @@ export const BasicCalendar = () => {
     const [selectedEvent, setSelectedEvent] = useState<MyEvent | null>(null);
     const [startTime, setStartTime] = useState("");
     const [endTime, setEndTime] = useState("");
+    const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
 
     useEffect(() => {
         fetchTrainingPlans()
@@ -287,13 +288,26 @@ export const BasicCalendar = () => {
     };
 
     const handleEventClick = (event: MyEvent) => {
-        // console.log("Kliknięto wydarzenie, ID:", event.id);
-        // Ustawienie wybranej godziny rozpoczęcia i zakończenia na podstawie wydarzenia, które jest edytowane
-        setStartTime(event.startTime);
-        setEndTime(event.endTime);
+        // Jeśli kliknięto w to samo wydarzenie, co aktualnie wybrane, to zamknij sidebar
+        if (selectedEventId === event.id) {
+            setSelectedEventId(null);
+            setIsSidebarOpen(false);
+        } else {
+            // W przeciwnym razie, ustaw wybrane wydarzenie i otwórz sidebar
 
-        setSelectedEvent(event);
-        setIsSidebarOpen(true);
+            setSelectedEventId(event.id ? event.id : null);
+            setStartTime(event.startTime);
+            setEndTime(event.endTime);
+            setSelectedEvent(event);
+            setIsSidebarOpen(true);
+        }
+    };
+
+    const formatFullDate = (date: Date) => {
+        const monthName = date.toLocaleString('pl', { month: 'long' });
+        const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
+        const year = date.getFullYear();
+        return `${capitalizedMonth} ${year}`;
     };
 
     return (
@@ -321,7 +335,10 @@ export const BasicCalendar = () => {
                 onSelectEvent={handleEventClick}
                 defaultView="month"
                 views={["month",]}
-                formats={{dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do')}}
+                formats={{
+                    monthHeaderFormat: (date) => formatFullDate(date),
+                    dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do'),
+                }}
                 dayPropGetter={(date) => {
                     const isSelectedDate = selectedDate ? moment(selectedDate).isSame(date, 'day') : false;
                     return isSelectedDate ? {className: 'selected-date'} : {};
@@ -338,7 +355,6 @@ export const BasicCalendar = () => {
             <Sidebar
                 id={selectedEvent?.id || ""}
                 isOpen={isSidebarOpen}
-                onClose={() => setIsSidebarOpen(false)}
                 selectedEvent={selectedEvent}
                 onEditEvent={handleEditEvent}
                 onDeleteEvent={handleDeleteEvent}
