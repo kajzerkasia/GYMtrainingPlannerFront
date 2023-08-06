@@ -179,7 +179,7 @@ export const PartsOfPlanTable = () => {
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>
-                                <Link to="/details"><TbDotsVertical/></Link>
+                                <Link to={`/details/${params.slug}`}><TbDotsVertical/></Link>
                             </IconContext.Provider>
                         </td>
                     </tr>
@@ -208,7 +208,7 @@ export const PartsOfPlanTable = () => {
                         />
                         <td className="td-progression-rules">
                             <IconContext.Provider value={{className: 'react-icons-progression'}}>
-                                <Link to="/rules"><TbStairsUp/></Link>
+                                <Link to={`/rules/${params.slug}`}><TbStairsUp /></Link>
                             </IconContext.Provider>
                         </td>
                     </tr>

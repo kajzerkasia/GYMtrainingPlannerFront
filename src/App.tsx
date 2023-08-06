@@ -19,8 +19,8 @@ export const App = () => {
                 <Route path="/list" element={<PlansList/>}/>
                 <Route path="/plans/:slug" element={<PartsOfPlanTable/>}/>
                 <Route path="/exercises/:slug" element={<ExercisesTable/>}/>
-                <Route path="/rules" element={<RulesTable/>}/>
-                <Route path="/details" element={<PlanDetailsTable/>}/>
+                <Route path="/rules/:slug" element={<RulesTable/>}/>
+                <Route path="/details/:slug" element={<PlanDetailsTable/>}/>
                 <Route path="/instruction" element={<Instruction/>}/>
                 <Route path="*" element={<Error/>}/>
             </Routes>
