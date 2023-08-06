@@ -5,7 +5,7 @@ import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
 import {InformationModal} from "../InformationModal/InformationModal";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import './RulesTable.css';
 import {apiUrl} from "../../config/api";
 
@@ -21,40 +21,91 @@ export const RulesTable = () => {
 
     const textInformation = 'Należy podać treść zasady progresji!'
 
+    const params = useParams();
+
     useEffect(() => {
 
         const abortController = new AbortController();
 
-        fetch(`${apiUrl}/api/add-rule/rules`, {
-            method: 'GET'
-        }).then(res => res.json())
-            .then((rules) => {
-                setRulesList(rules)
+        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
+            method: 'GET',
+        })
+            .then(r => r.json())
+            .then((plan) => {
+
+                if (!plan || plan.length === 0) {
+                    console.log('Brak planu.')
+                } else {
+                    return fetch(`${apiUrl}/api/add-rule/rules?planId=${plan[0].id}`, {
+                        method: 'GET',
+
+                    }).then(res => res.json())
+                        .then((rules) => {
+                            if (!rules) {
+                                return Promise.reject('Brak zasad dla wybranego planu.')
+                            } else {
+                                setRulesList(rules);
+                                // setIsLoading(false);
+                            }
+                        })
+                        .catch((error) => {
+                            console.error("An error occurred when fetching details", error);
+                            // setIsLoading(false);
+                        });
+                }
             })
 
         return () => {
             try {
                 abortController.abort()
-            } catch {}
+            } catch {
+            }
         };
-    }, [])
+
+    }, [params.slug])
 
     const closeModal = () => {
         setInformationModalIsOpen(false);
     };
 
     const addRule = async (values: RuleEntity) => {
-        const res = await fetch(`${apiUrl}/api/add-rule/rules`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
+        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
+            method: 'GET',
         })
+            .then(r => r.json())
+            .then(async (plan) => {
+                if (!plan || plan.length === 0) {
+                    console.log('Brak planu.')
+                } else {
 
-        const data = await res.json();
-        setRulesList(list => [...list, data]);
+                    const res = await fetch(`${apiUrl}/api/add-rule/rules?planId=${plan[0].id}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({...values, planId: plan[0].id}),
+                    })
+
+                    const data = await res.json();
+
+                    setRulesList(list => [...list, data]);
+
+                }
+            })
     };
+
+    // const addRule = async (values: RuleEntity) => {
+    //     const res = await fetch(`${apiUrl}/api/add-rule/rules`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify(values),
+    //     })
+    //
+    //     const data = await res.json();
+    //     setRulesList(list => [...list, data]);
+    // };
 
     const editRule = async (values: RuleEntity) => {
         setIsEdited(false);
