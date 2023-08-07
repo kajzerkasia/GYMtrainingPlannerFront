@@ -75,7 +75,7 @@ export const ExercisesTable = () => {
                             }
                         })
                         .catch((error) => {
-                            console.error("An error occurred when fetching exercises data:", error);
+                            console.error("Wystąpił błąd podczas próby pobrania danych o ćwiczeniach.", error);
                             setIsLoading(false);
                         });
                 }
@@ -177,7 +177,7 @@ export const ExercisesTable = () => {
     if (isLoading || !exercisesList) {
         return (
             <div className="spinner_container">
-                <div className="div_loading">Loading exercises data...</div>
+                <div className="div_loading">Ładowanie ćwiczeń...</div>
                 <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
             </div>
         );

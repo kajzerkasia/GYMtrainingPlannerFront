@@ -35,7 +35,7 @@ export const PlansList = () => {
                 setIsLoading(false);
             })
             .catch((error) => {
-                console.error("An error occurred when fetching plans data:", error);
+                console.error("Wystąpił błąd podczas próby pobrania danych o planach treningowych:", error);
                 setIsLoading(false);
             });
 
@@ -126,7 +126,7 @@ export const PlansList = () => {
     if (isLoading || !plansList) {
         return (
             <div className="spinner_container">
-                <div className="div_loading">Loading plans data...</div>
+                <div className="div_loading">Ładowanie planów treningowych...</div>
                 <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
             </div>
         );
