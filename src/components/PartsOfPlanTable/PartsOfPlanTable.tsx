@@ -54,7 +54,7 @@ export const PartsOfPlanTable = () => {
                             }
                         })
                         .catch((error) => {
-                            console.error("An error occurred when fetching parts of plan data:", error);
+                            console.error("Wystąpił błąd podczas próby pobrania danych o częściach planu:", error);
                             setIsLoading(false);
                         });
                 }
@@ -158,7 +158,7 @@ export const PartsOfPlanTable = () => {
     if (isLoading || !partsOfPlanList) {
         return (
             <div className="spinner_container">
-                <div className="div_loading">Loading parts of plan data...</div>
+                <div className="div_loading">Ładowanie częsci planu..</div>
                 <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
             </div>
         );
