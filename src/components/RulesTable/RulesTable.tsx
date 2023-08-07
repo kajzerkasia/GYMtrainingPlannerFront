@@ -8,6 +8,7 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {Link, useParams} from "react-router-dom";
 import './RulesTable.css';
 import {apiUrl} from "../../config/api";
+import {MoonLoader} from "react-spinners";
 
 export const RulesTable = () => {
 
@@ -16,6 +17,8 @@ export const RulesTable = () => {
     const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
     const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const [planName, setPlanName] = useState("");
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
 
@@ -36,6 +39,7 @@ export const RulesTable = () => {
                 if (!plan || plan.length === 0) {
                     console.log('Brak planu.')
                 } else {
+                    setPlanName(plan[0].name);
                     return fetch(`${apiUrl}/api/add-rule/rules?planId=${plan[0].id}`, {
                         method: 'GET',
 
@@ -45,12 +49,12 @@ export const RulesTable = () => {
                                 return Promise.reject('Brak zasad dla wybranego planu.')
                             } else {
                                 setRulesList(rules);
-                                // setIsLoading(false);
+                                setIsLoading(false);
                             }
                         })
                         .catch((error) => {
-                            console.error("An error occurred when fetching details", error);
-                            // setIsLoading(false);
+                            console.error("Wystąpił błąd podczas pobierania danych o zasadach progresji.", error);
+                            setIsLoading(false);
                         });
                 }
             })
@@ -93,19 +97,6 @@ export const RulesTable = () => {
                 }
             })
     };
-
-    // const addRule = async (values: RuleEntity) => {
-    //     const res = await fetch(`${apiUrl}/api/add-rule/rules`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(values),
-    //     })
-    //
-    //     const data = await res.json();
-    //     setRulesList(list => [...list, data]);
-    // };
 
     const editRule = async (values: RuleEntity) => {
         setIsEdited(false);
@@ -162,11 +153,23 @@ export const RulesTable = () => {
         setRuleToDeleteId(null);
     };
 
+    if (isLoading || !rulesList) {
+        return (
+            <div className="spinner_container">
+                <div className="div_loading">Ładowanie zasad progresji...</div>
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+            </div>
+        );
+    }
+
     return (
         <div className="rules-wrapper">
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
+            <div className="inner-container">
+                <h2>{planName}</h2>
+            </div>
             <table className="rules-table">
                 <thead>
                 <tr className="tr-add">
