@@ -39,7 +39,7 @@ export const CalendarModal = ({ isOpen, onRequestClose, onCancel }: CalendarModa
                 <p>Kliknij w dany dzień, a następnie wybierz plan treningowy, część planu oraz planowaną godzinę ropoczęcia i zakończenia treningu. Zawsze możesz edytować dany trening klikając w niego i zmieniając jego godziny. Klikając ponownie w dany dzień bez treningu lub w istniejący trening zamykasz okno dodawnia/edytowania treningu.</p>
                 </Accordion>
             </div>
-            <div style={{ height: "80vh"}} className="div-calendar">
+            <div style={{ height: "730px"}} className="div-calendar">
                 <BasicCalendar/>
             </div>
             <div className="div-btn-back-container">
