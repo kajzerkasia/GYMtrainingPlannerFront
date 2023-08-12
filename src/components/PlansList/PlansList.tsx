@@ -9,6 +9,8 @@ import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
+import {isDemoEnabled} from "../hooks/env";
+import {DemoModal} from "../DemoModal/DemoModal";
 
 export const PlansList = () => {
 
@@ -17,9 +19,12 @@ export const PlansList = () => {
     const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
     const [planToDeleteId, setPlanToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(true);
     const [isLoading, setIsLoading] = useState(true);
 
     const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
+
+    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy podać nazwę planu!'
 
@@ -49,6 +54,10 @@ export const PlansList = () => {
 
     const closeModal = () => {
         setInformationModalIsOpen(false);
+    };
+
+    const closeDemoModal = () => {
+        setDemoModalIsOpen(false);
     };
 
     const addPlan = async (values: PlanEntity) => {
@@ -133,6 +142,7 @@ export const PlansList = () => {
     }
 
     return (
+        <>
         <div className="parts-wrapper">
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
@@ -222,6 +232,16 @@ export const PlansList = () => {
                 onCancel={closeModal}
                 text={textInformation}
             />
+            {isDemoEnabled() && (
+                <DemoModal
+                    isOpen={demoModalIsOpen}
+                    onRequestClose={closeDemoModal}
+                    onConfirm={closeDemoModal}
+                    onCancel={closeDemoModal}
+                    text={demoText}
+                />
+            )}
         </div>
+        </>
     )
 }
