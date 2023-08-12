@@ -194,7 +194,6 @@ export const ExercisesTable = () => {
                         <h3>Nazwa planu: {planInfo.name}</h3>
                     )}
                     <p>Nazwa części planu: {partName}</p>
-                    <h3>Ćwiczenia:</h3>
                 </div>
             </div>
             <table className="exercises-table">
