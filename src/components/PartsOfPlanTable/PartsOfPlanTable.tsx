@@ -8,12 +8,13 @@ import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../hooks/env";
+import {isDemoEnabled} from "../../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../hooks/demoText";
+import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
+import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 
 export const PartsOfPlanTable = () => {
 
@@ -27,10 +28,6 @@ export const PartsOfPlanTable = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
-
-    const text = 'Czy na pewno chcesz usunąć tę część planu? Spowoduje to także usunięcie wszystkich ćwiczeń przypisanych do tej części planu';
-
-    const textInformation = 'Należy podać nazwę części planu!'
 
     useEffect(() => {
 

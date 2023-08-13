@@ -1,0 +1,1 @@
+export const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'

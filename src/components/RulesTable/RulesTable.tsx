@@ -7,12 +7,13 @@ import {Link, useParams} from "react-router-dom";
 import './RulesTable.css';
 import {apiUrl} from "../../config/api";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../hooks/env";
+import {isDemoEnabled} from "../../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../hooks/demoText";
+import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
+import {text, textInformation} from "../../constants/rulesTableTexts";
 
 export const RulesTable = () => {
 
@@ -24,10 +25,6 @@ export const RulesTable = () => {
     const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
     const [planName, setPlanName] = useState("");
-
-    const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
-
-    const textInformation = 'Należy podać treść zasady progresji!'
 
     const params = useParams();
 
