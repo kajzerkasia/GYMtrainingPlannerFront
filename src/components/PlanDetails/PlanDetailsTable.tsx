@@ -4,13 +4,14 @@ import {PlanDetailsForm} from "./PlanDetailsForm";
 import {apiUrl} from "../../config/api";
 import './PlanDetailsTable.css'
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbHeartbeat} from "react-icons/tb";
+import {TbHeartbeat} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import {MoonLoader} from "react-spinners";
-import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../hooks/demoText";
+import {InformationModal} from "../InformationModal/InformationModal";
+import {DemoModal} from "../DemoModal/DemoModal";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -161,22 +162,18 @@ export const PlanDetailsTable = () => {
             <button className="btn-back-exercises" onClick={() => window.history.back()}>
                 Powrót
             </button>
-            <ReusableModal
+            <InformationModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
                 text={textInformation}
-                icon={TbAlertTriangle}
-                confirmText="Rozumiem"
             />
             {demoModalIsOpen && (
-                <ReusableModal
+                <DemoModal
                     isOpen={demoModalIsOpen}
                     onRequestClose={closeDemoModal}
                     onConfirm={closeDemoModal}
                     text={demoText}
-                    icon={TbAlertTriangle}
-                    confirmText="OK"
                 />
             )}
         </div>

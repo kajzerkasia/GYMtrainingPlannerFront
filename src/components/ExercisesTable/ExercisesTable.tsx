@@ -2,15 +2,17 @@ import React, {useEffect, useState} from "react";
 import {ExerciseEntity, PlanEntity, Status} from 'types';
 import {ExercisesForm} from "./ExercisesForm";
 import {Link, useParams} from "react-router-dom";
-import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
-import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../hooks/demoText";
+import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
+import {InformationModal} from "../InformationModal/InformationModal";
+import {DemoModal} from "../DemoModal/DemoModal";
 
 export const validateURL = (url: string) => {
     try {
@@ -326,32 +328,25 @@ export const ExercisesTable = () => {
                     Powrót do części planu
                 </button>
             </div>
-            <ReusableModal
+            <ConfirmDeleteModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
-                icon={TbAlertTriangle}
-                confirmText="Tak"
-                cancelText="Nie"
             />
-            <ReusableModal
+            <InformationModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
                 text={textInformation}
-                icon={TbAlertTriangle}
-                confirmText="Rozumiem"
             />
             {demoModalIsOpen && (
-                <ReusableModal
+                <DemoModal
                     isOpen={demoModalIsOpen}
                     onRequestClose={closeDemoModal}
                     onConfirm={closeDemoModal}
                     text={demoText}
-                    icon={TbAlertTriangle}
-                    confirmText="OK"
                 />
             )}
         </div>
