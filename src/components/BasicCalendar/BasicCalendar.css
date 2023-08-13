@@ -18,7 +18,11 @@
 .rbc-btn-group button {
     color: #E6E6FA !important;
 }
-.rbc-btn-group button.rbc-active {
+
+.rbc-btn-group button.rbc-active,
+.rbc-btn-group button.rbc-active:hover,
+.rbc-btn-group button:active,
+.rbc-btn-group button:focus {
     background-color: #d495e2 !important;
 }
 

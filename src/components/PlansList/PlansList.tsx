@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {PlanEntity, Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
-import {InformationModal} from "../InformationModal/InformationModal";
 import {Link} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
+import {isDemoEnabled} from "../hooks/env";
+import {ReusableModal} from "../ReusableModal/ReusableModal";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 export const PlansList = () => {
 
@@ -17,9 +18,12 @@ export const PlansList = () => {
     const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
     const [planToDeleteId, setPlanToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
+
+    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy podać nazwę planu!'
 
@@ -51,20 +55,28 @@ export const PlansList = () => {
         setInformationModalIsOpen(false);
     };
 
+    const closeDemoModal = () => {
+        setDemoModalIsOpen(false);
+    };
+
     const addPlan = async (values: PlanEntity) => {
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true); // Otwórz demoModal, jeśli demo jest włączone
+        } else if (values.name) {
+            const res = await fetch(`${apiUrl}/api/add-plan/list`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
 
-        const res = await fetch(`${apiUrl}/api/add-plan/list`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-        })
+            const data = await res.json();
 
-        const data = await res.json();
-
-        setPlansList(list => [...list, data]);
-
+            setPlansList(list => [...list, data]);
+        } else {
+            setInformationModalIsOpen(true); // Otwórz informationModal, jeśli brakuje nazwy planu
+        }
     };
 
     const editPlan = async (values: PlanEntity) => {
@@ -133,12 +145,14 @@ export const PlansList = () => {
     }
 
     return (
+        <>
         <div className="parts-wrapper">
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
 
             <div className="main-plan">
+                <DemoSign/>
                 <table className="main-table">
 
                     <thead>
@@ -166,12 +180,8 @@ export const PlansList = () => {
                                 name: '',
                             }}
                             onSubmit={async (values, reset) => {
-                                if (values.name) {
-                                    await addPlan(values);
-                                    reset();
-                                } else {
-                                    setInformationModalIsOpen(true);
-                                }
+                                await addPlan(values);
+                                reset();
                             }}
                             actionType={Status.Add}
                         />
@@ -208,20 +218,35 @@ export const PlansList = () => {
                     </tbody>
                 </table>
             </div>
-            <ConfirmationModal
+            <ReusableModal
                 isOpen={confirmDeletePlan}
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
+                icon={TbAlertTriangle}
+                confirmText="Tak"
+                cancelText="Nie"
             />
-            <InformationModal
+            <ReusableModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
-                onCancel={closeModal}
                 text={textInformation}
+                icon={TbAlertTriangle}
+                confirmText="Rozumiem"
             />
+            {demoModalIsOpen && (
+                <ReusableModal
+                    isOpen={demoModalIsOpen}
+                    onRequestClose={closeDemoModal}
+                    onConfirm={closeDemoModal}
+                    text={demoText}
+                    icon={TbAlertTriangle}
+                    confirmText="OK"
+                />
+            )}
         </div>
+        </>
     )
 }

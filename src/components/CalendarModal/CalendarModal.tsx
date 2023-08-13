@@ -48,3 +48,5 @@ export const CalendarModal = ({ isOpen, onRequestClose, onCancel }: CalendarModa
         </Modal>
     );
 };
+
+// Dodać wszędzie demo dodal przy dodawaniu, usuwanie, edytowaniu.

@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {PartOfPlanEntity, Status} from 'types';
-import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
-import {InformationModal} from "../InformationModal/InformationModal";
 import {Link, useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
+import {ReusableModal} from "../ReusableModal/ReusableModal";
 
 export const PartsOfPlanTable = () => {
 
@@ -246,19 +245,23 @@ export const PartsOfPlanTable = () => {
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-            <ConfirmationModal
+            <ReusableModal
                 isOpen={confirmDeletePart}
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
+                icon={TbAlertTriangle}
+                confirmText="Tak"
+                cancelText="Nie"
             />
-            <InformationModal
+            <ReusableModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
-                onCancel={closeModal}
                 text={textInformation}
+                icon={TbAlertTriangle}
+                confirmText="Rozumiem"
             />
         </div>
     )

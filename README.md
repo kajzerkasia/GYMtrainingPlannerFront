@@ -1,8 +1,5 @@
 # Gym Training Planner 🏋️‍♀️💪
 
-## ❤️DEMO❤️
-## https://kk.networkmanager.pl/
-
 ## Polish version of README:
 
 #### Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?
@@ -65,14 +62,11 @@ Składa się z następujących części i możliwości:
 #### *czego nie zdążyłam zrobić ze względu na deadline?
 * dodać więcej testów
 * uporządkować style
-* dodać walidację adresu URL przy dodawaniu
 * dodać sanitize na frontendzie
 * dodać więcej obsługi błędów
 
 ## Pomysły na rozbudowanie aplikacji 📈
-* możliwość dodawania większej ilości planów treningowych
 * tryb admina (trenera) i tryb użytkownika (podopiecznego)
-* dodanie kalendarza do planowania treningów w dane dni oraz zaznaczania początku i końca planu treningowego
 * możliwość zapisywania swoich postępów przez podopiecznych
 
 ## Fun fact 🤡
@@ -88,9 +82,6 @@ Aby mieć czas na tworzenie tego projektu, zrezygnowałam z chodzenia na siłown
 #
 
 # Gym Training Planner 🏋️‍♀️💪
-
-## ❤️DEMO❤️
-## https://kk.networkmanager.pl/
 
 ## English version of README:
 
@@ -154,14 +145,11 @@ Training plan details:
 #### *what I didn't manage to do because of the deadline?
 * add more tests
 * organize styles
-* add url validation on add
 * add sanitize on frontend
 * add more error handling
 
 ## Ideas for extending the application 📈
-* the ability to add more training plans
 * admin (trainer) and user (protege) mode
-* adding a calendar for planning training on given days and marking the beginning and end of the training plan
 * proteges can save their progress
 
 ## Fun fact 🤡
