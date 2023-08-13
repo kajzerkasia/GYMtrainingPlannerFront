@@ -4,7 +4,7 @@ import moment from "moment";
 import "moment/locale/pl";
 import './BasicCalendar.css';
 import {PlanEntity, PartOfPlanEntity, EventEntity} from 'types';
-import {fetchPlanParts, fetchTrainingPlans} from "../../hooks/fetchingFunctions";
+import {fetchPlanParts, fetchTrainingPlans} from "../../helpers/fetchingFunctions";
 import {PlanSelector} from "../PlanSelector/PlanSelector";
 import {apiUrl} from "../../config/api";
 import {Sidebar} from "../Sidebar/Sidebar";

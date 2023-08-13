@@ -7,22 +7,30 @@ import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/plansListTexts";
+import {useModal} from "../../hooks/useModal";
 
 export const PlansList = () => {
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     const [plansList, setPlansList] = useState<PlanEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
     const [planToDeleteId, setPlanToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -48,14 +56,6 @@ export const PlansList = () => {
             }
         };
     }, [])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addPlan = async (values: PlanEntity) => {
         if (isDemoEnabled()) {

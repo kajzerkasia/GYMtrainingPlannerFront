@@ -7,22 +7,30 @@ import {Link, useParams} from "react-router-dom";
 import './RulesTable.css';
 import {apiUrl} from "../../config/api";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
+import {useModal} from "../../hooks/useModal";
 
 export const RulesTable = () => {
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
     const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
     const [planName, setPlanName] = useState("");
 
@@ -69,14 +77,6 @@ export const RulesTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addRule = async (values: RuleEntity) => {
 
