@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { isDemoEnabled } from '../hooks/env';
+import { isDemoEnabled } from '../../hooks/env';
 import './DemoSign.css';
 import { IconContext } from 'react-icons';
 import { TbAlertTriangle } from 'react-icons/tb';

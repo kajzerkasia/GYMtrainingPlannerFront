@@ -7,12 +7,13 @@ import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../hooks/env";
+import {isDemoEnabled} from "../../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../hooks/demoText";
+import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
+import {text, textInformation} from "../../constants/plansListTexts";
 
 export const PlansList = () => {
 
@@ -23,10 +24,6 @@ export const PlansList = () => {
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
-
-    const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
-
-    const textInformation = 'Należy podać nazwę planu!'
 
     useEffect(() => {
         const abortController = new AbortController();

@@ -1,4 +1,4 @@
-import {apiUrl} from "../../config/api";
+import {apiUrl} from "../config/api";
 import {PlanEntity, PartOfPlanEntity} from 'types';
 
 export const fetchTrainingPlans = async (): Promise<PlanEntity[]> => {

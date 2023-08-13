@@ -7,12 +7,13 @@ import {IconContext} from "react-icons";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../hooks/env";
+import {isDemoEnabled} from "../../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../hooks/demoText";
+import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
+import {text, textInformation} from "../../constants/exercisesTableTexts";
 
 export const validateURL = (url: string) => {
     try {
@@ -36,10 +37,6 @@ export const ExercisesTable = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
-
-    const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
-
-    const textInformation = 'Należy wypełnić wszystkie pola dotyczące ćwiczenia!'
 
     useEffect(() => {
 
