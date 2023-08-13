@@ -120,8 +120,8 @@ export const PlansList = () => {
 
     const handleDeletePlan = async (planId: any) => {
         if (isDemoEnabled()) {
-            setDemoModalIsOpen(true); // Otwórz modal demo, jeśli demo jest włączone
-            setPlanToDeleteId(planId); // Ustaw ID planu do usunięcia, aby można było je przekazać w przypadku potwierdzenia
+            setDemoModalIsOpen(true);
+            setPlanToDeleteId(planId);
         } else {
             setConfirmDeletePlan(true);
             setPlanToDeleteId(planId);
@@ -265,4 +265,4 @@ export const PlansList = () => {
     )
 }
 
-// TODO: Zrobić resztę komponentów podobnie - pod demo, pomyśleć o refactorze wszystkich podobnych komponentów (Table)
+// TODO: Zrobić resztę komponentów podobnie - pod demo, pomyśleć o refactorze wszystkich podobnych komponentów (Table), zmienić kolor tabeli na taki jak był

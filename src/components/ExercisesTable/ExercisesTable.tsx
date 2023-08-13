@@ -8,6 +8,8 @@ import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
+import {isDemoEnabled} from "../hooks/env";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 export const validateURL = (url: string) => {
     try {
@@ -27,11 +29,14 @@ export const ExercisesTable = () => {
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [partName, setPartName] = useState("");
     const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 
     const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
+
+    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy wypełnić wszystkie pola dotyczące ćwiczenia!'
 
@@ -93,50 +98,89 @@ export const ExercisesTable = () => {
         setInformationModalIsOpen(false);
     };
 
-    const addExercise = async (values: ExerciseEntity) => {
-        fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
-            method: 'GET',
-        })
-            .then(r => r.json())
-            .then(async (planPart) => {
-                if (!planPart || planPart.length === 0) {
-                    console.log('Brak części planu.')
-                } else {
-                    const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({...values, partId: planPart[0].id}),
-                    })
-
-                    const data = await res.json();
-
-                    setExercisesList(list => [...list, data]);
-
-                }
-            })
+    const closeDemoModal = () => {
+        setDemoModalIsOpen(false);
     };
 
-    const editExercise = async (values: ExerciseEntity) => {
+
+    const addExercise = async (values: ExerciseEntity) => {
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true); // Otwórz demoModal, jeśli demo jest włączone
+        } else if (
+            values.order &&
+            values.name &&
+            values.series &&
+            values.repetitions &&
+            values.pause &&
+            values.tips &&
+            values.url &&
+            validateURL(values.url)) {
+            fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
+                method: 'GET',
+            })
+                .then(r => r.json())
+                .then(async (planPart) => {
+                    if (!planPart || planPart.length === 0) {
+                        console.log('Brak części planu.')
+                    } else {
+                        const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({...values, partId: planPart[0].id}),
+                        })
+
+                        const data = await res.json();
+
+                        setExercisesList(list => [...list, data]);
+
+                    }
+                })
+        } else {
+            values.url = 'Podaj poprawny adres URL';
+            setInformationModalIsOpen(true);
+        }
+    };
+
+    const editExercise = async (values: ExerciseEntity, reset: () => void) => {
 
         setIsEdited(false);
 
-        const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${values.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-        })
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            reset();
+        } else if (
+            values.order &&
+            values.name &&
+            values.series &&
+            values.repetitions &&
+            values.pause &&
+            values.tips &&
+            values.url &&
+            validateURL(values.url)) {
 
-        if (!res.ok) {
-            throw new Error('Wystąpił błąd podczas próby zaktualizowania ćwiczenia.');
+            const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${values.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            })
+
+            if (!res.ok) {
+                throw new Error('Wystąpił błąd podczas próby zaktualizowania ćwiczenia.');
+            }
+
+            setIsEdited(true);
+
+            return await res.json();
+
+        } else {
+            setInformationModalIsOpen(true);
+            reset();
+            values.url = 'Podaj poprawny adres URL';
         }
-
-        setIsEdited(true);
-
-        return await res.json();
 
     };
 
@@ -149,23 +193,32 @@ export const ExercisesTable = () => {
     };
 
     const handleDeleteExercise = async (exerciseId: any) => {
-        setConfirmDeleteExercise(true);
-        setExerciseToDeleteId(exerciseId);
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            setExerciseToDeleteId(exerciseId);
+        } else {
+            setConfirmDeleteExercise(true);
+            setExerciseToDeleteId(exerciseId);
+        }
     };
 
     const handleConfirmDelete = async () => {
-        const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${exerciseToDeleteId}`, {
-            method: 'DELETE',
-        });
-        if ([400, 500].includes(res.status)) {
-            const error = await res.json();
-            alert(`Wystąpił błąd: ${error.message}`);
-            return;
-        }
-        setExercisesList((exercisesList) =>
-            exercisesList.filter((exercise) => exercise.id !== exerciseToDeleteId)
-        );
-        setConfirmDeleteExercise(false);
+        if (isDemoEnabled()) {
+            closeDemoModal();
+        } else {
+            const res = await fetch(`${apiUrl}/api/add-exercise/exercises/${exerciseToDeleteId}`, {
+                method: 'DELETE',
+            });
+            if ([400, 500].includes(res.status)) {
+                const error = await res.json();
+                alert(`Wystąpił błąd: ${error.message}`);
+                return;
+            }
+            setExercisesList((exercisesList) =>
+                exercisesList.filter((exercise) => exercise.id !== exerciseToDeleteId)
+            );
+            setConfirmDeleteExercise(false);
+        };
     };
 
     const handleCancelDelete = () => {
@@ -177,7 +230,7 @@ export const ExercisesTable = () => {
         return (
             <div className="spinner_container">
                 <div className="div_loading">Ładowanie ćwiczeń...</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
             </div>
         );
     }
@@ -187,6 +240,7 @@ export const ExercisesTable = () => {
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
+            <DemoSign/>
             <div className="div-plan-info">
                 <div className="inner-container">
                     {planInfo && (
@@ -241,22 +295,8 @@ export const ExercisesTable = () => {
                             url: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            if (
-                                values.order &&
-                                values.name &&
-                                values.series &&
-                                values.repetitions &&
-                                values.pause &&
-                                values.tips &&
-                                values.url &&
-                                validateURL(values.url)
-                            ) {
-                                await addExercise(values);
-                                reset();
-                            } else {
-                                setInformationModalIsOpen(true);
-                                values.url = 'Podaj poprawny adres URL';
-                            }
+                            await addExercise(values);
+                            reset();
                         }}
                         actionType={Status.Add}
                     />
@@ -271,20 +311,9 @@ export const ExercisesTable = () => {
                         </td>
                         <ExercisesForm
                             initialValues={exercise}
-                            onSubmit={async (values) => {
-                                if (values.order && values.name && values.series && values.repetitions && values.pause && values.tips && values.url) {
-                                    await editExercise(values);
-                                    await handleUpdateExercise(values);
-                                } else {
-                                    setInformationModalIsOpen(true);
-                                    values.order = exercise.order;
-                                    values.name = exercise.name;
-                                    values.series = exercise.series;
-                                    values.repetitions = exercise.repetitions;
-                                    values.pause = exercise.pause;
-                                    values.tips = exercise.tips;
-                                    values.url = exercise.url;
-                                }
+                            onSubmit={async (values, reset) => {
+                                await editExercise(values, reset);
+                                await handleUpdateExercise(values);
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}
@@ -294,9 +323,9 @@ export const ExercisesTable = () => {
                 </tbody>
             </table>
             <div className="div-btn-back-exercises-container">
-            <button className="btn-back-exercises" onClick={() => window.history.back()}>
-                Powrót do części planu
-            </button>
+                <button className="btn-back-exercises" onClick={() => window.history.back()}>
+                    Powrót do części planu
+                </button>
             </div>
             <ReusableModal
                 isOpen={confirmDeleteExercise}
@@ -316,6 +345,16 @@ export const ExercisesTable = () => {
                 icon={TbAlertTriangle}
                 confirmText="Rozumiem"
             />
+            {demoModalIsOpen && (
+                <ReusableModal
+                    isOpen={demoModalIsOpen}
+                    onRequestClose={closeDemoModal}
+                    onConfirm={closeDemoModal}
+                    text={demoText}
+                    icon={TbAlertTriangle}
+                    confirmText="OK"
+                />
+            )}
         </div>
     )
 }

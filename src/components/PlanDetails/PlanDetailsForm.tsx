@@ -6,7 +6,7 @@ import './PlanDetailsTable.css'
 
 export type DetailFormProps = {
     initialValues: DetailEntity;
-    onSubmit: (values: DetailEntity) => void | Promise<void>;
+    onSubmit: (values: DetailEntity, reset: () => void) => void | Promise<void>;
     isEdited?: boolean;
 };
 
@@ -16,6 +16,10 @@ export const PlanDetailsForm = ({ initialValues = {
     schedule: ''
 }, onSubmit, isEdited}: DetailFormProps) => {
     const [values, setValues] = useState<DetailEntity>(() => initialValues);
+
+    const reset: () => void = () => {
+        setValues(initialValues);
+    };
 
     const handleChange: (field: keyof DetailEntity, value: string) => void = (field, value) => {
         setValues(localValues => ({
@@ -59,7 +63,7 @@ export const PlanDetailsForm = ({ initialValues = {
 
             <td className="td-detail">
                 <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
-                    <button type='button' onClick={() => onSubmit(values)}><TbCheck/></button>
+                    <button type='button' onClick={() => onSubmit(values, reset)}><TbCheck/></button>
                 </IconContext.Provider>
             </td>
         </>
