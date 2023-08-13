@@ -10,6 +10,7 @@ import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
+import {demoText} from "../hooks/demoText";
 
 export const validateURL = (url: string) => {
     try {
@@ -35,8 +36,6 @@ export const ExercisesTable = () => {
     const params = useParams();
 
     const text = 'Czy na pewno chcesz usunąć to ćwiczenie?';
-
-    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy wypełnić wszystkie pola dotyczące ćwiczenia!'
 

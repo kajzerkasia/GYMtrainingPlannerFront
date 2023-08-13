@@ -10,6 +10,7 @@ import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
+import {demoText} from "../hooks/demoText";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -20,8 +21,6 @@ export const PlanDetailsTable = () => {
     const [planName, setPlanName] = useState("");
 
     const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'
-
-    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const params = useParams();
 
