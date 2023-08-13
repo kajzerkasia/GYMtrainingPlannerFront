@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {ExerciseEntity, PlanEntity, Status} from 'types';
 import {ExercisesForm} from "./ExercisesForm";
 import {Link, useParams} from "react-router-dom";
@@ -15,6 +15,7 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/exercisesTableTexts";
 import {useModal} from "../../hooks/useModal";
+import {useExercisesTableLogic} from "../../hooks/useExercisesTableLogic";
 
 export const validateURL = (url: string) => {
     try {
@@ -28,6 +29,23 @@ export const validateURL = (url: string) => {
 export const ExercisesTable = () => {
 
     const {
+        exercisesList,
+        isEdited,
+        confirmDeleteExercise,
+        exerciseToDeleteId,
+        partName,
+        planInfo,
+        isLoading,
+        setExercisesList,
+        setIsEdited,
+        setConfirmDeleteExercise,
+        setExerciseToDeleteId,
+        setPartName,
+        setPlanInfo,
+        setIsLoading,
+    } = useExercisesTableLogic();
+
+    const {
         informationModalIsOpen,
         demoModalIsOpen,
         setInformationModalIsOpen,
@@ -35,14 +53,6 @@ export const ExercisesTable = () => {
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeleteExercise, setConfirmDeleteExercise] = useState<boolean>(false);
-    const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
-    const [partName, setPartName] = useState("");
-    const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 

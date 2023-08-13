@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {RuleEntity, Status} from 'types';
 import {RulesForm} from "./RulesForm";
 import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
@@ -15,8 +15,24 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
 import {useModal} from "../../hooks/useModal";
+import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
 
 export const RulesTable = () => {
+
+    const {
+        rulesList,
+        isEdited,
+        confirmDeleteRule,
+        ruleToDeleteId,
+        isLoading,
+        planName,
+        setRulesList,
+        setIsEdited,
+        setConfirmDeleteRule,
+        setRuleToDeleteId,
+        setIsLoading,
+        setPlanName,
+    } = useRulesTableLogic()
 
     const {
         informationModalIsOpen,
@@ -26,13 +42,6 @@ export const RulesTable = () => {
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
-    const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [planName, setPlanName] = useState("");
 
     const params = useParams();
 
