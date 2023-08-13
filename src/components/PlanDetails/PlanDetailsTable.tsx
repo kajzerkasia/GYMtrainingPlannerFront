@@ -7,11 +7,12 @@ import {IconContext} from "react-icons";
 import {TbHeartbeat} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../hooks/env";
+import {isDemoEnabled} from "../../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../hooks/demoText";
+import {demoText} from "../../constants/demoText";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
+import {textInformation} from "../../constants/planDetailsTableTexts";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -20,8 +21,6 @@ export const PlanDetailsTable = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [planName, setPlanName] = useState("");
-
-    const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'
 
     const params = useParams();
 
