@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {RuleEntity, Status} from 'types';
 import {RulesForm} from "./RulesForm";
 import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
@@ -7,24 +7,41 @@ import {Link, useParams} from "react-router-dom";
 import './RulesTable.css';
 import {apiUrl} from "../../config/api";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
+import {useModal} from "../../hooks/useModal";
+import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
 
 export const RulesTable = () => {
 
-    const [rulesList, setRulesList] = useState<RuleEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
-    const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [planName, setPlanName] = useState("");
+    const {
+        rulesList,
+        isEdited,
+        confirmDeleteRule,
+        ruleToDeleteId,
+        isLoading,
+        planName,
+        setRulesList,
+        setIsEdited,
+        setConfirmDeleteRule,
+        setRuleToDeleteId,
+        setIsLoading,
+        setPlanName,
+    } = useRulesTableLogic()
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     const params = useParams();
 
@@ -69,14 +86,6 @@ export const RulesTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addRule = async (values: RuleEntity) => {
 

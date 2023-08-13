@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {PartOfPlanEntity, Status} from 'types';
 import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
@@ -8,24 +8,41 @@ import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
+import {useModal} from "../../hooks/useModal";
+import {usePartsOfPlanTableLogic} from "../../hooks/usePartsOfPlanTableLogic";
 
 export const PartsOfPlanTable = () => {
 
-    const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
-    const [partToDeleteId, setPartToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [trainingPlanName, setTrainingPlanName] = useState('');
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const {
+        partsOfPlanList,
+        isEdited,
+        confirmDeletePart,
+        partToDeleteId,
+        trainingPlanName,
+        isLoading,
+        setPartsOfPlanList,
+        setIsEdited,
+        setConfirmDeletePart,
+        setPartToDeleteId,
+        setTrainingPlanName,
+        setIsLoading,
+    } = usePartsOfPlanTableLogic();
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     const params = useParams();
 
@@ -70,14 +87,6 @@ export const PartsOfPlanTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
         if (isDemoEnabled()) {

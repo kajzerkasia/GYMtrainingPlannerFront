@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {PlanEntity, Status} from 'types';
 import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle} from "react-icons/tb";
 import {IconContext} from "react-icons";
@@ -7,23 +7,39 @@ import {apiUrl} from "../../config/api";
 import './PlansList.css';
 import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/plansListTexts";
+import {useModal} from "../../hooks/useModal";
+import {usePlansListLogic} from "../../hooks/usePlansListLogic";
 
 export const PlansList = () => {
 
-    const [plansList, setPlansList] = useState<PlanEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
-    const [planToDeleteId, setPlanToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const {
+        plansList,
+        isEdited,
+        confirmDeletePlan,
+        planToDeleteId,
+        isLoading,
+        setPlansList,
+        setIsEdited,
+        setConfirmDeletePlan,
+        setPlanToDeleteId,
+        setIsLoading,
+    } = usePlansListLogic();
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -48,14 +64,6 @@ export const PlansList = () => {
             }
         };
     }, [])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addPlan = async (values: PlanEntity) => {
         if (isDemoEnabled()) {
