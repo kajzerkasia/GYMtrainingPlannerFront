@@ -10,6 +10,7 @@ import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
+import {demoText} from "../hooks/demoText";
 
 export const RulesTable = () => {
 
@@ -23,8 +24,6 @@ export const RulesTable = () => {
     const [planName, setPlanName] = useState("");
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
-
-    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy podać treść zasady progresji!'
 
