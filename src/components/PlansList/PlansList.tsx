@@ -10,6 +10,7 @@ import {MoonLoader} from "react-spinners";
 import {isDemoEnabled} from "../hooks/env";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {DemoSign} from "../DemoSign/DemoSign";
+import {demoText} from "../hooks/demoText";
 
 export const PlansList = () => {
 
@@ -22,8 +23,6 @@ export const PlansList = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
-
-    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy podać nazwę planu!'
 
