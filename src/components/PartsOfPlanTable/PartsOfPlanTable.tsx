@@ -8,23 +8,31 @@ import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
+import {useModal} from "../../hooks/useModal";
 
 export const PartsOfPlanTable = () => {
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
 
     const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
     const [partToDeleteId, setPartToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [trainingPlanName, setTrainingPlanName] = useState('');
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
@@ -70,14 +78,6 @@ export const PartsOfPlanTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const addPartOfPlan = async (values: PartOfPlanEntity) => {
         if (isDemoEnabled()) {

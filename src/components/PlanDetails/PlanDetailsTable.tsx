@@ -7,19 +7,28 @@ import {IconContext} from "react-icons";
 import {TbHeartbeat} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {textInformation} from "../../constants/planDetailsTableTexts";
+import {useModal} from "../../hooks/useModal";
 
 export const PlanDetailsTable = () => {
+
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
+
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [planName, setPlanName] = useState("");
 
     const params = useParams();
@@ -65,14 +74,6 @@ export const PlanDetailsTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
 
     const editDetail = async (values: DetailEntity, reset: () => void) => {
         setIsEdited(false);

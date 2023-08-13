@@ -7,13 +7,14 @@ import {IconContext} from "react-icons";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../hooks/env";
+import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/exercisesTableTexts";
+import {useModal} from "../../hooks/useModal";
 
 export const validateURL = (url: string) => {
     try {
@@ -26,14 +27,21 @@ export const validateURL = (url: string) => {
 
 export const ExercisesTable = () => {
 
+    const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        setInformationModalIsOpen,
+        setDemoModalIsOpen,
+        closeModal,
+        closeDemoModal,
+    } = useModal();
+
     const [exercisesList, setExercisesList] = useState<ExerciseEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [confirmDeleteExercise, setConfirmDeleteExercise] = useState<boolean>(false);
     const [exerciseToDeleteId, setExerciseToDeleteId] = useState(null);
-    const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [partName, setPartName] = useState("");
     const [planInfo, setPlanInfo] = useState<PlanEntity | null>(null);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
@@ -91,15 +99,6 @@ export const ExercisesTable = () => {
         };
 
     }, [params.slug])
-
-    const closeModal = () => {
-        setInformationModalIsOpen(false);
-    };
-
-    const closeDemoModal = () => {
-        setDemoModalIsOpen(false);
-    };
-
 
     const addExercise = async (values: ExerciseEntity) => {
         if (isDemoEnabled()) {
