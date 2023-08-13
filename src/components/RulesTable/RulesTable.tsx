@@ -1,13 +1,11 @@
-import React, {useEffect} from "react";
-import {RuleEntity, Status} from 'types';
+import React from "react";
+import {Status} from 'types';
 import {RulesForm} from "./RulesForm";
 import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './RulesTable.css';
-import {apiUrl} from "../../config/api";
 import {MoonLoader} from "react-spinners";
-import {isDemoEnabled} from "../../helpers/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
@@ -23,177 +21,22 @@ export const RulesTable = () => {
         rulesList,
         isEdited,
         confirmDeleteRule,
-        ruleToDeleteId,
         isLoading,
         planName,
-        setRulesList,
-        setIsEdited,
-        setConfirmDeleteRule,
-        setRuleToDeleteId,
-        setIsLoading,
-        setPlanName,
+        addRule,
+        editRule,
+        handleUpdateRule,
+        handleDeleteRule,
+        handleConfirmDelete,
+        handleCancelDelete,
     } = useRulesTableLogic()
 
     const {
         informationModalIsOpen,
         demoModalIsOpen,
-        setInformationModalIsOpen,
-        setDemoModalIsOpen,
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const params = useParams();
-
-    useEffect(() => {
-
-        const abortController = new AbortController();
-
-        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
-            method: 'GET',
-        })
-            .then(r => r.json())
-            .then((plan) => {
-
-                if (!plan || plan.length === 0) {
-                    console.log('Brak planu.')
-                } else {
-                    setPlanName(plan[0].name);
-                    return fetch(`${apiUrl}/api/add-rule/rules?planId=${plan[0].id}`, {
-                        method: 'GET',
-
-                    }).then(res => res.json())
-                        .then((rules) => {
-                            if (!rules) {
-                                return Promise.reject('Brak zasad dla wybranego planu.')
-                            } else {
-                                setRulesList(rules);
-                                setIsLoading(false);
-                            }
-                        })
-                        .catch((error) => {
-                            console.error("Wystąpił błąd podczas pobierania danych o zasadach progresji.", error);
-                            setIsLoading(false);
-                        });
-                }
-            })
-
-        return () => {
-            try {
-                abortController.abort()
-            } catch {
-            }
-        };
-
-    }, [params.slug])
-
-    const addRule = async (values: RuleEntity) => {
-
-        if (isDemoEnabled()) {
-            setDemoModalIsOpen(true);
-        } else if (values.rule) {
-
-
-        fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
-            method: 'GET',
-        })
-            .then(r => r.json())
-            .then(async (plan) => {
-                if (!plan || plan.length === 0) {
-                    console.log('Brak planu.')
-                } else {
-
-                    const res = await fetch(`${apiUrl}/api/add-rule/rules?planId=${plan[0].id}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({...values, planId: plan[0].id}),
-                    })
-
-                    const data = await res.json();
-                    setRulesList(list => [...list, data]);
-                }
-            })
-        } else {
-            setInformationModalIsOpen(true);
-        }
-    };
-
-    const editRule = async (values: RuleEntity, reset: () => void) => {
-
-        setIsEdited(false);
-
-        if (isDemoEnabled()) {
-            setDemoModalIsOpen(true);
-            reset();
-        } else if (values.rule) {
-
-        const res = await fetch(`${apiUrl}/api/add-rule/rules/${values.id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-        })
-
-        if (!res.ok) {
-            throw new Error('Wystąpił błąd podczas próby zaktualizowania zasady.');
-        }
-
-        setIsEdited(true);
-
-        return await res.json();
-        } else {
-            setInformationModalIsOpen(true);
-            reset();
-        }
-    };
-
-    const handleUpdateRule = (updatedRule: RuleEntity) => {
-        setRulesList((rulesList) =>
-            rulesList.map((rule) =>
-                rule.id === updatedRule.id ? updatedRule : rule
-            )
-        );
-    };
-
-    const handleDeleteRule = async (ruleId: any) => {
-
-        if (isDemoEnabled()) {
-            setDemoModalIsOpen(true);
-            setRuleToDeleteId(ruleId);
-        } else {
-            setConfirmDeleteRule(true);
-            setRuleToDeleteId(ruleId);
-        }
-    };
-
-    const handleConfirmDelete = async () => {
-
-        if (isDemoEnabled()) {
-            closeDemoModal();
-        } else {
-            const res = await fetch(
-                `${apiUrl}/api/add-rule/rules/${ruleToDeleteId}`,
-                {method: "DELETE"}
-            );
-            if ([400, 500].includes(res.status)) {
-                const error = await res.json();
-                alert(`Wystąpił błąd: ${error.message}`);
-                return;
-            }
-            setRulesList((setRulesList) =>
-                setRulesList.filter((rule) => rule.id !== ruleToDeleteId)
-            );
-            setConfirmDeleteRule(false);
-        };
-    };
-
-    const handleCancelDelete = () => {
-        setConfirmDeleteRule(false);
-        setRuleToDeleteId(null);
-    };
 
     if (isLoading || !rulesList) {
         return (
