@@ -8,6 +8,8 @@ import './RulesTable.css';
 import {apiUrl} from "../../config/api";
 import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
+import {isDemoEnabled} from "../hooks/env";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 export const RulesTable = () => {
 
@@ -16,10 +18,13 @@ export const RulesTable = () => {
     const [confirmDeleteRule, setConfirmDeleteRule] = useState<boolean>(false);
     const [ruleToDeleteId, setRuleToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
     const [planName, setPlanName] = useState("");
 
     const text = 'Czy na pewno chcesz usunąć tę zasadę progresji?'
+
+    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const textInformation = 'Należy podać treść zasady progresji!'
 
@@ -71,7 +76,17 @@ export const RulesTable = () => {
         setInformationModalIsOpen(false);
     };
 
+    const closeDemoModal = () => {
+        setDemoModalIsOpen(false);
+    };
+
     const addRule = async (values: RuleEntity) => {
+
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+        } else if (values.rule) {
+
+
         fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
             method: 'GET',
         })
@@ -90,15 +105,22 @@ export const RulesTable = () => {
                     })
 
                     const data = await res.json();
-
                     setRulesList(list => [...list, data]);
-
                 }
             })
+        } else {
+            setInformationModalIsOpen(true);
+        }
     };
 
-    const editRule = async (values: RuleEntity) => {
+    const editRule = async (values: RuleEntity, reset: () => void) => {
+
         setIsEdited(false);
+
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            reset();
+        } else if (values.rule) {
 
         const res = await fetch(`${apiUrl}/api/add-rule/rules/${values.id}`, {
             method: 'PUT',
@@ -115,7 +137,10 @@ export const RulesTable = () => {
         setIsEdited(true);
 
         return await res.json();
-
+        } else {
+            setInformationModalIsOpen(true);
+            reset();
+        }
     };
 
     const handleUpdateRule = (updatedRule: RuleEntity) => {
@@ -126,25 +151,36 @@ export const RulesTable = () => {
         );
     };
 
-    const handleDeleteRule = async (partId: any) => {
-        setConfirmDeleteRule(true);
-        setRuleToDeleteId(partId);
+    const handleDeleteRule = async (ruleId: any) => {
+
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            setRuleToDeleteId(ruleId);
+        } else {
+            setConfirmDeleteRule(true);
+            setRuleToDeleteId(ruleId);
+        }
     };
 
     const handleConfirmDelete = async () => {
-        const res = await fetch(
-            `${apiUrl}/api/add-rule/rules/${ruleToDeleteId}`,
-            { method: "DELETE" }
-        );
-        if ([400, 500].includes(res.status)) {
-            const error = await res.json();
-            alert(`Wystąpił błąd: ${error.message}`);
-            return;
-        }
-        setRulesList((setRulesList) =>
-            setRulesList.filter((rule) => rule.id !== ruleToDeleteId)
-        );
-        setConfirmDeleteRule(false);
+
+        if (isDemoEnabled()) {
+            closeDemoModal();
+        } else {
+            const res = await fetch(
+                `${apiUrl}/api/add-rule/rules/${ruleToDeleteId}`,
+                {method: "DELETE"}
+            );
+            if ([400, 500].includes(res.status)) {
+                const error = await res.json();
+                alert(`Wystąpił błąd: ${error.message}`);
+                return;
+            }
+            setRulesList((setRulesList) =>
+                setRulesList.filter((rule) => rule.id !== ruleToDeleteId)
+            );
+            setConfirmDeleteRule(false);
+        };
     };
 
     const handleCancelDelete = () => {
@@ -166,6 +202,7 @@ export const RulesTable = () => {
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
+            <DemoSign/>
             <div className="inner-container">
                 <h2>{planName}</h2>
             </div>
@@ -190,12 +227,8 @@ export const RulesTable = () => {
                             rule: '',
                         }}
                         onSubmit={async (values, reset) => {
-                            if (values.rule) {
                                 await addRule(values);
                                 reset();
-                            } else {
-                                setInformationModalIsOpen(true);
-                            }
                         }}
                         actionType={Status.Add}
                     />
@@ -210,14 +243,9 @@ export const RulesTable = () => {
                         </td>
                         <RulesForm
                             initialValues={rule}
-                            onSubmit={async (values) => {
-                                if (values.rule) {
-                                    await editRule(values);
+                            onSubmit={async (values, reset) => {
+                                    await editRule(values, reset);
                                     await handleUpdateRule(values);
-                                } else {
-                                    setInformationModalIsOpen(true);
-                                    values.rule = rule.rule;
-                                }
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}
@@ -247,6 +275,16 @@ export const RulesTable = () => {
                 icon={TbAlertTriangle}
                 confirmText="Rozumiem"
             />
+            {demoModalIsOpen && (
+                <ReusableModal
+                    isOpen={demoModalIsOpen}
+                    onRequestClose={closeDemoModal}
+                    onConfirm={closeDemoModal}
+                    text={demoText}
+                    icon={TbAlertTriangle}
+                    confirmText="OK"
+                />
+            )}
         </div>
     )
 }

@@ -8,15 +8,20 @@ import {TbAlertTriangle, TbHeartbeat} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import {MoonLoader} from "react-spinners";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
+import {isDemoEnabled} from "../hooks/env";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
     const [isEdited, setIsEdited] = useState<boolean>(false);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [planName, setPlanName] = useState("");
 
     const textInformation = 'Należy podać wszystkie informacje o szczegółach planu treningowego!'
+
+    const demoText = 'To jest wersja demo aplikacji "Gym Training Planner". Nie można w niej dodawać, edytować ani usuwać wybranych elementów.'
 
     const params = useParams();
 
@@ -66,8 +71,17 @@ export const PlanDetailsTable = () => {
         setInformationModalIsOpen(false);
     };
 
-    const editDetail = async (values: DetailEntity) => {
+    const closeDemoModal = () => {
+        setDemoModalIsOpen(false);
+    };
+
+    const editDetail = async (values: DetailEntity, reset: () => void) => {
         setIsEdited(false);
+
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            reset();
+        } else if (values.length && values.frequency && values.schedule) {
 
         const res = await fetch(`${apiUrl}/api/add-detail/details/${values.id}`, {
             method: 'PUT',
@@ -84,6 +98,11 @@ export const PlanDetailsTable = () => {
         setIsEdited(true);
 
         return await res.json();
+
+        } else {
+            setInformationModalIsOpen(true);
+            reset();
+        }
 
     };
 
@@ -109,6 +128,7 @@ export const PlanDetailsTable = () => {
             <IconContext.Provider value={{className: 'react-main-icon'}}>
                 <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
             </IconContext.Provider>
+            <DemoSign/>
             <div className="inner-container">
                 <h2>{planName}</h2>
             </div>
@@ -128,16 +148,9 @@ export const PlanDetailsTable = () => {
                     <tr key={`${detail.id}`}>
                     <PlanDetailsForm
                         initialValues={detail}
-                        onSubmit={async (values) => {
-                            if (values.length && values.frequency && values.schedule) {
-                                await editDetail(values);
+                        onSubmit={async (values, reset) => {
+                                await editDetail(values, reset);
                                 await handleUpdateDetail(values);
-                            } else {
-                                setInformationModalIsOpen(true);
-                                values.length = detail.length;
-                                values.frequency = detail.frequency
-                                values.schedule = detail.schedule;
-                            }
                         }}
                         isEdited={isEdited}
                     />
@@ -157,6 +170,16 @@ export const PlanDetailsTable = () => {
                 icon={TbAlertTriangle}
                 confirmText="Rozumiem"
             />
+            {demoModalIsOpen && (
+                <ReusableModal
+                    isOpen={demoModalIsOpen}
+                    onRequestClose={closeDemoModal}
+                    onConfirm={closeDemoModal}
+                    text={demoText}
+                    icon={TbAlertTriangle}
+                    confirmText="OK"
+                />
+            )}
         </div>
     );
 };
