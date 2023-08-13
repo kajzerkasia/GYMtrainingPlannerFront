@@ -1,17 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {PartOfPlanEntity, Status} from 'types';
-import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link, useParams} from "react-router-dom";
 import {apiUrl} from "../../config/api";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
-import {ReusableModal} from "../ReusableModal/ReusableModal";
 import {isDemoEnabled} from "../hooks/env";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../hooks/demoText";
+import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
+import {InformationModal} from "../InformationModal/InformationModal";
+import {DemoModal} from "../DemoModal/DemoModal";
 
 export const PartsOfPlanTable = () => {
 
@@ -269,32 +271,25 @@ export const PartsOfPlanTable = () => {
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-            <ReusableModal
+            <ConfirmDeleteModal
                 isOpen={confirmDeletePart}
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
-                icon={TbAlertTriangle}
-                confirmText="Tak"
-                cancelText="Nie"
             />
-            <ReusableModal
+            <InformationModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
                 text={textInformation}
-                icon={TbAlertTriangle}
-                confirmText="Rozumiem"
             />
             {demoModalIsOpen && (
-                <ReusableModal
+                <DemoModal
                     isOpen={demoModalIsOpen}
                     onRequestClose={closeDemoModal}
                     onConfirm={closeDemoModal}
                     text={demoText}
-                    icon={TbAlertTriangle}
-                    confirmText="OK"
                 />
             )}
         </div>
