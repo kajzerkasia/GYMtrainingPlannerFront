@@ -79,8 +79,14 @@ export const PlansList = () => {
         }
     };
 
-    const editPlan = async (values: PlanEntity) => {
+    const editPlan = async (values: PlanEntity, reset: () => void) => {
+
         setIsEdited(false);
+
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true);
+            reset();
+        } else if (values.name) {
 
         const res = await fetch(`${apiUrl}/api/add-plan/list/${values.id}`, {
             method: 'PUT',
@@ -98,6 +104,10 @@ export const PlansList = () => {
 
         return await res.json();
 
+        } else {
+            setInformationModalIsOpen(true);
+            reset();
+        }
     };
 
     const handleUpdatePlan = (updatedPlan: PlanEntity) => {
@@ -109,25 +119,34 @@ export const PlansList = () => {
     };
 
     const handleDeletePlan = async (planId: any) => {
-        setConfirmDeletePlan(true);
-        setPlanToDeleteId(planId);
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true); // Otwórz modal demo, jeśli demo jest włączone
+            setPlanToDeleteId(planId); // Ustaw ID planu do usunięcia, aby można było je przekazać w przypadku potwierdzenia
+        } else {
+            setConfirmDeletePlan(true);
+            setPlanToDeleteId(planId);
+        }
     };
 
     const handleConfirmDelete = async () => {
-        const res = await fetch(
-            `${apiUrl}/api/add-plan/list/${planToDeleteId}`,
-            {method: "DELETE"}
-        )
-        if ([400, 500].includes(res.status)) {
-            const error = await res.json();
-            alert(`Wystąpił błąd: ${error.message}`);
-            return;
+        if (isDemoEnabled()) {
+            closeDemoModal();
+        } else {
+            const res = await fetch(
+                `${apiUrl}/api/add-plan/list/${planToDeleteId}`,
+                {method: "DELETE"}
+            );
+            if ([400, 500].includes(res.status)) {
+                const error = await res.json();
+                alert(`Wystąpił błąd: ${error.message}`);
+                return;
+            }
+            setPlansList((plansList) =>
+                plansList.filter((plan) => plan.id !== planToDeleteId)
+            );
+            setConfirmDeletePlan(false);
+            setPlanToDeleteId(null);
         }
-        setPlansList((plansList) =>
-            plansList.filter((plan) => plan.id !== planToDeleteId)
-        );
-        setConfirmDeletePlan(false);
-
     };
 
     const handleCancelDelete = () => {
@@ -196,14 +215,9 @@ export const PlansList = () => {
                             </td>
                             <PlansListForm
                                 initialValues={plan}
-                                onSubmit={async (values) => {
-                                    if (values.name) {
-                                        await editPlan(values);
+                                onSubmit={async (values, reset) => {
+                                        await editPlan(values, reset);
                                         await handleUpdatePlan(values);
-                                    } else {
-                                        setInformationModalIsOpen(true);
-                                        values.name = plan.name;
-                                    }
                                 }}
                                 actionType={Status.Save}
                                 isEdited={isEdited}
@@ -250,3 +264,5 @@ export const PlansList = () => {
         </>
     )
 }
+
+// TODO: Zrobić resztę komponentów podobnie - pod demo, pomyśleć o refactorze wszystkich podobnych komponentów (Table)
