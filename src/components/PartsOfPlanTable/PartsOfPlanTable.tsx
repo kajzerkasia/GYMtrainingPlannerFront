@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {PartOfPlanEntity, Status} from 'types';
 import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
@@ -16,8 +16,24 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import {useModal} from "../../hooks/useModal";
+import {usePartsOfPlanTableLogic} from "../../hooks/usePartsOfPlanTableLogic";
 
 export const PartsOfPlanTable = () => {
+
+    const {
+        partsOfPlanList,
+        isEdited,
+        confirmDeletePart,
+        partToDeleteId,
+        trainingPlanName,
+        isLoading,
+        setPartsOfPlanList,
+        setIsEdited,
+        setConfirmDeletePart,
+        setPartToDeleteId,
+        setTrainingPlanName,
+        setIsLoading,
+    } = usePartsOfPlanTableLogic();
 
     const {
         informationModalIsOpen,
@@ -27,13 +43,6 @@ export const PartsOfPlanTable = () => {
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const [partsOfPlanList, setPartsOfPlanList] = useState<PartOfPlanEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeletePart, setConfirmDeletePart] = useState<boolean>(false);
-    const [partToDeleteId, setPartToDeleteId] = useState(null);
-    const [trainingPlanName, setTrainingPlanName] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
 
     const params = useParams();
 

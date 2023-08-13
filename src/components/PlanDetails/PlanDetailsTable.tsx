@@ -14,8 +14,20 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {textInformation} from "../../constants/planDetailsTableTexts";
 import {useModal} from "../../hooks/useModal";
+import {usePlanDetailsTableLogic} from "../../hooks/usePlanDetailsTableLogic";
 
 export const PlanDetailsTable = () => {
+
+    const {
+        detailsList,
+        isEdited,
+        isLoading,
+        planName,
+        setDetailsList,
+        setIsEdited,
+        setIsLoading,
+        setPlanName,
+    } = usePlanDetailsTableLogic();
 
     const {
         informationModalIsOpen,
@@ -25,11 +37,6 @@ export const PlanDetailsTable = () => {
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState(true);
-    const [planName, setPlanName] = useState("");
 
     const params = useParams();
 

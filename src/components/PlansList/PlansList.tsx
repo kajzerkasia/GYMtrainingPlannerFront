@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {PlanEntity, Status} from 'types';
 import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle} from "react-icons/tb";
 import {IconContext} from "react-icons";
@@ -15,8 +15,22 @@ import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/plansListTexts";
 import {useModal} from "../../hooks/useModal";
+import {usePlansListLogic} from "../../hooks/usePlansListLogic";
 
 export const PlansList = () => {
+
+    const {
+        plansList,
+        isEdited,
+        confirmDeletePlan,
+        planToDeleteId,
+        isLoading,
+        setPlansList,
+        setIsEdited,
+        setConfirmDeletePlan,
+        setPlanToDeleteId,
+        setIsLoading,
+    } = usePlansListLogic();
 
     const {
         informationModalIsOpen,
@@ -26,12 +40,6 @@ export const PlansList = () => {
         closeModal,
         closeDemoModal,
     } = useModal();
-
-    const [plansList, setPlansList] = useState<PlanEntity[]>([]);
-    const [isEdited, setIsEdited] = useState<boolean>(false);
-    const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
-    const [planToDeleteId, setPlanToDeleteId] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const abortController = new AbortController();
