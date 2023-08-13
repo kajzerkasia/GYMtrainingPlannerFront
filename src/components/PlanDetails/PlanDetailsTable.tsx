@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {DetailEntity} from 'types';
 import {PlanDetailsForm} from "./PlanDetailsForm";
-import {InformationModal} from "../InformationModal/InformationModal";
 import {apiUrl} from "../../config/api";
 import './PlanDetailsTable.css'
 import {IconContext} from "react-icons";
-import {TbHeartbeat} from "react-icons/tb";
+import {TbAlertTriangle, TbHeartbeat} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import {MoonLoader} from "react-spinners";
+import {ReusableModal} from "../ReusableModal/ReusableModal";
 
 export const PlanDetailsTable = () => {
     const [detailsList, setDetailsList] = useState<DetailEntity[]>([]);
@@ -149,12 +149,13 @@ export const PlanDetailsTable = () => {
             <button className="btn-back-exercises" onClick={() => window.history.back()}>
                 Powrót
             </button>
-            <InformationModal
+            <ReusableModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
-                onCancel={closeModal}
                 text={textInformation}
+                icon={TbAlertTriangle}
+                confirmText="Rozumiem"
             />
         </div>
     );

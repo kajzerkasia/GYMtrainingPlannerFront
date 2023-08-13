@@ -2,13 +2,12 @@ import React, {useEffect, useState} from "react";
 import {ExerciseEntity, PlanEntity, Status} from 'types';
 import {ExercisesForm} from "./ExercisesForm";
 import {Link, useParams} from "react-router-dom";
-import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {ConfirmationModal} from "../ConfirmationModal/ConfirmationModal";
-import {InformationModal} from "../InformationModal/InformationModal";
 import {apiUrl} from "../../config/api";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
+import {ReusableModal} from "../ReusableModal/ReusableModal";
 
 export const validateURL = (url: string) => {
     try {
@@ -299,19 +298,23 @@ export const ExercisesTable = () => {
                 Powrót do części planu
             </button>
             </div>
-            <ConfirmationModal
+            <ReusableModal
                 isOpen={confirmDeleteExercise}
                 onRequestClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
                 text={text}
+                icon={TbAlertTriangle}
+                confirmText="Tak"
+                cancelText="Nie"
             />
-            <InformationModal
+            <ReusableModal
                 isOpen={informationModalIsOpen}
                 onRequestClose={closeModal}
                 onConfirm={closeModal}
-                onCancel={closeModal}
                 text={textInformation}
+                icon={TbAlertTriangle}
+                confirmText="Rozumiem"
             />
         </div>
     )

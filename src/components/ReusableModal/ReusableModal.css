@@ -1,4 +1,4 @@
-.confirmation-modal {
+.reusable-modal {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -11,7 +11,7 @@
     font-size: 22px;
 }
 
-.confirmation-modal button {
+.reusable-modal button {
     font-family: 'Ubuntu', sans-serif;
     margin-top: 7vh;
     font-size: 22px;
@@ -19,7 +19,7 @@
     border: 1px solid #d495e2;
 }
 
-.confirmation-modal h2 {
+.reusable-modal h2 {
     margin-bottom: 5vh;
 }
 
@@ -46,4 +46,3 @@
     transform: translateX(100vw);
     background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
 }
-
