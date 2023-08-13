@@ -9,6 +9,7 @@ import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
 import {isDemoEnabled} from "../hooks/env";
 import {ReusableModal} from "../ReusableModal/ReusableModal";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 export const PlansList = () => {
 
@@ -17,7 +18,7 @@ export const PlansList = () => {
     const [confirmDeletePlan, setConfirmDeletePlan] = useState<boolean>(false);
     const [planToDeleteId, setPlanToDeleteId] = useState(null);
     const [informationModalIsOpen, setInformationModalIsOpen] = useState<boolean>(false);
-    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(true);
+    const [demoModalIsOpen, setDemoModalIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState(true);
 
     const text = 'Czy na pewno chcesz usunąć ten plan? Spowoduje to także usunięcie wszystkich części planu przypisanych do tego planu';
@@ -59,19 +60,23 @@ export const PlansList = () => {
     };
 
     const addPlan = async (values: PlanEntity) => {
+        if (isDemoEnabled()) {
+            setDemoModalIsOpen(true); // Otwórz demoModal, jeśli demo jest włączone
+        } else if (values.name) {
+            const res = await fetch(`${apiUrl}/api/add-plan/list`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(values),
+            });
 
-        const res = await fetch(`${apiUrl}/api/add-plan/list`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-        })
+            const data = await res.json();
 
-        const data = await res.json();
-
-        setPlansList(list => [...list, data]);
-
+            setPlansList(list => [...list, data]);
+        } else {
+            setInformationModalIsOpen(true); // Otwórz informationModal, jeśli brakuje nazwy planu
+        }
     };
 
     const editPlan = async (values: PlanEntity) => {
@@ -147,6 +152,7 @@ export const PlansList = () => {
             </IconContext.Provider>
 
             <div className="main-plan">
+                <DemoSign/>
                 <table className="main-table">
 
                     <thead>
@@ -174,12 +180,8 @@ export const PlansList = () => {
                                 name: '',
                             }}
                             onSubmit={async (values, reset) => {
-                                if (values.name) {
-                                    await addPlan(values);
-                                    reset();
-                                } else {
-                                    setInformationModalIsOpen(true);
-                                }
+                                await addPlan(values);
+                                reset();
                             }}
                             actionType={Status.Add}
                         />
@@ -234,7 +236,7 @@ export const PlansList = () => {
                 icon={TbAlertTriangle}
                 confirmText="Rozumiem"
             />
-            {isDemoEnabled() && (
+            {demoModalIsOpen && (
                 <ReusableModal
                     isOpen={demoModalIsOpen}
                     onRequestClose={closeDemoModal}
