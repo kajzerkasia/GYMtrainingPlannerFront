@@ -12,6 +12,9 @@ interface SidebarProps {
     endTime: string;
     onStartTimeChange: React.ChangeEventHandler<HTMLInputElement>;
     onEndTimeChange: React.ChangeEventHandler<HTMLInputElement>;
+    isDemoMode: boolean;
+    setIsDemoMode: (value: boolean) => void;
+    timeError: any;
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -24,6 +27,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                                                     endTime,
                                                     onStartTimeChange,
                                                     onEndTimeChange,
+                                                    isDemoMode,
+                                                    setIsDemoMode,
+                                                    timeError,
                                                 }) => {
 
     if (!isOpen || !selectedEvent || id !== selectedEvent.id) {
@@ -32,39 +38,59 @@ export const Sidebar: React.FC<SidebarProps> = ({
 
     return (
         <div className={`sidebar-container ${isOpen ? "open" : ""}`}>
-            <h1>Edytuj trening</h1>
-                <label
-                    className="label-date"
-                    htmlFor="startTime"
-                >Godzina rozpoczęcia
-                </label>
-                <input
-                    className="input-date"
-                    type="time"
-                    id="startTime"
-                    value={startTime}
-                    onChange={onStartTimeChange}
-                />
-                <label
-                    className="label-date"
-                    htmlFor="endTime"
-                >Godzina zakończenia
-                </label>
-                <input
-                    className="input-date"
-                    type="time"
-                    id="endTime"
-                    value={endTime}
-                    onChange={onEndTimeChange}
-                />
+            <h1>{isDemoMode ? "Tryb demo: Edycja wydarzenia wyłączona" : "Edytuj trening"}</h1>
+            {timeError && <div className="error"><p>{timeError}</p></div>}
+            <label
+                className="label-date"
+                htmlFor="startTime"
+            >Godzina rozpoczęcia
+            </label>
+            <input
+                className="input-date"
+                type="time"
+                id="startTime"
+                value={startTime}
+                onChange={onStartTimeChange}
+            />
+            <label
+                className="label-date"
+                htmlFor="endTime"
+            >Godzina zakończenia
+            </label>
+            <input
+                className="input-date"
+                type="time"
+                id="endTime"
+                value={endTime}
+                onChange={onEndTimeChange}
+            />
             <button
                 className="sidebar-button"
-                onClick={() => onEditEvent(id, {...selectedEvent, start: new Date(selectedEvent.start), end: new Date(selectedEvent.end), startTime, endTime})}>
+                onClick={() => {
+                    if (isDemoMode) {
+                        setIsDemoMode(true);
+                    } else {
+                        onEditEvent(id, {
+                            ...selectedEvent,
+                            start: new Date(selectedEvent.start),
+                            end: new Date(selectedEvent.end),
+                            startTime,
+                            endTime,
+                        });
+                    }
+                }}
+            >
                 Zapisz zmiany
             </button>
             <button
                 className="sidebar-button"
-                onClick={() => onDeleteEvent(id)}>Usuń trening
+                onClick={() => {
+                    if (!isDemoMode) {
+                        onDeleteEvent(id);
+                    }
+                }}
+            >
+                Usuń trening
             </button>
         </div>
     );

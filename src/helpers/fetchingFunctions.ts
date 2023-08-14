@@ -14,6 +14,9 @@ export const fetchTrainingPlans = async (): Promise<PlanEntity[]> => {
 
         return plansWithIdsAsString;
     } catch (error) {
+        if (error instanceof Response && error.status === 403) {
+            throw new Error('Permission denied: Unable to fetch training plans (403 Forbidden).');
+        }
         throw new Error('Failed to fetch training plans.');
     }
 };
@@ -31,6 +34,9 @@ export const fetchPlanParts = async (planId: string): Promise<PartOfPlanEntity[]
 
         return planPartsWithIdsAsString;
     } catch (error) {
+        if (error instanceof Response && error.status === 403) {
+            throw new Error('Permission denied: Unable to fetch plan parts (403 Forbidden).');
+        }
         throw new Error('Failed to fetch plan parts.');
     }
 };

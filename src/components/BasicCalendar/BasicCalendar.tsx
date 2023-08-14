@@ -31,6 +31,9 @@ export const BasicCalendar = () => {
         selectedEvent,
         startTime,
         endTime,
+        isDemoMode,
+        timeError,
+        setIsDemoMode,
         handleSelect,
         handleTrainingPlanChange,
         handlePlanPartChange,
@@ -56,6 +59,9 @@ export const BasicCalendar = () => {
                         onPlanPartChange={handlePlanPartChange}
                         isOpen={true}
                         onAddEvent={handleAddEvent}
+                        isDemoMode={isDemoMode}
+                        setIsDemoMode={setIsDemoMode}
+                        timeError={timeError}
                     />
                 </div>
             )}
@@ -95,6 +101,9 @@ export const BasicCalendar = () => {
                 endTime={endTime}
                 onStartTimeChange={handleStartTimeChange}
                 onEndTimeChange={handleEndTimeChange}
+                isDemoMode={isDemoMode}
+                setIsDemoMode={setIsDemoMode}
+                timeError={timeError}
             />
         </>
     );
