@@ -15,6 +15,9 @@ export const usePartsOfPlanTableLogic = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
         setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
@@ -177,6 +180,10 @@ export const usePartsOfPlanTableLogic = () => {
         partToDeleteId,
         trainingPlanName,
         isLoading,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         setPartsOfPlanList,
         setIsEdited,
         setConfirmDeletePart,

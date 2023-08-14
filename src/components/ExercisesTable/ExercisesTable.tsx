@@ -21,9 +21,13 @@ export const ExercisesTable = () => {
         exercisesList,
         isEdited,
         confirmDeleteExercise,
+        demoModalIsOpen,
+        informationModalIsOpen,
         partName,
         planInfo,
         isLoading,
+        closeModal,
+        closeDemoModal,
         addExercise,
         editExercise,
         handleUpdateExercise,
@@ -31,13 +35,6 @@ export const ExercisesTable = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = useExercisesTableLogic();
-
-    const {
-        informationModalIsOpen,
-        demoModalIsOpen,
-        closeModal,
-        closeDemoModal,
-    } = useModal();
 
     if (isLoading || !exercisesList) {
         return (

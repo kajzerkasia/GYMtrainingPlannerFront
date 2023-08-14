@@ -15,6 +15,7 @@ export const DemoModal = ({
                               onConfirm,
                               text,
                           }: DemoModalProps) => {
+
     return (
         <ReusableModal
             isOpen={isOpen}

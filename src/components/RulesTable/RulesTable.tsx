@@ -12,7 +12,6 @@ import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
-import {useModal} from "../../hooks/useModal";
 import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
 
 export const RulesTable = () => {
@@ -23,6 +22,10 @@ export const RulesTable = () => {
         confirmDeleteRule,
         isLoading,
         planName,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         addRule,
         editRule,
         handleUpdateRule,
@@ -30,13 +33,6 @@ export const RulesTable = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = useRulesTableLogic()
-
-    const {
-        informationModalIsOpen,
-        demoModalIsOpen,
-        closeModal,
-        closeDemoModal,
-    } = useModal();
 
     if (isLoading || !rulesList) {
         return (

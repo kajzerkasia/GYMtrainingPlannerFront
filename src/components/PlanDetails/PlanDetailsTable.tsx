@@ -19,16 +19,13 @@ export const PlanDetailsTable = () => {
         isEdited,
         isLoading,
         planName,
-        editDetail,
-        handleUpdateDetail,
-    } = usePlanDetailsTableLogic();
-
-    const {
         informationModalIsOpen,
         demoModalIsOpen,
         closeModal,
         closeDemoModal,
-    } = useModal();
+        editDetail,
+        handleUpdateDetail,
+    } = usePlanDetailsTableLogic();
 
     if (isLoading || !detailsList) {
         return (

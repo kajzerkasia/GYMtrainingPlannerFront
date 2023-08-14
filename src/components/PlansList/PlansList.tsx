@@ -22,6 +22,10 @@ export const PlansList = () => {
         isEdited,
         confirmDeletePlan,
         isLoading,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         addPlan,
         editPlan,
         handleUpdatePlan,
@@ -29,13 +33,6 @@ export const PlansList = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = usePlansListLogic();
-
-    const {
-        informationModalIsOpen,
-        demoModalIsOpen,
-        closeModal,
-        closeDemoModal,
-    } = useModal();
 
     if (isLoading || !plansList) {
         return (

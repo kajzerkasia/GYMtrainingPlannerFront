@@ -22,6 +22,9 @@ export const useExercisesTableLogic = () => {
         setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
+        closeModal,
+        demoModalIsOpen,
+        informationModalIsOpen,
     } = useModal();
 
     useEffect(() => {
@@ -209,6 +212,10 @@ export const useExercisesTableLogic = () => {
         partName,
         planInfo,
         isLoading,
+        demoModalIsOpen,
+        informationModalIsOpen,
+        closeModal,
+        closeDemoModal,
         setExercisesList,
         setIsEdited,
         setConfirmDeleteExercise,
