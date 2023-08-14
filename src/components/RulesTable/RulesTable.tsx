@@ -38,7 +38,7 @@ export const RulesTable = () => {
         return (
             <div className="spinner_container">
                 <div className="div_loading">Ładowanie zasad progresji...</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
             </div>
         );
     }
@@ -63,7 +63,7 @@ export const RulesTable = () => {
 
                 <tbody>
                 <tr>
-                    <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                    <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                         <td className="td-rule">
                             <Link to="/instruction"><TbQuestionMark/></Link>
                         </td>
@@ -73,8 +73,8 @@ export const RulesTable = () => {
                             rule: '',
                         }}
                         onSubmit={async (values, reset) => {
-                                await addRule(values);
-                                reset();
+                            await addRule(values);
+                            reset();
                         }}
                         actionType={Status.Add}
                     />
@@ -83,15 +83,15 @@ export const RulesTable = () => {
                 {rulesList.map((rule) => (
                     <tr key={`${rule.id}`}>
                         <td className="td-rule">
-                            <IconContext.Provider value={{ className: 'react-icons-smaller' }}>
+                            <IconContext.Provider value={{className: 'react-icons-smaller'}}>
                                 <button onClick={() => handleDeleteRule(rule.id)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
                         <RulesForm
                             initialValues={rule}
                             onSubmit={async (values, reset) => {
-                                    await editRule(values, reset);
-                                    await handleUpdateRule(values);
+                                await editRule(values, reset);
+                                await handleUpdateRule(values);
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}
@@ -116,14 +116,12 @@ export const RulesTable = () => {
                 onConfirm={closeModal}
                 text={textInformation}
             />
-            {demoModalIsOpen && (
-                <DemoModal
-                    isOpen={demoModalIsOpen}
-                    onRequestClose={closeDemoModal}
-                    onConfirm={closeDemoModal}
-                    text={demoText}
-                />
-            )}
+            <DemoModal
+                isOpen={demoModalIsOpen}
+                onRequestClose={closeDemoModal}
+                onConfirm={closeDemoModal}
+                text={demoText}
+            />
         </div>
     )
 }
