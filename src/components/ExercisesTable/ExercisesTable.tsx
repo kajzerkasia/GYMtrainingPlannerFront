@@ -149,14 +149,12 @@ export const ExercisesTable = () => {
                 onConfirm={closeModal}
                 text={textInformation}
             />
-            {demoModalIsOpen && (
-                <DemoModal
-                    isOpen={demoModalIsOpen}
-                    onRequestClose={closeDemoModal}
-                    onConfirm={closeDemoModal}
-                    text={demoText}
-                />
-            )}
+            <DemoModal
+                isOpen={demoModalIsOpen}
+                onRequestClose={closeDemoModal}
+                onConfirm={closeDemoModal}
+                text={demoText}
+            />
         </div>
     )
 }

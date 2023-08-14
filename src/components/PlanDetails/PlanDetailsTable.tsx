@@ -30,7 +30,7 @@ export const PlanDetailsTable = () => {
         return (
             <div className="spinner_container">
                 <div className="div_loading">Ładowanie szczegółów...</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870" />
+                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
             </div>
         );
     }
@@ -48,9 +48,9 @@ export const PlanDetailsTable = () => {
 
                 <thead>
                 <tr>
-                 <th>Długość cyklu</th>
-                 <th>Częstotliwość</th>
-                 <th>Rozkład</th>
+                    <th>Długość cyklu</th>
+                    <th>Częstotliwość</th>
+                    <th>Rozkład</th>
                 </tr>
                 </thead>
 
@@ -58,14 +58,14 @@ export const PlanDetailsTable = () => {
 
                 {detailsList.map((detail) => (
                     <tr key={`${detail.id}`}>
-                    <PlanDetailsForm
-                        initialValues={detail}
-                        onSubmit={async (values, reset) => {
+                        <PlanDetailsForm
+                            initialValues={detail}
+                            onSubmit={async (values, reset) => {
                                 await editDetail(values, reset);
                                 await handleUpdateDetail(values);
-                        }}
-                        isEdited={isEdited}
-                    />
+                            }}
+                            isEdited={isEdited}
+                        />
                     </tr>
                 ))}
 
@@ -80,14 +80,12 @@ export const PlanDetailsTable = () => {
                 onConfirm={closeModal}
                 text={textInformation}
             />
-            {demoModalIsOpen && (
-                <DemoModal
-                    isOpen={demoModalIsOpen}
-                    onRequestClose={closeDemoModal}
-                    onConfirm={closeDemoModal}
-                    text={demoText}
-                />
-            )}
+            <DemoModal
+                isOpen={demoModalIsOpen}
+                onRequestClose={closeDemoModal}
+                onConfirm={closeDemoModal}
+                text={demoText}
+            />
         </div>
     );
 };
