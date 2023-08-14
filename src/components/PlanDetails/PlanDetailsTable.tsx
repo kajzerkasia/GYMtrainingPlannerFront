@@ -9,7 +9,6 @@ import {demoText} from "../../constants/demoText";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {textInformation} from "../../constants/planDetailsTableTexts";
-import {useModal} from "../../hooks/useModal";
 import {usePlanDetailsTableLogic} from "../../hooks/usePlanDetailsTableLogic";
 
 export const PlanDetailsTable = () => {
