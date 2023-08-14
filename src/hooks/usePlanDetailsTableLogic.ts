@@ -17,6 +17,10 @@ export const usePlanDetailsTableLogic = () => {
     const {
         setInformationModalIsOpen,
         setDemoModalIsOpen,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
     } = useModal();
 
     useEffect(() => {
@@ -105,6 +109,10 @@ export const usePlanDetailsTableLogic = () => {
         isEdited,
         isLoading,
         planName,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         setDetailsList,
         setIsEdited,
         setIsLoading,
