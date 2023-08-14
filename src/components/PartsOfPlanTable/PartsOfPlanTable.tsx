@@ -13,7 +13,6 @@ import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
-import {useModal} from "../../hooks/useModal";
 import {usePartsOfPlanTableLogic} from "../../hooks/usePartsOfPlanTableLogic";
 
 export const PartsOfPlanTable = () => {

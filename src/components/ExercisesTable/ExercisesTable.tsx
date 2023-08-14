@@ -12,7 +12,6 @@ import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/exercisesTableTexts";
-import {useModal} from "../../hooks/useModal";
 import {useExercisesTableLogic} from "../../hooks/useExercisesTableLogic";
 
 export const ExercisesTable = () => {
