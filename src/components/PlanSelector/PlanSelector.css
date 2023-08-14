@@ -99,3 +99,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .input-date {
     width: 40%;
 }
+
+.error {
+    font-size: 14px;
+    color: #ff2100;
+    margin-bottom: 0.4rem;
+}
