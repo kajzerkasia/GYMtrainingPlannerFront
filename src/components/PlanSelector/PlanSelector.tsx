@@ -11,6 +11,9 @@ interface PlanSelectorProps {
     onPlanPartChange: (partId: string) => void;
     isOpen: boolean;
     onAddEvent: (startTime: string, endTime: string) => void;
+    isDemoMode: boolean;
+    setIsDemoMode: (value: boolean) => void;
+    timeError: any;
 }
 
 export const PlanSelector = ({
@@ -21,14 +24,17 @@ export const PlanSelector = ({
                                  onTrainingPlanChange,
                                  onPlanPartChange,
                                  isOpen,
-                                 onAddEvent
+                                 onAddEvent,
+                                 isDemoMode,
+                                 setIsDemoMode,
+                                 timeError,
                              }: PlanSelectorProps) => {
     const [startTime, setStartTime] = useState<string>("");
     const [endTime, setEndTime] = useState<string>("");
 
     return (
         <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
-            <h1>Dodaj trening</h1>
+            <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
                 onChange={(e) => onTrainingPlanChange(e.target.value)}
@@ -51,6 +57,7 @@ export const PlanSelector = ({
                     </option>
                 ))}
             </select>
+            {timeError && <div className="error"><p>{timeError}</p></div>}
             <label
                 className="label-date"
                 htmlFor="start">
@@ -77,8 +84,15 @@ export const PlanSelector = ({
             />
             <button
                 className="plan-selector-button"
-                onClick={() => onAddEvent(startTime, endTime)}
-            >Dodaj
+                onClick={() => {
+                    if (isDemoMode) {
+                        setIsDemoMode(true);
+                    } else {
+                        onAddEvent(startTime, endTime);
+                    }
+                }}
+            >
+                Dodaj
             </button>
         </div>
     );

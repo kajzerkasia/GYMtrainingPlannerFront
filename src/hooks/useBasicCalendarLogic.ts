@@ -10,7 +10,7 @@ export const UseBasicCalendarLogic = () => {
     const [events, setEvents] = useState<MyEvent[]>([]);
     const [trainingPlans, setTrainingPlans] = useState<PlanEntity[]>([]);
     const [planParts, setPlanParts] = useState<PartOfPlanEntity[]>([]);
-    const [selectedTrainingPlan, setSelectedTrainingPlan] = useState<string | null>(null); // Zmiana typu na string
+    const [selectedTrainingPlan, setSelectedTrainingPlan] = useState<string | null>(null);
     const [selectedPlanPartId, setSelectedPlanPartId] = useState<string | null>(null);
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
@@ -18,6 +18,8 @@ export const UseBasicCalendarLogic = () => {
     const [startTime, setStartTime] = useState("");
     const [endTime, setEndTime] = useState("");
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+    const [isDemoMode, setIsDemoMode] = useState(false);
+    const [timeError, setTimeError] = useState<string | null>(null);
 
     useEffect(() => {
         fetchTrainingPlans()
@@ -79,8 +81,11 @@ export const UseBasicCalendarLogic = () => {
             const endMinute = Number(endTime.split(":")[1]);
 
             if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
-                console.error("Godzina rozpoczęcia nie może być późniejsza lub równa godzinie zakończenia.");
+                const errorMessage = "Godzina rozpoczęcia nie może być późniejsza lub równa godzinie zakończenia.";
+                setTimeError(errorMessage);
                 return null;
+            } else {
+                setTimeError(null);
             }
 
             const updatedEvent = {...event};
@@ -93,21 +98,18 @@ export const UseBasicCalendarLogic = () => {
     };
 
     const handleSelect = ({start}: { start: Date; end: Date }) => {
-        // Sprawdzamy, czy kliknięto w ten sam dzień, który został już wcześniej wybrany
+
         const isSameDate = selectedDate ? moment(selectedDate).isSame(start, 'day') : false;
 
         if (isSameDate) {
-            // Jeśli kliknięto w ten sam dzień, odznaczamy go przez ustawienie selectedDate na null
             setSelectedDate(null);
         } else {
-            // Jeśli kliknięto w inny dzień, zapisujemy go do stanu
             setSelectedDate(start);
         }
     };
 
     const handleTrainingPlanChange = (planId: string) => {
         setSelectedTrainingPlan(planId);
-        // Zresetuj wybraną część planu, ponieważ zmienił się plan treningowy
         setSelectedPlanPartId(null);
     };
 
@@ -125,15 +127,13 @@ export const UseBasicCalendarLogic = () => {
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
-            // Pobierz nazwę planu treningowego na podstawie wybranego id
+
             const selectedTrainingPlanName =
                 trainingPlans.find((plan) => plan.id === selectedTrainingPlan)?.name || "";
 
-            // Pobierz nazwę części planu na podstawie wybranego id
             const selectedPlanPartName =
                 planParts.find((part) => part.id === selectedPlanPartId)?.name || "";
 
-            // Tworzymy nowe wydarzenie, które będzie dodane do kalendarza
             const newEvent: MyEvent = {
                 planName: selectedTrainingPlanName,
                 partName: selectedPlanPartName,
@@ -165,20 +165,20 @@ export const UseBasicCalendarLogic = () => {
                 });
 
                 if (!response.ok) {
+                    if (response.status === 403) {
+                        setIsDemoMode(true);
+                        return;
+                    }
                     throw new Error("Nie udało się dodać wydarzenia.");
                 }
 
-                // Oczekiwanie na odpowiedź z serwera i wyciągnięcie identyfikatora (id) z odpowiedzi
                 const eventData = await response.json();
                 const newEventWithId: MyEvent = {
                     ...newEvent,
                     id: eventData.id,
                 };
 
-                // Dodaj nowe wydarzenie z id do stanu events
                 setEvents([...events, newEventWithId]);
-
-                // Resetujemy wybrane wartości po dodaniu wydarzenia
                 setSelectedTrainingPlan(null);
                 setSelectedPlanPartId(null);
                 setSelectedDate(null);
@@ -209,13 +209,15 @@ export const UseBasicCalendarLogic = () => {
                     endDate: eventToUpdate.end,
                 }),
             });
-            // console.log("Odpowiedź z backendu:", response);
 
             if (!response.ok) {
-                throw new Error("Nie udało się zaktualizować wydarzenia.");
+                if (response.status === 403) {
+                    setIsDemoMode(true);
+                    return;
+                }
+                throw new Error("Nie udało się edytować wydarzenia.");
             }
 
-            // Aktualizuj wydarzenie w stanie events
             const updatedEvents = events.map((event) =>
                 event.id === id
                     ? {
@@ -232,7 +234,6 @@ export const UseBasicCalendarLogic = () => {
             );
 
             setEvents(updatedEvents);
-            // console.log("Zaktualizowany stan events:", updatedEvents);
             setIsSidebarOpen(false);
         } catch (error) {
             console.error("Wystąpił błąd podczas aktualizacji wydarzenia:", error);
@@ -246,16 +247,18 @@ export const UseBasicCalendarLogic = () => {
             });
 
             if (!response.ok) {
+                if (response.status === 403) {
+                    setIsDemoMode(true);
+                    return;
+                }
                 throw new Error("Nie udało się usunąć wydarzenia.");
             }
 
-            // Usuń wydarzenie ze stanu events
             setEvents((prevEvents) =>
                 prevEvents.filter((event) => event.id !== id)
             );
 
             setIsSidebarOpen(false);
-            // Resetuj selectedEvent po usunięciu
             setSelectedEvent(null);
         } catch (error) {
             console.error("Wystąpił błąd podczas usuwania wydarzenia:", error);
@@ -263,13 +266,11 @@ export const UseBasicCalendarLogic = () => {
     };
 
     const handleEventClick = (event: MyEvent) => {
-        // Jeśli kliknięto w to samo wydarzenie, co aktualnie wybrane, to zamknij sidebar
+
         if (selectedEventId === event.id) {
             setSelectedEventId(null);
             setIsSidebarOpen(false);
         } else {
-            // W przeciwnym razie, ustaw wybrane wydarzenie i otwórz sidebar
-
             setSelectedEventId(event.id ? event.id : null);
             setStartTime(event.startTime);
             setEndTime(event.endTime);
@@ -297,6 +298,9 @@ export const UseBasicCalendarLogic = () => {
         startTime,
         endTime,
         selectedEventId,
+        isDemoMode,
+        timeError,
+        setIsDemoMode,
         setEvents,
         setTrainingPlans,
         setPlanParts,

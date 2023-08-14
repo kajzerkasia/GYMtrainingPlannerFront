@@ -30,6 +30,7 @@ export const CalendarModal = ({isOpen, onRequestClose, onCancel}: CalendarModalP
             className="calendar-modal"
             contentLabel="Example Modal"
             closeTimeoutMS={1200}
+            shouldCloseOnOverlayClick={false}
         >
             <div className="div-calendar-info">
                 <Accordion
