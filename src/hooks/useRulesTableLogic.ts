@@ -17,6 +17,9 @@ export const useRulesTableLogic = () => {
     const params = useParams();
 
     const {
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
         setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
@@ -179,6 +182,10 @@ export const useRulesTableLogic = () => {
         ruleToDeleteId,
         isLoading,
         planName,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         setRulesList,
         setIsEdited,
         setConfirmDeleteRule,

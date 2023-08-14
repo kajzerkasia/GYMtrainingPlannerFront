@@ -24,6 +24,10 @@ export const PartsOfPlanTable = () => {
         confirmDeletePart,
         trainingPlanName,
         isLoading,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         addPartOfPlan,
         editPartOfPlan,
         handleUpdatePartOfPlan,
@@ -31,13 +35,6 @@ export const PartsOfPlanTable = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = usePartsOfPlanTableLogic();
-
-    const {
-        informationModalIsOpen,
-        demoModalIsOpen,
-        closeModal,
-        closeDemoModal,
-    } = useModal();
 
     const params = useParams();
 

@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import './CalendarModal.css'
 import {BasicCalendar} from "../BasicCalendar/BasicCalendar";
 import {Accordion} from "../Accordion/Accordion";
+import {DemoSign} from "../DemoSign/DemoSign";
 
 Modal.setAppElement('#root');
 
@@ -14,7 +15,7 @@ export type CalendarModalProps = {
     text: string;
 };
 
-export const CalendarModal = ({ isOpen, onRequestClose, onCancel }: CalendarModalProps) => {
+export const CalendarModal = ({isOpen, onRequestClose, onCancel}: CalendarModalProps) => {
 
     const [showInstructions, setShowInstructions] = useState(true);
 
@@ -36,10 +37,11 @@ export const CalendarModal = ({ isOpen, onRequestClose, onCancel }: CalendarModa
                     isOpen={showInstructions}
                     toggleAccordion={toggleInstructions}
                 >
-                <p>Kliknij w dany dzień, a następnie wybierz plan treningowy, część planu oraz planowaną godzinę ropoczęcia i zakończenia treningu. Zawsze możesz edytować dany trening klikając w niego i zmieniając jego godziny. Klikając ponownie w dany dzień bez treningu lub w istniejący trening zamykasz okno dodawnia/edytowania treningu.</p>
+                    <DemoSign/>
+                    <p>Kliknij w dany dzień, a następnie wybierz plan treningowy, część planu oraz planowaną godzinę ropoczęcia i zakończenia treningu. Zawsze możesz edytować dany trening klikając w niego i zmieniając jego godziny. Klikając ponownie w dany dzień bez treningu lub w istniejący trening zamykasz okno dodawnia/edytowania treningu.</p>
                 </Accordion>
             </div>
-            <div style={{ height: "730px"}} className="div-calendar">
+            <div style={{height: "730px"}} className="div-calendar">
                 <BasicCalendar/>
             </div>
             <div className="div-btn-back-container">

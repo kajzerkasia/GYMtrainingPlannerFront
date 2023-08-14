@@ -16,6 +16,9 @@ export const usePlansListLogic = () => {
         setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
     } = useModal();
 
     useEffect(() => {
@@ -143,6 +146,10 @@ export const usePlansListLogic = () => {
         confirmDeletePlan,
         planToDeleteId,
         isLoading,
+        informationModalIsOpen,
+        demoModalIsOpen,
+        closeModal,
+        closeDemoModal,
         setPlansList,
         setIsEdited,
         setConfirmDeletePlan,
