@@ -8,7 +8,6 @@ import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/plansListTexts";
 import {usePlansListLogic} from "../../hooks/usePlansListLogic";
 import Modal from "../Modal/Modal";
@@ -128,11 +127,13 @@ export const PlansList = () => {
                     confirmText="Rozumiem"
                     icon={TbAlertTriangle}
                 />
-                <DemoModal
-                    isOpen={demoModalIsOpen}
-                    onRequestClose={closeDemoModal}
+                <Modal
+                    open={demoModalIsOpen}
+                    onClose={closeDemoModal}
                     onConfirm={closeDemoModal}
-                    text={demoText}
+                    modalText={demoText}
+                    confirmText="OK"
+                    icon={TbAlertTriangle}
                 />
             </div>
         </>
