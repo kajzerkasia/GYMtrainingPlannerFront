@@ -1,0 +1,44 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    margin: 21vh auto 5vh;
+    padding: 60px 50px;
+    width: 30%;
+    background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
+    font-size: 22px;
+}
+
+.modal::backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal button {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 7vh;
+    font-size: 22px;
+    padding: 22px 5vw 3vh;
+    border: 1px solid #d495e2;
+}
+
+.icon-modal {
+    margin: 5vh auto 0;
+    font-size: 70px;
+    color: #E6E6FA;
+}
+
+.modal-h1 {
+    color: #E6E6FA;
+}
