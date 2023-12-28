@@ -1,6 +1,6 @@
 import React from 'react';
 import {Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PlansList.css';
@@ -8,11 +8,11 @@ import {PlansListForm} from "./PlansListForm";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/plansListTexts";
 import {usePlansListLogic} from "../../hooks/usePlansListLogic";
+import Modal from "../Modal/Modal";
 
 export const PlansList = () => {
 
@@ -111,12 +111,15 @@ export const PlansList = () => {
                         </tbody>
                     </table>
                 </div>
-                <ConfirmDeleteModal
-                    isOpen={confirmDeletePlan}
-                    onRequestClose={handleCancelDelete}
+                <Modal
+                    open={confirmDeletePlan}
+                    onClose={handleCancelDelete}
                     onConfirm={handleConfirmDelete}
                     onCancel={handleCancelDelete}
-                    text={text}
+                    modalText={text}
+                    confirmText="Tak"
+                    cancelText="Nie"
+                    icon={TbAlertTriangle}
                 />
                 <InformationModal
                     isOpen={informationModalIsOpen}
