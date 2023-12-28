@@ -1,18 +1,18 @@
 import React from "react";
 import {Status} from 'types';
 import {RulesForm} from "./RulesForm";
-import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './RulesTable.css';
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
 import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
+import Modal from "../Modal/Modal";
 
 export const RulesTable = () => {
 
@@ -103,12 +103,15 @@ export const RulesTable = () => {
             <button className="btn-back-exercises" onClick={() => window.history.back()}>
                 Powrót
             </button>
-            <ConfirmDeleteModal
-                isOpen={confirmDeleteRule}
-                onRequestClose={handleCancelDelete}
+            <Modal
+                open={confirmDeleteRule}
+                onClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
-                text={text}
+                modalText={text}
+                confirmText="Tak"
+                cancelText="Nie"
+                icon={TbAlertTriangle}
             />
             <InformationModal
                 isOpen={informationModalIsOpen}
