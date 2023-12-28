@@ -2,14 +2,14 @@ import React from 'react';
 import {PlanDetailsForm} from "./PlanDetailsForm";
 import './PlanDetailsTable.css'
 import {IconContext} from "react-icons";
-import {TbHeartbeat} from "react-icons/tb";
+import {TbAlertTriangle, TbHeartbeat} from "react-icons/tb";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {textInformation} from "../../constants/planDetailsTableTexts";
 import {usePlanDetailsTableLogic} from "../../hooks/usePlanDetailsTableLogic";
+import Modal from "../Modal/Modal";
 
 export const PlanDetailsTable = () => {
 
@@ -74,11 +74,13 @@ export const PlanDetailsTable = () => {
             <button className="btn-back-exercises" onClick={() => window.history.back()}>
                 Powrót
             </button>
-            <InformationModal
-                isOpen={informationModalIsOpen}
-                onRequestClose={closeModal}
+            <Modal
+                open={informationModalIsOpen}
+                onClose={closeModal}
                 onConfirm={closeModal}
-                text={textInformation}
+                modalText={textInformation}
+                confirmText="Rozumiem"
+                icon={TbAlertTriangle}
             />
             <DemoModal
                 isOpen={demoModalIsOpen}
