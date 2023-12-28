@@ -8,8 +8,6 @@ import './RulesTable.css';
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {InformationModal} from "../InformationModal/InformationModal";
-import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/rulesTableTexts";
 import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
 import Modal from "../Modal/Modal";
@@ -113,17 +111,21 @@ export const RulesTable = () => {
                 cancelText="Nie"
                 icon={TbAlertTriangle}
             />
-            <InformationModal
-                isOpen={informationModalIsOpen}
-                onRequestClose={closeModal}
+            <Modal
+                open={informationModalIsOpen}
+                onClose={closeModal}
                 onConfirm={closeModal}
-                text={textInformation}
+                modalText={textInformation}
+                confirmText="Rozumiem"
+                icon={TbAlertTriangle}
             />
-            <DemoModal
-                isOpen={demoModalIsOpen}
-                onRequestClose={closeDemoModal}
+            <Modal
+                open={demoModalIsOpen}
+                onClose={closeDemoModal}
                 onConfirm={closeDemoModal}
-                text={demoText}
+                modalText={demoText}
+                confirmText="OK"
+                icon={TbAlertTriangle}
             />
         </div>
     )
