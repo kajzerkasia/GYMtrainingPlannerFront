@@ -2,17 +2,17 @@ import React from "react";
 import {Status} from 'types';
 import {ExercisesForm} from "./ExercisesForm";
 import {Link} from "react-router-dom";
-import {TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/exercisesTableTexts";
 import {useExercisesTableLogic} from "../../hooks/useExercisesTableLogic";
+import Modal from "../Modal/Modal";
 
 export const ExercisesTable = () => {
 
@@ -136,12 +136,15 @@ export const ExercisesTable = () => {
                     Powrót do części planu
                 </button>
             </div>
-            <ConfirmDeleteModal
-                isOpen={confirmDeleteExercise}
-                onRequestClose={handleCancelDelete}
+            <Modal
+                open={confirmDeleteExercise}
+                onClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
-                text={text}
+                modalText={text}
+                confirmText="Tak"
+                cancelText="Nie"
+                icon={TbAlertTriangle}
             />
             <InformationModal
                 isOpen={informationModalIsOpen}

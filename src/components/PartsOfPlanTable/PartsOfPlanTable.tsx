@@ -1,7 +1,7 @@
 import React from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {Status} from 'types';
-import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
+import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link, useParams} from "react-router-dom";
 import './PartsOfPlanTable.css';
@@ -9,11 +9,11 @@ import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
-import {ConfirmDeleteModal} from "../ConfirmDeleteModal/ConfirmDeleteModal";
 import {InformationModal} from "../InformationModal/InformationModal";
 import {DemoModal} from "../DemoModal/DemoModal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import {usePartsOfPlanTableLogic} from "../../hooks/usePartsOfPlanTableLogic";
+import Modal from "../Modal/Modal";
 
 export const PartsOfPlanTable = () => {
 
@@ -120,12 +120,15 @@ export const PartsOfPlanTable = () => {
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-            <ConfirmDeleteModal
-                isOpen={confirmDeletePart}
-                onRequestClose={handleCancelDelete}
+            <Modal
+                open={confirmDeletePart}
+                onClose={handleCancelDelete}
                 onConfirm={handleConfirmDelete}
                 onCancel={handleCancelDelete}
-                text={text}
+                modalText={text}
+                confirmText="Tak"
+                cancelText="Nie"
+                icon={TbAlertTriangle}
             />
             <InformationModal
                 isOpen={informationModalIsOpen}
