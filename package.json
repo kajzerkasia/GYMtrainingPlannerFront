@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -18,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^6.9.0",
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
     "react-spinners": "^0.13.8",
     "save": "^2.9.0",
