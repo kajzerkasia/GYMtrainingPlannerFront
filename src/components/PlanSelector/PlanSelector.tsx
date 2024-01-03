@@ -94,6 +94,10 @@ export const PlanSelector = ({
             >
                 Dodaj
             </button>
+            <button
+                className="plan-selector-button"
+                >Zamknij
+            </button>
         </div>
     );
 };

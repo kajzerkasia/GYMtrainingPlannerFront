@@ -1,8 +1,7 @@
 import React from 'react';
 import {PlanDetailsForm} from "./PlanDetailsForm";
 import './PlanDetailsTable.css'
-import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbHeartbeat} from "react-icons/tb";
+import {TbAlertTriangle} from "react-icons/tb";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
@@ -36,9 +35,6 @@ export const PlanDetailsTable = () => {
 
     return (
         <div className="details-wrapper">
-            <IconContext.Provider value={{className: 'react-main-icon'}}>
-                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
-            </IconContext.Provider>
             <DemoSign/>
             <div className="inner-container">
                 <h2>{planName}</h2>

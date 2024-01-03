@@ -1,6 +1,6 @@
 import React from 'react';
 import {Status} from 'types';
-import {TbQuestionMark, TbX, TbHeartbeat, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PlansList.css';
@@ -43,10 +43,6 @@ export const PlansList = () => {
     return (
         <>
             <div className="parts-wrapper">
-                <IconContext.Provider value={{className: 'react-main-icon'}}>
-                    <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
-                </IconContext.Provider>
-
                 <div className="main-plan">
                     <DemoSign/>
                     <table className="main-table">
@@ -94,7 +90,7 @@ export const PlansList = () => {
                                     initialValues={plan}
                                     onSubmit={async (values, reset) => {
                                         await editPlan(values, reset);
-                                        await handleUpdatePlan(values);
+                                        handleUpdatePlan(values);
                                     }}
                                     actionType={Status.Save}
                                     isEdited={isEdited}
