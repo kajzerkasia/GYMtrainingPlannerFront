@@ -1,7 +1,5 @@
 import React from 'react';
-import {PartsOfPlanForm} from "./PartsOfPlanForm";
-import {Status} from 'types';
-import {TbQuestionMark, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
+import {TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PartsOfPlanTable.css';
@@ -11,6 +9,7 @@ import {DemoSign} from "../DemoSign/DemoSign";
 import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
 import PartsOfPlanElements from "./PartsOfPlanElements";
 import Modals from "../Modal/Modals";
+import AddPartsOfPlanElements from "./AddPartsOfPlanElements";
 
 export const PartsOfPlanTable = () => {
 
@@ -59,28 +58,10 @@ export const PartsOfPlanTable = () => {
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td className="question-td">
-                            <IconContext.Provider value={{className: 'react-icons'}}>
-                                <Link to="/instruction"><TbQuestionMark/></Link>
-                            </IconContext.Provider>
-                        </td>
-                        <PartsOfPlanForm
-                            initialValues={{
-                                name: '',
-                            }}
-                            onSubmit={async (values, reset) => {
-                                addPartOfPlan(values);
-                                reset();
-                            }}
-                            actionType={Status.Add}
-                        />
-                        <td className="td-progression-rules">
-                            <IconContext.Provider value={{className: 'react-icons-progression'}}>
-                                <Link to={`/rules/${params.slug}`}><TbStairsUp/></Link>
-                            </IconContext.Provider>
-                        </td>
-                    </tr>
+                   <AddPartsOfPlanElements
+                       addPartOfPlan={addPartOfPlan}
+                       params={params}
+                   />
                     <PartsOfPlanElements
                         itemsList={itemsList}
                         isEdited={isEdited}
