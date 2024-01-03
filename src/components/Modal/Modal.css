@@ -34,11 +34,12 @@
 }
 
 .icon-modal {
-    margin: 5vh auto 0;
+    margin: 0 auto;
     font-size: 70px;
     color: #E6E6FA;
 }
 
 .modal-h1 {
     color: #E6E6FA;
+    margin-bottom: 5vh;
 }
