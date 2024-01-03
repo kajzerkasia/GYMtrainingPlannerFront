@@ -8,6 +8,7 @@ import {itemsActions} from "../store/features/items/items-slice";
 import {useParams} from "react-router-dom";
 import {RootState} from "../store";
 import {useEffect} from "react";
+import {PartOfPlanEntity} from 'types';
 
 const usePartsOfPlanFunctions = () => {
     const dispatch = useDispatch();
@@ -22,11 +23,11 @@ const usePartsOfPlanFunctions = () => {
         }
     }, [dispatch, params]);
 
-    const handleEditPartOfPlan = (values: any, reset: () => void) => {
+    const handleEditPartOfPlan = (values: PartOfPlanEntity, reset: () => void) => {
         dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen) as any);
     };
 
-    const addPartOfPlan = (newPart: any) => {
+    const addPartOfPlan = (newPart: PartOfPlanEntity) => {
         if (params.slug) {
             dispatch(sendPartsOfPlanData(newPart, setDemoModalIsOpen, setInformationModalIsOpen, params) as any);
         }
