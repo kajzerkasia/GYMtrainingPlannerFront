@@ -1,7 +1,7 @@
 import React from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {Status} from 'types';
-import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
+import {TbQuestionMark, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PartsOfPlanTable.css';
@@ -11,13 +11,11 @@ import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import Modal from "../Modal/Modal";
-import {useDispatch} from "react-redux";
-import {itemsActions} from "../../store/features/items/items-slice";
 import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
 import {useModal} from "../../hooks/useModal";
+import PartsOfPlanElements from "./PartsOfPlanElements";
 
 export const PartsOfPlanTable = () => {
-    const dispatch = useDispatch();
 
     const {
         isLoading,
@@ -88,31 +86,12 @@ export const PartsOfPlanTable = () => {
                             </IconContext.Provider>
                         </td>
                     </tr>
-
-                    {itemsList.map((part: any) => (
-                        <tr key={`${part.id}`}>
-                            <td>
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <button onClick={() => deletePart(part.id)}><TbX/></button>
-                                </IconContext.Provider>
-                            </td>
-                            <PartsOfPlanForm
-                                initialValues={part}
-                                onSubmit={async (values, reset) => {
-                                    handleEditPartOfPlan(values, reset);
-                                    dispatch(itemsActions.updatePartOfPlan(values));
-                                }}
-                                actionType={Status.Save}
-                                isEdited={isEdited}
-                            />
-                            <td>
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <Link to={`/exercises/${part.slug}`}><TbBarbell/></Link>
-                                </IconContext.Provider>
-                            </td>
-                        </tr>
-
-                    ))}
+                    <PartsOfPlanElements
+                        itemsList={itemsList}
+                        isEdited={isEdited}
+                        handleEditPartOfPlan={handleEditPartOfPlan}
+                        deletePart={deletePart}
+                    />
                     </tbody>
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
