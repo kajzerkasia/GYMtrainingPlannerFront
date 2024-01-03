@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 import {Status} from 'types';
 import {useDispatch} from "react-redux";
 import {PartOfPlanEntity} from 'types';
+
 interface PartsOfPlanElementsProps {
     itemsList: PartOfPlanEntity[];
     isEdited: boolean;
