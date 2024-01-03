@@ -3,6 +3,7 @@ import {itemsActions} from "../../../features/items/items-slice";
 import {isDemoEnabled} from "../../../../helpers/env";
 import {apiUrl} from "../../../../config/api";
 import {PartOfPlanEntity} from 'types';
+import {uiActions} from "../../../features/ui/ui-slice";
 
 export const editPartOfPlan = (
     values: PartOfPlanEntity,
@@ -27,15 +28,28 @@ export const editPartOfPlan = (
                 });
 
                 if (!res.ok) {
+                    dispatch(uiActions.showNotification({
+                        status: 'error',
+                        title: 'Błąd!',
+                        message: 'Wystąpił błąd podczas próby zaktualizowania części planu.'
+                    }))
                     throw new Error('Wystąpił błąd podczas próby zaktualizowania części planu.');
                 }
-
                 dispatch(itemsActions.setIsEdited(true));
-
                 const updatedPart = await res.json();
                 dispatch(itemsActions.updatePartOfPlan(updatedPart));
+                dispatch(uiActions.showNotification({
+                    status: 'succes',
+                    title: 'Sukces!',
+                    message: 'Pomyślnie zaktualizowano część planu.'
+                }))
             } catch (error) {
                 console.error('Wystąpił błąd podczas próby zaktualizowania części planu:', error);
+                dispatch(uiActions.showNotification({
+                    status: 'error',
+                    title: 'Błąd!',
+                    message: 'Wystąpił błąd podczas próby zaktualizowania części planu.'
+                }))
             }
         } else {
             setInformationModalIsOpen(true);

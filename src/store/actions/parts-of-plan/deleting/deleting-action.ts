@@ -2,6 +2,7 @@ import {AppDispatch, RootState} from "../../../index";
 import {isDemoEnabled} from "../../../../helpers/env";
 import {apiUrl} from "../../../../config/api";
 import {itemsActions} from "../../../features/items/items-slice";
+import {uiActions} from "../../../features/ui/ui-slice";
 
 export const deletePartOfPlan = (
     closeDemoModal: () => void,
@@ -21,14 +22,29 @@ export const deletePartOfPlan = (
                 if ([400, 500].includes(res.status)) {
                     const error = await res.json();
                     alert(`Wystąpił błąd: ${error.message}`);
+                    dispatch(uiActions.showNotification({
+                        status: 'error',
+                        title: 'Błąd!',
+                        message: 'Wystąpił błąd podczas usuwania części planu.'
+                    }))
                     return;
                 }
                 if (itemToDeleteId) {
                     dispatch(itemsActions.deleteItem(itemToDeleteId));
                     dispatch(itemsActions.handleConfirmDelete());
+                    dispatch(uiActions.showNotification({
+                        status: 'success',
+                        title: 'Sukces!',
+                        message: 'Pomyślnie usunięto część planu.'
+                    }))
                 }
             } catch (error) {
                 console.error('Wystąpił błąd podczas usuwania części planu:', error);
+                dispatch(uiActions.showNotification({
+                    status: 'error',
+                    title: 'Błąd!',
+                    message: 'Wystąpił błąd podczas usuwania części planu.'
+                }))
             }
         }
     };

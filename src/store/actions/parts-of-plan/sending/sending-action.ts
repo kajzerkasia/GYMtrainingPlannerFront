@@ -3,6 +3,7 @@ import {isDemoEnabled} from "../../../../helpers/env";
 import {apiUrl} from "../../../../config/api";
 import {itemsActions} from "../../../features/items/items-slice";
 import {PartOfPlanEntity} from 'types';
+import {uiActions} from "../../../features/ui/ui-slice";
 
 export const sendPartsOfPlanData = (
     values: PartOfPlanEntity,
@@ -12,6 +13,11 @@ export const sendPartsOfPlanData = (
 ) => {
 
     return async (dispatch: AppDispatch, getState: () => RootState) => {
+        dispatch(uiActions.showNotification({
+            status: 'pending',
+            title: 'Dodawanie...',
+            message: 'Dodawanie części planu'
+        }))
 
         const addPartOfPlan = async () => {
             if (isDemoEnabled()) {
@@ -25,7 +31,11 @@ export const sendPartsOfPlanData = (
                     const plan = await planResponse.json();
 
                     if (!plan || plan.length === 0) {
-                        console.log('Brak planu.');
+                        dispatch(uiActions.showNotification({
+                            status: 'error',
+                            title: 'Błąd!',
+                            message: 'Wystąpił błąd podczas próby pobrania danych.'
+                        }))
                     } else {
                         const res = await fetch(`${apiUrl}/api/add-part/plans`, {
                             method: 'POST',
@@ -35,12 +45,30 @@ export const sendPartsOfPlanData = (
                             body: JSON.stringify({...values, planId: plan[0].id}),
                         });
 
+                        try {
                         const data = await res.json();
 
                         dispatch(itemsActions.setItemsList([...getState().items.itemsList, data]));
+                            dispatch(uiActions.showNotification({
+                                status: 'success',
+                                title: 'Sukces!',
+                                message: 'Pomyślnie dodano nową część planu!'
+                            }))
+                        } catch (error) {
+                            dispatch(uiActions.showNotification({
+                                status: 'error',
+                                title: 'Błąd!',
+                                message: 'Wystąpił błąd podczas próby pobrania danych.'
+                            }))
+                        }
                     }
                 } catch (error) {
                     console.error("Wystąpił błąd podczas próby wysłania danych:", error);
+                    dispatch(uiActions.showNotification({
+                        status: 'error',
+                        title: 'Błąd!',
+                        message: 'Wystąpił błąd podczas próby pobrania danych.'
+                    }))
                 }
             } else {
                 setInformationModalIsOpen(true);
