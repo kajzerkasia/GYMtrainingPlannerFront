@@ -5,7 +5,13 @@ import {TbAlertTriangle} from "react-icons/tb";
 import {demoText} from "../../constants/demoText";
 import {useModal} from "../../hooks/useModal";
 
-const Modals = ({confirmDeleteItem, handleCancelDelete, handleConfirmDelete}: any) => {
+interface ModalsProps {
+    confirmDeleteItem: boolean;
+    handleCancelDelete: () => void;
+    handleConfirmDelete: () => void;
+}
+
+const Modals = ({confirmDeleteItem, handleCancelDelete, handleConfirmDelete}: ModalsProps) => {
 
 
     const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = useModal();
