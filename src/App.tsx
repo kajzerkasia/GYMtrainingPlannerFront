@@ -15,6 +15,7 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
+        errorElement: <Error/>,
         children: [
             {path: '/', element: <Navigate to="/list"/>},
             {path: '/list', element: <PlansList/>},
@@ -23,7 +24,6 @@ const router = createBrowserRouter([
             {path: '/rules/:slug', element: <RulesTable/>},
             {path: '/details/:slug', element: <PlanDetailsTable/>},
             {path: '/instruction', element: <Instruction/>},
-            {path: '*', element: <Error/>},
         ],
     },
 ]);
