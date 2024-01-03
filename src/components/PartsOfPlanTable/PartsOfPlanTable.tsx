@@ -1,7 +1,4 @@
 import React from 'react';
-import {TbHeartbeat, TbDotsVertical} from "react-icons/tb";
-import {IconContext} from "react-icons";
-import {Link} from "react-router-dom";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
@@ -10,6 +7,8 @@ import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
 import PartsOfPlanElements from "./PartsOfPlanElements";
 import Modals from "../Modal/Modals";
 import AddPartsOfPlanElements from "./AddPartsOfPlanElements";
+import PartsOfPlanTableHeader from "./PartsOfPlanTableHeader";
+import Logo from "../Logo/Logo";
 
 export const PartsOfPlanTable = () => {
 
@@ -37,31 +36,18 @@ export const PartsOfPlanTable = () => {
 
     return (
         <div className="parts-wrapper">
-            <IconContext.Provider value={{className: 'react-main-icon'}}>
-                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
-            </IconContext.Provider>
+            <Logo/>
             <div className="main-plan">
                 <DemoSign/>
                 <table className="main-table">
-
                     <thead>
-                    <tr className="tr-add">
-                        <td colSpan={3} className="training-plan">
-                            <h1 className="h1-plan">Nazwa planu treningowego (TODO)</h1>
-                        </td>
-                        <td className="dots" colSpan={1}>
-                            <IconContext.Provider value={{className: 'react-icons-dots'}}>
-                                <Link to={`/details/${params.slug}`}><TbDotsVertical/></Link>
-                            </IconContext.Provider>
-                        </td>
-                    </tr>
+                    <PartsOfPlanTableHeader params={params}/>
                     </thead>
-
                     <tbody>
-                   <AddPartsOfPlanElements
-                       addPartOfPlan={addPartOfPlan}
-                       params={params}
-                   />
+                    <AddPartsOfPlanElements
+                        addPartOfPlan={addPartOfPlan}
+                        params={params}
+                    />
                     <PartsOfPlanElements
                         itemsList={itemsList}
                         isEdited={isEdited}
@@ -72,11 +58,11 @@ export const PartsOfPlanTable = () => {
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-          <Modals
-              confirmDeleteItem={confirmDeleteItem}
-              handleCancelDelete={handleCancelDelete}
-              handleConfirmDelete={handleConfirmDelete}
-          />
+            <Modals
+                confirmDeleteItem={confirmDeleteItem}
+                handleCancelDelete={handleCancelDelete}
+                handleConfirmDelete={handleConfirmDelete}
+            />
         </div>
     )
 }
