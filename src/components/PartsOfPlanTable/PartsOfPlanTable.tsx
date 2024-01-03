@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {Status} from 'types';
 import {TbBarbell, TbQuestionMark, TbX, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
@@ -11,54 +11,29 @@ import {DemoSign} from "../DemoSign/DemoSign";
 import {demoText} from "../../constants/demoText";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import Modal from "../Modal/Modal";
-import {useDispatch, useSelector} from "react-redux";
-import {useModal} from "../../hooks/useModal";
-import {PartOfPlanEntity} from 'types';
-import {RootState} from "../../store";
+import {useDispatch} from "react-redux";
 import {itemsActions} from "../../store/features/items/items-slice";
-import {fetchPartsOfPlanData} from "../../store/actions/parts-of-plan/fetching/fetching-action";
-import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating/updating-action";
-import {sendPartsOfPlanData} from "../../store/actions/parts-of-plan/sending/sending-action";
-import {deletePartOfPlan} from "../../store/actions/parts-of-plan/deleting/deleting-action";
+import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
+import {useModal} from "../../hooks/useModal";
 
 export const PartsOfPlanTable = () => {
     const dispatch = useDispatch();
-    const {isLoading, isEdited, itemsList, confirmDeleteItem} = useSelector((state: RootState) => state.items);
-    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal, closeModal, informationModalIsOpen, demoModalIsOpen} = useModal();
 
-    const params = useParams();
+    const {
+        isLoading,
+        isEdited,
+        itemsList,
+        confirmDeleteItem,
+        params,
+        handleEditPartOfPlan,
+        addPartOfPlan,
+        deletePart,
+        handleConfirmDelete,
+        handleCancelDelete,
+    } = usePartsOfPlanFunctions();
 
-    useEffect(() => {
-        if (params.slug) {
-            dispatch(fetchPartsOfPlanData(params) as any);
-        }
-    }, [dispatch, params]);
+    const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = useModal();
 
-    const handleEditPartOfPlan = (values: PartOfPlanEntity, reset: () => void) => {
-        dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen) as any);
-    };
-
-    const addPartOfPlan = (newPart: PartOfPlanEntity) => {
-        if (params.slug) {
-            dispatch(sendPartsOfPlanData(newPart, setDemoModalIsOpen, setInformationModalIsOpen, params) as any);
-        }
-    }
-
-    const deletePart = (partId: string | undefined) => {
-        if (partId) {
-            dispatch(itemsActions.setConfirmDeleteItem(true));
-            dispatch(itemsActions.setItemToDeleteId(partId));
-        }
-    };
-
-    const handleConfirmDelete = async () => {
-        dispatch(deletePartOfPlan(closeDemoModal) as any);
-    };
-
-    const handleCancelDelete = () => {
-        dispatch(itemsActions.setConfirmDeleteItem(false));
-        dispatch(itemsActions.setItemToDeleteId(''));
-    };
     if (isLoading || !itemsList) {
         return (
             <div className="spinner_container">
@@ -80,7 +55,7 @@ export const PartsOfPlanTable = () => {
                     <thead>
                     <tr className="tr-add">
                         <td colSpan={3} className="training-plan">
-                            <h1 className="h1-plan">Nazwa planu treningowego (ogarnąć)</h1>
+                            <h1 className="h1-plan">Nazwa planu treningowego (TODO)</h1>
                         </td>
                         <td className="dots" colSpan={1}>
                             <IconContext.Provider value={{className: 'react-icons-dots'}}>
