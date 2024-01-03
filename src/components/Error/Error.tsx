@@ -12,7 +12,7 @@ export const Error = () => {
             <IconContext.Provider value={{className: 'react-icons-cry'}}>
                 <TbMoodCry/>
             </IconContext.Provider>
-            <GoBack to='plans' text="Powrót do strony głównej"/>
+            <GoBack to='list' text="Powrót do strony głównej"/>
         </div>
     );
 };
