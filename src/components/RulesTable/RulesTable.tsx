@@ -1,7 +1,7 @@
 import React from "react";
 import {Status} from 'types';
 import {RulesForm} from "./RulesForm";
-import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './RulesTable.css';
@@ -43,9 +43,6 @@ export const RulesTable = () => {
 
     return (
         <div className="rules-wrapper">
-            <IconContext.Provider value={{className: 'react-main-icon'}}>
-                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
-            </IconContext.Provider>
             <DemoSign/>
             <div className="inner-container">
                 <h2>{planName}</h2>

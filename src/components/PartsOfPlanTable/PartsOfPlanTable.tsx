@@ -8,7 +8,6 @@ import PartsOfPlanElements from "./PartsOfPlanElements";
 import Modals from "../Modal/Modals";
 import AddPartsOfPlanElements from "./AddPartsOfPlanElements";
 import PartsOfPlanTableHeader from "./PartsOfPlanTableHeader";
-import Logo from "../Logo/Logo";
 
 export const PartsOfPlanTable = () => {
 
@@ -36,7 +35,6 @@ export const PartsOfPlanTable = () => {
 
     return (
         <div className="parts-wrapper">
-            <Logo/>
             <div className="main-plan">
                 <DemoSign/>
                 <table className="main-table">
