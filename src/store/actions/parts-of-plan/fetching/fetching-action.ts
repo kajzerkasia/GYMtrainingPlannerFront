@@ -1,6 +1,7 @@
 import {AppDispatch, RootState} from "../../../index";
 import {itemsActions} from "../../../features/items/items-slice";
 import {apiUrl} from "../../../../config/api";
+import {uiActions} from "../../../features/ui/ui-slice";
 
 export const fetchPartsOfPlanData = (
     params: Record<string, string | undefined>
@@ -19,7 +20,12 @@ export const fetchPartsOfPlanData = (
             const plan = await planResponse.json();
 
             if (!plan || plan.length === 0) {
-                console.log('Brak planu.');
+                console.log('Brak planów.');
+                dispatch(uiActions.showNotification({
+                    status: 'error',
+                    title: 'Błąd!',
+                    message: 'Wystąpił błąd podczas próby pobrania danych.'
+                }))
             } else {
                 dispatch(itemsActions.setItemsList(plan));
 
@@ -33,6 +39,11 @@ export const fetchPartsOfPlanData = (
                 const planParts = await planPartsResponse.json();
 
                 if (!planParts) {
+                    dispatch(uiActions.showNotification({
+                        status: 'error',
+                        title: 'Błąd!',
+                        message: 'Wystąpił błąd podczas próby pobrania danych.'
+                    }))
                     return Promise.reject('Brak części planów.');
                 } else {
                     dispatch(itemsActions.setItemsList(planParts));
@@ -42,6 +53,11 @@ export const fetchPartsOfPlanData = (
         } catch (error) {
             console.error('Wystąpił błąd podczas próby pobrania danych:', error);
             dispatch(itemsActions.setIsLoading(false));
+            dispatch(uiActions.showNotification({
+                status: 'error',
+                title: 'Error!',
+                message: 'Wystąpił błąd podczas próby pobrania danych.'
+            }))
         }
     };
 };
