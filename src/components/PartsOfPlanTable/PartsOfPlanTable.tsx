@@ -1,19 +1,16 @@
 import React from 'react';
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {Status} from 'types';
-import {TbQuestionMark, TbStairsUp, TbHeartbeat, TbDotsVertical, TbAlertTriangle} from "react-icons/tb";
+import {TbQuestionMark, TbStairsUp, TbHeartbeat, TbDotsVertical} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PartsOfPlanTable.css';
 import {GoBack} from "../GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../../constants/demoText";
-import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
-import Modal from "../Modal/Modal";
 import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
-import {useModal} from "../../hooks/useModal";
 import PartsOfPlanElements from "./PartsOfPlanElements";
+import Modals from "../Modal/Modals";
 
 export const PartsOfPlanTable = () => {
 
@@ -29,8 +26,6 @@ export const PartsOfPlanTable = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = usePartsOfPlanFunctions();
-
-    const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = useModal();
 
     if (isLoading || !itemsList) {
         return (
@@ -96,32 +91,11 @@ export const PartsOfPlanTable = () => {
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-            <Modal
-                open={confirmDeleteItem}
-                onClose={handleCancelDelete}
-                onConfirm={handleConfirmDelete}
-                onCancel={handleCancelDelete}
-                modalText={text}
-                confirmText="Tak"
-                cancelText="Nie"
-                icon={TbAlertTriangle}
-            />
-            <Modal
-                open={informationModalIsOpen}
-                onClose={closeModal}
-                onConfirm={closeModal}
-                modalText={textInformation}
-                confirmText="Rozumiem"
-                icon={TbAlertTriangle}
-            />
-            <Modal
-                open={demoModalIsOpen}
-                onClose={closeDemoModal}
-                onConfirm={closeDemoModal}
-                modalText={demoText}
-                confirmText="OK"
-                icon={TbAlertTriangle}
-            />
+          <Modals
+              confirmDeleteItem={confirmDeleteItem}
+              handleCancelDelete={handleCancelDelete}
+              handleConfirmDelete={handleConfirmDelete}
+          />
         </div>
     )
 }
