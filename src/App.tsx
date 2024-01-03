@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RulesTable} from "./components/RulesTable/RulesTable";
 import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable} from "./components/ExercisesTable/ExercisesTable";
@@ -9,23 +9,26 @@ import {Error} from "./components/Error/Error";
 import {PlanDetailsTable} from "./components/PlanDetails/PlanDetailsTable";
 import './App.css';
 import {PlansList} from "./components/PlansList/PlansList";
+import RootLayout from "./pages/RootLayout";
 
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <RootLayout/>,
+        children: [
+            {path: '/', element: <Navigate to="/list"/>},
+            {path: '/list', element: <PlansList/>},
+            {path: '/plans/:slug', element: <PartsOfPlanTable/>},
+            {path: '/exercises/:slug', element: <ExercisesTable/>},
+            {path: '/rules/:slug', element: <RulesTable/>},
+            {path: '/details/:slug', element: <PlanDetailsTable/>},
+            {path: '/instruction', element: <Instruction/>},
+            {path: '*', element: <Error/>},
+        ],
+    },
+]);
 export const App = () => {
-
-    return (
-        <>
-            <Routes>
-                <Route path="/" element={<Navigate to="/list"/>}/>
-                <Route path="/list" element={<PlansList/>}/>
-                <Route path="/plans/:slug" element={<PartsOfPlanTable/>}/>
-                <Route path="/exercises/:slug" element={<ExercisesTable/>}/>
-                <Route path="/rules/:slug" element={<RulesTable/>}/>
-                <Route path="/details/:slug" element={<PlanDetailsTable/>}/>
-                <Route path="/instruction" element={<Instruction/>}/>
-                <Route path="*" element={<Error/>}/>
-            </Routes>
-        </>
-    )
+    return <RouterProvider router={router}/>;
 }
 
 
