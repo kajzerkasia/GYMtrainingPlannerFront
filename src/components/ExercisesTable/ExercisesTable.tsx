@@ -2,7 +2,7 @@ import React from "react";
 import {Status} from 'types';
 import {ExercisesForm} from "./ExercisesForm";
 import {Link} from "react-router-dom";
-import {TbAlertTriangle, TbHeartbeat, TbQuestionMark, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
@@ -44,9 +44,6 @@ export const ExercisesTable = () => {
 
     return (
         <div className="wrapper-exercises-table">
-            <IconContext.Provider value={{className: 'react-main-icon'}}>
-                <h1 className="main-h1"><TbHeartbeat/> Gym Training Planner</h1>
-            </IconContext.Provider>
             <DemoSign/>
             <div className="div-plan-info">
                 <div className="inner-container">
@@ -120,7 +117,7 @@ export const ExercisesTable = () => {
                             initialValues={exercise}
                             onSubmit={async (values, reset) => {
                                 await editExercise(values, reset);
-                                await handleUpdateExercise(values);
+                                handleUpdateExercise(values);
                             }}
                             actionType={Status.Save}
                             isEdited={isEdited}
