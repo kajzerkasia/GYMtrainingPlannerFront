@@ -1,14 +1,14 @@
 import React from 'react';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {RulesTable} from "./components/RulesTable/RulesTable";
+import {RulesTable} from "./pages/RulesTable";
 import {Instruction} from "./components/Instruction/Instruction";
-import {ExercisesTable} from "./components/ExercisesTable/ExercisesTable";
-import {PartsOfPlanTable} from "./components/PartsOfPlanTable/PartsOfPlanTable";
+import {ExercisesTable} from "./pages/ExercisesTable";
+import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
 import {Navigate} from 'react-router-dom';
 import {Error} from "./components/Error/Error";
-import {PlanDetailsTable} from "./components/PlanDetails/PlanDetailsTable";
+import {PlanDetailsTable} from "./pages/PlanDetailsTable";
 import './App.css';
-import {PlansList} from "./components/PlansList/PlansList";
+import {PlansList} from "./pages/PlansList";
 import RootLayout from "./pages/RootLayout";
 
 const router = createBrowserRouter([

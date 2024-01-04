@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {PlanEntity, Status} from 'types';
 import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import './PlansList.css';
+import '../../pages/PlansList.css';
 import {CalendarModal} from "../CalendarModal/CalendarModal";
 
 export type PlansListFormProps = {

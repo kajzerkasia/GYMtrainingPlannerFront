@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {RuleEntity, Status} from 'types';
 import {IconContext} from "react-icons";
 import {TbCheck, TbPlus} from "react-icons/tb";
-import './RulesTable.css';
+import '../../pages/RulesTable.css';
 
 export type RuleFormProps = {
     initialValues: RuleEntity;
