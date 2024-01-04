@@ -37,7 +37,7 @@ export const editPartOfPlan = (
                 }
                 dispatch(itemsActions.setIsEdited(true));
                 const updatedPart = await res.json();
-                dispatch(itemsActions.updatePartOfPlan(updatedPart));
+                dispatch(itemsActions.updateItem(updatedPart));
                 dispatch(uiActions.showNotification({
                     status: 'succes',
                     title: 'Sukces!',

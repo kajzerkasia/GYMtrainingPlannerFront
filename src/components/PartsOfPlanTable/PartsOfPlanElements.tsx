@@ -30,7 +30,7 @@ const PartsOfPlanElements = ({ itemsList, isEdited, handleEditPartOfPlan, delete
                         initialValues={part}
                         onSubmit={async (values, reset) => {
                             handleEditPartOfPlan(values, reset);
-                            dispatch(itemsActions.updatePartOfPlan(values));
+                            dispatch(itemsActions.updateItem(values));
                         }}
                         actionType={Status.Save}
                         isEdited={isEdited}
