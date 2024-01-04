@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {ExerciseEntity, Status} from 'types';
 import {TbCheck, TbPlus, TbLink} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import './ExercisesTable.css';
+import '../../pages/ExercisesTable.css';
 
 export type ExerciseFormProps = {
     initialValues: ExerciseEntity;

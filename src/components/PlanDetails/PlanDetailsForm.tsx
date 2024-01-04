@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {DetailEntity} from 'types';
 import {IconContext} from "react-icons";
 import {TbCheck} from "react-icons/tb";
-import './PlanDetailsTable.css'
+import '../../pages/PlanDetailsTable.css'
 
 export type DetailFormProps = {
     initialValues: DetailEntity;
