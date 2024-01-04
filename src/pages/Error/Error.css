@@ -8,8 +8,8 @@
 }
 
 .react-icons-cry {
+    display: flex;
     font-size: 72px;
-    margin-top: 2vh;
-    margin-bottom: 3vh;
+    margin: 2vh auto 3vh;
 }
 
