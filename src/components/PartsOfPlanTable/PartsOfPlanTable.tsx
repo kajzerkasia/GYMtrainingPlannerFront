@@ -39,7 +39,10 @@ export const PartsOfPlanTable = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <thead>
-                    <PartsOfPlanTableHeader params={params}/>
+                    <PartsOfPlanTableHeader
+                        params={params}
+                        itemsList={itemsList}
+                    />
                     </thead>
                     <tbody>
                     <AddPartsOfPlanElements
