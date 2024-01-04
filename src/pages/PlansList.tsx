@@ -130,7 +130,7 @@ export const PlansList = () => {
 }
 
 export async function loader() {
-    const response = await fetch(`${apiUrl}/api/add-plan/lisgggt`);
+    const response = await fetch(`${apiUrl}/api/add-plan/list`);
 
     if (!response.ok) {
         throw new Response(JSON.stringify({message: 'Nie można pobrać danych o planach treningowych...'}), {status: 500});
