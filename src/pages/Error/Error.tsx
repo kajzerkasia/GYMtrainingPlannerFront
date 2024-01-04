@@ -7,18 +7,25 @@ import PageContent from "../../components/PageContent/PageContent";
 import {useRouteError} from "react-router-dom";
 import './Error.css';
 
+interface CustomError {
+    status: number;
+    data: string;
+}
+
 export const Error = () => {
-    const error: any = useRouteError();
+    const error = useRouteError();
+
+    const customError: CustomError = error as CustomError;
 
     let title = "Wystąpił błąd!";
     let message = "Coś poszło nie tak...";
 
-    if (error.status === 500) {
-        message = JSON.parse(error.data).message;
+    if (customError.status === 500) {
+        message = JSON.parse(customError.data).message;
     }
 
-    if (error.status === 404) {
-        title = "Nie znaleziono strony lub zasobu";
+    if (customError.status === 404) {
+        title = "Nie znaleziono strony lub zasobu.";
         message = "Ups... Nic tutaj nie ma."
     }
 
