@@ -1,16 +1,16 @@
 import React from "react";
 import {Status} from 'types';
-import {ExercisesForm} from "./ExercisesForm";
+import {ExercisesForm} from "../components/ExercisesTable/ExercisesForm";
 import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ExercisesTable.css';
 import {MoonLoader} from "react-spinners";
-import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../../constants/demoText";
-import {text, textInformation} from "../../constants/exercisesTableTexts";
-import {useExercisesTableLogic} from "../../hooks/useExercisesTableLogic";
-import Modal from "../Modal/Modal";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import {demoText} from "../constants/demoText";
+import {text, textInformation} from "../constants/exercisesTableTexts";
+import {useExercisesTableLogic} from "../hooks/useExercisesTableLogic";
+import Modal from "../components/Modal/Modal";
 
 export const ExercisesTable = () => {
 

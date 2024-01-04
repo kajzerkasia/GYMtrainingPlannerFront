@@ -1,16 +1,16 @@
 import React from "react";
 import {Status} from 'types';
-import {RulesForm} from "./RulesForm";
+import {RulesForm} from "../components/RulesTable/RulesForm";
 import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './RulesTable.css';
 import {MoonLoader} from "react-spinners";
-import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../../constants/demoText";
-import {text, textInformation} from "../../constants/rulesTableTexts";
-import {useRulesTableLogic} from "../../hooks/useRulesTableLogic";
-import Modal from "../Modal/Modal";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import {demoText} from "../constants/demoText";
+import {text, textInformation} from "../constants/rulesTableTexts";
+import {useRulesTableLogic} from "../hooks/useRulesTableLogic";
+import Modal from "../components/Modal/Modal";
 
 export const RulesTable = () => {
 

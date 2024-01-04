@@ -1,13 +1,13 @@
 import React from 'react';
 import './PartsOfPlanTable.css';
-import {GoBack} from "../GoBack/GoBack";
+import {GoBack} from "../components/GoBack/GoBack";
 import {MoonLoader} from "react-spinners";
-import {DemoSign} from "../DemoSign/DemoSign";
-import usePartsOfPlanFunctions from "../../hooks/usePartsOfPlanFunctions";
-import PartsOfPlanElements from "./PartsOfPlanElements";
-import Modals from "../Modal/Modals";
-import AddPartsOfPlanElements from "./AddPartsOfPlanElements";
-import PartsOfPlanTableHeader from "./PartsOfPlanTableHeader";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import usePartsOfPlanFunctions from "../hooks/usePartsOfPlanFunctions";
+import PartsOfPlanElements from "../components/PartsOfPlanTable/PartsOfPlanElements";
+import Modals from "../components/Modal/Modals";
+import AddPartsOfPlanElements from "../components/PartsOfPlanTable/AddPartsOfPlanElements";
+import PartsOfPlanTableHeader from "../components/PartsOfPlanTable/PartsOfPlanTableHeader";
 
 export const PartsOfPlanTable = () => {
 
