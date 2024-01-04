@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {PlanEntity, PartOfPlanEntity, ExerciseEntity, RuleEntity, DetailEntity} from 'types';
 
-type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity | RuleEntity | DetailEntity;
+export type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity | RuleEntity | DetailEntity;
 
-interface ItemsState<T extends Entity> {
+export interface ItemsState<T extends Entity> {
     itemsList: T[];
     isEdited: boolean;
     confirmDeleteItem: boolean;
@@ -46,7 +46,7 @@ const itemsSlice = createSlice({
             state.confirmDeleteItem = false;
             state.itemToDeleteId = null;
         },
-        updatePartOfPlan: <T extends Entity>(state: ItemsState<T>, action: PayloadAction<T>) => {
+        updateItem: <T extends Entity>(state: ItemsState<T>, action: PayloadAction<T>) => {
             const updatedPart = action.payload;
             state.itemsList = state.itemsList.map((item) =>
                 item.id === updatedPart.id ? updatedPart : item
@@ -54,7 +54,7 @@ const itemsSlice = createSlice({
         },
         deleteItem: (state, action: PayloadAction<string>) => {
             const itemIdToDelete = action.payload;
-            state.itemsList = state.itemsList.filter((part) => part.id !== itemIdToDelete);
+            state.itemsList = state.itemsList.filter((item) => item.id !== itemIdToDelete);
         },
     },
 });
