@@ -5,10 +5,10 @@ import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable} from "./pages/ExercisesTable";
 import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
 import {Navigate} from 'react-router-dom';
-import {Error} from "./components/Error/Error";
+import {Error} from "./pages/Error/Error";
 import {PlanDetailsTable} from "./pages/PlanDetailsTable";
 import './App.css';
-import {PlansList} from "./pages/PlansList";
+import {loader as plansLoader, PlansList} from "./pages/PlansList";
 import RootLayout from "./pages/RootLayout";
 
 const router = createBrowserRouter([
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         errorElement: <Error/>,
         children: [
             {index: true, element: <Navigate to="/list"/>},
-            {path: 'list', element: <PlansList/>},
+            {path: 'list', element: <PlansList/>, loader: plansLoader},
             {path: 'plans/:slug', element: <PartsOfPlanTable/>},
             {path: 'exercises/:slug', element: <ExercisesTable/>},
             {path: 'rules/:slug', element: <RulesTable/>},
