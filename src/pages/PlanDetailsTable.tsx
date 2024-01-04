@@ -1,13 +1,13 @@
 import React from 'react';
-import {PlanDetailsForm} from "./PlanDetailsForm";
+import {PlanDetailsForm} from "../components/PlanDetails/PlanDetailsForm";
 import './PlanDetailsTable.css'
 import {TbAlertTriangle} from "react-icons/tb";
 import {MoonLoader} from "react-spinners";
-import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../../constants/demoText";
-import {textInformation} from "../../constants/planDetailsTableTexts";
-import {usePlanDetailsTableLogic} from "../../hooks/usePlanDetailsTableLogic";
-import Modal from "../Modal/Modal";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import {demoText} from "../constants/demoText";
+import {textInformation} from "../constants/planDetailsTableTexts";
+import {usePlanDetailsTableLogic} from "../hooks/usePlanDetailsTableLogic";
+import Modal from "../components/Modal/Modal";
 
 export const PlanDetailsTable = () => {
 

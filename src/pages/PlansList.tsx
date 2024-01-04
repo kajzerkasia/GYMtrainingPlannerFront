@@ -4,13 +4,13 @@ import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from
 import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import './PlansList.css';
-import {PlansListForm} from "./PlansListForm";
+import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {MoonLoader} from "react-spinners";
-import {DemoSign} from "../DemoSign/DemoSign";
-import {demoText} from "../../constants/demoText";
-import {text, textInformation} from "../../constants/plansListTexts";
-import {usePlansListLogic} from "../../hooks/usePlansListLogic";
-import Modal from "../Modal/Modal";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import {demoText} from "../constants/demoText";
+import {text, textInformation} from "../constants/plansListTexts";
+import {usePlansListLogic} from "../hooks/usePlansListLogic";
+import Modal from "../components/Modal/Modal";
 
 export const PlansList = () => {
 
