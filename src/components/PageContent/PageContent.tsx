@@ -1,4 +1,6 @@
-interface PageContentProps {
+import {HTMLAttributes, PropsWithChildren} from "react";
+
+interface PageContentProps extends HTMLAttributes<HTMLDivElement>, PropsWithChildren {
     title: string;
     children: any;
 }
