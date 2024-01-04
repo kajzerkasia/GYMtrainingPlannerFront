@@ -2,23 +2,22 @@ import React from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Link} from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
-import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {demoText} from "../constants/demoText";
 import {text, textInformation} from "../constants/plansListTexts";
 import {usePlansListLogic} from "../hooks/usePlansListLogic";
 import Modal from "../components/Modal/Modal";
-
+import {apiUrl} from "../config/api";
 export const PlansList = () => {
 
+    const plansList: any = useLoaderData();
+
     const {
-        plansList,
         isEdited,
         confirmDeletePlan,
-        isLoading,
         informationModalIsOpen,
         demoModalIsOpen,
         closeModal,
@@ -30,15 +29,6 @@ export const PlansList = () => {
         handleConfirmDelete,
         handleCancelDelete,
     } = usePlansListLogic();
-
-    if (isLoading || !plansList) {
-        return (
-            <div className="spinner_container">
-                <div className="div_loading">Ładowanie planów treningowych...</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
-            </div>
-        );
-    }
 
     return (
         <>
@@ -79,7 +69,7 @@ export const PlansList = () => {
                             />
                         </tr>
 
-                        {plansList.map((plan) => (
+                        {plansList.map((plan: any) => (
                             <tr key={`${plan.id}`}>
                                 <td>
                                     <IconContext.Provider value={{className: 'react-icons'}}>
@@ -134,4 +124,14 @@ export const PlansList = () => {
             </div>
         </>
     )
+}
+
+export async function loader() {
+    const response = await fetch(`${apiUrl}/api/add-plan/list`);
+
+    if (!response.ok) {
+        throw new Response(JSON.stringify({message: 'Nie można pobrać danych o planach treningowych...'}), {status: 500});
+    } else {
+        return response;
+    }
 }
