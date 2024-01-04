@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {PlanEntity} from 'types';
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
@@ -21,33 +21,9 @@ export const usePlansListLogic = () => {
         closeModal,
     } = useModal();
 
-    useEffect(() => {
-        const abortController = new AbortController();
-
-        fetch(`${apiUrl}/api/add-plan/list`, {
-            method: 'GET',
-            signal: abortController.signal
-        }).then(res => res.json())
-            .then((plans) => {
-                setPlansList(plans);
-                setIsLoading(false);
-            })
-            .catch((error) => {
-                console.error("Wystąpił błąd podczas próby pobrania danych o planach treningowych:", error);
-                setIsLoading(false);
-            });
-
-        return () => {
-            try {
-                abortController.abort()
-            } catch {
-            }
-        };
-    }, [])
-
     const addPlan = async (values: PlanEntity) => {
         if (isDemoEnabled()) {
-            setDemoModalIsOpen(true); // Otwórz demoModal, jeśli demo jest włączone
+            setDemoModalIsOpen(true);
         } else if (values.name) {
             const res = await fetch(`${apiUrl}/api/add-plan/list`, {
                 method: 'POST',
@@ -61,7 +37,7 @@ export const usePlansListLogic = () => {
 
             setPlansList(list => [...list, data]);
         } else {
-            setInformationModalIsOpen(true); // Otwórz informationModal, jeśli brakuje nazwy planu
+            setInformationModalIsOpen(true);
         }
     };
 
@@ -141,7 +117,6 @@ export const usePlansListLogic = () => {
     };
 
     return {
-        plansList,
         isEdited,
         confirmDeletePlan,
         planToDeleteId,
