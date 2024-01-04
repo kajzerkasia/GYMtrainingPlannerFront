@@ -11,9 +11,12 @@ import {text, textInformation} from "../constants/plansListTexts";
 import {usePlansListLogic} from "../hooks/usePlansListLogic";
 import Modal from "../components/Modal/Modal";
 import {apiUrl} from "../config/api";
+import {PlanEntity} from 'types';
+
 export const PlansList = () => {
 
-    const plansList: any = useLoaderData();
+    const data = useLoaderData();
+    const plansList: PlanEntity[] = data as PlanEntity[];
 
     const {
         isEdited,
@@ -127,7 +130,7 @@ export const PlansList = () => {
 }
 
 export async function loader() {
-    const response = await fetch(`${apiUrl}/api/add-plan/list`);
+    const response = await fetch(`${apiUrl}/api/add-plan/lisgggt`);
 
     if (!response.ok) {
         throw new Response(JSON.stringify({message: 'Nie można pobrać danych o planach treningowych...'}), {status: 500});
