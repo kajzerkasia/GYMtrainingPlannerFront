@@ -33,6 +33,24 @@ export const PlansList = () => {
         handleCancelDelete,
     } = usePlansListLogic();
 
+    const addPlan = async (values: PlanEntity, reset: () => void) => {
+        try {
+            const plans = await action({
+                request: {
+                    formData: async () => {
+                        const formData = new FormData();
+                        formData.append('name', values.name);
+                        return formData;
+                    }
+                }
+            });
+            setPlansList(plans);
+            reset();
+        } catch (error) {
+            console.error("Wystąpił błąd w trakcie dodawania planu:", error);
+        }
+    }
+
     return (
         <>
             <div className="parts-wrapper">
@@ -65,21 +83,7 @@ export const PlansList = () => {
                                     name: '',
                                 }}
                                 onSubmit={async (values, reset) => {
-                                    try {
-                                        const plans = await action({
-                                            request: {
-                                                formData: async () => {
-                                                    const formData = new FormData();
-                                                    formData.append('name', values.name);
-                                                    return formData;
-                                                }
-                                            }
-                                        });
-                                        setPlansList(plans);
-                                        reset();
-                                    } catch (error) {
-                                        console.error("Wystąpił błąd w trakcie dodawania planu:", error);
-                                    }
+                                    await addPlan(values, reset)
                                 }}
                                 actionType={Status.Add}
                             />
@@ -157,9 +161,6 @@ export async function loader() {
 }
 
 export async function action({request}: any) {
-    console.log("Rozpoczęcie funkcji action");
-
-
     const data = await request.formData();
 
     const plansData = {
@@ -180,7 +181,5 @@ export async function action({request}: any) {
             status: 500,
         });
     }
-    const plans = await response.json();
-
-    return plans;
+    return await response.json();
 }
