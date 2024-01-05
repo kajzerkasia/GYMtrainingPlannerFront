@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ExerciseEntity, PlanEntity} from 'types';
 import {useParams} from "react-router-dom";
 import {apiUrl} from "../config/api";
@@ -26,60 +26,6 @@ export const useExercisesTableLogic = () => {
         demoModalIsOpen,
         informationModalIsOpen,
     } = useModal();
-
-    useEffect(() => {
-
-        const abortController = new AbortController();
-
-        fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
-            method: 'GET',
-        })
-            .then(r => r.json())
-            .then((planPart) => {
-
-                if (!planPart || planPart.length === 0) {
-                    console.log('Brak części planu.')
-                } else {
-                    setPartName(planPart[0].name);
-
-                    fetch(`${apiUrl}/api/add-plan/list`, {
-                        method: 'GET',
-                    })
-                        .then(res => res.json())
-                        .then((plans: Partial<PlanEntity>[]) => {
-                            const foundPlan = plans.find((plan: Partial<PlanEntity>) => plan.id === planPart[0].planId);
-                            if (foundPlan) {
-                                setPlanInfo(foundPlan as PlanEntity);
-                            }
-                        });
-
-                    return fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`, {
-                        method: 'GET',
-
-                    }).then(res => res.json())
-                        .then((exercises) => {
-                            if (!exercises) {
-                                return Promise.reject('Brak ćwiczeń.')
-                            } else {
-                                setExercisesList(exercises);
-                                setIsLoading(false);
-                            }
-                        })
-                        .catch((error) => {
-                            console.error("Wystąpił błąd podczas próby pobrania danych o ćwiczeniach.", error);
-                            setIsLoading(false);
-                        });
-                }
-            })
-
-        return () => {
-            try {
-                abortController.abort()
-            } catch {
-            }
-        };
-
-    }, [params.slug])
 
     const addExercise = async (values: ExerciseEntity) => {
         if (isDemoEnabled()) {
@@ -205,7 +151,6 @@ export const useExercisesTableLogic = () => {
     };
 
     return {
-        exercisesList,
         isEdited,
         confirmDeleteExercise,
         exerciseToDeleteId,
