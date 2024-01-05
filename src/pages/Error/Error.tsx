@@ -9,7 +9,10 @@ import './Error.css';
 
 interface CustomError {
     status: number;
-    data: string;
+    data: {
+        status: number,
+        message: string,
+    };
 }
 
 export const Error = () => {
@@ -21,7 +24,7 @@ export const Error = () => {
     let message = "Coś poszło nie tak...";
 
     if (customError.status === 500) {
-        message = JSON.parse(customError.data).message;
+        message = customError.data.message;
     }
 
     if (customError.status === 404) {

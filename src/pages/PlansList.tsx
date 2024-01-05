@@ -2,7 +2,7 @@ import React from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Link, useLoaderData} from "react-router-dom";
+import {json, Link, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -133,7 +133,11 @@ export async function loader() {
     const response = await fetch(`${apiUrl}/api/add-plan/list`);
 
     if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'Nie można pobrać danych o planach treningowych...'}), {status: 500});
+        return json({message: 'Nie można pobrać danych o planach treningowych...'},
+            {
+                status: 500,
+            }
+        );
     } else {
         return response;
     }
