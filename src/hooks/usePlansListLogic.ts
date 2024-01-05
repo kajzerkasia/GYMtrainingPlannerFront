@@ -21,26 +21,6 @@ export const usePlansListLogic = () => {
         closeModal,
     } = useModal();
 
-    const addPlan = async (values: PlanEntity) => {
-        if (isDemoEnabled()) {
-            setDemoModalIsOpen(true);
-        } else if (values.name) {
-            const res = await fetch(`${apiUrl}/api/add-plan/list`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-
-            const data = await res.json();
-
-            setPlansList(list => [...list, data]);
-        } else {
-            setInformationModalIsOpen(true);
-        }
-    };
-
     const editPlan = async (values: PlanEntity, reset: () => void) => {
 
         setIsEdited(false);
