@@ -1,28 +1,29 @@
 import React from "react";
 import {Status} from 'types';
 import {ExercisesForm} from "../components/ExercisesTable/ExercisesForm";
-import {Link} from "react-router-dom";
+import {json, Link, useLoaderData} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ExercisesTable.css';
-import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {demoText} from "../constants/demoText";
 import {text, textInformation} from "../constants/exercisesTableTexts";
 import {useExercisesTableLogic} from "../hooks/useExercisesTableLogic";
 import Modal from "../components/Modal/Modal";
+import {apiUrl} from "../config/api";
+import {PlanEntity, ExerciseEntity} from 'types';
 
 export const ExercisesTable = () => {
 
+    const data: any = useLoaderData();
+    console.log(data);
+    const exercisesList: ExerciseEntity[] = data.exercisesList as any;
+
     const {
-        exercisesList,
         isEdited,
         confirmDeleteExercise,
         demoModalIsOpen,
         informationModalIsOpen,
-        partName,
-        planInfo,
-        isLoading,
         closeModal,
         closeDemoModal,
         addExercise,
@@ -33,24 +34,15 @@ export const ExercisesTable = () => {
         handleCancelDelete,
     } = useExercisesTableLogic();
 
-    if (isLoading || !exercisesList) {
-        return (
-            <div className="spinner_container">
-                <div className="div_loading">Ładowanie ćwiczeń...</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
-            </div>
-        );
-    }
-
     return (
         <div className="wrapper-exercises-table">
             <DemoSign/>
             <div className="div-plan-info">
                 <div className="inner-container">
-                    {planInfo && (
-                        <h3>Nazwa planu: {planInfo.name}</h3>
+                    {data.planInfo && (
+                        <h3>Nazwa planu: {data.planInfo.name}</h3>
                     )}
-                    <p>Nazwa części planu: {partName}</p>
+                    <p>Nazwa części planu: {data.partName}</p>
                 </div>
             </div>
             <table className="exercises-table">
@@ -159,4 +151,51 @@ export const ExercisesTable = () => {
             />
         </div>
     )
+}
+
+type ParamsType = {
+    params: {
+        slug?: string;
+    }
+};
+
+export async function loader({params}: ParamsType) {
+    const slug = params.slug;
+
+    try {
+        const response = await fetch(`${apiUrl}/api/add-part/plans?slug=${slug}`);
+
+        if (!response.ok) {
+            return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+                {
+                    status: 500,
+                }
+            );
+        }
+
+        const planPart = await response.json();
+
+        if (!planPart || planPart.length === 0) {
+            return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+                {
+                    status: 500,
+                }
+            );
+        }
+
+        const planInfoResponse = await fetch(`${apiUrl}/api/add-plan/list`);
+        const plans = await planInfoResponse.json();
+        const foundPlan = plans.find((plan: Partial<PlanEntity>) => plan.id === planPart[0].planId);
+
+        const exercisesResponse = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`);
+        const exercises = await exercisesResponse.json();
+
+        return {exercisesList: exercises, partName: planPart[0].name, planInfo: foundPlan as PlanEntity};
+    } catch (error) {
+        return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+            {
+                status: 500,
+            }
+        );
+    }
 }
