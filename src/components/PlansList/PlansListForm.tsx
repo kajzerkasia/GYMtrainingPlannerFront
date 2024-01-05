@@ -4,6 +4,7 @@ import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/PlansList.css';
 import {CalendarModal} from "../CalendarModal/CalendarModal";
+import {Form} from "react-router-dom";
 
 export type PlansListFormProps = {
     initialValues: PlanEntity;
@@ -41,6 +42,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
     return (
         <>
             <td className="input-plan-add" colSpan={2}>
+                <Form method="post">
                 <input
                     placeholder="Podaj nazwę planu, który chcesz dodać"
                     className={isEdited ? 'edited-input' : 'input-plan'}
@@ -50,6 +52,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
                     value={values.name}
                     onChange={(event) => handleChange('name', event.target.value)}
                 />
+                </Form>
             </td>
             <td colSpan={1}>
                 <IconContext.Provider value={{className: 'react-icons'}}>

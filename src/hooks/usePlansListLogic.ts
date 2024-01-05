@@ -130,7 +130,7 @@ export const usePlansListLogic = () => {
         setConfirmDeletePlan,
         setPlanToDeleteId,
         setIsLoading,
-        addPlan,
+        // addPlan,
         editPlan,
         handleUpdatePlan,
         handleDeletePlan,

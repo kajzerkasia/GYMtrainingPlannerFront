@@ -8,7 +8,7 @@ import {Navigate} from 'react-router-dom';
 import {Error} from "./pages/Error/Error";
 import {PlanDetailsTable} from "./pages/PlanDetailsTable";
 import './App.css';
-import {loader as plansLoader, PlansList} from "./pages/PlansList";
+import {loader as plansLoader, action as newPlanAction, PlansList} from "./pages/PlansList";
 import RootLayout from "./pages/RootLayout";
 
 const router = createBrowserRouter([
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
         errorElement: <Error/>,
         children: [
             {index: true, element: <Navigate to="/list"/>},
-            {path: 'list', element: <PlansList/>, loader: plansLoader},
+            {path: 'list', element: <PlansList/>, loader: plansLoader, action: newPlanAction},
             {path: 'plans/:slug', element: <PartsOfPlanTable/>},
             {path: 'exercises/:slug', element: <ExercisesTable/>, loader: exercisesLoader},
             {path: 'rules/:slug', element: <RulesTable/>},
