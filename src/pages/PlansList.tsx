@@ -2,7 +2,7 @@ import React from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Form, json, Link, redirect, useLoaderData} from "react-router-dom";
+import {json, Link, redirect, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -16,7 +16,6 @@ import {PlanEntity} from 'types';
 export const PlansList = () => {
 
     const data = useLoaderData();
-    console.log("Dane z loadera:", data);
     const plansList: PlanEntity[] = data as PlanEntity[];
 
     const {
@@ -27,7 +26,6 @@ export const PlansList = () => {
         closeModal,
         closeDemoModal,
         setPlansList,
-        // addPlan,
         editPlan,
         handleUpdatePlan,
         handleDeletePlan,
@@ -67,8 +65,6 @@ export const PlansList = () => {
                                     name: '',
                                 }}
                                 onSubmit={async (values, reset) => {
-                                    console.log('Wartości przed użyciem action:', values);
-
                                     try {
                                         const plans = await action({
                                             request: {
@@ -79,11 +75,10 @@ export const PlansList = () => {
                                                 }
                                             }
                                         });
-                                        setPlansList((list) => [...list, ...plans]);
+                                        setPlansList(plans);
                                         reset();
                                     } catch (error) {
                                         console.error("Wystąpił błąd w trakcie dodawania planu:", error);
-                                        // Obsługa błędów, np. wyświetlenie komunikatu dla użytkownika
                                     }
                                 }}
                                 actionType={Status.Add}
@@ -170,7 +165,6 @@ export async function action({request}: any) {
     const plansData = {
         name: data.get('name')
     };
-    console.log(plansData);
 
     const response = await fetch(`${apiUrl}/api/add-plan/list`, {
         method: 'POST',
@@ -180,20 +174,13 @@ export async function action({request}: any) {
         body: JSON.stringify(plansData)
     });
 
-    // if (!response.ok) {
-    //     console.error("Błąd podczas wysyłania zapytania POST:", response);
-    //     throw json({message: 'Nie można dodać planu.'}, {
-    //         status: 500,
-    //     });
-    // }
-    const plans = await response.json();
-
-    if (!plans) {
-        console.error("Pusta odpowiedź z serwera.");
-
-    } else {
-        console.log("Odpowiedź od serwera:", plans);
+    if (!response.ok) {
+        console.error("Błąd podczas wysyłania zapytania POST:", response);
+        throw json({message: 'Nie można dodać planu.'}, {
+            status: 500,
+        });
     }
+    const plans = await response.json();
 
     return plans;
 }
