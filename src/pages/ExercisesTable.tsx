@@ -17,7 +17,7 @@ export const ExercisesTable = () => {
 
     const data: any = useLoaderData();
     console.log(data);
-    const exercisesList: ExerciseEntity[] = data.exercisesList as any;
+    const exercisesList: ExerciseEntity[] = data.exercisesList;
 
     const {
         isEdited,
