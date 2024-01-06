@@ -11,9 +11,10 @@ export type PlansListFormProps = {
     onSubmit: (values: PlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
     isEdited?: boolean;
+    method: any;
 };
 
-export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: PlansListFormProps) => {
+export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, method}: PlansListFormProps) => {
     const [values, setValues] = useState<PlanEntity>(() => initialValues);
     const [calendarModalIsOpen, setCalendarModalIsOpen] = useState<boolean>(false);
 
@@ -42,7 +43,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited}: P
     return (
         <>
             <td className="input-plan-add" colSpan={2}>
-                <Form method="post">
+                <Form method={method}>
                 <input
                     placeholder="Podaj nazwę planu, który chcesz dodać"
                     className={isEdited ? 'edited-input' : 'input-plan'}
