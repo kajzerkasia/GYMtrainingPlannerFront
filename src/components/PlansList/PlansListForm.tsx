@@ -7,13 +7,13 @@ import {CalendarModal} from "../CalendarModal/CalendarModal";
 import {Form} from "react-router-dom";
 import {Method} from "../../pages/PlansList";
 
-export type PlansListFormProps = {
+interface PlansListFormProps {
     initialValues: PlanEntity;
     onSubmit: (values: PlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
     isEdited?: boolean;
     method: Method;
-};
+}
 
 export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, method}: PlansListFormProps) => {
 
