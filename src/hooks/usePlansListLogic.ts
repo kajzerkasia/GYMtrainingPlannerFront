@@ -13,44 +13,12 @@ export const usePlansListLogic = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     const {
-        setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
         informationModalIsOpen,
         demoModalIsOpen,
         closeModal,
     } = useModal();
-
-    const editPlan = async (values: PlanEntity, reset: () => void) => {
-
-        setIsEdited(false);
-
-        if (isDemoEnabled()) {
-            setDemoModalIsOpen(true);
-            reset();
-        } else if (values.name) {
-
-            const res = await fetch(`${apiUrl}/api/add-plan/list/${values.id}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            })
-
-            if (!res.ok) {
-                throw new Error('Wystąpił błąd podczas próby zaktualizowania nazwy planu.');
-            }
-
-            setIsEdited(true);
-
-            return await res.json();
-
-        } else {
-            setInformationModalIsOpen(true);
-            reset();
-        }
-    };
 
     const handleUpdatePlan = (updatedPlan: PlanEntity) => {
         setPlansList((plansList) =>
@@ -110,8 +78,6 @@ export const usePlansListLogic = () => {
         setConfirmDeletePlan,
         setPlanToDeleteId,
         setIsLoading,
-        // addPlan,
-        editPlan,
         handleUpdatePlan,
         handleDeletePlan,
         handleConfirmDelete,
