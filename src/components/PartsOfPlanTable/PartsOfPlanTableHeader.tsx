@@ -11,7 +11,6 @@ interface PartsOfPlanTableHeaderProps {
 const PartsOfPlanTableHeader = ({params, itemsList}: PartsOfPlanTableHeaderProps) => {
 
     const matchingItem = itemsList.find(item => item.slug === params.slug);
-    console.log(itemsList);
     const firstItemName = matchingItem ? matchingItem.name : "Brak nazwy";
 
 
