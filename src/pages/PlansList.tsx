@@ -2,7 +2,7 @@ import React from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {json, Link, redirect, useLoaderData} from "react-router-dom";
+import {json, Link, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -14,7 +14,6 @@ import {apiUrl} from "../config/api";
 import {PlanEntity} from 'types';
 
 export const PlansList = () => {
-
     const data = useLoaderData();
     const plansList: PlanEntity[] = data as PlanEntity[];
 
@@ -26,28 +25,31 @@ export const PlansList = () => {
         closeModal,
         closeDemoModal,
         setPlansList,
-        editPlan,
         handleUpdatePlan,
         handleDeletePlan,
         handleConfirmDelete,
         handleCancelDelete,
     } = usePlansListLogic();
 
-    const addPlan = async (values: PlanEntity, reset: () => void) => {
+    type Method = 'POST' | 'PUT';
+
+    const addOrEditPlan = async (values: PlanEntity, reset: () => void, method: Method) => {
         try {
-            const plans = await action({
+            const newPlan = await action({
                 request: {
                     formData: async () => {
                         const formData = new FormData();
                         formData.append('name', values.name);
                         return formData;
-                    }
-                }
+                    },
+                    method: method,
+                },
+                planId: values.id,
             });
-            setPlansList(plans);
+            setPlansList((list) => [...list, newPlan]);
             reset();
         } catch (error) {
-            console.error("Wystąpił błąd w trakcie dodawania planu:", error);
+            console.error("Wystąpił błąd w trakcie aktualizowania list planów:", error);
         }
     }
 
@@ -79,11 +81,12 @@ export const PlansList = () => {
                                 </IconContext.Provider>
                             </td>
                             <PlansListForm
+                                method="post"
                                 initialValues={{
                                     name: '',
                                 }}
                                 onSubmit={async (values, reset) => {
-                                    await addPlan(values, reset)
+                                    await addOrEditPlan(values, reset, 'POST')
                                 }}
                                 actionType={Status.Add}
                             />
@@ -97,9 +100,10 @@ export const PlansList = () => {
                                     </IconContext.Provider>
                                 </td>
                                 <PlansListForm
+                                    method="put"
                                     initialValues={plan}
                                     onSubmit={async (values, reset) => {
-                                        await editPlan(values, reset);
+                                        await addOrEditPlan(values, reset, 'PUT');
                                         handleUpdatePlan(values);
                                     }}
                                     actionType={Status.Save}
@@ -160,24 +164,35 @@ export async function loader() {
     }
 }
 
-export async function action({request}: any) {
+export async function action({request, planId}: any) {
+    const method = request.method;
     const data = await request.formData();
 
     const plansData = {
         name: data.get('name')
     };
 
-    const response = await fetch(`${apiUrl}/api/add-plan/list`, {
-        method: 'POST',
+    let url = `${apiUrl}/api/add-plan/list`;
+
+    if (method === 'PUT') {
+        url = `${apiUrl}/api/add-plan/list/${planId}`;
+    }
+
+    const response = await fetch(url, {
+        method: method,
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(plansData)
     });
 
+    if (response.status === 422) {
+        return response;
+    }
+
     if (!response.ok) {
-        console.error("Błąd podczas wysyłania zapytania POST:", response);
-        throw json({message: 'Nie można dodać planu.'}, {
+        console.error("Błąd podczas wysyłania zapytania", response);
+        throw json({message: 'Nie można zaktualizować listy planów.'}, {
             status: 500,
         });
     }
