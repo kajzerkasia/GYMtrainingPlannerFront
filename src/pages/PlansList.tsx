@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
@@ -16,16 +16,16 @@ import {PlanEntity} from 'types';
 export type Method = 'POST' | 'PUT';
 
 export const PlansList = () => {
-    const [plansList, setPlansList] = useState<PlanEntity[]>([]);
 
     const {
         isEdited,
         confirmDeletePlan,
         informationModalIsOpen,
         demoModalIsOpen,
+        plansList,
+        setPlansList,
         closeModal,
         closeDemoModal,
-        handleUpdatePlan,
         handleDeletePlan,
         handleConfirmDelete,
         handleCancelDelete,
@@ -33,9 +33,9 @@ export const PlansList = () => {
 
     useEffect(() => {
         loader().then(data => setPlansList(data));
-    }, [plansList]);
+    }, [plansList, setPlansList]);
 
-    const addOrEditPlan = async (values: PlanEntity, reset: () => void, method: Method) => {
+    const addOrEditPlan = useCallback(async (values: PlanEntity, reset: () => void, method: Method) => {
         try {
             const newPlan = await action({
                 request: {
@@ -49,6 +49,8 @@ export const PlansList = () => {
                 planId: values.id,
             });
 
+            setPlansList(currentList => currentList.filter(plan => plan.id !== newPlan.id));
+
             setPlansList((currentList) => [...currentList, newPlan]);
             if (method === 'POST') {
                 reset();
@@ -56,7 +58,7 @@ export const PlansList = () => {
         } catch (error) {
             console.error("Wystąpił błąd w trakcie aktualizowania listy planów:", error);
         }
-    }
+    }, [setPlansList]);
 
 
     return (
@@ -98,7 +100,7 @@ export const PlansList = () => {
                             />
                         </tr>
 
-                        {plansList.map((plan: any) => (
+                        {plansList.map((plan: PlanEntity) => (
                             <tr key={`${plan.id}`}>
                                 <td>
                                     <IconContext.Provider value={{className: 'react-icons'}}>
@@ -110,7 +112,6 @@ export const PlansList = () => {
                                     initialValues={plan}
                                     onSubmit={async (values, reset) => {
                                         await addOrEditPlan(values, reset, 'PUT');
-                                        handleUpdatePlan(values);
                                     }}
                                     actionType={Status.Save}
                                     isEdited={isEdited}

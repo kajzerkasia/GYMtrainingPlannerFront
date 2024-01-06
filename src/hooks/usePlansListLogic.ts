@@ -20,14 +20,6 @@ export const usePlansListLogic = () => {
         closeModal,
     } = useModal();
 
-    const handleUpdatePlan = (updatedPlan: PlanEntity) => {
-        setPlansList((plansList) =>
-            plansList.map((plan) =>
-                plan.id === updatedPlan.id ? updatedPlan : plan
-            )
-        );
-    };
-
     const handleDeletePlan = async (planId: any) => {
         if (isDemoEnabled()) {
             setDemoModalIsOpen(true);
@@ -71,6 +63,7 @@ export const usePlansListLogic = () => {
         isLoading,
         informationModalIsOpen,
         demoModalIsOpen,
+        plansList,
         closeModal,
         closeDemoModal,
         setPlansList,
@@ -78,7 +71,6 @@ export const usePlansListLogic = () => {
         setConfirmDeletePlan,
         setPlanToDeleteId,
         setIsLoading,
-        handleUpdatePlan,
         handleDeletePlan,
         handleConfirmDelete,
         handleCancelDelete,
