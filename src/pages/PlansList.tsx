@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {json, Link, useLoaderData} from "react-router-dom";
+import {json, Link} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -13,9 +13,10 @@ import Modal from "../components/Modal/Modal";
 import {apiUrl} from "../config/api";
 import {PlanEntity} from 'types';
 
+export type Method = 'POST' | 'PUT';
+
 export const PlansList = () => {
-    const data = useLoaderData();
-    const plansList: PlanEntity[] = data as PlanEntity[];
+    const [plansList, setPlansList] = useState<PlanEntity[]>([]);
 
     const {
         isEdited,
@@ -24,14 +25,15 @@ export const PlansList = () => {
         demoModalIsOpen,
         closeModal,
         closeDemoModal,
-        setPlansList,
         handleUpdatePlan,
         handleDeletePlan,
         handleConfirmDelete,
         handleCancelDelete,
     } = usePlansListLogic();
 
-    type Method = 'POST' | 'PUT';
+    useEffect(() => {
+        loader().then(data => setPlansList(data));
+    }, [plansList]);
 
     const addOrEditPlan = async (values: PlanEntity, reset: () => void, method: Method) => {
         try {
@@ -46,12 +48,16 @@ export const PlansList = () => {
                 },
                 planId: values.id,
             });
-            setPlansList((list) => [...list, newPlan]);
-            reset();
+
+            setPlansList((currentList) => [...currentList, newPlan]);
+            if (method === 'POST') {
+                reset();
+            }
         } catch (error) {
-            console.error("Wystąpił błąd w trakcie aktualizowania list planów:", error);
+            console.error("Wystąpił błąd w trakcie aktualizowania listy planów:", error);
         }
     }
+
 
     return (
         <>
@@ -81,7 +87,7 @@ export const PlansList = () => {
                                 </IconContext.Provider>
                             </td>
                             <PlansListForm
-                                method="post"
+                                method="POST"
                                 initialValues={{
                                     name: '',
                                 }}
@@ -100,7 +106,7 @@ export const PlansList = () => {
                                     </IconContext.Provider>
                                 </td>
                                 <PlansListForm
-                                    method="put"
+                                    method="PUT"
                                     initialValues={plan}
                                     onSubmit={async (values, reset) => {
                                         await addOrEditPlan(values, reset, 'PUT');
@@ -160,7 +166,7 @@ export async function loader() {
             }
         );
     } else {
-        return response;
+        return response.json();
     }
 }
 
