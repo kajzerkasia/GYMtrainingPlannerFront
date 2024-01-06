@@ -5,19 +5,20 @@ import {IconContext} from "react-icons";
 import '../../pages/PlansList.css';
 import {CalendarModal} from "../CalendarModal/CalendarModal";
 import {Form} from "react-router-dom";
+import {Method} from "../../pages/PlansList";
 
 export type PlansListFormProps = {
     initialValues: PlanEntity;
     onSubmit: (values: PlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
     isEdited?: boolean;
-    method: any;
+    method: Method;
 };
 
 export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, method}: PlansListFormProps) => {
+
     const [values, setValues] = useState<PlanEntity>(() => initialValues);
     const [calendarModalIsOpen, setCalendarModalIsOpen] = useState<boolean>(false);
-
 
     const text = 'Kalendarz';
 
@@ -44,15 +45,15 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
         <>
             <td className="input-plan-add" colSpan={2}>
                 <Form method={method}>
-                <input
-                    placeholder="Podaj nazwę planu, który chcesz dodać"
-                    className={isEdited ? 'edited-input' : 'input-plan'}
-                    type="text"
-                    name="name"
-                    required
-                    value={values.name}
-                    onChange={(event) => handleChange('name', event.target.value)}
-                />
+                    <input
+                        placeholder="Podaj nazwę planu, który chcesz dodać"
+                        className={isEdited ? 'edited-input' : 'input-plan'}
+                        type="text"
+                        name="name"
+                        required
+                        value={values.name}
+                        onChange={(event) => handleChange('name', event.target.value)}
+                    />
                 </Form>
             </td>
             <td colSpan={1}>
