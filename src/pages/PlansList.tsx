@@ -1,8 +1,8 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {Suspense, useCallback, useEffect} from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {json, Link} from "react-router-dom";
+import {Await, defer, json, Link, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -16,13 +16,14 @@ import {PlanEntity} from 'types';
 export type Method = 'POST' | 'PUT';
 
 export const PlansList = () => {
+    const data = useLoaderData() as { plans: PlanEntity[] };
+    const list = data.plans;
 
     const {
         isEdited,
         confirmDeletePlan,
         informationModalIsOpen,
         demoModalIsOpen,
-        plansList,
         setPlansList,
         closeModal,
         closeDemoModal,
@@ -32,8 +33,23 @@ export const PlansList = () => {
     } = usePlansListLogic();
 
     useEffect(() => {
-        loader().then(data => setPlansList(data));
-    }, [plansList, setPlansList]);
+        const fetchData = async () => {
+            try {
+                const resolvedPlans = await list;
+                if (resolvedPlans && Array.isArray(resolvedPlans)) {
+                    setPlansList(resolvedPlans);
+                } else {
+                    console.error("Nieprawidłowe dane o planach:", resolvedPlans);
+                }
+            } catch (error) {
+                console.error("Błąd podczas ustawiania danych:", error);
+            }
+        };
+
+        fetchData();
+    }, [setPlansList, list]);
+
+
 
     const addOrEditPlan = useCallback(async (values: PlanEntity, reset: () => void, method: Method) => {
         try {
@@ -49,17 +65,18 @@ export const PlansList = () => {
                 planId: values.id,
             });
 
-            setPlansList(currentList => currentList.filter(plan => plan.id !== newPlan.id));
-
-            setPlansList((currentList) => [...currentList, newPlan]);
-            if (method === 'POST') {
-                reset();
-            }
+            setPlansList(currentList => {
+                if (method === 'POST') {
+                    reset();
+                    return [...currentList, newPlan];
+                } else {
+                    return currentList.map(plan => (plan.id === newPlan.id ? newPlan : plan));
+                }
+            });
         } catch (error) {
             console.error("Wystąpił błąd w trakcie aktualizowania listy planów:", error);
         }
     }, [setPlansList]);
-
 
     return (
         <>
@@ -100,29 +117,42 @@ export const PlansList = () => {
                             />
                         </tr>
 
-                        {plansList.map((plan: PlanEntity) => (
-                            <tr key={`${plan.id}`}>
-                                <td>
-                                    <IconContext.Provider value={{className: 'react-icons'}}>
-                                        <button onClick={() => handleDeletePlan(plan.id)}><TbX/></button>
-                                    </IconContext.Provider>
-                                </td>
-                                <PlansListForm
-                                    method="PUT"
-                                    initialValues={plan}
-                                    onSubmit={async (values, reset) => {
-                                        await addOrEditPlan(values, reset, 'PUT');
-                                    }}
-                                    actionType={Status.Save}
-                                    isEdited={isEdited}
-                                />
-                                <td className="dots" colSpan={1}>
-                                    <IconContext.Provider value={{className: 'react-icons'}}>
-                                        <Link to={`/plans/${plan.slug}`}><TbDotsVertical/></Link>
-                                    </IconContext.Provider>
-                                </td>
+                        <Suspense fallback={(
+                            <tr>
+                            <td className="suspense">Loading...</td>
                             </tr>
-                        ))}
+                        )}>
+                            <Await resolve={list}>
+                                {(loadedPlans) =>
+                                    <>
+                                        {loadedPlans && loadedPlans.map((plan: PlanEntity) => (
+                                            <tr key={`${plan.id}`}>
+                                                <td>
+                                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                                        <button onClick={() => handleDeletePlan(plan.id)}><TbX/></button>
+                                                    </IconContext.Provider>
+                                                </td>
+
+                                                <PlansListForm
+                                                    method="PUT"
+                                                    initialValues={plan}
+                                                    onSubmit={async (values, reset) => {
+                                                        await addOrEditPlan(values, reset, 'PUT');
+                                                    }}
+                                                    actionType={Status.Save}
+                                                    isEdited={isEdited}
+                                                />
+                                                <td className="dots" colSpan={1}>
+                                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                                        <Link to={`/plans/${plan.slug}`}><TbDotsVertical/></Link>
+                                                    </IconContext.Provider>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </>
+                                }
+                            </Await>
+                        </Suspense>
                         </tbody>
                     </table>
                 </div>
@@ -157,21 +187,39 @@ export const PlansList = () => {
     )
 }
 
-export async function loader() {
-    const response = await fetch(`${apiUrl}/api/add-plan/list`);
+const loadPlans = async (): Promise<PlanEntity[]> => {
+    try {
+        const response = await fetch(`${apiUrl}/api/add-plan/list`);
 
-    if (!response.ok) {
-        return json({message: 'Nie można pobrać danych o planach treningowych...'},
-            {
-                status: 500,
-            }
-        );
-    } else {
-        return response.json();
+        if (!response.ok) {
+            throw new Error('Nie udało się pobrać danych o planach treningowych');
+        }
+
+        const resData = await response.json();
+        return resData;
+    } catch (error) {
+        console.error("Błąd podczas pobierania danych:", error);
+        throw error;
     }
 }
 
-export async function action({request, planId}: any) {
+export async function loader() {
+    return defer({
+        plans: loadPlans()
+    })
+}
+
+interface RequestData {
+    method: string;
+    formData: () => Promise<FormData>;
+}
+
+interface ActionProps {
+    planId?: string | undefined;
+    request: RequestData;
+}
+
+export async function action({request, planId}: ActionProps) {
     const method = request.method;
     const data = await request.formData();
 
