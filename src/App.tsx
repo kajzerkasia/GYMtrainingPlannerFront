@@ -7,19 +7,33 @@ import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
 import {Navigate} from 'react-router-dom';
 import {Error} from "./pages/Error/Error";
 import {PlanDetailsTable} from "./pages/PlanDetailsTable";
-import './App.css';
 import {loader as plansLoader, action as manipulatePlanAction, PlansList} from "./pages/PlansList";
 import RootLayout from "./pages/RootLayout";
+import Authentication, {action as authAction} from "./pages/Authentication";
+import {action as logoutAction} from './pages/Logout';
+import './App.css';
+import { tokenLoader} from "./helpers/auth";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <RootLayout/>,
         errorElement: <Error/>,
+        id: 'root',
+        loader: tokenLoader,
         children: [
             {
                 index: true,
                 element: <Navigate to="/list"/>
+            },
+            {
+                path: 'auth',
+                element: <Authentication/>,
+                action: authAction,
+            },
+            {
+                path: 'logout',
+                action: logoutAction,
             },
             {
                 path: 'list',
