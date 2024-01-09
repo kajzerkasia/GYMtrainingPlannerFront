@@ -47,3 +47,7 @@
     background-color: #d495e2;
     border-color: #7d448b;
 }
+
+li .active {
+    color: #d495e2;
+}
