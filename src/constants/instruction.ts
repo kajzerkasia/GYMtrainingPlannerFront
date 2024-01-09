@@ -5,7 +5,7 @@ export const INSTRUCTION = [
     },
     {
         icon: 'TbDotsVertical',
-        text: 'szczegóły planu treningowego',
+        text: 'lista części danego planu',
     },
     {
         icon: 'TbStairsUp',
