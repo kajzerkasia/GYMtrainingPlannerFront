@@ -12,8 +12,20 @@ const MainNavigation = () => {
             <nav>
                 <ul className="list">
                     <>
-                        <li><NavLink to="/">Plany treningowe</NavLink></li>
-                        <li><NavLink to="/">Kalendarz</NavLink></li>
+                        <li>
+                            <NavLink to="/list" className={({isActive}) =>
+                                isActive ? "active" : undefined
+                            }>
+                                Plany treningowe
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/cxs" className={({isActive}) =>
+                                isActive ? "active" : undefined
+                            }>
+                                Kalendarz
+                            </NavLink>
+                        </li>
                         {!token && (
                             <li>
                                 <NavLink

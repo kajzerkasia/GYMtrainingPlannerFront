@@ -3,6 +3,7 @@ import {PlanEntity} from 'types';
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
 import {useModal} from "./useModal";
+import {getAuthToken} from "../helpers/auth";
 
 export const usePlansListLogic = () => {
 
@@ -31,6 +32,12 @@ export const usePlansListLogic = () => {
     };
 
     const handleConfirmDelete = async () => {
+        const token = getAuthToken();
+
+        if (!token) {
+            return window.location.href = '/auth?mode=login';
+        }
+
         if (isDemoEnabled()) {
             closeDemoModal();
         } else {
@@ -49,6 +56,7 @@ export const usePlansListLogic = () => {
             setConfirmDeletePlan(false);
             setPlanToDeleteId(null);
         }
+        return null;
     };
 
     const handleCancelDelete = () => {
