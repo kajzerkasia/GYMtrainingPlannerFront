@@ -42,6 +42,16 @@ Składa się z następujących części i możliwości:
 
 #### Jest to projekt zaliczeniowy, który stworzyłam w ramach kursu programistycznego "MegaK".
 
+### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
+
+![](/public/assets/login.png)
+
+![](/public/assets/plans.png)
+
+![](/public/assets/instruction.png)
+
+### ❗Starsza wersja aplikacji ❗
+
 #### Kliknij w screen poniżej aby przejść do filmu, który przedstawia działanie aplikacji. ⬇️⬇️⬇️
 
 [![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/bYCs57uR3gE)
@@ -124,6 +134,16 @@ Training plan details:
 # Gym Training Planner 🏋️‍♀️💪
 
 #### This is a final project that I created as part of the "MegaK" programming course.
+
+### ❗New version of the application (under development) ❗
+
+![](/public/assets/login.png)
+
+![](/public/assets/plans.png)
+
+![](/public/assets/instruction.png)
+
+### ❗Older version of the application ❗
 
 #### Click on the screen below to go to the video that shows how the application works. ⬇️⬇️⬇️
 
