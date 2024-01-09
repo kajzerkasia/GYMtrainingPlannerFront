@@ -2,7 +2,7 @@ import React, {Suspense, useCallback, useEffect} from 'react';
 import {Status} from 'types';
 import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import {Await, defer, json, Link, useLoaderData} from "react-router-dom";
+import {Await, defer, json, Link, redirect, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
@@ -12,6 +12,8 @@ import {usePlansListLogic} from "../hooks/usePlansListLogic";
 import Modal from "../components/Modal/Modal";
 import {apiUrl} from "../config/api";
 import {PlanEntity} from 'types';
+import {getAuthToken} from "../helpers/auth";
+import SuspenseFallback from "../components/SuspenseFallback/SuspenseFallback";
 
 export type Method = 'POST' | 'PUT';
 
@@ -50,7 +52,6 @@ export const PlansList = () => {
     }, [setPlansList, list]);
 
 
-
     const addOrEditPlan = useCallback(async (values: PlanEntity, reset: () => void, method: Method) => {
         try {
             const newPlan = await action({
@@ -80,50 +81,48 @@ export const PlansList = () => {
 
     return (
         <>
-            <div className="parts-wrapper">
-                <div className="main-plan">
-                    <DemoSign/>
-                    <table className="main-table">
+            <Suspense fallback={(
+               <SuspenseFallback/>
+            )}>
+                <Await resolve={list}>
+                    {(loadedPlans) =>
+                        <div className="parts-wrapper">
+                            <div className="main-plan">
+                                <DemoSign/>
+                                <table className="main-table">
 
-                        <thead>
-                        <tr className="tr-add">
-                            <td className="training-plans" align="center" colSpan={4}>
-                                <h1 className="h1-plan">Plany treningowe</h1>
-                            </td>
-                            <td>
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <TbUserCircle/>
-                                </IconContext.Provider>
-                            </td>
-                        </tr>
-                        </thead>
+                                    <thead>
+                                    <tr className="tr-add">
+                                        <td className="training-plans" align="center" colSpan={4}>
+                                            <h1 className="h1-plan">Plany treningowe</h1>
+                                        </td>
+                                        <td>
+                                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                                <Link to="/auth"><TbUserCircle/></Link>
+                                            </IconContext.Provider>
+                                        </td>
+                                    </tr>
+                                    </thead>
 
-                        <tbody>
-                        <tr>
-                            <td className="question-td">
-                                <IconContext.Provider value={{className: 'react-icons'}}>
-                                    <Link to="/instruction"><TbQuestionMark/></Link>
-                                </IconContext.Provider>
-                            </td>
-                            <PlansListForm
-                                method="POST"
-                                initialValues={{
-                                    name: '',
-                                }}
-                                onSubmit={async (values, reset) => {
-                                    await addOrEditPlan(values, reset, 'POST')
-                                }}
-                                actionType={Status.Add}
-                            />
-                        </tr>
+                                    <tbody>
+                                    <tr>
+                                        <td className="question-td">
+                                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                                <Link to="/instruction"><TbQuestionMark/></Link>
+                                            </IconContext.Provider>
+                                        </td>
+                                        <PlansListForm
+                                            method="POST"
+                                            initialValues={{
+                                                name: '',
+                                            }}
+                                            onSubmit={async (values, reset) => {
+                                                await addOrEditPlan(values, reset, 'POST')
+                                            }}
+                                            actionType={Status.Add}
+                                        />
+                                    </tr>
 
-                        <Suspense fallback={(
-                            <tr>
-                            <td className="suspense">Loading...</td>
-                            </tr>
-                        )}>
-                            <Await resolve={list}>
-                                {(loadedPlans) =>
                                     <>
                                         {loadedPlans && loadedPlans.map((plan: PlanEntity) => (
                                             <tr key={`${plan.id}`}>
@@ -150,39 +149,39 @@ export const PlansList = () => {
                                             </tr>
                                         ))}
                                     </>
-                                }
-                            </Await>
-                        </Suspense>
-                        </tbody>
-                    </table>
-                </div>
-                <Modal
-                    open={confirmDeletePlan}
-                    onClose={handleCancelDelete}
-                    onConfirm={handleConfirmDelete}
-                    onCancel={handleCancelDelete}
-                    modalText={text}
-                    confirmText="Tak"
-                    cancelText="Nie"
-                    icon={TbAlertTriangle}
-                />
-                <Modal
-                    open={informationModalIsOpen}
-                    onClose={closeModal}
-                    onConfirm={closeModal}
-                    modalText={textInformation}
-                    confirmText="Rozumiem"
-                    icon={TbAlertTriangle}
-                />
-                <Modal
-                    open={demoModalIsOpen}
-                    onClose={closeDemoModal}
-                    onConfirm={closeDemoModal}
-                    modalText={demoText}
-                    confirmText="OK"
-                    icon={TbAlertTriangle}
-                />
-            </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <Modal
+                                open={confirmDeletePlan}
+                                onClose={handleCancelDelete}
+                                onConfirm={handleConfirmDelete}
+                                onCancel={handleCancelDelete}
+                                modalText={text}
+                                confirmText="Tak"
+                                cancelText="Nie"
+                                icon={TbAlertTriangle}
+                            />
+                            <Modal
+                                open={informationModalIsOpen}
+                                onClose={closeModal}
+                                onConfirm={closeModal}
+                                modalText={textInformation}
+                                confirmText="Rozumiem"
+                                icon={TbAlertTriangle}
+                            />
+                            <Modal
+                                open={demoModalIsOpen}
+                                onClose={closeDemoModal}
+                                onConfirm={closeDemoModal}
+                                modalText={demoText}
+                                confirmText="OK"
+                                icon={TbAlertTriangle}
+                            />
+                        </div>
+                    }
+                </Await>
+            </Suspense>
         </>
     )
 }
@@ -204,6 +203,7 @@ const loadPlans = async (): Promise<PlanEntity[]> => {
 }
 
 export async function loader() {
+
     return defer({
         plans: loadPlans()
     })
@@ -223,6 +223,12 @@ export async function action({request, planId}: ActionProps) {
     const method = request.method;
     const data = await request.formData();
 
+    const token = getAuthToken();
+
+    if (!token) {
+        return window.location.href = '/auth?mode=login';
+    }
+
     const plansData = {
         name: data.get('name')
     };
@@ -236,13 +242,21 @@ export async function action({request, planId}: ActionProps) {
     const response = await fetch(url, {
         method: method,
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token,
         },
-        body: JSON.stringify(plansData)
+        body: JSON.stringify(plansData),
     });
+
+    console.log(method);
 
     if (response.status === 422) {
         return response;
+    }
+
+    if (response.status === 401) {
+        // Błąd autentykacji - przekieruj do strony logowania
+        return redirect('/auth');
     }
 
     if (!response.ok) {
@@ -251,5 +265,11 @@ export async function action({request, planId}: ActionProps) {
             status: 500,
         });
     }
-    return await response.json();
+
+    // if (typeof window !== 'undefined') {
+    //     window.location.href = '/';
+    // }
+
+    return await response.json()
+
 }
