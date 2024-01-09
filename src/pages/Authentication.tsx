@@ -26,7 +26,7 @@ export async function action({request}: ActionProps) {
     }
 
     const data = await request.formData();
-    console.log('FormData:', data);
+
     const authData = {
         email: data.get('email'),
         password: data.get('password'),
