@@ -1,0 +1,18 @@
+.slideshow {
+    width: 40rem;
+    height: 25rem;
+    filter: drop-shadow(8px 8px 10px #7d448b);
+}
+
+.home-container {
+    margin-top: 10rem;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1-home {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
