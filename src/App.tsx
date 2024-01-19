@@ -4,7 +4,6 @@ import {RulesTable} from "./pages/RulesTable";
 import {Instruction} from "./components/Instruction/Instruction";
 import {ExercisesTable, loader as exercisesLoader} from "./pages/ExercisesTable";
 import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
-import {Navigate} from 'react-router-dom';
 import {Error} from "./pages/Error/Error";
 import {PlanDetailsTable} from "./pages/PlanDetailsTable";
 import {loader as plansLoader, action as manipulatePlanAction, PlansList} from "./pages/PlansList";
@@ -13,6 +12,7 @@ import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import './App.css';
 import { tokenLoader} from "./helpers/auth";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
     {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Navigate to="/list"/>
+                element: <Home/>
             },
             {
                 path: 'auth',
