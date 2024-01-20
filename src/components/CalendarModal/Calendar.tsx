@@ -1,21 +1,10 @@
 import React, {useState} from "react";
-import Modal from "react-modal";
-import './CalendarModal.css'
+import './Calendar.css'
 import {BasicCalendar} from "../BasicCalendar/BasicCalendar";
 import {Accordion} from "../Accordion/Accordion";
 import {DemoSign} from "../DemoSign/DemoSign";
 
-Modal.setAppElement('#root');
-
-export type CalendarModalProps = {
-    isOpen: boolean;
-    onRequestClose?: () => void | Promise<void>;
-    onConfirm?: () => void | Promise<void>;
-    onCancel?: () => void | Promise<void>;
-    text: string;
-};
-
-export const CalendarModal = ({isOpen, onRequestClose, onCancel}: CalendarModalProps) => {
+export const Calendar = () => {
 
     const [showInstructions, setShowInstructions] = useState(true);
 
@@ -24,14 +13,7 @@ export const CalendarModal = ({isOpen, onRequestClose, onCancel}: CalendarModalP
     };
 
     return (
-        <Modal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
-            className="calendar-modal"
-            contentLabel="Example Modal"
-            closeTimeoutMS={1200}
-            shouldCloseOnOverlayClick={false}
-        >
+        <>
             <div className="div-calendar-info">
                 <Accordion
                     title="Jak to działa?"
@@ -46,10 +28,8 @@ export const CalendarModal = ({isOpen, onRequestClose, onCancel}: CalendarModalP
                 <BasicCalendar/>
             </div>
             <div className="div-btn-back-container">
-                <button className="btn-back" onClick={onCancel}>Powrót</button>
+                <button className="btn-back">Powrót</button>
             </div>
-        </Modal>
+        </>
     );
 };
-
-// Dodać wszędzie demo dodal przy dodawaniu, usuwanie, edytowaniu.
