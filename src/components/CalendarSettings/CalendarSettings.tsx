@@ -22,6 +22,6 @@ export interface CalendarPropsWithMyEvents extends Omit<CalendarProps<MyEvent>, 
 
 const localizer = momentLocalizer(moment)
 
-export const Calendar: React.FC<CalendarPropsWithMyEvents> = (props) => {
+export const CalendarSettings: React.FC<CalendarPropsWithMyEvents> = (props) => {
     return <BigCalendar {...props} localizer={localizer} />;
 }

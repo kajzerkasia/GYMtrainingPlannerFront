@@ -3,8 +3,7 @@ import {PlanEntity, Status} from 'types';
 import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/PlansList.css';
-import {CalendarModal} from "../CalendarModal/CalendarModal";
-import {Form, useActionData, useNavigate, useNavigation} from "react-router-dom";
+import {Form, useActionData, useNavigation} from "react-router-dom";
 import {Method} from "../../pages/PlansList";
 
 interface PlansListFormProps {
@@ -17,20 +16,11 @@ interface PlansListFormProps {
 
 export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, method}: PlansListFormProps) => {
     const data: any = useActionData();
-    const navigate = useNavigate();
     const navigation = useNavigation();
 
     const isSubmitting = navigation.state === 'submitting';
 
     const [values, setValues] = useState<PlanEntity>(() => initialValues);
-    const [calendarModalIsOpen, setCalendarModalIsOpen] = useState<boolean>(false);
-
-    const text = 'Kalendarz';
-
-    function cancelHandler() {
-        navigate('..');
-    }
-
 
     const reset: () => void = () => {
         setValues(initialValues);
@@ -42,14 +32,6 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
             [field]: value
         }));
     };
-
-    const openCalendarModal = () => {
-        setCalendarModalIsOpen(true);
-    }
-
-    const closeCalendarModal = () => {
-        setCalendarModalIsOpen(false);
-    }
 
     return (
         <>
@@ -83,16 +65,9 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
             {actionType === Status.Add &&
                 <td>
                     <IconContext.Provider value={{className: 'react-icons'}}>
-                        <button onClick={() => openCalendarModal()}><TbCalendarPlus/></button>
+                        <button><TbCalendarPlus/></button>
                     </IconContext.Provider>
                 </td>}
-            <CalendarModal
-                isOpen={calendarModalIsOpen}
-                onRequestClose={closeCalendarModal}
-                onConfirm={closeCalendarModal}
-                onCancel={closeCalendarModal}
-                text={text}
-            />
         </>
     );
 };
