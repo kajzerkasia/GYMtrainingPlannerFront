@@ -6,7 +6,7 @@ import {IconContext, IconType} from "react-icons";
 interface Props extends HTMLAttributes<HTMLDialogElement>, PropsWithChildren {
     open: boolean;
     onClose: () => void;
-    onConfirm?: () => void | Promise<void>;
+    onConfirm?: () => void;
     onCancel?: () => void | Promise<void>;
     confirmText?: string;
     cancelText?: string;
