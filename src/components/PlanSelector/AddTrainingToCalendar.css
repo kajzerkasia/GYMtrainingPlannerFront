@@ -18,20 +18,22 @@
     animation: slideInRight 0.3s forwards;
     z-index: 999;
     text-align: center;
+    width: 280px;
+    margin: 0 auto;
 }
 
 .plan-selector-container h1 {
     margin-bottom: 10px;
 }
 
-.plan-selector-container.open {
-    display: flex;
-    flex-wrap: wrap;
-    width: 280px;
-    margin: 0 auto;
-}
+/*.plan-selector-container.open {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    width: 280px;*/
+/*    margin: 0 auto;*/
+/*}*/
 
-.plan-selector-container.open select {
+.plan-selector-container select {
     margin-bottom: 10px;
     background-color: transparent;
     color: #E6E6FA;
@@ -43,7 +45,7 @@
     width: 100%;
 }
 
-.plan-selector-container.open select option {
+.plan-selector-container select option {
     font-size: 14px;
     color: #310942;
 }
@@ -80,9 +82,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.plan-selector-container.open select,
-.plan-selector-container.open input[type="time"],
-.plan-selector-container.open .add-event-button {
+.plan-selector-container select,
+.plan-selector-container input[type="time"],
+.plan-selector-container .add-event-button {
     display: block;
     margin-bottom: 10px;
 }
@@ -104,4 +106,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     font-size: 14px;
     color: #ff2100;
     margin-bottom: 0.4rem;
+}
+
+.plan-selector-container.closed {
+    display: none;  /* Ukryty, gdy stan isOpen jest false */
 }
