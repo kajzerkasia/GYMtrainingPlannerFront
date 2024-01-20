@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form, NavLink, useRouteLoaderData} from "react-router-dom";
+import {Form, Link, NavLink, useRouteLoaderData} from "react-router-dom";
 import './MainNavigation.css';
 import Logo from "../Logo/Logo";
 
@@ -8,7 +8,9 @@ const MainNavigation = () => {
 
     return (
         <header className="header">
-            <Logo/>
+            <Link to="/">
+                <Logo/>
+            </Link>
             <nav>
                 <ul className="list">
                     <>
