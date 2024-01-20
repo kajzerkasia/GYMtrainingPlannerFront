@@ -55,3 +55,7 @@
     white-space: normal !important;
     max-height: 100px;
 }
+
+.rbc-event {
+    background-color: #7d448b !important;
+}
