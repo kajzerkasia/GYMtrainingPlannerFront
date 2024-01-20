@@ -1,8 +1,10 @@
 import React from "react";
 import "./Accordion.css";
+import {IconContext} from "react-icons";
+import {TbQuestionMark} from "react-icons/tb";
 
 type AccordionProps = {
-    title: string;
+    title?: string;
     isOpen: boolean;
     toggleAccordion: () => void;
     children: React.ReactNode;
@@ -20,7 +22,9 @@ export const Accordion = ({
                 <div className="accordion-header" onClick={toggleAccordion}>
                     <span className="accordion-title">{title}</span>
                     <span className="accordion-icon">
-                        {isOpen ? "▲" : "▼"}
+                         <IconContext.Provider value={{className: 'react-icons'}}>
+                             <TbQuestionMark/>
+                         </IconContext.Provider>
                     </span>
                 </div>
                 {isOpen && (
