@@ -1,0 +1,17 @@
+.calendar-list {
+    color: #E6E6FA;
+    list-style-type: none;
+    padding: 1rem;
+    border-radius: 6px;
+    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.calendar-list li {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.list-container {
+    display: flex;
+}

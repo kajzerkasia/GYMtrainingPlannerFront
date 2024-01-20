@@ -8,45 +8,13 @@
     padding: 20px 20px;
     width: 900px;
     height: 700px;
-    background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
+    background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
     font-size: 16px;
-}
-
-.div-btn-back-container {
-    display: flex;
-    justify-content: center;
-}
-
-.div-calendar-info {
-    margin-bottom: 2rem;
-}
-
-.div-calendar {
-    z-index: 0;
-}
-
-.calendar-div {
-    height: 100%;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    border-radius: 8px;
 }
 
 .calendar-h3 {
     margin-bottom: 5px;
 }
 
-.x-container {
-    display: flex;
-}
-
-.calendar-list {
-    color: #E6E6FA;
-}
-
-.calendar-list li {
-    margin-left: 20px;
-    margin-top: 5px;
-}
 
