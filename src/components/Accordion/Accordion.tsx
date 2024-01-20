@@ -19,20 +19,18 @@ export const Accordion = ({
     return (
         <div className="accordion-container">
             <div className="accordion">
-                <div className="accordion-header" onClick={toggleAccordion}>
-                    <span className="accordion-title">{title}</span>
-                    <span className="accordion-icon">
+                <span className="accordion-title">{title}</span>
+                <span className="accordion-icon">
                          <IconContext.Provider value={{className: 'react-icons'}}>
-                             <TbQuestionMark/>
+                             <button onClick={toggleAccordion}><TbQuestionMark/></button>
                          </IconContext.Provider>
-                    </span>
-                </div>
-                {isOpen && (
-                    <div className="accordion-content">
-                        {children}
-                    </div>
-                )}
+                </span>
             </div>
+            {isOpen && (
+                <div className="accordion-content">
+                    {children}
+                </div>
+            )}
         </div>
     );
 };
