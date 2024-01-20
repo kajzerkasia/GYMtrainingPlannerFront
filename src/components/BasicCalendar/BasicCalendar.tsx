@@ -3,7 +3,7 @@ import {CalendarSettings} from "../CalendarSettings/CalendarSettings";
 import moment from "moment";
 import "moment/locale/pl";
 import './BasicCalendar.css';
-import {PlanSelector} from "../PlanSelector/PlanSelector";
+import {AddTrainingToCalendar} from "../PlanSelector/AddTrainingToCalendar";
 import {Sidebar} from "../Sidebar/Sidebar";
 import {UseBasicCalendarLogic} from "../../hooks/useBasicCalendarLogic";
 
@@ -45,24 +45,25 @@ export const BasicCalendar = () => {
         handleDeleteEvent,
         handleEventClick,
         formatFullDate,
+        unselectDate
     } = UseBasicCalendarLogic();
 
     return (
         <>
             {selectedDate && (
                 <div className="aside-container">
-                    <PlanSelector
+                    <AddTrainingToCalendar
                         trainingPlans={trainingPlans}
                         planParts={planParts}
                         selectedTrainingPlan={selectedTrainingPlan}
                         selectedPlanPart={selectedPlanPartId}
                         onTrainingPlanChange={handleTrainingPlanChange}
                         onPlanPartChange={handlePlanPartChange}
-                        isOpen={true}
                         onAddEvent={handleAddEvent}
                         isDemoMode={isDemoMode}
                         setIsDemoMode={setIsDemoMode}
                         timeError={timeError}
+                        unselectDate={unselectDate}
                     />
                 </div>
             )}
