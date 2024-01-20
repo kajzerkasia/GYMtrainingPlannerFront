@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {PlanEntity, PartOfPlanEntity} from 'types';
-import './PlanSelector.css';
+import './AddTrainingToCalendar.css';
 
 interface PlanSelectorProps {
     trainingPlans: PlanEntity[];
@@ -9,31 +9,38 @@ interface PlanSelectorProps {
     selectedPlanPart: string | null;
     onTrainingPlanChange: (planId: string) => void;
     onPlanPartChange: (partId: string) => void;
-    isOpen: boolean;
     onAddEvent: (startTime: string, endTime: string) => void;
     isDemoMode: boolean;
     setIsDemoMode: (value: boolean) => void;
     timeError: any;
+    selectedDate?: any;
+    unselectDate: () => void;
 }
 
-export const PlanSelector = ({
+export const AddTrainingToCalendar = ({
                                  trainingPlans,
                                  planParts,
                                  selectedTrainingPlan,
                                  selectedPlanPart,
                                  onTrainingPlanChange,
                                  onPlanPartChange,
-                                 isOpen,
                                  onAddEvent,
                                  isDemoMode,
                                  setIsDemoMode,
                                  timeError,
+                                 unselectDate,
                              }: PlanSelectorProps) => {
     const [startTime, setStartTime] = useState<string>("");
     const [endTime, setEndTime] = useState<string>("");
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleClose = () => {
+        setIsOpen(false);
+        unselectDate();
+    }
 
     return (
-        <div className={`plan-selector-container ${isOpen ? "open" : ""}`}>
+        <div className={`plan-selector-container ${isOpen ? 'open' : 'closed'}`}>
             <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
@@ -96,7 +103,8 @@ export const PlanSelector = ({
             </button>
             <button
                 className="plan-selector-button"
-                >Zamknij
+                onClick={handleClose}
+            >Zamknij
             </button>
         </div>
     );
