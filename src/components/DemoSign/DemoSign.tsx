@@ -5,7 +5,7 @@ import { IconContext } from 'react-icons';
 import { TbAlertTriangle } from 'react-icons/tb';
 
 export const DemoSign = () => {
-    const [showDemoText, setShowDemoText] = useState(false);
+    const [showDemoText, setShowDemoText] = useState(true);
 
     const handleDemoButtonClick = () => {
         setShowDemoText(!showDemoText);
