@@ -20,6 +20,15 @@ export const UseBasicCalendarLogic = () => {
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [isDemoMode, setIsDemoMode] = useState(false);
     const [timeError, setTimeError] = useState<string | null>(null);
+    const [isAddTrainingToCalendarOpen, setIsAddTrainingToCalendarOpen] = useState(true);
+
+    const unselectDate = () => {
+        setSelectedDate(null);
+    }
+    const handleAddTrainingToCalendarClose = () => {
+        unselectDate();
+        setIsAddTrainingToCalendarOpen(false);
+    }
 
     useEffect(() => {
         fetchTrainingPlans()
@@ -103,14 +112,12 @@ export const UseBasicCalendarLogic = () => {
 
         if (isSameDate) {
             setSelectedDate(null);
+            setIsAddTrainingToCalendarOpen(false);
         } else {
             setSelectedDate(start);
+            setIsAddTrainingToCalendarOpen(true);
         }
     };
-
-    const unselectDate = () => {
-        setSelectedDate(null);
-    }
 
     const handleTrainingPlanChange = (planId: string) => {
         setSelectedTrainingPlan(planId);
@@ -309,6 +316,8 @@ export const UseBasicCalendarLogic = () => {
         selectedEventId,
         isDemoMode,
         timeError,
+        isAddTrainingToCalendarOpen,
+        handleAddTrainingToCalendarClose,
         unselectDate,
         closeSidebar,
         setIsDemoMode,
