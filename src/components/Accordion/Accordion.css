@@ -4,7 +4,7 @@
 }
 
 .accordion {
-    margin-bottom: 3px;
+    display: flex;
 }
 
 .accordion-header {
@@ -33,8 +33,8 @@
 
 .accordion-content {
     position: absolute;
-    top: -40%;
-    left: -82%;
+    top: -38%;
+    left: -58%;
     width: 450px;
     height: 600px;
     border: 1px solid #ccc;
