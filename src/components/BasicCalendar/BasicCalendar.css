@@ -59,3 +59,7 @@
 .rbc-event {
     background-color: #7d448b !important;
 }
+
+.rbc-month-view {
+    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+}
