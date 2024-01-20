@@ -266,9 +266,9 @@ export async function action({request, planId}: ActionProps) {
         });
     }
 
-    // if (typeof window !== 'undefined') {
-    //     window.location.href = '/';
-    // }
+    if (typeof window !== 'undefined') {
+        window.location.href = '/';
+    }
 
     return await response.json()
 
