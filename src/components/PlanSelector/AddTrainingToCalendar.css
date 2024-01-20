@@ -108,6 +108,15 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-bottom: 0.4rem;
 }
 
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
 .plan-selector-container.closed {
-    display: none;  /* Ukryty, gdy stan isOpen jest false */
+    animation: slideOutRight 0.3s forwards;
 }
