@@ -49,9 +49,6 @@ export const Calendar = () => {
                     <BasicCalendar/>
                 </div>
             </div>
-            <div className="div-btn-back-container">
-                <button className="btn-back">Powrót</button>
-            </div>
         </>
     );
 };
