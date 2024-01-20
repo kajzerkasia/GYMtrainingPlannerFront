@@ -61,7 +61,7 @@ export const UseBasicCalendarLogic = () => {
                         partName: event.partName,
                         start: new Date(event.startDate),
                         end: new Date(event.endDate),
-                        title: `${planName} - ${event.partName} ${startTime} - ${endTime}`,
+                        title: `${planName} ${event.partName} ${startTime} - ${endTime}`,
                         startTime: startTime,
                         endTime: endTime,
                     };
@@ -107,6 +107,10 @@ export const UseBasicCalendarLogic = () => {
             setSelectedDate(start);
         }
     };
+
+    const unselectDate = () => {
+        setSelectedDate(null);
+    }
 
     const handleTrainingPlanChange = (planId: string) => {
         setSelectedTrainingPlan(planId);
@@ -286,6 +290,11 @@ export const UseBasicCalendarLogic = () => {
         return `${capitalizedMonth} ${year}`;
     };
 
+    const closeSidebar = () => {
+        setIsDemoMode(false);
+        setIsSidebarOpen(false);
+    };
+
     return {
         events,
         trainingPlans,
@@ -300,6 +309,8 @@ export const UseBasicCalendarLogic = () => {
         selectedEventId,
         isDemoMode,
         timeError,
+        unselectDate,
+        closeSidebar,
         setIsDemoMode,
         setEvents,
         setTrainingPlans,
