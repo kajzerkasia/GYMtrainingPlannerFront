@@ -13,7 +13,7 @@ import {action as logoutAction} from './pages/Logout';
 import './App.css';
 import { tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
-import {Calendar} from "./components/CalendarModal/Calendar";
+import {Calendar} from "./components/Calendar/Calendar";
 
 const router = createBrowserRouter([
     {
