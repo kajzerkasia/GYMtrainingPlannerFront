@@ -13,6 +13,7 @@ import {action as logoutAction} from './pages/Logout';
 import './App.css';
 import { tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
+import {Calendar} from "./components/CalendarModal/Calendar";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
             {path: 'rules/:slug', element: <RulesTable/>},
             {path: 'details/:slug', element: <PlanDetailsTable/>},
             {path: 'instruction', element: <Instruction/>},
+            {path: 'calendar', element: <Calendar/>},
         ],
     },
 ]);
