@@ -1,5 +1,5 @@
 import React from "react";
-import {Calendar} from "../Calendar/Calendar";
+import {CalendarSettings} from "../CalendarSettings/CalendarSettings";
 import moment from "moment";
 import "moment/locale/pl";
 import './BasicCalendar.css';
@@ -33,6 +33,7 @@ export const BasicCalendar = () => {
         endTime,
         isDemoMode,
         timeError,
+        closeSidebar,
         setIsDemoMode,
         handleSelect,
         handleTrainingPlanChange,
@@ -65,7 +66,7 @@ export const BasicCalendar = () => {
                     />
                 </div>
             )}
-            <Calendar
+            <CalendarSettings
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
@@ -104,6 +105,7 @@ export const BasicCalendar = () => {
                 isDemoMode={isDemoMode}
                 setIsDemoMode={setIsDemoMode}
                 timeError={timeError}
+                onClose={closeSidebar}
             />
         </>
     );
