@@ -66,6 +66,7 @@ ul:nth-last-child {
     display: flex;
     justify-content: start;
     align-items: center;
+    color: #E6E6FA;
 }
 
 .instruction-p {
