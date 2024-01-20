@@ -14,30 +14,26 @@ interface PlanSelectorProps {
     setIsDemoMode: (value: boolean) => void;
     timeError: any;
     selectedDate?: any;
-    unselectDate: () => void;
+    onClose: () => void;
+    isOpen: boolean;
 }
 
 export const AddTrainingToCalendar = ({
-                                 trainingPlans,
-                                 planParts,
-                                 selectedTrainingPlan,
-                                 selectedPlanPart,
-                                 onTrainingPlanChange,
-                                 onPlanPartChange,
-                                 onAddEvent,
-                                 isDemoMode,
-                                 setIsDemoMode,
-                                 timeError,
-                                 unselectDate,
-                             }: PlanSelectorProps) => {
+                                          trainingPlans,
+                                          planParts,
+                                          selectedTrainingPlan,
+                                          selectedPlanPart,
+                                          onTrainingPlanChange,
+                                          onPlanPartChange,
+                                          onAddEvent,
+                                          isDemoMode,
+                                          setIsDemoMode,
+                                          timeError,
+                                          onClose,
+                                          isOpen,
+                                      }: PlanSelectorProps) => {
     const [startTime, setStartTime] = useState<string>("");
     const [endTime, setEndTime] = useState<string>("");
-    const [isOpen, setIsOpen] = useState(true);
-
-    const handleClose = () => {
-        setIsOpen(false);
-        unselectDate();
-    }
 
     return (
         <div className={`plan-selector-container ${isOpen ? 'open' : 'closed'}`}>
@@ -103,7 +99,7 @@ export const AddTrainingToCalendar = ({
             </button>
             <button
                 className="plan-selector-button"
-                onClick={handleClose}
+                onClick={onClose}
             >Zamknij
             </button>
         </div>

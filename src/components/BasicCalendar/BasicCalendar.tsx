@@ -33,6 +33,8 @@ export const BasicCalendar = () => {
         endTime,
         isDemoMode,
         timeError,
+        isAddTrainingToCalendarOpen,
+        handleAddTrainingToCalendarClose,
         closeSidebar,
         setIsDemoMode,
         handleSelect,
@@ -45,12 +47,10 @@ export const BasicCalendar = () => {
         handleDeleteEvent,
         handleEventClick,
         formatFullDate,
-        unselectDate
     } = UseBasicCalendarLogic();
 
     return (
         <>
-            {selectedDate && (
                 <div className="aside-container">
                     <AddTrainingToCalendar
                         trainingPlans={trainingPlans}
@@ -63,10 +63,10 @@ export const BasicCalendar = () => {
                         isDemoMode={isDemoMode}
                         setIsDemoMode={setIsDemoMode}
                         timeError={timeError}
-                        unselectDate={unselectDate}
+                        isOpen={isAddTrainingToCalendarOpen}
+                        onClose={handleAddTrainingToCalendarClose}
                     />
                 </div>
-            )}
             <CalendarSettings
                 events={events}
                 startAccessor="start"

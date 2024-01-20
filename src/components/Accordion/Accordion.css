@@ -31,6 +31,15 @@
     padding: 5px 5px;
 }
 
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
 .accordion-content {
     position: absolute;
     top: -38%;
@@ -41,4 +50,5 @@
     padding: 10px;
     background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
     z-index: 4;
+    animation: slideInLeft 0.3s forwards;
 }
