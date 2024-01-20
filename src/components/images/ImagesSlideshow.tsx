@@ -30,12 +30,19 @@ const slides = [
 
 export default function ImagesSlideshow() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [textVisible, setTextVisible] = useState(true);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) =>
-                prevIndex < slides.length - 1 ? prevIndex + 1 : 0
-            );
+            setTextVisible(false);
+
+            setTimeout(() => {
+                setCurrentImageIndex((prevIndex) =>
+                    prevIndex < slides.length - 1 ? prevIndex + 1 : 0
+                );
+                setTextVisible(true);
+            }, 500);
+
         }, 5000);
 
         return () => clearInterval(interval);
@@ -43,7 +50,7 @@ export default function ImagesSlideshow() {
 
     return (
         <div className="slideshow">
-            <p className="text">{slides[currentImageIndex].text}</p>
+            <p className={`text ${textVisible ? 'visible' : 'hidden'}`}>{slides[currentImageIndex].text}</p>
             {slides.map((slide, index) => (
                 <>
                     <Image

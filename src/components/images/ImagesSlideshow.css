@@ -34,4 +34,13 @@
     z-index: 2;
     color: #E6E6FA;
     font-size: 1.25rem;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.text.hidden {
+    opacity: 0;
+}
+
+.text.visible {
+    opacity: 1;
 }
