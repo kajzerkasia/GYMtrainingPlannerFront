@@ -1,43 +1,20 @@
-.calendar-modal {
+.div-calendar-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
-    margin: 2vh auto 5vh;
+    margin: 10vh auto 5vh;
     padding: 20px 20px;
-    width: 900px;
-    height: 890px;
+    width: 600px;
+    height: 600px;
     background-image: linear-gradient(200deg, #4e246d 15%, #310942 82%);
     font-size: 16px;
-}
-
-.calendar-modal h2 {
-    margin-bottom: 5vh;
 }
 
 .icon-modal {
     margin: 0 auto;
     font-size: 70px;
-}
-
-.ReactModal__Overlay {
-    opacity: 0;
-    transform: translateX(-100vw);
-    transition: all 1200ms ease-in-out;
-    background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
-}
-
-.ReactModal__Overlay--after-open {
-    opacity: 1;
-    transform: translateX(0px);
-    background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
-}
-
-.ReactModal__Overlay--before-close {
-    opacity: 0;
-    transform: translateX(100vw);
-    background-image: linear-gradient(200deg, #c070cf 15%, #d495e2 82%);
 }
 
 .btn-back {
@@ -71,4 +48,32 @@
     margin-bottom: 2rem;
 }
 
+.div-calendar {
+    z-index: 0;
+}
+
+.calendar-div {
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.calendar-h3 {
+    margin-bottom: 5px;
+}
+
+.x-container {
+    display: flex;
+}
+
+.calendar-list {
+    color: #E6E6FA;
+}
+
+.calendar-list li {
+    margin-left: 20px;
+    margin-top: 5px;
+}
 
