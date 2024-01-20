@@ -60,3 +60,9 @@
 .actions a:hover {
     color: #E6E6FA;
 }
+
+ul {
+    list-style-type: none;
+    color: #ff2873;
+}
+
