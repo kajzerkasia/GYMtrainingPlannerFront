@@ -4,7 +4,7 @@ import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/PlansList.css';
 import {CalendarModal} from "../CalendarModal/CalendarModal";
-import {Form} from "react-router-dom";
+import {Form, useActionData, useNavigate, useNavigation} from "react-router-dom";
 import {Method} from "../../pages/PlansList";
 
 interface PlansListFormProps {
@@ -16,11 +16,21 @@ interface PlansListFormProps {
 }
 
 export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, method}: PlansListFormProps) => {
+    const data: any = useActionData();
+    const navigate = useNavigate();
+    const navigation = useNavigation();
+
+    const isSubmitting = navigation.state === 'submitting';
 
     const [values, setValues] = useState<PlanEntity>(() => initialValues);
     const [calendarModalIsOpen, setCalendarModalIsOpen] = useState<boolean>(false);
 
     const text = 'Kalendarz';
+
+    function cancelHandler() {
+        navigate('..');
+    }
+
 
     const reset: () => void = () => {
         setValues(initialValues);
@@ -45,6 +55,13 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
         <>
             <td className="input-plan-add" colSpan={2}>
                 <Form method={method}>
+                    {data && data.errors && (
+                        <ul>
+                            {Object.values(data.errors).map((err: any) => (
+                                <li key={err}>{err}</li>
+                            ))}
+                        </ul>
+                    )}
                     <input
                         placeholder="Podaj nazwę planu, który chcesz dodać"
                         className={isEdited ? 'edited-input' : 'input-plan'}
@@ -56,11 +73,13 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
                     />
                 </Form>
             </td>
-            <td colSpan={1}>
-                <IconContext.Provider value={{className: 'react-icons'}}>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
-                </IconContext.Provider>
-            </td>
+                <td colSpan={1} className={isSubmitting ? "button-disabled" : ''}>
+                    <IconContext.Provider value={{className: 'react-icons'}}>
+                        <button type='button' onClick={() => onSubmit(values, reset)} disabled={isSubmitting}>
+                            {actionType === Status.Add ? <TbPlus/> : <TbCheck/>}
+                        </button>
+                    </IconContext.Provider>
+                </td>
             {actionType === Status.Add &&
                 <td>
                     <IconContext.Provider value={{className: 'react-icons'}}>

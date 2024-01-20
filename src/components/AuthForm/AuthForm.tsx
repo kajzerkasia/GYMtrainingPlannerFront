@@ -13,12 +13,14 @@ function AuthForm() {
         <>
             <Form method="post" className="form">
                 <h1>{isLogin ? 'Zaloguj się' : 'Dodaj nowego użytkownika'}</h1>
-                {data && data.errors && (
-                    <ul>
-                        {Object.values(data.errors).map((err: any) => <li key={err}>{err}</li>)}
-                    </ul>
-                )}
-                {data && data.message && <p>{data.message}</p>}
+                <div>
+                    {data && data.errors && (
+                        <ul>
+                            {Object.values(data.errors).map((err: any) => <li key={err}>{err}</li>)}
+                        </ul>
+                    )}
+                    {data && data.message && <p>{data.message}</p>}
+                </div>
                 <p>
                     <label htmlFor="email">Email</label>
                     <input id="email" type="email" name="email" required/>
