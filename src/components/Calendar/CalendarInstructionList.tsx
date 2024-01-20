@@ -1,16 +1,17 @@
 import React from 'react';
 import {IconContext} from "react-icons";
+import './CalendarInstructionList.css';
 
 interface CalendarInstructionListProps {
     title: string;
-    children: any;
+    children: React.ReactNode;
     array: string[],
 }
 
 const CalendarInstructionList = ({title, children, array}: CalendarInstructionListProps) => {
     return (
         <ul className="calendar-list">
-            <div className="x-container">
+            <div className="list-container">
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     {children}
                 </IconContext.Provider>
