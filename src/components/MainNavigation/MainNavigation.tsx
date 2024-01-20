@@ -22,7 +22,7 @@ const MainNavigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/cxs" className={({isActive}) =>
+                            <NavLink to="/calendar" className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 Kalendarz
