@@ -1,11 +1,11 @@
 import React from "react";
-import {CalendarSettings} from "../CalendarSettings/CalendarSettings";
+import {CalendarSettings} from "./CalendarSettings";
 import moment from "moment";
 import "moment/locale/pl";
-import './BasicCalendar.css';
-import {AddTrainingToCalendar} from "../PlanSelector/AddTrainingToCalendar";
-import {Sidebar} from "../Sidebar/Sidebar";
-import {UseBasicCalendarLogic} from "../../hooks/useBasicCalendarLogic";
+import './CalendarAddons.css';
+import {AddTrainingToCalendar} from "./AddTrainingToCalendar";
+import {EditTrainingFromCalendar} from "./EditTrainingFromCalendar";
+import {UseCalendarLogic} from "../../hooks/useCalendarLogic";
 
 export interface MyEvent {
     planName: string;
@@ -18,7 +18,7 @@ export interface MyEvent {
     endTime: string;
 }
 
-export const BasicCalendar = () => {
+export const CalendarAddons = () => {
 
     const {
         events,
@@ -47,26 +47,11 @@ export const BasicCalendar = () => {
         handleDeleteEvent,
         handleEventClick,
         formatFullDate,
-    } = UseBasicCalendarLogic();
+    } = UseCalendarLogic();
 
     return (
         <>
-                <div className="aside-container">
-                    <AddTrainingToCalendar
-                        trainingPlans={trainingPlans}
-                        planParts={planParts}
-                        selectedTrainingPlan={selectedTrainingPlan}
-                        selectedPlanPart={selectedPlanPartId}
-                        onTrainingPlanChange={handleTrainingPlanChange}
-                        onPlanPartChange={handlePlanPartChange}
-                        onAddEvent={handleAddEvent}
-                        isDemoMode={isDemoMode}
-                        setIsDemoMode={setIsDemoMode}
-                        timeError={timeError}
-                        isOpen={isAddTrainingToCalendarOpen}
-                        onClose={handleAddTrainingToCalendarClose}
-                    />
-                </div>
+            <AddTrainingToCalendar/>
             <CalendarSettings
                 events={events}
                 startAccessor="start"
@@ -93,21 +78,7 @@ export const BasicCalendar = () => {
                     day: "Dzień",
                 }}
             />
-            <Sidebar
-                id={selectedEvent?.id || ""}
-                isOpen={isSidebarOpen}
-                selectedEvent={selectedEvent}
-                onEditEvent={handleEditEvent}
-                onDeleteEvent={handleDeleteEvent}
-                startTime={startTime}
-                endTime={endTime}
-                onStartTimeChange={handleStartTimeChange}
-                onEndTimeChange={handleEndTimeChange}
-                isDemoMode={isDemoMode}
-                setIsDemoMode={setIsDemoMode}
-                timeError={timeError}
-                onClose={closeSidebar}
-            />
+            <EditTrainingFromCalendar/>
         </>
     );
 };

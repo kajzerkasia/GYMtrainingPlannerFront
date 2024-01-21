@@ -2,66 +2,68 @@ import React, {useEffect, useState} from "react";
 import {fetchPlanParts, fetchTrainingPlans} from "../helpers/fetchingFunctions";
 import {apiUrl} from "../config/api";
 import moment from "moment/moment";
-import {MyEvent} from "../components/BasicCalendar/BasicCalendar";
+import {MyEvent} from "../components/Calendar/CalendarAddons";
 import {PlanEntity, PartOfPlanEntity, EventEntity} from 'types';
+import {calendarsActions} from "../store/features/calendar/calendar-slice";
+import {RootState} from "../store";
+import {useDispatch, useSelector} from "react-redux";
 
-export const UseBasicCalendarLogic = () => {
+export const UseCalendarLogic = () => {
+    const dispatch = useDispatch();
+    const {
+        events,
+        trainingPlans,
+        planParts,
+        selectedTrainingPlan,
+        selectedPlanPartId,
+        selectedDate,
+        startTime,
+        endTime,
+        selectedEventId,
+    } = useSelector((state: RootState) => state.calendar);
 
-    const [events, setEvents] = useState<MyEvent[]>([]);
-    const [trainingPlans, setTrainingPlans] = useState<PlanEntity[]>([]);
-    const [planParts, setPlanParts] = useState<PartOfPlanEntity[]>([]);
-    const [selectedTrainingPlan, setSelectedTrainingPlan] = useState<string | null>(null);
-    const [selectedPlanPartId, setSelectedPlanPartId] = useState<string | null>(null);
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-    const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
-    const [selectedEvent, setSelectedEvent] = useState<MyEvent | null>(null);
-    const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
-    const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
-    const [isDemoMode, setIsDemoMode] = useState(false);
-    const [timeError, setTimeError] = useState<string | null>(null);
-    const [isAddTrainingToCalendarOpen, setIsAddTrainingToCalendarOpen] = useState(false);
-
-    const unselectDate = () => {
-        setSelectedDate(null);
-    }
-    const handleAddTrainingToCalendarClose = () => {
-        unselectDate();
-        setIsAddTrainingToCalendarOpen(false);
-    }
+    const {
+        updateEvents,
+        selectDate,
+        updateTrainingPlans,
+        updatePlanParts,
+        selectTrainingPlan,
+        selectPlanPart,
+        selectEvent,
+        updateStartTime,
+        updateEndTime,
+        selectEventId,
+        toggleDemoMode,
+        updateTimeError,
+        toggleAddTrainingToCalendar,
+        toggleSidebar,
+    } = calendarsActions;
 
     useEffect(() => {
-        fetchTrainingPlans()
-            .then((plans) => {
-                setTrainingPlans(plans);
-            })
-            .catch((error) => {
-                console.error("Wystąpił błąd podczas pobierania danych eventów:", error);
-            });
-    }, []);
+        // Placeholder, zastąp odpowiednim zapytaniem do API
+        const mockTrainingPlans: PlanEntity[] = [];
+        dispatch(updateTrainingPlans(mockTrainingPlans));
+    }, [dispatch]);
 
     useEffect(() => {
         if (selectedTrainingPlan !== null) {
-            fetchPlanParts(selectedTrainingPlan)
-                .then((parts) => {
-                    setPlanParts(parts);
-                })
-                .catch((error) => {
-                    console.error("Wystąpił błąd podczas pobierania danych eventów:", error);
-                });
+            // Placeholder, zastąp odpowiednim zapytaniem do API
+            const mockPlanParts: PartOfPlanEntity[] = [];
+            dispatch(updatePlanParts(mockPlanParts));
         }
-    }, [selectedTrainingPlan]);
+    }, [selectedTrainingPlan, dispatch]);
 
     useEffect(() => {
+        // Placeholder, zastąp odpowiednim zapytaniem do API
         fetch(`${apiUrl}/api/add-event/events`)
             .then((response) => response.json())
             .then((data) => {
                 const formattedEvents: MyEvent[] = data.map((event: EventEntity) => {
+                    // Placeholder, dostosuj do struktury danych z API
                     const startTime = moment(event.startDate).format('HH:mm');
                     const endTime = moment(event.endDate).format('HH:mm');
 
                     const selectedTrainingPlan = trainingPlans.find((plan) => plan.id === event.planName);
-
                     const planName = selectedTrainingPlan ? selectedTrainingPlan.name : event.planName;
 
                     return {
@@ -75,12 +77,12 @@ export const UseBasicCalendarLogic = () => {
                         endTime: endTime,
                     };
                 });
-                setEvents(formattedEvents);
+                dispatch(updateEvents(() => formattedEvents));
             })
             .catch((error) => {
                 console.error("Wystąpił błąd podczas pobierania danych eventów:", error);
             });
-    }, [trainingPlans]);
+    }, [trainingPlans, dispatch]);
 
     const addHoursToEvent = (startTime: string, endTime: string, event: MyEvent) => {
         if (startTime && endTime) {
@@ -90,14 +92,13 @@ export const UseBasicCalendarLogic = () => {
             const endMinute = Number(endTime.split(":")[1]);
 
             if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
-                const errorMessage = "Godzina rozpoczęcia nie może być późniejsza lub równa godzinie zakończenia.";
-                setTimeError(errorMessage);
+                dispatch(updateTimeError("Godzina rozpoczęcia nie może być późniejsza lub równa godzinie zakończenia."));
                 return null;
             } else {
-                setTimeError(null);
+                dispatch(updateTimeError(null));
             }
 
-            const updatedEvent = {...event};
+            const updatedEvent = { ...event };
             updatedEvent.start.setHours(startHour, startMinute);
             updatedEvent.end.setHours(endHour, endMinute);
             return updatedEvent;
@@ -106,39 +107,33 @@ export const UseBasicCalendarLogic = () => {
         return null;
     };
 
-    const handleSelect = ({start}: { start: Date; end: Date }) => {
-
+    const handleSelect = ({ start }: { start: Date; end: Date }) => {
         const isSameDate = selectedDate ? moment(selectedDate).isSame(start, 'day') : false;
 
         if (isSameDate) {
-            setSelectedDate(null);
-            setIsAddTrainingToCalendarOpen(false);
+            dispatch(selectDate(null));
+            dispatch(toggleAddTrainingToCalendar(false));
         } else {
-            setSelectedDate(start);
-            setIsAddTrainingToCalendarOpen(true);
+            dispatch(selectDate(start));
+            dispatch(toggleAddTrainingToCalendar(true));
         }
     };
 
     const handleTrainingPlanChange = (planId: string) => {
-        setSelectedTrainingPlan(planId);
-        setSelectedPlanPartId(null);
+        dispatch(selectTrainingPlan(planId));
+        dispatch(selectPlanPart(null));
     };
 
     const handlePlanPartChange = (partId: string) => {
-        setSelectedPlanPartId(partId);
+        dispatch(selectPlanPart(partId));
     };
 
-    const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStartTime(e.target.value);
-    };
+    const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateStartTime(e.target.value));
 
-    const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEndTime(e.target.value);
-    };
+    const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
-
             const selectedTrainingPlanName =
                 trainingPlans.find((plan) => plan.id === selectedTrainingPlan)?.name || "";
 
@@ -177,7 +172,7 @@ export const UseBasicCalendarLogic = () => {
 
                 if (!response.ok) {
                     if (response.status === 403) {
-                        setIsDemoMode(true);
+                        dispatch(toggleDemoMode(true));
                         return;
                     }
                     throw new Error("Nie udało się dodać wydarzenia.");
@@ -189,10 +184,10 @@ export const UseBasicCalendarLogic = () => {
                     id: eventData.id,
                 };
 
-                setEvents([...events, newEventWithId]);
-                setSelectedTrainingPlan(null);
-                setSelectedPlanPartId(null);
-                setSelectedDate(null);
+                dispatch(updateEvents((prevEvents) => [...prevEvents, newEventWithId]));
+                dispatch(selectTrainingPlan(null));
+                dispatch(selectPlanPart(null));
+                dispatch(selectDate(null));
             } catch (error) {
                 console.error('Wystąpił błąd podczas dodawania wydarzenia:', error);
             }
@@ -200,7 +195,6 @@ export const UseBasicCalendarLogic = () => {
     };
 
     const handleEditEvent = async (id: string, eventToUpdate: MyEvent) => {
-
         const updatedEventToUpdate = addHoursToEvent(startTime, endTime, eventToUpdate);
 
         if (!updatedEventToUpdate) {
@@ -223,7 +217,7 @@ export const UseBasicCalendarLogic = () => {
 
             if (!response.ok) {
                 if (response.status === 403) {
-                    setIsDemoMode(true);
+                    dispatch(toggleDemoMode(true));
                     return;
                 }
                 throw new Error("Nie udało się edytować wydarzenia.");
@@ -244,8 +238,8 @@ export const UseBasicCalendarLogic = () => {
                     : event
             );
 
-            setEvents(updatedEvents);
-            setIsSidebarOpen(false);
+            dispatch(updateEvents(() => updatedEvents));
+            dispatch(toggleSidebar(false));
         } catch (error) {
             console.error("Wystąpił błąd podczas aktualizacji wydarzenia:", error);
         }
@@ -259,92 +253,47 @@ export const UseBasicCalendarLogic = () => {
 
             if (!response.ok) {
                 if (response.status === 403) {
-                    setIsDemoMode(true);
+                    dispatch(toggleDemoMode(true));
                     return;
                 }
                 throw new Error("Nie udało się usunąć wydarzenia.");
             }
 
-            setEvents((prevEvents) =>
-                prevEvents.filter((event) => event.id !== id)
-            );
-
-            setIsSidebarOpen(false);
-            setSelectedEvent(null);
+            dispatch(updateEvents((prevEvents: MyEvent[]) => prevEvents.filter((event) => event.id !== id)));
+            dispatch(toggleSidebar(false));
+            dispatch(selectEvent(null));
         } catch (error) {
             console.error("Wystąpił błąd podczas usuwania wydarzenia:", error);
         }
     };
 
     const handleEventClick = (event: MyEvent) => {
-
         if (selectedEventId === event.id) {
-            setSelectedEventId(null);
-            setIsSidebarOpen(false);
+            dispatch(selectEventId(null));
+            dispatch(toggleSidebar(false));
+            unselectDate();
         } else {
-            setSelectedEventId(event.id ? event.id : null);
-            setStartTime(event.startTime);
-            setEndTime(event.endTime);
-            setSelectedEvent(event);
-            setIsSidebarOpen(true);
+            dispatch(selectEventId(event.id || null));
+            dispatch(updateStartTime(event.startTime));
+            dispatch(updateEndTime(event.endTime));
+            dispatch(selectEvent(event));
+            dispatch(toggleSidebar(true));
         }
     };
 
     const formatFullDate = (date: Date) => {
-        const monthName = date.toLocaleString('pl', {month: 'long'});
+        const monthName = date.toLocaleString('pl', { month: 'long' });
         const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
         const year = date.getFullYear();
         return `${capitalizedMonth} ${year}`;
     };
-
-    const closeSidebar = () => {
-        setIsDemoMode(false);
-        setIsSidebarOpen(false);
-    };
-
-    return {
-        events,
-        trainingPlans,
-        planParts,
-        selectedTrainingPlan,
-        selectedPlanPartId,
-        selectedDate,
-        isSidebarOpen,
-        selectedEvent,
-        startTime,
-        endTime,
-        selectedEventId,
-        isDemoMode,
-        timeError,
-        isAddTrainingToCalendarOpen,
-        handleAddTrainingToCalendarClose,
-        unselectDate,
-        closeSidebar,
-        setIsDemoMode,
-        setEvents,
-        setTrainingPlans,
-        setPlanParts,
-        setSelectedTrainingPlan,
-        setSelectedPlanPartId,
-        setSelectedDate,
-        setIsSidebarOpen,
-        setSelectedEvent,
-        setStartTime,
-        setEndTime,
-        setSelectedEventId,
-        addHoursToEvent,
-        handleSelect,
-        handleTrainingPlanChange,
-        handlePlanPartChange,
-        handleStartTimeChange,
-        handleEndTimeChange,
-        handleAddEvent,
-        handleEditEvent,
-        handleDeleteEvent,
-        handleEventClick,
-        formatFullDate,
-    };
 };
 
 
-// Dodać nazwę edytowanego treningu w Sidebar, wyświetlać wybrany dzień w addTraining, naprawić chowający się addTraining po wejściu w kalendarz,
+// Dodać nazwę edytowanego treningu w EditTrainingFromCalendar, wyświetlać wybrany dzień w addTraining, naprawić chowający się addTraining po wejściu w kalendarz,
+
+// Trzeba zrobić widok dnia z treningami
+
+// Naprawić zamykanie sidebara i ponowne klikanie w ten sam dzień po zamknięciu przyciskiem
+
+// Uzyć tutaj redux-toolkit
