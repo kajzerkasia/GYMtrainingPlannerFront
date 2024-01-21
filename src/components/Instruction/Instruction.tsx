@@ -1,5 +1,5 @@
 import React from "react";
-import {TbBarbell, TbPlus, TbCheck, TbX, TbStairsUp, TbDotsVertical, TbLink, TbUserCircle, TbArrowNarrowRight} from "react-icons/tb";
+import {TbBarbell, TbPlus, TbCheck, TbX, TbStairsUp, TbDotsVertical, TbLink, TbUserCircle, TbArrowNarrowRight, TbCalendarPlus} from "react-icons/tb";
 import {IconContext, IconType} from "react-icons";
 import './Instruction.css';
 import {INSTRUCTION} from "../../constants/instruction";
@@ -13,6 +13,7 @@ const iconComponents: { [key: string]: IconType } = {
     TbX,
     TbBarbell,
     TbLink,
+    TbCalendarPlus,
 };
 
 export const Instruction = () => {

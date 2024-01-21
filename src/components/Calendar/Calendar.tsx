@@ -7,7 +7,7 @@ import CalendarInstruction from "./CalendarInstruction";
 
 export const Calendar = () => {
 
-    const [showInstructions, setShowInstructions] = useState(true);
+    const [showInstructions, setShowInstructions] = useState(false);
 
     const toggleInstructions = () => {
         setShowInstructions(prevShowInstructions => !prevShowInstructions);

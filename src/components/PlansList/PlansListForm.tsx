@@ -3,7 +3,7 @@ import {PlanEntity, Status} from 'types';
 import {TbPlus, TbCheck, TbCalendarPlus} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/PlansList.css';
-import {Form, useActionData, useNavigation} from "react-router-dom";
+import {Form, Link, useActionData, useNavigation} from "react-router-dom";
 import {Method} from "../../pages/PlansList";
 
 interface PlansListFormProps {
@@ -65,7 +65,7 @@ export const PlansListForm = ({initialValues, onSubmit, actionType, isEdited, me
             {actionType === Status.Add &&
                 <td>
                     <IconContext.Provider value={{className: 'react-icons'}}>
-                        <button><TbCalendarPlus/></button>
+                        <Link to="/calendar"><TbCalendarPlus/></Link>
                     </IconContext.Provider>
                 </td>}
         </>

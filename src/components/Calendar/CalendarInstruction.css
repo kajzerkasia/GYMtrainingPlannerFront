@@ -1,0 +1,30 @@
+.calendar-div {
+    height: 100%;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.calendar-list {
+    color: #E6E6FA;
+}
+
+.calendar-list li {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.calendar-instruction-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-instruction {
+    padding: 10px 10px;
+}
+
+.calendar-instruction-h1 {
+    margin-left: 20px;
+}
+

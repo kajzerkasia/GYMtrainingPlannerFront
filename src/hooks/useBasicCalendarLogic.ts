@@ -20,7 +20,7 @@ export const UseBasicCalendarLogic = () => {
     const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
     const [isDemoMode, setIsDemoMode] = useState(false);
     const [timeError, setTimeError] = useState<string | null>(null);
-    const [isAddTrainingToCalendarOpen, setIsAddTrainingToCalendarOpen] = useState(true);
+    const [isAddTrainingToCalendarOpen, setIsAddTrainingToCalendarOpen] = useState(false);
 
     const unselectDate = () => {
         setSelectedDate(null);
@@ -345,3 +345,6 @@ export const UseBasicCalendarLogic = () => {
         formatFullDate,
     };
 };
+
+
+// Dodać nazwę edytowanego treningu w Sidebar, wyświetlać wybrany dzień w addTraining, naprawić chowający się addTraining po wejściu w kalendarz,

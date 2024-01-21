@@ -4,6 +4,10 @@ export const INSTRUCTION = [
         text: 'przejście do strony logowania',
     },
     {
+        icon: 'TbCalendarPlus',
+        text: 'przejście do kalendarza',
+    },
+    {
         icon: 'TbDotsVertical',
         text: 'lista części danego planu',
     },
