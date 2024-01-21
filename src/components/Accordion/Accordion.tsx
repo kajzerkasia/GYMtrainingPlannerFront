@@ -26,11 +26,9 @@ export const Accordion = ({
                          </IconContext.Provider>
                 </span>
             </div>
-            {isOpen && (
-                <div className="accordion-content">
+                <div className={`accordion-content ${isOpen ? 'open' : 'closed'}`}>
                     {children}
                 </div>
-            )}
         </div>
     );
 };
