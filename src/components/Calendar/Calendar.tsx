@@ -7,29 +7,29 @@ import CalendarInstruction from "./CalendarInstruction";
 
 export const Calendar = () => {
 
-    const [showInstructions, setShowInstructions] = useState(false);
+        const [showInstructions, setShowInstructions] = useState(false);
 
-    const toggleInstructions = () => {
-        setShowInstructions(prevShowInstructions => !prevShowInstructions);
-    };
+        const toggleInstructions = () => {
+            setShowInstructions(prevShowInstructions => !prevShowInstructions);
+        };
 
-    return (
-        <>
-            <div className="div-calendar-info">
-                <Accordion
-                    title="Kalendarz"
-                    isOpen={showInstructions}
-                    toggleAccordion={toggleInstructions}
-                >
-                    <DemoSign/>
-                    <CalendarInstruction
+        return (
+            <>
+                <div className="div-calendar-info">
+                    <Accordion
+                        title="Kalendarz"
+                        isOpen={showInstructions}
                         toggleAccordion={toggleInstructions}
-                    />
-                </Accordion>
-                <div style={{height: "730px"}} className="div-calendar">
-                    <CalendarAddons/>
+                    >
+                        <DemoSign/>
+                        <CalendarInstruction
+                            toggleAccordion={toggleInstructions}
+                        />
+                    </Accordion>
+                    <div style={{height: "730px"}} className="div-calendar">
+                        <CalendarAddons/>
+                    </div>
                 </div>
-            </div>
-        </>
-    );
-};
+            </>
+        );
+    };

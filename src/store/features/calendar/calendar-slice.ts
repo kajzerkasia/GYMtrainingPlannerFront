@@ -54,7 +54,7 @@ const calendarSlice = createSlice({
         },
         selectTrainingPlan: (state, action: PayloadAction<string | null>) => {
             state.selectedTrainingPlan = action.payload;
-            state.selectedPlanPartId = null; // Resetuj selectedPlanPartId przy zmianie planu
+            state.selectedPlanPartId = null;
         },
         selectPlanPart: (state, action: PayloadAction<string | null>) => {
             state.selectedPlanPartId = action.payload;
