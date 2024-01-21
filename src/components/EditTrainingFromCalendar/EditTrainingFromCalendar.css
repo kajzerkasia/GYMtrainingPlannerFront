@@ -7,7 +7,19 @@
     }
 }
 
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        visibility: visible;
+    }
+    to {
+        transform: translateX(100%);
+        visibility: hidden;
+    }
+}
+
 .sidebar-container {
+    display: flex;
     position: absolute;
     top: 55%;
     right: 0;
@@ -18,6 +30,10 @@
     animation: slideInRight 0.3s forwards;
     z-index: 999;
     text-align: center;
+    flex-wrap: wrap;
+    width: 280px;
+    margin: 0 auto;
+    visibility: visible;
 }
 
 .sidebar-container h1 {
@@ -25,10 +41,11 @@
 }
 
 .sidebar-container.open {
-    display: flex;
-    flex-wrap: wrap;
-    width: 280px;
-    margin: 0 auto;
+    visibility: visible;
+}
+
+.sidebar-container.closed {
+    animation: slideOutRight 0.3s forwards;
 }
 
 input[type="time"] {

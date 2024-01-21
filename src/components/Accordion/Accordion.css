@@ -41,15 +41,24 @@
 }
 
 .accordion-content {
+    display: flex;
     position: absolute;
     top: -10%;
-    left: -58%;
+    left: -62%;
     width: 460px;
     height: 650px;
     padding: 10px;
     background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
     z-index: 4;
-    animation: slideInLeft 0.3s forwards;
+    transition: 0.3s ease-out;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-content.open {
+    transform: translateX(0);
+}
+
+.accordion-content.closed {
+    transform: translateX(-100%);
 }
