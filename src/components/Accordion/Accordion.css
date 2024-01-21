@@ -53,20 +53,21 @@
     animation: slideInLeft 0.3s forwards;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    visibility: visible;
 }
 
 .accordion-content.open {
-    display: flex;
+    visibility: visible;
 }
 
 @keyframes slideOutLeft {
     from {
         transform: translateX(0);
-        display: flex;
+        visibility: visible;
     }
     to {
         transform: translateX(-100%);
-        display: none;
+        visibility: hidden;
     }
 }
 
