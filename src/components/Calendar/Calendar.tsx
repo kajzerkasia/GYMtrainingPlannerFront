@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import './Calendar.css'
-import {BasicCalendar} from "../BasicCalendar/BasicCalendar";
+import {CalendarAddons} from "./CalendarAddons";
 import {Accordion} from "../Accordion/Accordion";
 import {DemoSign} from "../DemoSign/DemoSign";
 import CalendarInstruction from "./CalendarInstruction";
@@ -27,7 +27,7 @@ export const Calendar = () => {
                     />
                 </Accordion>
                 <div style={{height: "730px"}} className="div-calendar">
-                    <BasicCalendar/>
+                    <CalendarAddons/>
                 </div>
             </div>
         </>

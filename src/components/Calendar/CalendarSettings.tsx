@@ -4,7 +4,7 @@ import {
     momentLocalizer,
 } from 'react-big-calendar';
 import moment from 'moment';
-import {MyEvent} from "../BasicCalendar/BasicCalendar";
+import {MyEvent} from "./CalendarAddons";
 import React from "react";
 
 moment.locale('pl', {
@@ -23,5 +23,6 @@ export interface CalendarPropsWithMyEvents extends Omit<CalendarProps<MyEvent>, 
 const localizer = momentLocalizer(moment)
 
 export const CalendarSettings: React.FC<CalendarPropsWithMyEvents> = (props) => {
+
     return <BigCalendar {...props} localizer={localizer} />;
 }
