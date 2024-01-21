@@ -20,8 +20,12 @@
     text-align: center;
     width: 280px;
     margin: 0 auto;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
+}
+
+.plan-selector-container.open {
+    display: flex;
 }
 
 .plan-selector-container h1 {
@@ -106,9 +110,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 @keyframes slideOutRight {
     from {
         transform: translateX(0);
+        display: flex;
     }
     to {
         transform: translateX(100%);
+        display: none;
     }
 }
 
