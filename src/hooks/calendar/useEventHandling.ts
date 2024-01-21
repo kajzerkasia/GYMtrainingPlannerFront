@@ -1,8 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {MyEvent} from "../../components/Calendar/CalendarAddons";
-import moment from "moment";
-import React from "react";
 import {apiUrl} from "../../config/api";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseDateSelection} from "./useDateSelection";
@@ -24,8 +22,6 @@ export const UseEventHandling = () => {
     const {
         updateEvents,
         selectDate,
-        updateTrainingPlans,
-        updatePlanParts,
         selectTrainingPlan,
         selectPlanPart,
         selectEvent,
@@ -34,7 +30,6 @@ export const UseEventHandling = () => {
         selectEventId,
         toggleDemoMode,
         updateTimeError,
-        toggleAddTrainingToCalendar,
         toggleSidebar,
     } = calendarsActions;
 
@@ -61,18 +56,6 @@ export const UseEventHandling = () => {
         }
 
         return null;
-    };
-
-    const handleSelect = ({start}: { start: Date; end: Date }) => {
-        const isSameDate = selectedDate ? moment(selectedDate).isSame(start, 'day') : false;
-
-        if (isSameDate) {
-            dispatch(selectDate(null));
-            dispatch(toggleAddTrainingToCalendar(false));
-        } else {
-            dispatch(selectDate(start));
-            dispatch(toggleAddTrainingToCalendar(true));
-        }
     };
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
@@ -224,19 +207,11 @@ export const UseEventHandling = () => {
         }
     };
 
-    const formatFullDate = (date: Date) => {
-        const monthName = date.toLocaleString('pl', {month: 'long'});
-        const capitalizedMonth = monthName.charAt(0).toUpperCase() + monthName.slice(1);
-        const year = date.getFullYear();
-        return `${capitalizedMonth} ${year}`;
-    };
-
     return {
         addHoursToEvent,
         handleAddEvent,
         handleEditEvent,
         handleDeleteEvent,
         handleEventClick,
-        formatFullDate,
     };
 };
