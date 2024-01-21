@@ -41,9 +41,10 @@
 }
 
 .accordion-content {
+    display: flex;
     position: absolute;
     top: -10%;
-    left: -58%;
+    left: -60%;
     width: 460px;
     height: 650px;
     padding: 10px;
@@ -52,4 +53,23 @@
     animation: slideInLeft 0.3s forwards;
     border-radius: 8px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.accordion-content.open {
+    display: flex;
+}
+
+@keyframes slideOutLeft {
+    from {
+        transform: translateX(0);
+        display: flex;
+    }
+    to {
+        transform: translateX(-100%);
+        display: none;
+    }
+}
+
+.accordion-content.closed {
+    animation: slideOutLeft 0.3s forwards;
 }
