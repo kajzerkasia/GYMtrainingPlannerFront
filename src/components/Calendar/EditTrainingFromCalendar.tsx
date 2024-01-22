@@ -34,10 +34,6 @@ export const EditTrainingFromCalendar = () => {
 
     const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
-    // if (!isSidebarOpen || !selectedEvent || id !== selectedEvent.id) {
-    //     return null;
-    // }
-
     const {handleDeleteEvent, handleEditEvent} = UseEventHandling()
 
     return (

@@ -17,6 +17,7 @@ interface CalendarState {
     timeError: string | null;
     isAddTrainingToCalendarOpen: boolean;
     isSidebarOpen: boolean;
+    isLoading: boolean;
 }
 
 const initialState: CalendarState = {
@@ -34,14 +35,15 @@ const initialState: CalendarState = {
     timeError: null,
     isAddTrainingToCalendarOpen: false,
     isSidebarOpen: false,
+    isLoading: true,
 };
 
 const calendarSlice = createSlice({
     name: "calendar",
     initialState,
     reducers: {
-        updateEvents: (state, action: PayloadAction<(prevEvents: MyEvent[]) => MyEvent[]>) => {
-            state.events = action.payload(state.events);
+        updateEvents: (state, action: PayloadAction<MyEvent[]>) => {
+            state.events = action.payload;
         },
         selectDate: (state, action: PayloadAction<Date | null>) => {
             state.selectedDate = action.payload;
@@ -83,7 +85,9 @@ const calendarSlice = createSlice({
         toggleSidebar: (state, action: PayloadAction<boolean>) => {
             state.isSidebarOpen = action.payload;
         },
-
+        setIsLoading: (state, action: PayloadAction<boolean>) => {
+            state.isLoading = action.payload;
+        },
     },
 });
 

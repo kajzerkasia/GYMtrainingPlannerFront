@@ -110,7 +110,7 @@ export const UseEventHandling = () => {
                     id: eventData.id,
                 };
 
-                dispatch(updateEvents((prevEvents) => [...prevEvents, newEventWithId]));
+                dispatch(updateEvents([...events, newEventWithId]));
                 dispatch(selectTrainingPlan(null));
                 dispatch(selectPlanPart(null));
                 dispatch(selectDate(null));
@@ -164,7 +164,7 @@ export const UseEventHandling = () => {
                     : event
             );
 
-            dispatch(updateEvents(() => updatedEvents));
+            dispatch(updateEvents(updatedEvents));
             dispatch(toggleSidebar(false));
         } catch (error) {
             console.error("Wystąpił błąd podczas aktualizacji wydarzenia:", error);
@@ -185,7 +185,7 @@ export const UseEventHandling = () => {
                 throw new Error("Nie udało się usunąć wydarzenia.");
             }
 
-            dispatch(updateEvents((prevEvents: MyEvent[]) => prevEvents.filter((event) => event.id !== id)));
+            dispatch(updateEvents((events.filter(event => event.id !== id))));
             dispatch(toggleSidebar(false));
             dispatch(selectEvent(null));
         } catch (error) {
