@@ -3,7 +3,7 @@ import './AddTrainingToCalendar.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
+import {UseAddNewEvent} from "../../hooks/calendar/useAddNewEvent";
 
 export const AddTrainingToCalendar = () => {
 
@@ -43,7 +43,7 @@ export const AddTrainingToCalendar = () => {
 
     const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
-    const {handleAddEvent} = UseEventHandling()
+    const {handleAddEvent} = UseAddNewEvent();
 
     const unselectDate = () => {
         dispatch(selectDate(null));

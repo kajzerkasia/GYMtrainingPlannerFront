@@ -21,12 +21,14 @@ const uiSlice = createSlice({
         toggle(state) {
             state.cartIsVisible = !state.cartIsVisible;
         },
-        showNotification(state, action: PayloadAction<{ status: string; title: string; message: string }>) {
-            state.notification = {
-                status: action.payload.status,
-                title: action.payload.title,
-                message: action.payload.message,
-            };
+        showNotification(state, action: PayloadAction<{ status: string; title: string; message: string } | null>) {
+            action.payload && (
+                state.notification = {
+                    status: action.payload.status,
+                    title: action.payload.title,
+                    message: action.payload.message,
+                }
+            )
         },
     },
 });
