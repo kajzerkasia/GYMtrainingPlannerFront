@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseAddHoursToEvent} from "./useAddHoursToEvent";
+import {uiActions} from "../../store/features/ui/ui-slice";
 
 export const UseEditEvent = () => {
 
@@ -37,6 +38,12 @@ export const UseEditEvent = () => {
             ? updatedEventToUpdate.end.getTime()
             : updatedEventToUpdate.end;
 
+        dispatch(uiActions.showNotification({
+            status: 'pending',
+            title: 'Aktualizowanie...',
+            message: 'Aktualizowanie treningu'
+        }));
+
         try {
             const response = await fetch(`${apiUrl}/api/add-event/events/${id}`, {
                 method: "PUT",
@@ -56,6 +63,11 @@ export const UseEditEvent = () => {
                     dispatch(toggleDemoMode(true));
                     return;
                 }
+                dispatch(uiActions.showNotification({
+                    status: 'error',
+                    title: 'Błąd!',
+                    message: 'Wystąpił błąd podczas próby zaktualizowania godzin treningu.'
+                }))
                 throw new Error("Nie udało się edytować wydarzenia.");
             }
 
@@ -76,8 +88,18 @@ export const UseEditEvent = () => {
 
             dispatch(updateEvents(updatedEvents));
             dispatch(toggleSidebar(false));
+            dispatch(uiActions.showNotification({
+                status: 'success',
+                title: 'Sukces!',
+                message: 'Pomyślnie zaktualizowano godziny treningu.'
+            }))
         } catch (error) {
             console.error("Wystąpił błąd podczas aktualizacji wydarzenia:", error);
+            dispatch(uiActions.showNotification({
+                status: 'error',
+                title: 'Błąd!',
+                message: 'Wystąpił błąd podczas próby zaktualizowania godzin treningu.'
+            }))
         }
     };
 

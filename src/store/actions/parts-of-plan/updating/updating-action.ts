@@ -18,6 +18,13 @@ export const editPartOfPlan = (
             setDemoModalIsOpen(true);
             reset();
         } else if (values.name) {
+
+            dispatch(uiActions.showNotification({
+                status: 'pending',
+                title: 'Aktualizowanie...',
+                message: 'Aktualizowanie części planu'
+            }))
+
             try {
                 const res = await fetch(`${apiUrl}/api/add-part/plans/${values.id}`, {
                     method: 'PUT',
