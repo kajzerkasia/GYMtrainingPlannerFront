@@ -103,6 +103,8 @@ export const UseEventHandling = () => {
                 dispatch(selectPlanPart(null));
                 dispatch(selectDate(null));
                 dispatch(toggleAddTrainingToCalendar(false));
+                dispatch(updateStartTime(''));
+                dispatch(updateEndTime(''));
             } catch (error) {
                 console.error('Wystąpił błąd podczas dodawania wydarzenia:', error);
             }
