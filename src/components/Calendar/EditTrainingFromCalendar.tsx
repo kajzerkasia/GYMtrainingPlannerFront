@@ -3,7 +3,8 @@ import './EditTrainingFromCalendar.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
+import {UseEditEvent} from "../../hooks/calendar/useEditEvent";
+import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
 
 export const EditTrainingFromCalendar = () => {
 
@@ -34,7 +35,8 @@ export const EditTrainingFromCalendar = () => {
 
     const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
-    const {handleDeleteEvent, handleEditEvent} = UseEventHandling()
+    const {handleDeleteEvent} = UseDeleteEvent();
+    const {handleEditEvent} = UseEditEvent();
 
     return (
         <div className={`sidebar-container ${isSidebarOpen ? "open" : "closed"}`}>
