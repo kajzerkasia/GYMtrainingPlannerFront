@@ -8,7 +8,7 @@ interface CalendarState {
     planParts: PartOfPlanEntity[];
     selectedTrainingPlan: string | null;
     selectedPlanPartId: string | null;
-    selectedDate: Date | null;
+    selectedDate: number | null;
     selectedEvent: MyEvent | null;
     startTime: string;
     endTime: string;
@@ -45,7 +45,7 @@ const calendarSlice = createSlice({
         updateEvents: (state, action: PayloadAction<MyEvent[]>) => {
             state.events = action.payload;
         },
-        selectDate: (state, action: PayloadAction<Date | null>) => {
+        selectDate: (state, action: PayloadAction<number | null>) => {
             state.selectedDate = action.payload;
         },
         updateTrainingPlans: (state, action: PayloadAction<PlanEntity[]>) => {
