@@ -18,8 +18,8 @@ export interface MyEvent {
     planName: string;
     partName: string;
     id?: string;
-    start: Date;
-    end: Date;
+    start: number | Date;
+    end: number | Date;
     title: string;
     startTime: string;
     endTime: string;

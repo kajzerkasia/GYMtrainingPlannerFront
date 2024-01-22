@@ -49,9 +49,16 @@ export const UseEventHandling = () => {
                 dispatch(updateTimeError(null));
             }
 
-            const updatedEvent = {...event};
-            updatedEvent.start.setHours(startHour, startMinute);
-            updatedEvent.end.setHours(endHour, endMinute);
+            const updatedEvent: MyEvent = {
+                ...event,
+                start: event.start instanceof Date
+                    ? new Date(event.start.getTime() + (startHour * 60 + startMinute) * 60 * 1000)
+                    : event.start + (startHour * 60 + startMinute) * 60 * 1000,
+                end: event.end instanceof Date
+                    ? new Date(event.end.getTime() + (endHour * 60 + endMinute) * 60 * 1000)
+                    : event.end + (endHour * 60 + endMinute) * 60 * 1000,
+            };
+
             return updatedEvent;
         }
 
@@ -69,8 +76,8 @@ export const UseEventHandling = () => {
             const newEvent: MyEvent = {
                 planName: selectedTrainingPlanName,
                 partName: selectedPlanPartName,
-                start: new Date(selectedDate),
-                end: new Date(selectedDate),
+                start: new Date(selectedDate).getTime(),
+                end: new Date(selectedDate).getTime(),
                 title: `${selectedTrainingPlanName} - ${selectedPlanPartName} ${startTime} - ${endTime}`,
                 startTime: startTime,
                 endTime: endTime,
@@ -82,6 +89,14 @@ export const UseEventHandling = () => {
                 return;
             }
 
+            const startDate = updatedNewEvent.start instanceof Date
+                ? updatedNewEvent.start.getTime()
+                : updatedNewEvent.start;
+
+            const endDate = updatedNewEvent.end instanceof Date
+                ? updatedNewEvent.end.getTime()
+                : updatedNewEvent.end;
+
             try {
                 const response = await fetch(`${apiUrl}/api/add-event/events`, {
                     method: "POST",
@@ -91,8 +106,8 @@ export const UseEventHandling = () => {
                     body: JSON.stringify({
                         planName: newEvent.planName,
                         partName: newEvent.partName,
-                        startDate: newEvent.start,
-                        endDate: newEvent.end,
+                        startDate: startDate,
+                        endDate: endDate,
                     }),
                 });
 
@@ -127,6 +142,14 @@ export const UseEventHandling = () => {
             return;
         }
 
+        const startDate = updatedEventToUpdate.start instanceof Date
+            ? updatedEventToUpdate.start.getTime()
+            : updatedEventToUpdate.start;
+
+        const endDate = updatedEventToUpdate.end instanceof Date
+            ? updatedEventToUpdate.end.getTime()
+            : updatedEventToUpdate.end;
+
         try {
             const response = await fetch(`${apiUrl}/api/add-event/events/${id}`, {
                 method: "PUT",
@@ -136,8 +159,8 @@ export const UseEventHandling = () => {
                 body: JSON.stringify({
                     planName: eventToUpdate.planName,
                     partName: eventToUpdate.partName,
-                    startDate: eventToUpdate.start,
-                    endDate: eventToUpdate.end,
+                    startDate: startDate,
+                    endDate: endDate,
                 }),
             });
 
@@ -155,8 +178,8 @@ export const UseEventHandling = () => {
                         ...event,
                         planName: eventToUpdate.planName,
                         partName: eventToUpdate.partName,
-                        start: eventToUpdate.start,
-                        end: eventToUpdate.end,
+                        start: eventToUpdate.start instanceof Date ? eventToUpdate.start.getTime() : eventToUpdate.start,
+                        end: eventToUpdate.end instanceof Date ? eventToUpdate.end.getTime() : eventToUpdate.end,
                         title: `${eventToUpdate.planName} - ${eventToUpdate.partName} ${eventToUpdate.startTime} - ${eventToUpdate.endTime}`,
                         startTime: eventToUpdate.startTime,
                         endTime: eventToUpdate.endTime,

@@ -5,23 +5,26 @@ import moment from "moment";
 
 export const UseDateSelection = () => {
     const dispatch = useDispatch();
-    const { selectedDate } = useSelector((state: RootState) => state.calendar);
+    const {selectedDate} = useSelector((state: RootState) => state.calendar);
 
     const unselectDate = () => {
         dispatch(calendarsActions.selectDate(null));
     };
 
-    const handleSelect = ({ start }: { start: Date; end: Date }) => {
+    const handleSelect = ({start}: { start: Date }) => {
+
+        const startTimestamp = start.getTime();
+
         const isSameDate = selectedDate ? moment(selectedDate).isSame(start, 'day') : false;
 
         if (isSameDate) {
             dispatch(calendarsActions.selectDate(null));
             dispatch(calendarsActions.toggleAddTrainingToCalendar(false));
         } else {
-            dispatch(calendarsActions.selectDate(start));
+            dispatch(calendarsActions.selectDate(startTimestamp));
             dispatch(calendarsActions.toggleAddTrainingToCalendar(true));
         }
     };
 
-    return { unselectDate, handleSelect };
+    return {unselectDate, handleSelect};
 };

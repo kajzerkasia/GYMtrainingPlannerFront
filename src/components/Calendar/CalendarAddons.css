@@ -34,12 +34,10 @@
     height: 40px !important;
 }
 
-.rbc-day-bg {
+.rbc-day-bg,
+.rbc-row-segment,
+.rbc-row {
     cursor: pointer;
-}
-
-.rbc-day-bg:hover {
-    background-color: #8549b6 !important;
 }
 
 .rbc-events-container {
