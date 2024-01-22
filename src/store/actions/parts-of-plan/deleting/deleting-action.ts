@@ -13,6 +13,13 @@ export const deletePartOfPlan = (
         if (isDemoEnabled()) {
             closeDemoModal();
         } else {
+
+            dispatch(uiActions.showNotification({
+                status: 'pending',
+                title: 'Usuwanie...',
+                message: 'Usuwanie części planu'
+            }))
+
             try {
                 const res = await fetch(
                     `${apiUrl}/api/add-part/plans/${itemToDeleteId}`,
