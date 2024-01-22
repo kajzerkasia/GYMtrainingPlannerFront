@@ -31,6 +31,7 @@ export const UseEventHandling = () => {
         toggleDemoMode,
         updateTimeError,
         toggleSidebar,
+        toggleAddTrainingToCalendar,
     } = calendarsActions;
 
     const {unselectDate} = UseDateSelection();
@@ -129,6 +130,7 @@ export const UseEventHandling = () => {
                 dispatch(selectTrainingPlan(null));
                 dispatch(selectPlanPart(null));
                 dispatch(selectDate(null));
+                dispatch(toggleAddTrainingToCalendar(false));
             } catch (error) {
                 console.error('Wystąpił błąd podczas dodawania wydarzenia:', error);
             }
