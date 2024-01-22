@@ -32,6 +32,7 @@ const RootLayout = () => {
     return (
         <>
             <MainNavigation/>
+            <Outlet/>
             {notification && (
                 <AppNotification
                     status={notification.status}
@@ -39,7 +40,6 @@ const RootLayout = () => {
                     message={notification.message}
                 />
             )}
-            <Outlet/>
         </>
     );
 };
