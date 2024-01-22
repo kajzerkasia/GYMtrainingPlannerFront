@@ -30,6 +30,9 @@ const uiSlice = createSlice({
                 }
             )
         },
+        hideNotification(state) {
+            state.notification = null;
+        },
     },
 });
 
