@@ -43,7 +43,7 @@ export const UseAddNewEvent = () => {
                 partName: selectedPlanPartName,
                 start: new Date(selectedDate).getTime(),
                 end: new Date(selectedDate).getTime(),
-                title: `${selectedTrainingPlanName} - ${selectedPlanPartName} ${startTime} - ${endTime}`,
+                title: `${selectedTrainingPlanName} ${selectedPlanPartName} ${startTime} - ${endTime}`,
                 startTime: startTime,
                 endTime: endTime,
             };
