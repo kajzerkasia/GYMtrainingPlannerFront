@@ -72,18 +72,16 @@ export const EditTrainingFromCalendar = () => {
                     if (isDemoMode) {
                         dispatch(toggleDemoMode(true));
                     } else {
-                        if (selectedEvent) { // Dodaj ten warunek
+                        if (selectedEvent) {
                             try {
                                 if (selectedEventId)
                                     await handleEditEvent(selectedEventId, {
                                         ...selectedEvent,
                                         start: new Date(selectedEvent.start),
                                         end: new Date(selectedEvent.end),
-                                        startTime,
-                                        endTime,
                                         planName: selectedEvent.planName || "",
                                         partName: selectedEvent.partName || "",
-                                    });
+                                    }, startTime, endTime);
                             } catch (error) {
                                 console.error("Wystąpił błąd podczas edytowania wydarzenia:", error);
                             }
