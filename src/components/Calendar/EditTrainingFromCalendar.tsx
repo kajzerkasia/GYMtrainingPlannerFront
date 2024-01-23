@@ -4,9 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseEditEvent} from "../../hooks/calendar/useEditEvent";
-import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
 
-export const EditTrainingFromCalendar = () => {
+interface EditTrainingFromCalendarProps {
+    openModal: () => void;
+}
+
+export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarProps) => {
 
     const dispatch = useDispatch();
     const {
@@ -35,8 +38,9 @@ export const EditTrainingFromCalendar = () => {
 
     const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
-    const {handleDeleteEvent} = UseDeleteEvent();
     const {handleEditEvent} = UseEditEvent();
+
+
 
     return (
         <div className={`sidebar-container ${isSidebarOpen ? "open" : "closed"}`}>
@@ -95,12 +99,7 @@ export const EditTrainingFromCalendar = () => {
                 className="sidebar-button"
                 onClick={async () => {
                     if (!isDemoMode) {
-                        try {
-                            if (selectedEventId)
-                                await handleDeleteEvent(selectedEventId);
-                        } catch (error) {
-                            console.error("Wystąpił błąd podczas usuwania wydarzenia:", error);
-                        }
+                        openModal();
                     }
                 }}
             >
