@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {RuleEntity} from 'types';
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
-import {useModal} from "./useModal";
+import {UseModal} from "./useModal";
 import {useParams} from "react-router-dom";
 
 export const useRulesTableLogic = () => {
@@ -23,7 +23,7 @@ export const useRulesTableLogic = () => {
         setInformationModalIsOpen,
         setDemoModalIsOpen,
         closeDemoModal,
-    } = useModal();
+    } = UseModal();
 
     useEffect(() => {
 
@@ -167,7 +167,7 @@ export const useRulesTableLogic = () => {
                 setRulesList.filter((rule) => rule.id !== ruleToDeleteId)
             );
             setConfirmDeleteRule(false);
-        };
+        }
     };
 
     const handleCancelDelete = () => {

@@ -1,5 +1,4 @@
 import {useDispatch, useSelector} from 'react-redux';
-import {useModal} from "./useModal";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching/fetching-action";
 import {editPartOfPlan} from "../store/actions/parts-of-plan/updating/updating-action";
 import {sendPartsOfPlanData} from "../store/actions/parts-of-plan/sending/sending-action";
@@ -9,10 +8,11 @@ import {useParams} from "react-router-dom";
 import {RootState} from "../store";
 import {useEffect} from "react";
 import {PartOfPlanEntity} from 'types';
+import {UseModal} from "./useModal";
 
 const usePartsOfPlanFunctions = () => {
     const dispatch = useDispatch();
-    const { setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal } = useModal();
+    const { setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal } = UseModal();
     const params = useParams();
 
     const { isLoading, isEdited, itemsList, confirmDeleteItem } = useSelector((state: RootState) => state.items);
