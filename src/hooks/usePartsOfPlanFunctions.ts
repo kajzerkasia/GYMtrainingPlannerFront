@@ -8,6 +8,7 @@ import {useParams} from "react-router-dom";
 import {RootState} from "../store";
 import {useEffect} from "react";
 import {PartOfPlanEntity} from 'types';
+import {UseModal} from "./useModal";
 
 const usePartsOfPlanFunctions = () => {
     const dispatch = useDispatch();
