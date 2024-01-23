@@ -3,7 +3,7 @@ import {ExerciseEntity, PlanEntity} from 'types';
 import {useParams} from "react-router-dom";
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
-import {useModal} from "./useModal";
+import {UseModal} from "./useModal";
 import {validateURL} from "../helpers/validateUrl";
 
 export const useExercisesTableLogic = () => {
@@ -25,7 +25,7 @@ export const useExercisesTableLogic = () => {
         closeModal,
         demoModalIsOpen,
         informationModalIsOpen,
-    } = useModal();
+    } = UseModal();
 
     const addExercise = async (values: ExerciseEntity) => {
         if (isDemoEnabled()) {

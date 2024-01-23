@@ -2,7 +2,7 @@ import {useState} from "react";
 import {PlanEntity} from 'types';
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
-import {useModal} from "./useModal";
+import {UseModal} from "./useModal";
 import {getAuthToken} from "../helpers/auth";
 
 export const usePlansListLogic = () => {
@@ -19,7 +19,7 @@ export const usePlansListLogic = () => {
         informationModalIsOpen,
         demoModalIsOpen,
         closeModal,
-    } = useModal();
+    } = UseModal();
 
     const handleDeletePlan = async (planId: any) => {
         if (isDemoEnabled()) {

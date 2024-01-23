@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import {TbAlertTriangle} from "react-icons/tb";
 import {demoText} from "../../constants/demoText";
-import {useModal} from "../../hooks/useModal";
+import {UseModal} from "../../hooks/useModal";
 
 interface ModalsProps {
     confirmDeleteItem: boolean;
@@ -14,7 +14,7 @@ interface ModalsProps {
 const Modals = ({confirmDeleteItem, handleCancelDelete, handleConfirmDelete}: ModalsProps) => {
 
 
-    const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = useModal();
+    const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = UseModal();
     return (
 
         <>

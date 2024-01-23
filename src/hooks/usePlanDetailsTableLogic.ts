@@ -3,7 +3,7 @@ import {DetailEntity} from 'types';
 import {apiUrl} from "../config/api";
 import {isDemoEnabled} from "../helpers/env";
 import {useParams} from "react-router-dom";
-import {useModal} from "./useModal";
+import {UseModal} from "./useModal";
 
 export const usePlanDetailsTableLogic = () => {
 
@@ -21,7 +21,7 @@ export const usePlanDetailsTableLogic = () => {
         demoModalIsOpen,
         closeModal,
         closeDemoModal,
-    } = useModal();
+    } = UseModal();
 
     useEffect(() => {
 
