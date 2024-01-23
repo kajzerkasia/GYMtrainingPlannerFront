@@ -25,7 +25,11 @@ export interface MyEvent {
     endTime: string;
 }
 
-export const CalendarAddons = () => {
+interface CalendarAddonsProps {
+    openModal: () => void;
+}
+
+export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
 
     const {handleSelect} = UseDateSelection();
     const {handleEventClick} = UseEventHandling();
@@ -113,7 +117,8 @@ export const CalendarAddons = () => {
                     day: "Dzień",
                 }}
             />
-            <EditTrainingFromCalendar/>
+            <EditTrainingFromCalendar
+                openModal={openModal}/>
         </>
     );
 };
