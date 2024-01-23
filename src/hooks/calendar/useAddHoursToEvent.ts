@@ -24,15 +24,14 @@ export const UseAddHoursToEvent = () => {
                 dispatch(updateTimeError(null));
             }
 
-            const updatedEvent: MyEvent = {
-                ...event,
-                start: event.start instanceof Date
-                    ? new Date(event.start.getTime() + (startHour * 60 + startMinute) * 60 * 1000)
-                    : event.start + (startHour * 60 + startMinute) * 60 * 1000,
-                end: event.end instanceof Date
-                    ? new Date(event.end.getTime() + (endHour * 60 + endMinute) * 60 * 1000)
-                    : event.end + (endHour * 60 + endMinute) * 60 * 1000,
-            };
+            const updatedEvent = {...event};
+            const newStart = new Date(updatedEvent.start);
+            newStart.setHours(startHour, startMinute);
+            updatedEvent.start = newStart;
+
+            const newEnd = new Date(updatedEvent.end);
+            newEnd.setHours(endHour, endMinute);
+            updatedEvent.end = newEnd;
 
             return updatedEvent;
         }

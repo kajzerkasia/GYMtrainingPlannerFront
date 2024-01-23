@@ -7,12 +7,9 @@ import {UseAddHoursToEvent} from "./useAddHoursToEvent";
 import {uiActions} from "../../store/features/ui/ui-slice";
 
 export const UseEditEvent = () => {
-
     const dispatch = useDispatch();
     const {
         events,
-        startTime,
-        endTime,
     } = useSelector((state: RootState) => state.calendar);
 
     const {
@@ -23,7 +20,13 @@ export const UseEditEvent = () => {
 
     const {addHoursToEvent} = UseAddHoursToEvent();
 
-    const handleEditEvent = async (id: string, eventToUpdate: MyEvent) => {
+    const handleEditEvent = async (
+        id: string,
+        eventToUpdate: MyEvent,
+        startTime: string,
+        endTime: string
+    ) => {
+
         const updatedEventToUpdate = addHoursToEvent(startTime, endTime, eventToUpdate);
 
         if (!updatedEventToUpdate) {
@@ -51,8 +54,8 @@ export const UseEditEvent = () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    planName: eventToUpdate.planName,
-                    partName: eventToUpdate.partName,
+                    planName: updatedEventToUpdate.planName,
+                    partName: updatedEventToUpdate.partName,
                     startDate: startDate,
                     endDate: endDate,
                 }),
@@ -75,13 +78,13 @@ export const UseEditEvent = () => {
                 event.id === id
                     ? {
                         ...event,
-                        planName: eventToUpdate.planName,
-                        partName: eventToUpdate.partName,
-                        start: eventToUpdate.start instanceof Date ? eventToUpdate.start.getTime() : eventToUpdate.start,
-                        end: eventToUpdate.end instanceof Date ? eventToUpdate.end.getTime() : eventToUpdate.end,
-                        title: `${eventToUpdate.planName} - ${eventToUpdate.partName} ${eventToUpdate.startTime} - ${eventToUpdate.endTime}`,
-                        startTime: eventToUpdate.startTime,
-                        endTime: eventToUpdate.endTime,
+                        planName: updatedEventToUpdate.planName,
+                        partName: updatedEventToUpdate.partName,
+                        start: updatedEventToUpdate.start,
+                        end: updatedEventToUpdate.end,
+                        title: `${updatedEventToUpdate.planName} ${updatedEventToUpdate.partName} ${startTime} - ${endTime}`,
+                        startTime: startTime,
+                        endTime: endTime,
                     }
                     : event
             );
