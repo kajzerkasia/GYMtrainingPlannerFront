@@ -59,11 +59,6 @@ export const usePlansListLogic = () => {
         return null;
     };
 
-    const handleCancelDelete = () => {
-        setConfirmDeletePlan(false);
-        setPlanToDeleteId(null);
-    };
-
     return {
         isEdited,
         confirmDeletePlan,
@@ -81,6 +76,5 @@ export const usePlansListLogic = () => {
         setIsLoading,
         handleDeletePlan,
         handleConfirmDelete,
-        handleCancelDelete,
     }
 };

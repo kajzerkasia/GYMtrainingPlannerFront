@@ -50,7 +50,7 @@ export const Calendar = () => {
             )}
             <div className="div-calendar-info">
                 <Accordion
-                    title="Kalendarz"
+                    title="Kalendarz treningów"
                     isOpen={showInstructions}
                     toggleAccordion={toggleInstructions}
                 >

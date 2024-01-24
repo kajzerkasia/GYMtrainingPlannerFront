@@ -18,16 +18,17 @@
 
 .accordion-title {
     font-weight: bold;
-    font-size: 20px;
+    font-size: 1.5rem;
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    letter-spacing: 5px;
+    word-spacing: 10px;
 }
 
 .accordion-icon {
     font-size: 18px;
-    border: 1px solid #ccc;
     padding: 5px 5px;
 }
 
@@ -61,4 +62,13 @@
 
 .accordion-content.closed {
     transform: translateX(-100%);
+}
+
+.accordion-button {
+    font-size: 1.25rem;
+    background-color: #310942;
+    border: 1px solid #39114a;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    color: #E6E6FA;
 }

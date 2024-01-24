@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {CalendarSettings} from "./CalendarSettings";
 import moment from "moment";
 import "moment/locale/pl";
@@ -11,8 +11,8 @@ import {UseDateSelection} from "../../hooks/calendar/useDateSelection";
 import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
 import {fetchPlanParts, fetchTrainingPlans} from "../../helpers/fetchingFunctions";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {formatFullDate} from "../../helpers/formatFullDate";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetchingTrainings/fetching-action";
+import {formatMonthName} from "../../helpers/formatMonthName";
 
 export interface MyEvent {
     planName: string;
@@ -88,6 +88,8 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
         fetchData();
     }, [dispatch]);
 
+    const [currentMonth, setCurrentMonth] = useState(moment().format('MMMM'));
+
     return (
         <>
             <AddTrainingToCalendar/>
@@ -101,7 +103,7 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
                 defaultView="month"
                 views={["month",]}
                 formats={{
-                    monthHeaderFormat: (date) => formatFullDate(date),
+                    monthHeaderFormat: (date) => formatMonthName(moment(date).format('MMMM YYYY')),
                     dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do'),
                 }}
                 dayPropGetter={(date) => {
@@ -109,13 +111,14 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
                     return isSelectedDate ? {className: 'selected-date'} : {};
                 }}
                 messages={{
-                    next: "Następny",
-                    previous: "Poprzedni",
-                    today: "Obecny",
+                    next: "⮞",
+                    previous: "⮜",
+                    today: formatMonthName(currentMonth),
                     month: "Miesiąc",
                     week: "Tydzień",
                     day: "Dzień",
                 }}
+                onNavigate={(newDate) => setCurrentMonth(moment(newDate).format('MMMM'))}
             />
             <EditTrainingFromCalendar
                 openModal={openModal}/>

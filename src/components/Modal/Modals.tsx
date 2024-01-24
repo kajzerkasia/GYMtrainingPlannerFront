@@ -7,11 +7,10 @@ import {UseModal} from "../../hooks/useModal";
 
 interface ModalsProps {
     confirmDeleteItem: boolean;
-    handleCancelDelete: () => void;
     handleConfirmDelete: () => void;
 }
 
-const Modals = ({confirmDeleteItem, handleCancelDelete, handleConfirmDelete}: ModalsProps) => {
+const Modals = ({confirmDeleteItem, handleConfirmDelete}: ModalsProps) => {
 
 
     const {demoModalIsOpen, closeDemoModal, informationModalIsOpen, closeModal} = UseModal();
@@ -20,9 +19,9 @@ const Modals = ({confirmDeleteItem, handleCancelDelete, handleConfirmDelete}: Mo
         <>
             <Modal
                 open={confirmDeleteItem}
-                onClose={handleCancelDelete}
+                onClose={closeModal}
                 onConfirm={handleConfirmDelete}
-                onCancel={handleCancelDelete}
+                onCancel={closeModal}
                 modalText={text}
                 confirmText="Tak"
                 cancelText="Nie"

@@ -1,19 +1,17 @@
 import React, {Suspense, useCallback, useEffect} from 'react';
 import {Status} from 'types';
-import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle, TbAlertTriangle} from "react-icons/tb";
+import {TbQuestionMark, TbX, TbDotsVertical, TbUserCircle} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import {Await, defer, json, Link, redirect, useLoaderData} from "react-router-dom";
 import './PlansList.css';
 import {PlansListForm} from "../components/PlansList/PlansListForm";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import {demoText} from "../constants/demoText";
-import {text, textInformation} from "../constants/plansListTexts";
 import {usePlansListLogic} from "../hooks/usePlansListLogic";
-import Modal from "../components/Modal/Modal";
 import {apiUrl} from "../config/api";
 import {PlanEntity} from 'types';
 import {getAuthToken} from "../helpers/auth";
 import SuspenseFallback from "../components/SuspenseFallback/SuspenseFallback";
+import Modals from "../components/Modal/Modals";
 
 export type Method = 'POST' | 'PUT';
 
@@ -24,14 +22,9 @@ export const PlansList = () => {
     const {
         isEdited,
         confirmDeletePlan,
-        informationModalIsOpen,
-        demoModalIsOpen,
         setPlansList,
-        closeModal,
-        closeDemoModal,
         handleDeletePlan,
         handleConfirmDelete,
-        handleCancelDelete,
     } = usePlansListLogic();
 
     useEffect(() => {
@@ -152,31 +145,9 @@ export const PlansList = () => {
                                     </tbody>
                                 </table>
                             </div>
-                            <Modal
-                                open={confirmDeletePlan}
-                                onClose={handleCancelDelete}
-                                onConfirm={handleConfirmDelete}
-                                onCancel={handleCancelDelete}
-                                modalText={text}
-                                confirmText="Tak"
-                                cancelText="Nie"
-                                icon={TbAlertTriangle}
-                            />
-                            <Modal
-                                open={informationModalIsOpen}
-                                onClose={closeModal}
-                                onConfirm={closeModal}
-                                modalText={textInformation}
-                                confirmText="Rozumiem"
-                                icon={TbAlertTriangle}
-                            />
-                            <Modal
-                                open={demoModalIsOpen}
-                                onClose={closeDemoModal}
-                                onConfirm={closeDemoModal}
-                                modalText={demoText}
-                                confirmText="OK"
-                                icon={TbAlertTriangle}
+                            <Modals
+                                confirmDeleteItem={confirmDeletePlan}
+                                handleConfirmDelete={handleConfirmDelete}
                             />
                         </div>
                     }
@@ -255,7 +226,6 @@ export async function action({request, planId}: ActionProps) {
     }
 
     if (response.status === 401) {
-        // Błąd autentykacji - przekieruj do strony logowania
         return redirect('/auth');
     }
 

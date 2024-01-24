@@ -16,7 +16,21 @@
 }
 
 .rbc-btn-group button {
+    font-size: 1rem;
+    border: 1px solid #39114a;
+    padding: 0.5rem 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     color: #E6E6FA !important;
+    height: 50px;
+    width: 50px;
+}
+
+.rbc-toolbar-label {
+    font-size: 1.5rem !important;
+}
+
+.rbc-btn-group button:first-child {
+    width: 124px;
 }
 
 .rbc-btn-group button.rbc-active,

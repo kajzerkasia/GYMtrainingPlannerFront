@@ -22,7 +22,7 @@ export const Accordion = ({
                 <span className="accordion-title">{title}</span>
                 <span className="accordion-icon">
                          <IconContext.Provider value={{className: 'react-icons'}}>
-                             <button onClick={toggleAccordion}><TbQuestionMark/></button>
+                             <button onClick={toggleAccordion} className="accordion-button"><TbQuestionMark/></button>
                          </IconContext.Provider>
                 </span>
             </div>

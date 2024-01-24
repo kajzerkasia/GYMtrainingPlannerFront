@@ -21,7 +21,6 @@ export const PartsOfPlanTable = () => {
         addPartOfPlan,
         deletePart,
         handleConfirmDelete,
-        handleCancelDelete,
     } = usePartsOfPlanFunctions();
 
     if (isLoading || !itemsList) {
@@ -61,7 +60,6 @@ export const PartsOfPlanTable = () => {
             </div>
             <Modals
                 confirmDeleteItem={confirmDeleteItem}
-                handleCancelDelete={handleCancelDelete}
                 handleConfirmDelete={handleConfirmDelete}
             />
         </div>
