@@ -1,43 +1,92 @@
 import React from 'react';
 import {IconContext} from "react-icons";
-import {TbBarbell, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbBarbell, TbX} from "react-icons/tb";
 import {PartsOfPlanForm} from "./PartsOfPlanForm";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {Link} from "react-router-dom";
 import {Status} from 'types';
-import {useDispatch} from "react-redux";
-import {PartOfPlanEntity} from 'types';
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store";
+import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating/updating-action";
+import {UseModal} from "../../hooks/useModal";
+import Modal from "../Modal/Modal";
+import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
+import UseModals from "../../hooks/useModals";
+import {deletePartOfPlan} from "../../store/actions/parts-of-plan/deleting/deleting-action";
 
-interface PartsOfPlanElementsProps {
-    itemsList: PartOfPlanEntity[];
-    isEdited: boolean;
-    handleEditPartOfPlan: (values: PartOfPlanEntity, reset: () => void) => void;
-    deletePart: (partId: string | undefined) => void;
-}
-const PartsOfPlanElements = ({ itemsList, isEdited, handleEditPartOfPlan, deletePart }: PartsOfPlanElementsProps) => {
+const PartsOfPlanElements = () => {
     const dispatch = useDispatch();
+
+    const {isEdited, itemsList} = useSelector((state: RootState) => state.items);
+
+    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
+
+
+    const {
+        isConfirmDeleteModalOpen,
+        isValidationModalOpen,
+        closeValidationModal,
+        closeConfirmDeleteModal,
+        openConfirmDeleteModal,
+        openValidationModal,
+    } = UseModals();
+
+    const handleConfirmDelete = async () => {
+        dispatch(deletePartOfPlan(closeDemoModal) as any);
+    };
+
+    const deletePart = (partId: string | undefined) => {
+        openConfirmDeleteModal();
+        if (partId) {
+            dispatch(itemsActions.setConfirmDeleteItem(true));
+            dispatch(itemsActions.setItemToDeleteId(partId));
+        }
+    };
 
     return (
         <>
+            <Modal
+                open={isConfirmDeleteModalOpen}
+                onClose={closeConfirmDeleteModal}
+                onConfirm={handleConfirmDelete}
+                onCancel={closeConfirmDeleteModal}
+                modalText={text}
+                confirmText="Tak"
+                cancelText="Nie"
+                icon={TbAlertTriangle}
+            />
+            <Modal
+                open={isValidationModalOpen}
+                onClose={closeValidationModal}
+                onCancel={closeValidationModal}
+                modalText={textInformation}
+                cancelText="Rozumiem"
+                icon={TbAlertTriangle}
+            />
             {itemsList.map((part: any) => (
                 <tr key={`${part.id}`}>
                     <td>
-                        <IconContext.Provider value={{ className: 'react-icons' }}>
-                            <button onClick={() => deletePart(part.id)}><TbX /></button>
+                        <IconContext.Provider value={{className: 'react-icons'}}>
+                            <button onClick={() => deletePart(part.id)}><TbX/></button>
                         </IconContext.Provider>
                     </td>
                     <PartsOfPlanForm
                         initialValues={part}
                         onSubmit={async (values, reset) => {
-                            handleEditPartOfPlan(values, reset);
-                            dispatch(itemsActions.updateItem(values));
+                            if (values.name === '') {
+                                openValidationModal();
+                                reset();
+                            } else {
+                                dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen) as any);
+                                dispatch(itemsActions.updateItem(values));
+                            }
                         }}
                         actionType={Status.Save}
                         isEdited={isEdited}
                     />
                     <td>
-                        <IconContext.Provider value={{ className: 'react-icons' }}>
-                            <Link to={`/exercises/${part.slug}`}><TbBarbell /></Link>
+                        <IconContext.Provider value={{className: 'react-icons'}}>
+                            <Link to={`/exercises/${part.slug}`}><TbBarbell/></Link>
                         </IconContext.Provider>
                     </td>
                 </tr>
