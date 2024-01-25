@@ -101,7 +101,7 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
                 onSelectSlot={handleSelect}
                 onSelectEvent={handleEventClick}
                 defaultView="month"
-                views={["month",]}
+                views={["month"]}
                 formats={{
                     monthHeaderFormat: (date) => formatMonthName(moment(date).format('MMMM YYYY')),
                     dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do'),
