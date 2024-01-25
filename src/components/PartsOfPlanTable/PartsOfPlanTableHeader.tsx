@@ -1,18 +1,17 @@
 import React from 'react';
 import {IconContext} from "react-icons";
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {TbDotsVertical} from "react-icons/tb";
-import {PlanEntity} from 'types';
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
+const PartsOfPlanTableHeader = () => {
 
-interface PartsOfPlanTableHeaderProps {
-    params: Record<string, string | undefined>;
-    itemsList: PlanEntity[];
-}
-const PartsOfPlanTableHeader = ({params, itemsList}: PartsOfPlanTableHeaderProps) => {
+    const {itemsList} = useSelector((state: RootState) => state.items);
+
+    const params = useParams();
 
     const matchingItem = itemsList.find(item => item.slug === params.slug);
     const firstItemName = matchingItem ? matchingItem.name : "Brak nazwy";
-
 
     return (
         <>
