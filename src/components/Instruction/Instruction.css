@@ -55,13 +55,6 @@ ul:nth-last-child {
     color: #d495e2;
 }
 
-.main-h1 {
-    font-size: 26px;
-    text-align: left;
-    margin-top: 1vh;
-    padding-left: 2vw;
-}
-
 .instruction-li {
     display: flex;
     justify-content: start;
