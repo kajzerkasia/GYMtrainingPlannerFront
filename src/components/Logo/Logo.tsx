@@ -1,6 +1,7 @@
 import React from 'react';
 import {IconContext} from "react-icons";
 import {TbHeartbeat} from "react-icons/tb";
+import './Logo.css';
 
 const Logo = () => {
     return (
