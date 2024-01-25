@@ -25,10 +25,15 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     color: #E6E6FA !important;
     height: 50px;
-    width: 50px;
+    width: 100px;
     letter-spacing: 2px;
     word-spacing: 10px;
     font-family: 'Playpen Sans', sans-serif;
+}
+
+.rbc-btn-group:first-child button:nth-child(2),
+.rbc-btn-group:first-child button:nth-child(3) {
+    width: 50px;
 }
 
 .rbc-toolbar-label {
