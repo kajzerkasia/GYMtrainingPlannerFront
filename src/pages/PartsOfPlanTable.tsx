@@ -1,36 +1,24 @@
-import React from 'react';
 import './PartsOfPlanTable.css';
 import {GoBack} from "../components/GoBack/GoBack";
-import {MoonLoader} from "react-spinners";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import usePartsOfPlanFunctions from "../hooks/usePartsOfPlanFunctions";
 import PartsOfPlanElements from "../components/PartsOfPlanTable/PartsOfPlanElements";
-import Modals from "../components/Modal/Modals";
 import AddPartsOfPlanElements from "../components/PartsOfPlanTable/AddPartsOfPlanElements";
 import PartsOfPlanTableHeader from "../components/PartsOfPlanTable/PartsOfPlanTableHeader";
+import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching/fetching-action";
+import {useEffect} from "react";
+import {useParams} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 export const PartsOfPlanTable = () => {
 
-    const {
-        isLoading,
-        isEdited,
-        itemsList,
-        confirmDeleteItem,
-        params,
-        handleEditPartOfPlan,
-        addPartOfPlan,
-        deletePart,
-        handleConfirmDelete,
-    } = usePartsOfPlanFunctions();
+    const params = useParams();
+    const dispatch = useDispatch();
 
-    if (isLoading || !itemsList) {
-        return (
-            <div className="spinner_container">
-                <div className="div_loading">Ładowanie częsci planu..</div>
-                <MoonLoader speedMultiplier={0.5} color="#9fc3f870"/>
-            </div>
-        );
-    }
+    useEffect(() => {
+        if (params.slug) {
+            dispatch(fetchPartsOfPlanData(params) as any);
+        }
+    }, [dispatch, params]);
 
     return (
         <div className="parts-wrapper">
@@ -38,30 +26,15 @@ export const PartsOfPlanTable = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <thead>
-                    <PartsOfPlanTableHeader
-                        params={params}
-                        itemsList={itemsList}
-                    />
+                    <PartsOfPlanTableHeader/>
                     </thead>
                     <tbody>
-                    <AddPartsOfPlanElements
-                        addPartOfPlan={addPartOfPlan}
-                        params={params}
-                    />
-                    <PartsOfPlanElements
-                        itemsList={itemsList}
-                        isEdited={isEdited}
-                        handleEditPartOfPlan={handleEditPartOfPlan}
-                        deletePart={deletePart}
-                    />
+                    <AddPartsOfPlanElements/>
+                    <PartsOfPlanElements/>
                     </tbody>
                 </table>
                 <GoBack to={`/list`} text="Powrót do wszystkich planów"></GoBack>
             </div>
-            <Modals
-                confirmDeleteItem={confirmDeleteItem}
-                handleConfirmDelete={handleConfirmDelete}
-            />
         </div>
     )
 }

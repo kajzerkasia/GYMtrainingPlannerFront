@@ -63,14 +63,14 @@ function Modal({
                         </IconContext.Provider>
                     )}
                     <div>
-                        {onConfirm && (
-                            <button className="btn-confirm" onClick={handleConfirm}>
-                                {confirmText || 'Confirm'}
-                            </button>
-                        )}
                         {onCancel && (
                             <button className="btn-decline" onClick={handleCancel}>
                                 {cancelText || 'Cancel'}
+                            </button>
+                        )}
+                        {onConfirm && (
+                            <button className="btn-confirm" onClick={handleConfirm}>
+                                {confirmText || 'Confirm'}
                             </button>
                         )}
                     </div>
