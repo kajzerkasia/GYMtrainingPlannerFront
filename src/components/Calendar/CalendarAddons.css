@@ -1,6 +1,9 @@
 .rbc-header {
     padding: 10px !important;
     font-weight: bold !important;
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    font-family: 'Playpen Sans', sans-serif;
 }
 
 .rbc-off-range-bg {
@@ -8,7 +11,7 @@
 }
 
 .rbc-today {
-    background-color: #d495e2 !important;
+    background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
 }
 
 .rbc-btn-group {
@@ -17,16 +20,23 @@
 
 .rbc-btn-group button {
     font-size: 1rem;
-    border: 1px solid #39114a;
+    border: 1px solid #E6E6FA !important;
     padding: 0.5rem 0.5rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     color: #E6E6FA !important;
     height: 50px;
     width: 50px;
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    font-family: 'Playpen Sans', sans-serif;
 }
 
 .rbc-toolbar-label {
     font-size: 1.5rem !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    font-family: 'Playpen Sans', sans-serif;
 }
 
 .rbc-btn-group button:first-child {
@@ -73,4 +83,10 @@
 
 .rbc-month-view {
     background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+}
+
+.rbc-button-link {
+    letter-spacing: 2px;
+    word-spacing: 10px;
+    font-family: 'Playpen Sans', sans-serif;
 }

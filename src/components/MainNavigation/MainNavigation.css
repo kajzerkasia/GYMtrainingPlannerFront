@@ -23,7 +23,7 @@
 }
 
 .header nav a:hover,
-.header nav a:active,
+.header nav a.active,
 .header nav button:hover,
 .header nav button:active {
     color: #310942;
@@ -44,7 +44,7 @@
 }
 
 .header nav a:hover,
-.header nav a .active {
+.header nav a.active {
     background-color: #d495e2;
     border-color: #7d448b;
 }
