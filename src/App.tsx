@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import {RulesTable} from "./pages/RulesTable";
 import {Instruction} from "./components/Instruction/Instruction";
-import {ExercisesTable, loader as exercisesLoader} from "./pages/ExercisesTable";
+// import {ExercisesTable, loader as exercisesLoader} from "./pages/ExercisesTable";
 import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
 import {Error} from "./pages/Error/Error";
 import {PlanDetailsTable} from "./pages/PlanDetailsTable";
@@ -11,9 +11,11 @@ import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import './App.css';
-import { tokenLoader} from "./helpers/auth";
+import {tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
 import {Calendar} from "./components/Calendar/Calendar";
+
+const ExercisesTable = lazy(() => import('./pages/ExercisesTable'));
 
 const router = createBrowserRouter([
     {
@@ -43,7 +45,15 @@ const router = createBrowserRouter([
                 action: manipulatePlanAction,
             },
             {path: 'plans/:slug', element: <PartsOfPlanTable/>},
-            {path: 'exercises/:slug', element: <ExercisesTable/>, loader: exercisesLoader},
+            {
+                path: 'exercises/:slug',
+                element:
+                    <Suspense fallback={<p>Loading...</p>}>
+                        <ExercisesTable/>
+                    </Suspense>,
+                loader: (meta) => import('./pages/ExercisesTable')
+                    .then(module => module.loader(meta))
+            },
             {path: 'rules/:slug', element: <RulesTable/>},
             {path: 'details/:slug', element: <PlanDetailsTable/>},
             {path: 'instruction', element: <Instruction/>},
