@@ -7,19 +7,19 @@ import React from "react";
 import RedirectLink from "../components/RedirectLink";
 import {PartOfPlanEntity} from 'types';
 
-interface Link {
+export interface LinkProps {
     icon: React.ComponentType<any>;
     path: string;
 }
 
 interface TableProps {
-    links: Link[];
+    links: LinkProps[];
     onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
 }
 
 export const Table = ({links, onSubmit}: TableProps) => {
 
-    const renderLink = (link: Link) => (
+    const renderLink = (link: LinkProps) => (
         <RedirectLink
             icon={React.createElement(link.icon)}
             path={link.path}
@@ -42,7 +42,9 @@ export const Table = ({links, onSubmit}: TableProps) => {
                     >
                         {renderLink(links[1])}
                     </AddTableElements>
-                    <TableElements>
+                    <TableElements
+                        handleSubmit={onSubmit}
+                    >
                         {renderLink(links[2])}
                     </TableElements>
                     </tbody>
