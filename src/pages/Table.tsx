@@ -15,9 +15,11 @@ export interface LinkProps {
 interface TableProps {
     links: LinkProps[];
     onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    onUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    onDelete: () => void;
 }
 
-export const Table = ({links, onSubmit}: TableProps) => {
+export const Table = ({links, onSubmit, onUpdate, onDelete}: TableProps) => {
 
     const renderLink = (link: LinkProps) => (
         <RedirectLink
@@ -43,7 +45,8 @@ export const Table = ({links, onSubmit}: TableProps) => {
                         {renderLink(links[1])}
                     </AddTableElements>
                     <TableElements
-                        handleSubmit={onSubmit}
+                        handleUpdate={onUpdate}
+                        handleDelete={onDelete}
                     >
                         {renderLink(links[2])}
                     </TableElements>
