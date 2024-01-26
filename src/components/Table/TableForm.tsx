@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {PartOfPlanEntity, Status} from 'types';
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import '../../pages/PartsOfPlanTable.css';
+import '../../pages/Table.css';
 
 export type PartsOfPlanFormProps = {
     initialValues: PartOfPlanEntity;
@@ -11,7 +11,8 @@ export type PartsOfPlanFormProps = {
     isEdited?: boolean;
 };
 
-export const PartsOfPlanForm = ({initialValues, onSubmit, actionType, isEdited}: PartsOfPlanFormProps) => {
+export const TableForm = ({initialValues, onSubmit, actionType, isEdited}: PartsOfPlanFormProps) => {
+
     const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
 
     const reset: () => void = () => {
