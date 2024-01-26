@@ -5,7 +5,7 @@ import AddTableElements from "../components/Table/AddTableElements";
 import TableHeader from "../components/Table/TableHeader";
 import React from "react";
 import RedirectLink from "../components/RedirectLink";
-import {PartOfPlanEntity} from 'types';
+import {PartOfPlanEntity, ExerciseEntity} from 'types';
 
 export interface LinkProps {
     icon: React.ComponentType<any>;
@@ -13,14 +13,18 @@ export interface LinkProps {
 }
 
 interface TableProps {
-    links: LinkProps[];
-    onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
-    onUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    links?: LinkProps[];
+    onSubmit: (values: PartOfPlanEntity | ExerciseEntity, reset: () => void) => void | Promise<void>;
+    onUpdate: (values: PartOfPlanEntity | ExerciseEntity, reset: () => void) => void | Promise<void>;
     onDelete: () => void;
-    firstLinkPath: string;
+    firstLinkPath?: string;
+    tableHeader?: any;
+    initialValues: any;
+    inputs: any;
+    values: any;
 }
 
-export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath}: TableProps) => {
+export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, tableHeader, initialValues, inputs, values}: TableProps) => {
 
     const renderLink = (link: LinkProps) => (
         <RedirectLink
@@ -36,19 +40,22 @@ export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath}: Tabl
                 <table className="main-table">
                     <thead>
                     <TableHeader>
-                        {renderLink(links[0])}
+                        {tableHeader}
                     </TableHeader>
                     </thead>
                     <tbody>
                     <AddTableElements
+                        initialValues={initialValues}
                         handleSubmit={onSubmit}
                     >
-                        {renderLink(links[1])}
+                        {links && renderLink(links[1])}
                     </AddTableElements>
                     <TableElements
                         handleUpdate={onUpdate}
                         handleDelete={onDelete}
                         firstLinkPath={firstLinkPath}
+                        inputs={inputs}
+                        values={values}
                     >
                     </TableElements>
                     </tbody>
