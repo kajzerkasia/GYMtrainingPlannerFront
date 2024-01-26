@@ -1,9 +1,8 @@
 import React from 'react';
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbBarbell, TbX} from "react-icons/tb";
-import {PartsOfPlanForm} from "./PartsOfPlanForm";
+import {TbAlertTriangle, TbX} from "react-icons/tb";
+import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
-import {Link} from "react-router-dom";
 import {Status} from 'types';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
@@ -14,7 +13,7 @@ import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import UseModals from "../../hooks/useModals";
 import {deletePartOfPlan} from "../../store/actions/parts-of-plan/deleting/deleting-action";
 
-const PartsOfPlanElements = () => {
+const TableElements = ({children}: any) => {
     const dispatch = useDispatch();
 
     const {isEdited, itemsList} = useSelector((state: RootState) => state.items);
@@ -70,7 +69,7 @@ const PartsOfPlanElements = () => {
                             <button onClick={() => deletePart(part.id)}><TbX/></button>
                         </IconContext.Provider>
                     </td>
-                    <PartsOfPlanForm
+                    <TableForm
                         initialValues={part}
                         onSubmit={async (values, reset) => {
                             if (values.name === '') {
@@ -86,7 +85,7 @@ const PartsOfPlanElements = () => {
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            <Link to={`/exercises/${part.slug}`}><TbBarbell/></Link>
+                            {children}
                         </IconContext.Provider>
                     </td>
                 </tr>
@@ -95,4 +94,4 @@ const PartsOfPlanElements = () => {
     );
 };
 
-export default PartsOfPlanElements;
+export default TableElements;
