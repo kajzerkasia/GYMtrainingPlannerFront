@@ -46,9 +46,9 @@ export const editPartOfPlan = (
                 const updatedPart = await res.json();
                 dispatch(itemsActions.updateItem(updatedPart));
                 dispatch(uiActions.showNotification({
-                    status: 'succes',
+                    status: 'success',
                     title: 'Sukces!',
-                    message: 'Pomyślnie zaktualizowano część planu.'
+                    message: 'Pomyślnie zaktualizowano listę części planu.'
                 }))
             } catch (error) {
                 console.error('Wystąpił błąd podczas próby zaktualizowania części planu:', error);
