@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Status} from 'types';
 import {ExercisesForm} from "../components/ExercisesTable/ExercisesForm";
-import {json, Link, useLoaderData} from "react-router-dom";
+import {json, Link, useLoaderData, useParams} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import './ExercisesTable.css';
@@ -10,14 +10,23 @@ import {demoText} from "../constants/demoText";
 import {text, textInformation} from "../constants/exercisesTableTexts";
 import {useExercisesTableLogic} from "../hooks/useExercisesTableLogic";
 import Modal from "../components/Modal/Modal";
-import {apiUrl} from "../config/api";
-import {PlanEntity, ExerciseEntity} from 'types';
+import {ExerciseEntity} from 'types';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchExercises} from "../store/actions/exercises/fetching/fetching-action";
+import {RootState} from "../store";
 
-export const ExercisesTable = () => {
+const ExercisesTable = () => {
 
-    const data: any = useLoaderData();
-    console.log(data);
-    const exercisesList: ExerciseEntity[] = data.exercisesList;
+    const params = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (params.slug) {
+            dispatch(fetchExercises(params) as any);
+        }
+    }, [dispatch, params]);
+
+    const {partName, planInfo, itemsList} = useSelector((state: RootState) => state.items);
 
     const {
         isEdited,
@@ -34,15 +43,17 @@ export const ExercisesTable = () => {
         handleCancelDelete,
     } = useExercisesTableLogic();
 
+    const exercises = itemsList as ExerciseEntity[];
+
     return (
         <div className="wrapper-exercises-table">
             <DemoSign/>
             <div className="div-plan-info">
                 <div className="inner-container">
-                    {data.planInfo && (
-                        <h3>Nazwa planu: {data.planInfo.name}</h3>
+                    {planInfo && (
+                        <h3>Nazwa planu: {planInfo.name}</h3>
                     )}
-                    <p>Nazwa części planu: {data.partName}</p>
+                    <p>Nazwa części planu: {partName}</p>
                 </div>
             </div>
             <table className="exercises-table">
@@ -98,7 +109,7 @@ export const ExercisesTable = () => {
                     />
                 </tr>
 
-                {exercisesList.map((exercise) => (
+                {exercises.map((exercise) => (
                     <tr key={`${exercise.id}`}>
                         <td className="icon-delete">
                             <IconContext.Provider value={{className: 'react-icons-smaller'}}>
@@ -153,49 +164,51 @@ export const ExercisesTable = () => {
     )
 }
 
-type ParamsType = {
-    params: {
-        slug?: string;
-    }
-};
-
-export async function loader({params}: ParamsType) {
-    const slug = params.slug;
-
-    try {
-        const response = await fetch(`${apiUrl}/api/add-part/plans?slug=${slug}`);
-
-        if (!response.ok) {
-            return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
-                {
-                    status: 500,
-                }
-            );
-        }
-
-        const planPart = await response.json();
-
-        if (!planPart || planPart.length === 0) {
-            return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
-                {
-                    status: 500,
-                }
-            );
-        }
-
-        const planInfoResponse = await fetch(`${apiUrl}/api/add-plan/list`);
-        const plans = await planInfoResponse.json();
-        const foundPlan = plans.find((plan: Partial<PlanEntity>) => plan.id === planPart[0].planId);
-
-        const exercisesResponse = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`);
-        const exercises = await exercisesResponse.json();
-
-        return {exercisesList: exercises, partName: planPart[0].name, planInfo: foundPlan as PlanEntity};
-    } catch (error) {
-        return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
-            {
-                status: 500,
-            }
-        );
-    }
-}
+export default ExercisesTable;
+//
+// type ParamsType = {
+//     params: {
+//         slug?: string;
+//     }
+// };
+//
+// export async function loader({params}: ParamsType) {
+//     const slug = params.slug;
+//
+//     try {
+//         const response = await fetch(`${apiUrl}/api/add-part/plans?slug=${slug}`);
+//
+//         if (!response.ok) {
+//             return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+//                 {
+//                     status: 500,
+//                 }
+//             );
+//         }
+//
+//         const planPart = await response.json();
+//
+//         if (!planPart || planPart.length === 0) {
+//             return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+//                 {
+//                     status: 500,
+//                 }
+//             );
+//         }
+//
+//         const planInfoResponse = await fetch(`${apiUrl}/api/add-plan/list`);
+//         const plans = await planInfoResponse.json();
+//         const foundPlan = plans.find((plan: Partial<PlanEntity>) => plan.id === planPart[0].planId);
+//
+//         const exercisesResponse = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPart[0].id}`);
+//         const exercises = await exercisesResponse.json();
+//
+//         return {exercisesList: exercises, partName: planPart[0].name, planInfo: foundPlan as PlanEntity};
+//     } catch (error) {
+//         return json({message: 'Nie można pobrać danych o ćwiczeniach...'},
+//             {
+//                 status: 500,
+//             }
+//         );
+//     }
+// }

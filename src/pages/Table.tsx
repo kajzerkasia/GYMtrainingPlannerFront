@@ -17,9 +17,10 @@ interface TableProps {
     onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     onUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     onDelete: () => void;
+    firstLinkPath: string;
 }
 
-export const Table = ({links, onSubmit, onUpdate, onDelete}: TableProps) => {
+export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath}: TableProps) => {
 
     const renderLink = (link: LinkProps) => (
         <RedirectLink
@@ -47,8 +48,8 @@ export const Table = ({links, onSubmit, onUpdate, onDelete}: TableProps) => {
                     <TableElements
                         handleUpdate={onUpdate}
                         handleDelete={onDelete}
+                        firstLinkPath={firstLinkPath}
                     >
-                        {renderLink(links[2])}
                     </TableElements>
                     </tbody>
                 </table>
