@@ -1,44 +1,30 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {PartOfPlanEntity, Status} from 'types';
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/Table.css';
+import {useDispatch} from "react-redux";
+import {itemsActions} from "../../store/features/items/items-slice";
 
-export type PartsOfPlanFormProps = {
-    initialValues: PartOfPlanEntity;
+export type TableFormProps = {
+    initialValues: any;
     onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
-    isEdited?: boolean;
+    children?: any;
+    values?: any;
 };
 
-export const TableForm = ({initialValues, onSubmit, actionType, isEdited}: PartsOfPlanFormProps) => {
+export const TableForm = ({initialValues, onSubmit, actionType, children, values}: TableFormProps) => {
+    const dispatch = useDispatch();
 
-    const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
 
-    const reset: () => void = () => {
-        setValues(initialValues);
-    };
-
-    const handleChange: (field: keyof PartOfPlanEntity, value: string) => void = (field, value) => {
-        setValues(localValues => ({
-            ...localValues,
-            [field]: value
-        }));
-    };
+    const reset = () => {
+        dispatch(itemsActions.setItemsList(initialValues));
+    }
 
     return (
         <>
-            <td className="input-part-add">
-                <input
-                    placeholder="Podaj nazwę części planu, którą chcesz dodać"
-                    className={isEdited ? 'edited-input' : 'input-part'}
-                    type="text"
-                    name="name"
-                    required
-                    value={values.name}
-                    onChange={(event) => handleChange('name', event.target.value)}
-                />
-            </td>
+            {children}
             <td>
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
