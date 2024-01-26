@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbDotsVertical, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbBarbell, TbDotsVertical, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {Status} from 'types';
@@ -16,13 +16,15 @@ interface TableElementsProps {
     children?: ReactNode;
     handleUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     handleDelete: () => void;
-    firstLinkPath: string;
+    firstLinkPath?: string;
+    inputs: any;
+    values: any;
 }
 
-const TableElements = ({children, handleUpdate, handleDelete, firstLinkPath}: TableElementsProps) => {
+const TableElements = ({handleUpdate, handleDelete, firstLinkPath, inputs, values}: TableElementsProps) => {
     const dispatch = useDispatch();
 
-    const {isEdited, itemsList} = useSelector((state: RootState) => state.items);
+    const {itemsList} = useSelector((state: RootState) => state.items);
 
     const {
         isConfirmDeleteModalOpen,
@@ -85,11 +87,12 @@ const TableElements = ({children, handleUpdate, handleDelete, firstLinkPath}: Ta
                             }
                         }}
                         actionType={Status.Save}
-                        isEdited={isEdited}
+                        children={inputs}
+                        values={values}
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            <Link to={`/${firstLinkPath}/${item.slug}`}><TbDotsVertical/></Link>
+                            <Link to={`/${firstLinkPath}/${item.slug}`}><TbBarbell/></Link>
                         </IconContext.Provider>
                     </td>
                 </tr>
