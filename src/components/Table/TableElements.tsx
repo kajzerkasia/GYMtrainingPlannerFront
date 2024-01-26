@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbDotsVertical, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {Status} from 'types';
@@ -10,14 +10,16 @@ import Modal from "../Modal/Modal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import UseModals from "../../hooks/useModals";
 import {PartOfPlanEntity} from 'types';
+import {Link} from "react-router-dom";
 
 interface TableElementsProps {
-    children: ReactNode;
+    children?: ReactNode;
     handleUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     handleDelete: () => void;
+    firstLinkPath: string;
 }
 
-const TableElements = ({children, handleUpdate, handleDelete}: TableElementsProps) => {
+const TableElements = ({children, handleUpdate, handleDelete, firstLinkPath}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {isEdited, itemsList} = useSelector((state: RootState) => state.items);
@@ -63,21 +65,23 @@ const TableElements = ({children, handleUpdate, handleDelete}: TableElementsProp
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />
-            {itemsList.map((part: any) => (
-                <tr key={`${part.id}`}>
+            {itemsList.map((item: any) => (
+                <tr key={`${item.id}`}>
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            <button onClick={() => deleteItem(part.id)}><TbX/></button>
+                            <button onClick={() => deleteItem(item.id)}><TbX/></button>
                         </IconContext.Provider>
                     </td>
                     <TableForm
-                        initialValues={part}
+                        initialValues={item}
                         onSubmit={async (values, reset) => {
-                            if (values.name === '') {
+                            const allValues = Object.values(values);
+                            const allValuesDefined = allValues.every(value => value !== undefined && value !== '');
+                            if (allValuesDefined) {
+                                handleUpdate(values, reset);
+                            } else {
                                 openValidationModal();
                                 reset();
-                            } else {
-                                handleUpdate(values, reset);
                             }
                         }}
                         actionType={Status.Save}
@@ -85,7 +89,7 @@ const TableElements = ({children, handleUpdate, handleDelete}: TableElementsProp
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            {children}
+                            <Link to={`/${firstLinkPath}/${item.slug}`}><TbDotsVertical/></Link>
                         </IconContext.Provider>
                     </td>
                 </tr>
