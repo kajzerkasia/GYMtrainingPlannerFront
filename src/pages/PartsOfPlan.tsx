@@ -32,12 +32,14 @@ const PartsOfPlan = () => {
         },
     ]
 
-    const {handleSubmit} = UsePartsOfPlanActions();
+    const {handleSubmit, handleUpdate, handleDelete} = UsePartsOfPlanActions();
 
     return (
         <Table
             links={PARTS_OF_PLAN_LINKS}
             onSubmit={async (values, reset) => handleSubmit(values, reset)}
+            onUpdate={async (values, reset) => handleUpdate(values, reset)}
+            onDelete={handleDelete}
         />
     );
 };
