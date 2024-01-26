@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import {IconContext} from "react-icons";
 import {TbAlertTriangle, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
@@ -6,20 +6,21 @@ import {itemsActions} from "../../store/features/items/items-slice";
 import {Status} from 'types';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating/updating-action";
-import {UseModal} from "../../hooks/useModal";
 import Modal from "../Modal/Modal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import UseModals from "../../hooks/useModals";
-import {deletePartOfPlan} from "../../store/actions/parts-of-plan/deleting/deleting-action";
+import {PartOfPlanEntity} from 'types';
 
-const TableElements = ({children}: any) => {
+interface TableElementsProps {
+    children: ReactNode;
+    handleUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    handleDelete: () => void;
+}
+
+const TableElements = ({children, handleUpdate, handleDelete}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {isEdited, itemsList} = useSelector((state: RootState) => state.items);
-
-    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
-
 
     const {
         isConfirmDeleteModalOpen,
@@ -31,14 +32,14 @@ const TableElements = ({children}: any) => {
     } = UseModals();
 
     const handleConfirmDelete = async () => {
-        dispatch(deletePartOfPlan(closeDemoModal) as any);
+        handleDelete();
     };
 
-    const deletePart = (partId: string | undefined) => {
+    const deleteItem = (id: string | undefined) => {
         openConfirmDeleteModal();
-        if (partId) {
+        if (id) {
             dispatch(itemsActions.setConfirmDeleteItem(true));
-            dispatch(itemsActions.setItemToDeleteId(partId));
+            dispatch(itemsActions.setItemToDeleteId(id));
         }
     };
 
@@ -66,7 +67,7 @@ const TableElements = ({children}: any) => {
                 <tr key={`${part.id}`}>
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            <button onClick={() => deletePart(part.id)}><TbX/></button>
+                            <button onClick={() => deleteItem(part.id)}><TbX/></button>
                         </IconContext.Provider>
                     </td>
                     <TableForm
@@ -76,8 +77,7 @@ const TableElements = ({children}: any) => {
                                 openValidationModal();
                                 reset();
                             } else {
-                                dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen) as any);
-                                dispatch(itemsActions.updateItem(values));
+                                handleUpdate(values, reset);
                             }
                         }}
                         actionType={Status.Save}
