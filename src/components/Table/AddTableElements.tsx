@@ -7,16 +7,16 @@ import {Status} from 'types';
 import UseModals from "../../hooks/useModals";
 import Modal from "../Modal/Modal";
 import {textInformation} from "../../constants/partsOfPlanTableTexts";
-import {PartOfPlanEntity} from 'types';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 
 interface AddTableElementsProps {
     children: ReactNode;
-    handleSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    handleSubmit: (values: Record<string, string>, reset: () => void) => void | Promise<void>;
+    availableFields: (keyof Record<string, any>)[];
 }
 
-const AddTableElements = ({children, handleSubmit}: AddTableElementsProps) => {
+const AddTableElements = ({children, handleSubmit, availableFields}: AddTableElementsProps) => {
 
     const {
         isValidationModalOpen,
@@ -64,6 +64,7 @@ const AddTableElements = ({children, handleSubmit}: AddTableElementsProps) => {
                     }
                 }}
                 actionType={Status.Add}
+                availableFields={availableFields}
             />
             <td className="td-progression-rules">
                 <IconContext.Provider value={{className: 'react-icons-progression'}}>

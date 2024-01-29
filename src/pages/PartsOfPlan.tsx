@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import {Table} from "./Table";
 import {useParams} from "react-router-dom";
 import {TbDotsVertical, TbStairsUp} from "react-icons/tb";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching/fetching-action";
 import UsePartsOfPlanActions from "../hooks/usePartsOfPlanActions";
 import {PartOfPlanEntity} from 'types';
 import {IconContext} from "react-icons";
 import RedirectLink from "../components/RedirectLink";
+import {RootState} from "../store";
 
 const PartsOfPlan = () => {
 
@@ -33,6 +34,9 @@ const PartsOfPlan = () => {
 
     const firstLinkPart = 'exercises';
 
+    const {itemsList} = useSelector((state: RootState) => state.items);
+
+
     const {handleSubmit, handleUpdate, handleDelete} = UsePartsOfPlanActions();
 
     const tableHeader = (
@@ -51,14 +55,19 @@ const PartsOfPlan = () => {
         </tr>
     )
 
+    const availableFields = itemsList && itemsList.length > 0
+        ? ['name']
+        : [];
+
     return (
         <Table
             links={PARTS_OF_PLAN_LINKS}
-            onSubmit={async (values, reset) => handleSubmit((values as PartOfPlanEntity), reset)}
-            onUpdate={async (values, reset) => handleUpdate((values as PartOfPlanEntity), reset)}
+            onSubmit={async (values, reset) => handleSubmit((values as unknown as PartOfPlanEntity), reset)}
+            onUpdate={async (values, reset) => handleUpdate((values as unknown as PartOfPlanEntity), reset)}
             onDelete={handleDelete}
             firstLinkPath={firstLinkPart}
             tableHeader={tableHeader}
+            availableFields={availableFields}
         />
     );
 };

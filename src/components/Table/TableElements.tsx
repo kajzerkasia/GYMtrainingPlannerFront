@@ -9,17 +9,17 @@ import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
 import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
 import UseModals from "../../hooks/useModals";
-import {PartOfPlanEntity} from 'types';
 import {Link} from "react-router-dom";
 
 interface TableElementsProps {
     children?: ReactNode;
-    handleUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+    handleUpdate: (values: Record<string, string>, reset: () => void) => void | Promise<void>;
     handleDelete: () => void;
     firstLinkPath?: string;
+    availableFields: (keyof Record<string, any>)[];
 }
 
-const TableElements = ({handleUpdate, handleDelete, firstLinkPath}: TableElementsProps) => {
+const TableElements = ({handleUpdate, handleDelete, firstLinkPath, availableFields}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
@@ -85,6 +85,8 @@ const TableElements = ({handleUpdate, handleDelete, firstLinkPath}: TableElement
                             }
                         }}
                         actionType={Status.Save}
+                        availableFields={availableFields}
+
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
