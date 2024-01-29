@@ -5,23 +5,23 @@ import AddTableElements from "../components/Table/AddTableElements";
 import TableHeader from "../components/Table/TableHeader";
 import React from "react";
 import RedirectLink from "../components/RedirectLink";
-import {PartOfPlanEntity, ExerciseEntity} from 'types';
 
 export interface LinkProps {
     icon: React.ComponentType<any>;
     path: string;
 }
 
-interface TableProps {
+interface TableProps<T> {
     links?: LinkProps[];
-    onSubmit: (values: PartOfPlanEntity | ExerciseEntity, reset: () => void) => void | Promise<void>;
-    onUpdate: (values: PartOfPlanEntity | ExerciseEntity, reset: () => void) => void | Promise<void>;
+    onSubmit: (values: T, reset: () => void) => void | Promise<void>;
+    onUpdate: (values: T, reset: () => void) => void | Promise<void>;
     onDelete: () => void;
     firstLinkPath?: string;
-    tableHeader?: any;
+    tableHeader?: React.ReactNode;
+    availableFields: (keyof T)[];
 }
 
-export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, tableHeader}: TableProps) => {
+export const Table = <T extends Record<string, string>>({ links, onSubmit, onUpdate, onDelete, firstLinkPath, tableHeader, availableFields}: TableProps<T>) => {
 
     const renderLink = (link: LinkProps) => (
         <RedirectLink
@@ -42,14 +42,16 @@ export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, table
                     </thead>
                     <tbody>
                     <AddTableElements
-                        handleSubmit={onSubmit}
+                        handleSubmit={(values, reset) => onSubmit(values as T, reset)}
+                        availableFields={availableFields as string[]}
                     >
                         {links && renderLink(links[1])}
                     </AddTableElements>
                     <TableElements
-                        handleUpdate={onUpdate}
+                        handleUpdate={(values, reset) => onUpdate(values as T, reset)}
                         handleDelete={onDelete}
                         firstLinkPath={firstLinkPath}
+                        availableFields={availableFields as string[]}
                     >
                     </TableElements>
                     </tbody>
