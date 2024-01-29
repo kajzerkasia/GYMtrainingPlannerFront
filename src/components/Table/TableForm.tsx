@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
-import {PartOfPlanEntity, Status} from 'types';
+import {PartOfPlanEntity, Status, ExerciseEntity, PlanEntity} from 'types';
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/Table.css';
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
-export type PartsOfPlanFormProps = {
-    initialValues: PartOfPlanEntity;
-    onSubmit: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
+export type TableFormProps = {
+    onSubmit: (values: PartOfPlanEntity | ExerciseEntity | PlanEntity, reset: () => void) => void | Promise<void>;
     actionType: Status;
-    isEdited?: boolean;
+    children?: any;
+    values?: any;
+    initialValues: any;
 };
 
-export const TableForm = ({initialValues, onSubmit, actionType, isEdited}: PartsOfPlanFormProps) => {
+export const TableForm = ({onSubmit, actionType, initialValues}: TableFormProps) => {
 
     const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
+
+    const {isEdited} = useSelector((state: RootState) => state.items);
 
     const reset: () => void = () => {
         setValues(initialValues);
@@ -25,6 +30,8 @@ export const TableForm = ({initialValues, onSubmit, actionType, isEdited}: Parts
             [field]: value
         }));
     };
+
+    // @TODO: render dynamic list of inputs depend on which table/entity
 
     return (
         <>

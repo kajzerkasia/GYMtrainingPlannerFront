@@ -8,6 +8,8 @@ import UseModals from "../../hooks/useModals";
 import Modal from "../Modal/Modal";
 import {textInformation} from "../../constants/partsOfPlanTableTexts";
 import {PartOfPlanEntity} from 'types';
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 
 interface AddTableElementsProps {
     children: ReactNode;
@@ -21,6 +23,19 @@ const AddTableElements = ({children, handleSubmit}: AddTableElementsProps) => {
         closeValidationModal,
         openValidationModal,
     } = UseModals();
+
+    interface ItemsState {
+        itemsList: { [key: string]: string }[];
+    }
+
+    const { itemsList } = useSelector((state: RootState) => state.items) as unknown as ItemsState;
+
+    const initialValues = itemsList.reduce((acc, obj) => {
+        Object.keys(obj).forEach((key) => {
+            acc[key] = '';
+        });
+        return acc;
+    }, {} as { [key: string]: string });
 
     return (
         <tr>
@@ -38,14 +53,14 @@ const AddTableElements = ({children, handleSubmit}: AddTableElementsProps) => {
                 </IconContext.Provider>
             </td>
             <TableForm
-                initialValues={{
-                    name: '',
-                }}
+                initialValues={initialValues}
                 onSubmit={async (values, reset) => {
-                    if (!values.name) {
-                        openValidationModal();
-                    } else {
+                    const allValues = Object.values(values);
+                    const allValuesDefined = allValues.every(value => value !== undefined && value !== '');
+                    if (allValuesDefined) {
                         handleSubmit(values, reset);
+                    } else {
+                        openValidationModal();
                     }
                 }}
                 actionType={Status.Add}
