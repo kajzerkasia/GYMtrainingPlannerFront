@@ -1,22 +1,21 @@
 import React, {useState} from 'react';
-import {PartOfPlanEntity, Status, ExerciseEntity, PlanEntity} from 'types';
+import {Status} from 'types';
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/Table.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 
-export type TableFormProps = {
-    onSubmit: (values: PartOfPlanEntity | ExerciseEntity | PlanEntity, reset: () => void) => void | Promise<void>;
+export type TableFormProps<T> = {
+    onSubmit: (values: T, reset: () => void) => void | Promise<void>;
     actionType: Status;
-    children?: any;
-    values?: any;
-    initialValues: any;
+    children?: React.ReactNode;
+    initialValues: T;
+    availableFields: (keyof T)[];
 };
 
-export const TableForm = ({onSubmit, actionType, initialValues}: TableFormProps) => {
-
-    const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
+export const TableForm = <T extends Record<string, any>>({ onSubmit, actionType, initialValues, availableFields }: TableFormProps<T>) => {
+    const [values, setValues] = useState(initialValues);
 
     const {isEdited} = useSelector((state: RootState) => state.items);
 
@@ -24,28 +23,34 @@ export const TableForm = ({onSubmit, actionType, initialValues}: TableFormProps)
         setValues(initialValues);
     };
 
-    const handleChange: (field: keyof PartOfPlanEntity, value: string) => void = (field, value) => {
+    const handleChange = (field: keyof T, value: string) => {
         setValues(localValues => ({
             ...localValues,
             [field]: value
         }));
     };
 
-    // @TODO: render dynamic list of inputs depend on which table/entity
+    const renderInput = (field: keyof T) => (
+        <td key={field as string} className="input-part-add">
+            <input
+                placeholder={`Podaj ${field as string}`}
+                className={isEdited ? 'edited-input' : 'input-part'}
+                type="text"
+                name={field as string}
+                required
+                value={values[field]}
+                onChange={(event) => handleChange(field, event.target.value)}
+            />
+        </td>
+    );
+
+    const fieldsToRender = availableFields || Object.keys(initialValues);
+
+    const inputElements = fieldsToRender.map((field) => renderInput(field as keyof T));
 
     return (
         <>
-            <td className="input-part-add">
-                <input
-                    placeholder="Podaj nazwę części planu, którą chcesz dodać"
-                    className={isEdited ? 'edited-input' : 'input-part'}
-                    type="text"
-                    name="name"
-                    required
-                    value={values.name}
-                    onChange={(event) => handleChange('name', event.target.value)}
-                />
-            </td>
+            {inputElements}
             <td>
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
