@@ -159,15 +159,18 @@ const Exercises = () => {
         </>
     )
 
+    const {itemsList} = useSelector((state: RootState) => state.items);
+    const availableFields = itemsList && itemsList.length > 0
+        ? ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url']
+        : [];
+
     return (
         <Table
-            onSubmit={async (values, reset) => handleSubmit((values as ExerciseEntity), reset)}
-            onUpdate={async (values, reset) => handleUpdate((values as ExerciseEntity), reset)}
+            onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
+            onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
             onDelete={handleDelete}
             tableHeader={tableHeader}
-            initialValues={initialValues}
-            inputs={inputs}
-            values={values}
+            availableFields={availableFields}
         />
     );
 };
