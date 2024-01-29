@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {Table} from "./Table";
 import {useParams} from "react-router-dom";
 import {TbDotsVertical, TbStairsUp} from "react-icons/tb";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching/fetching-action";
 import UsePartsOfPlanActions from "../hooks/usePartsOfPlanActions";
 import {PartOfPlanEntity} from 'types';
 import {IconContext} from "react-icons";
 import RedirectLink from "../components/RedirectLink";
-import {RootState} from "../store";
 
 const PartsOfPlan = () => {
 
@@ -52,34 +51,6 @@ const PartsOfPlan = () => {
         </tr>
     )
 
-    const initialValues = {
-        name: ''
-    }
-    const [values, setValues] = useState<PartOfPlanEntity>(() => initialValues);
-
-    const handleChange: (field: keyof PartOfPlanEntity, value: string) => void = (field, value) => {
-        setValues(localValues => ({
-            ...localValues,
-            [field]: value
-        }));
-    };
-
-    const {isEdited} = useSelector((state: RootState) => state.items);
-
-    const inputs = (
-        <td className="input-part-add">
-            <input
-                placeholder="Podaj nazwę części planu, którą chcesz dodać"
-                className={isEdited ? 'edited-input' : 'input-part'}
-                type="text"
-                name="name"
-                required
-                value={values.name}
-                onChange={(event) => handleChange('name', event.target.value)}
-            />
-        </td>
-    )
-
     return (
         <Table
             links={PARTS_OF_PLAN_LINKS}
@@ -88,9 +59,6 @@ const PartsOfPlan = () => {
             onDelete={handleDelete}
             firstLinkPath={firstLinkPart}
             tableHeader={tableHeader}
-            initialValues={initialValues}
-            inputs={inputs}
-            values={values}
         />
     );
 };
