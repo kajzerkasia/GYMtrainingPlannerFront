@@ -19,12 +19,9 @@ interface TableProps {
     onDelete: () => void;
     firstLinkPath?: string;
     tableHeader?: any;
-    initialValues: any;
-    inputs: any;
-    values: any;
 }
 
-export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, tableHeader, initialValues, inputs, values}: TableProps) => {
+export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, tableHeader}: TableProps) => {
 
     const renderLink = (link: LinkProps) => (
         <RedirectLink
@@ -45,7 +42,6 @@ export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, table
                     </thead>
                     <tbody>
                     <AddTableElements
-                        initialValues={initialValues}
                         handleSubmit={onSubmit}
                     >
                         {links && renderLink(links[1])}
@@ -54,8 +50,6 @@ export const Table = ({links, onSubmit, onUpdate, onDelete, firstLinkPath, table
                         handleUpdate={onUpdate}
                         handleDelete={onDelete}
                         firstLinkPath={firstLinkPath}
-                        inputs={inputs}
-                        values={values}
                     >
                     </TableElements>
                     </tbody>
