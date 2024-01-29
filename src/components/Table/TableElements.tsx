@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbBarbell, TbDotsVertical, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbBarbell, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {Status} from 'types';
@@ -17,11 +17,9 @@ interface TableElementsProps {
     handleUpdate: (values: PartOfPlanEntity, reset: () => void) => void | Promise<void>;
     handleDelete: () => void;
     firstLinkPath?: string;
-    inputs: any;
-    values: any;
 }
 
-const TableElements = ({handleUpdate, handleDelete, firstLinkPath, inputs, values}: TableElementsProps) => {
+const TableElements = ({handleUpdate, handleDelete, firstLinkPath}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
@@ -87,8 +85,6 @@ const TableElements = ({handleUpdate, handleDelete, firstLinkPath, inputs, value
                             }
                         }}
                         actionType={Status.Save}
-                        children={inputs}
-                        values={values}
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
