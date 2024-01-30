@@ -1,7 +1,7 @@
 .input-part {
     border: none;
     color: #E6E6FA;
-    font-size: 22px;
+    font-size: 16px;
     text-align: center;
     width: 100%;
     font-family: 'Ubuntu', sans-serif;
@@ -26,6 +26,14 @@ h1, h2 {
     margin: 0 auto;
     padding-top: 15vh;
     padding-bottom: 5vh;
+}
+
+td.input-part-add {
+    min-width: 280px;
+}
+
+td.input-part-add.narrower {
+    min-width: 100px;
 }
 
 td, th {
