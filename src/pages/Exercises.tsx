@@ -6,6 +6,9 @@ import {fetchExercises} from "../store/actions/exercises/fetching/fetching-actio
 import UseExercisesActions from "../hooks/useExercisesActions";
 import {ExerciseEntity} from 'types';
 import {RootState} from "../store";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import BackButton from "../components/BackButton/BackButton";
+import ExercisesTableHead from "../components/Table/ExercisesTableHead";
 
 const Exercises = () => {
 
@@ -20,46 +23,28 @@ const Exercises = () => {
 
     const {handleSubmit, handleUpdate, handleDelete} = UseExercisesActions();
 
-    const tableHeader = (
-        <tr>
-            <td className="hidden"></td>
-            <th className="tr-add">
-                Kolejność
-            </th>
-            <th className="tr-add">
-                Ćwiczenie
-            </th>
-            <th className="tr-add">
-                Serie
-            </th>
-            <th className="tr-add">
-                Powtórzenia
-            </th>
-            <th className="tr-add">
-                Przerwa między seriami
-            </th>
-            <th className="tr-add">
-                Wskazówki dotyczące ćwiczenia
-            </th>
-            <th className="tr-add">
-                Poprawne wykonanie ćwiczenia (prawidłowy link)
-            </th>
-        </tr>
-    )
-
     const {itemsList} = useSelector((state: RootState) => state.items);
     const availableFields = itemsList && itemsList.length > 0
         ? ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url']
         : [];
 
     return (
-        <Table
-            onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
-            onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
-            onDelete={handleDelete}
-            tableHeader={tableHeader}
-            availableFields={availableFields}
-        />
+        <div className="parts-wrapper">
+            <div className="main-plan">
+                <DemoSign/>
+                <table className="main-table">
+                    <ExercisesTableHead/>
+                    <Table
+                        onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
+                        onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
+                        onDelete={handleDelete}
+                        availableFields={availableFields}
+                        links={[]}
+                    />
+                </table>
+                <BackButton/>
+            </div>
+        </div>
     );
 };
 
