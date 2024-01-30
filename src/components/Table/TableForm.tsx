@@ -14,7 +14,7 @@ export type TableFormProps<T> = {
     availableFields: (keyof T)[];
 };
 
-export const TableForm = <T extends Record<string, any>>({ onSubmit, actionType, initialValues, availableFields }: TableFormProps<T>) => {
+export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, initialValues, availableFields}: TableFormProps<T>) => {
     const [values, setValues] = useState(initialValues);
 
     const {isEdited} = useSelector((state: RootState) => state.items);
@@ -31,9 +31,17 @@ export const TableForm = <T extends Record<string, any>>({ onSubmit, actionType,
     };
 
     const renderInput = (field: keyof T) => (
-        <td key={field as string} className="input-part-add">
+        <td
+            key={field as string}
+            className={`input-part-add 
+            ${field === 'order' ? 'narrower' : ''} 
+            ${field === 'series' ? 'narrower' : ''}
+              ${field === 'repetitions' ? 'narrower' : ''}
+                 ${field === 'pause' ? 'narrower' : ''}
+            `}
+        >
             <input
-                placeholder={`Podaj ${field as string}`}
+                placeholder="Wypełnij pole"
                 className={isEdited ? 'edited-input' : 'input-part'}
                 type="text"
                 name={field as string}
