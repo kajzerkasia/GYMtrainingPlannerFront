@@ -15,11 +15,10 @@ interface TableElementsProps {
     children?: ReactNode;
     handleUpdate: (values: Record<string, string>, reset: () => void) => void | Promise<void>;
     handleDelete: () => void;
-    firstLinkPath?: string;
     availableFields: (keyof Record<string, any>)[];
 }
 
-const TableElements = ({handleUpdate, handleDelete, firstLinkPath, availableFields}: TableElementsProps) => {
+const TableElements = ({handleUpdate, handleDelete, availableFields, children}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
@@ -90,7 +89,7 @@ const TableElements = ({handleUpdate, handleDelete, firstLinkPath, availableFiel
                     />
                     <td>
                         <IconContext.Provider value={{className: 'react-icons'}}>
-                            <Link to={`/${firstLinkPath}/${item.slug}`}><TbBarbell/></Link>
+                            <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
                         </IconContext.Provider>
                     </td>
                 </tr>
