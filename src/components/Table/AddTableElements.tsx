@@ -28,7 +28,7 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
         itemsList: { [key: string]: string }[];
     }
 
-    const { itemsList } = useSelector((state: RootState) => state.items) as unknown as ItemsState;
+    const {itemsList} = useSelector((state: RootState) => state.items) as unknown as ItemsState;
 
     const initialValues = itemsList.reduce((acc, obj) => {
         Object.keys(obj).forEach((key) => {
@@ -55,8 +55,7 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
             <TableForm
                 initialValues={initialValues}
                 onSubmit={async (values, reset) => {
-                    const allValues = Object.values(values);
-                    const allValuesDefined = allValues.every(value => value !== undefined && value !== '');
+                    const allValuesDefined = availableFields.every(field => values[field] !== '' && values[field] !== undefined);
                     if (allValuesDefined) {
                         handleSubmit(values, reset);
                     } else {
