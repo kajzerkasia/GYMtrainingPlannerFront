@@ -16,7 +16,7 @@ const UsePartsOfPlanActions = () => {
     const params = useParams();
 
     const handleSubmit = (values: PartOfPlanEntity, reset: () => void) => {
-        dispatch(sendPartsOfPlanData(values, setDemoModalIsOpen, setInformationModalIsOpen, params) as any);
+        dispatch(sendPartsOfPlanData(values, setDemoModalIsOpen, params) as any);
         reset();
     }
 

@@ -35,7 +35,7 @@ const PartsOfPlan = () => {
 
     const availableFields = itemsList && itemsList.length > 0
         ? ['name']
-        : [];
+        : ['name'];
 
     return (
         <div className="parts-wrapper">

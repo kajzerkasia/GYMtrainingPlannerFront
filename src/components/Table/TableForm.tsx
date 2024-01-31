@@ -46,7 +46,7 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                 type="text"
                 name={field as string}
                 required
-                value={values[field]}
+                value={values[field] || ''}
                 onChange={(event) => handleChange(field, event.target.value)}
             />
         </td>
