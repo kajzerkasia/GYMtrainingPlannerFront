@@ -26,9 +26,8 @@ export const addExercise = (
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ ...values, partId: planPartId }),
+                    body: JSON.stringify({...values, partId: planPartId}),
                 });
-
                 const data = await res.json();
 
                 dispatch(itemsActions.setItemsList([...getState().items.itemsList, data]));
@@ -61,7 +60,7 @@ export const addExercise = (
             validateURL(values.url)
         ) {
             try {
-                const planResponse = await fetch(`${apiUrl}/api/add-plan/list?slug=${params.slug}`, {
+                const planResponse = await fetch(`${apiUrl}/api/add-part/plans?slug=${params.slug}`, {
                     method: 'GET',
                 });
 
