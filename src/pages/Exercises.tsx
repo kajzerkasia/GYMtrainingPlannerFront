@@ -24,9 +24,10 @@ const Exercises = () => {
     const {handleSubmit, handleUpdate, handleDelete} = UseExercisesActions();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
+
     const availableFields = itemsList && itemsList.length > 0
         ? ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url']
-        : [];
+        : ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url'];
 
     return (
         <div className="parts-wrapper">
