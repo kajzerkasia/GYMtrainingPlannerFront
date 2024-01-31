@@ -1,0 +1,12 @@
+.btn-back {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    color: #E6E6FA;
+    font-size: 1.25rem;
+    background-color: #7d448b;
+    border: 1px solid #39114a;
+    padding: 0.5rem 1.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
