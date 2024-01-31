@@ -8,7 +8,6 @@ import {uiActions} from "../../../features/ui/ui-slice";
 export const sendPartsOfPlanData = (
     values: PartOfPlanEntity,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void,
     params: Record<string, string | undefined>
 ) => {
 
@@ -70,8 +69,6 @@ export const sendPartsOfPlanData = (
                         message: 'Wystąpił błąd podczas próby pobrania danych.'
                     }))
                 }
-            } else {
-                setInformationModalIsOpen(true);
             }
         };
 
