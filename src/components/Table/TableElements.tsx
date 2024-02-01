@@ -1,6 +1,6 @@
 import React, {ReactNode} from 'react';
 import {IconContext} from "react-icons";
-import {TbAlertTriangle, TbBarbell, TbX} from "react-icons/tb";
+import {TbAlertTriangle, TbBarbell, TbDotsVertical, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {Status} from 'types';
@@ -87,13 +87,22 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
                         availableFields={availableFields}
 
                     />
-                    {availableFields.length === 1 && availableFields[0] === 'name' && (
-                        <td>
-                            <IconContext.Provider value={{className: 'react-icons'}}>
-                                <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
-                            </IconContext.Provider>
-                        </td>
-                    )}
+                    {(availableFields.length === 1 && availableFields[0] === 'name' && (
+                        'planId' in item ?
+                            (
+                                <td>
+                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                        <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
+                                    </IconContext.Provider>
+                                </td>
+                            ) : (
+                                <td className="dots" colSpan={1}>
+                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                        <Link to={`/plans/${item.slug}`}><TbDotsVertical/></Link>
+                                    </IconContext.Provider>
+                                </td>
+                            )
+                    ))}
                 </tr>
             ))}
         </>
