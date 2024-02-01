@@ -87,11 +87,13 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
                         availableFields={availableFields}
 
                     />
-                    <td>
-                        <IconContext.Provider value={{className: 'react-icons'}}>
-                            <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
-                        </IconContext.Provider>
-                    </td>
+                    {availableFields.length === 1 && availableFields[0] === 'name' && (
+                        <td>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
+                            </IconContext.Provider>
+                        </td>
+                    )}
                 </tr>
             ))}
         </>
