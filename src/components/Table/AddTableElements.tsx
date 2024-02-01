@@ -65,11 +65,13 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 actionType={Status.Add}
                 availableFields={availableFields}
             />
-            <td className="td-progression-rules">
-                <IconContext.Provider value={{className: 'react-icons-progression'}}>
-                    {children}
-                </IconContext.Provider>
-            </td>
+            {availableFields.length === 1 && availableFields[0] === 'name' && (
+                <td className="td-progression-rules">
+                    <IconContext.Provider value={{className: 'react-icons-progression'}}>
+                        {children}
+                    </IconContext.Provider>
+                </td>
+            )}
         </tr>
     );
 };
