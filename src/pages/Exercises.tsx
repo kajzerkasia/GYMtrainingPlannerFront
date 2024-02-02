@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Table} from "./Table";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchExercises} from "../store/actions/exercises/fetching/fetching-action";
+import {fetchExercises} from "../store/actions/exercises/fetching-action";
 import UseExercisesActions from "../hooks/useExercisesActions";
 import {ExerciseEntity} from 'types';
 import {RootState} from "../store";

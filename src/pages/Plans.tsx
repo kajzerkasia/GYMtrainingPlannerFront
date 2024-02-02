@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPlansData} from "../store/actions/plans-list/fetching/fetching-action";
+import {fetchPlansData} from "../store/actions/plans-list/fetching-action";
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
