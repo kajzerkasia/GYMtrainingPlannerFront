@@ -1,8 +1,8 @@
 import {DetailEntity} from 'types';
-import {itemsActions} from "../store/features/items/items-slice";
-import {editDetails} from "../store/actions/plan-details/updating-action";
+import {itemsActions} from "../../store/features/items/items-slice";
+import {editDetails} from "../../store/actions/plan-details/updating-action";
 import {useDispatch} from "react-redux";
-import {UseModal} from "./useModal";
+import {UseModal} from "../useModal";
 
 const UsePlanDetailsActions = () => {
 

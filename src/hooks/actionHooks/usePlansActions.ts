@@ -1,10 +1,10 @@
 import {useDispatch} from "react-redux";
-import {UseModal} from "./useModal";
-import {sendPlanData} from "../store/actions/plans-list/sending-action";
+import {UseModal} from "../useModal";
+import {sendPlanData} from "../../store/actions/plans-list/sending-action";
 import {PlanEntity} from 'types';
-import {itemsActions} from "../store/features/items/items-slice";
-import {editPlan} from "../store/actions/plans-list/updating-action";
-import {deletePlan} from "../store/actions/plans-list/deleting-action";
+import {itemsActions} from "../../store/features/items/items-slice";
+import {editPlan} from "../../store/actions/plans-list/updating-action";
+import {deletePlan} from "../../store/actions/plans-list/deleting-action";
 
 const UsePartsOfPlanActions = () => {
 
