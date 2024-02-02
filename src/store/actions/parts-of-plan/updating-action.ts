@@ -1,9 +1,9 @@
-import {AppDispatch} from "../../../index";
-import {itemsActions} from "../../../features/items/items-slice";
-import {isDemoEnabled} from "../../../../helpers/env";
-import {apiUrl} from "../../../../config/api";
+import {AppDispatch} from "../../index";
+import {itemsActions} from "../../features/items/items-slice";
+import {isDemoEnabled} from "../../../helpers/env";
+import {apiUrl} from "../../../config/api";
 import {PartOfPlanEntity} from 'types';
-import {uiActions} from "../../../features/ui/ui-slice";
+import {uiActions} from "../../features/ui/ui-slice";
 
 export const editPartOfPlan = (
     values: PartOfPlanEntity,

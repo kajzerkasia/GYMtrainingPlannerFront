@@ -1,11 +1,12 @@
-import {AppDispatch, RootState} from "../../../index";
-import {isDemoEnabled} from "../../../../helpers/env";
-import {apiUrl} from "../../../../config/api";
-import {itemsActions} from "../../../features/items/items-slice";
-import {uiActions} from "../../../features/ui/ui-slice";
+import {uiActions} from "../../features/ui/ui-slice";
+import {itemsActions} from "../../features/items/items-slice";
+import {apiUrl} from "../../../config/api";
+import {getAuthToken} from "../../../helpers/auth";
+import {isDemoEnabled} from "../../../helpers/env";
+import {AppDispatch, RootState} from "../../index";
 
-export const deletePartOfPlan = (
-    closeDemoModal: () => void,
+export const deletePlan = (
+    closeDemoModal: () => void
 ) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {
         const {itemToDeleteId} = getState().items;
@@ -13,17 +14,22 @@ export const deletePartOfPlan = (
         if (isDemoEnabled()) {
             closeDemoModal();
         } else {
-
             dispatch(uiActions.showNotification({
                 status: 'pending',
                 title: 'Usuwanie...',
-                message: 'Usuwanie części planu'
-            }))
+                message: 'Usuwanie planu'
+            }));
 
             try {
+                const token = getAuthToken();
+
+                if (!token) {
+                    return window.location.href = '/auth?mode=login';
+                }
+
                 const res = await fetch(
-                    `${apiUrl}/api/add-part/plans/${itemToDeleteId}`,
-                    {method: 'DELETE'}
+                    `${apiUrl}/api/add-plan/list/${itemToDeleteId}`,
+                    { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + token } }
                 );
 
                 if ([400, 500].includes(res.status)) {
@@ -32,26 +38,27 @@ export const deletePartOfPlan = (
                     dispatch(uiActions.showNotification({
                         status: 'error',
                         title: 'Błąd!',
-                        message: 'Wystąpił błąd podczas usuwania części planu.'
-                    }))
+                        message: 'Wystąpił błąd podczas usuwania planu.'
+                    }));
                     return;
                 }
+
                 if (itemToDeleteId) {
                     dispatch(itemsActions.deleteItem(itemToDeleteId));
                     dispatch(itemsActions.handleConfirmDelete());
                     dispatch(uiActions.showNotification({
                         status: 'success',
                         title: 'Sukces!',
-                        message: 'Pomyślnie usunięto część planu.'
-                    }))
+                        message: 'Pomyślnie usunięto plan.'
+                    }));
                 }
             } catch (error) {
-                console.error('Wystąpił błąd podczas usuwania części planu:', error);
+                console.error('Wystąpił błąd podczas usuwania planu:', error);
                 dispatch(uiActions.showNotification({
                     status: 'error',
                     title: 'Błąd!',
-                    message: 'Wystąpił błąd podczas usuwania części planu.'
-                }))
+                    message: 'Wystąpił błąd podczas usuwania planu.'
+                }));
             }
         }
     };

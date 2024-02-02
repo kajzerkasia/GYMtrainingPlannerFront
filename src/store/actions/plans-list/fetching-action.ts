@@ -1,7 +1,7 @@
-import {AppDispatch, RootState} from "../../../index";
-import {itemsActions} from "../../../features/items/items-slice";
-import {apiUrl} from "../../../../config/api";
-import {uiActions} from "../../../features/ui/ui-slice";
+import {AppDispatch, RootState} from "../../index";
+import {itemsActions} from "../../features/items/items-slice";
+import {apiUrl} from "../../../config/api";
+import {uiActions} from "../../features/ui/ui-slice";
 
 export const fetchPlansData = () => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {

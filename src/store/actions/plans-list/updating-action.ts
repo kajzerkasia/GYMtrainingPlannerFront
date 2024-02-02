@@ -1,9 +1,9 @@
-import {uiActions} from "../../../features/ui/ui-slice";
-import {itemsActions} from "../../../features/items/items-slice";
-import {apiUrl} from "../../../../config/api";
-import {getAuthToken} from "../../../../helpers/auth";
-import {isDemoEnabled} from "../../../../helpers/env";
-import {AppDispatch} from "../../../index";
+import {uiActions} from "../../features/ui/ui-slice";
+import {itemsActions} from "../../features/items/items-slice";
+import {apiUrl} from "../../../config/api";
+import {getAuthToken} from "../../../helpers/auth";
+import {isDemoEnabled} from "../../../helpers/env";
+import {AppDispatch} from "../../index";
 import {PlanEntity} from 'types';
 
 export const editPlan = (
