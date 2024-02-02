@@ -40,7 +40,6 @@ const Exercises = () => {
                         onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
                         onDelete={handleDelete}
                         availableFields={availableFields}
-                        links={[]}
                     />
                 </table>
                 <BackButton/>
