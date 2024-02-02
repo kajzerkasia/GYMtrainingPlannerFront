@@ -66,11 +66,13 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
             />
             {itemsList.map((item: any) => (
                 <tr key={`${item.id}`}>
-                    <td>
-                        <IconContext.Provider value={{className: 'react-icons'}}>
-                            <button onClick={() => deleteItem(item.id)}><TbX/></button>
-                        </IconContext.Provider>
-                    </td>
+                    {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
+                        <td>
+                            <IconContext.Provider value={{className: 'react-icons'}}>
+                                <button onClick={() => deleteItem(item.id)}><TbX/></button>
+                            </IconContext.Provider>
+                        </td>
+                    )}
                     <TableForm
                         initialValues={item}
                         onSubmit={async (values, reset) => {
