@@ -11,9 +11,9 @@ export interface LinkProps {
 
 interface TableProps<T> {
     links?: LinkProps[];
-    onSubmit: (values: T, reset: () => void) => void | Promise<void>;
+    onSubmit?: (values: T, reset: () => void) => void | Promise<void>;
     onUpdate: (values: T, reset: () => void) => void | Promise<void>;
-    onDelete: () => void;
+    onDelete?: () => void;
     availableFields: (keyof T)[];
 }
 
@@ -30,15 +30,17 @@ export const Table = <T extends Record<string, string>>({links, onSubmit, onUpda
 
     return (
         <tbody>
-        <AddTableElements
-            handleSubmit={(values, reset) => onSubmit(values as T, reset)}
-            availableFields={availableFields as string[]}
-        >
-            {links && renderLink(links[0])}
-        </AddTableElements>
+        {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
+            <AddTableElements
+                handleSubmit={(values, reset) => onSubmit && onSubmit(values as T, reset)}
+                availableFields={availableFields as string[]}
+            >
+                {links && renderLink(links[0])}
+            </AddTableElements>
+        )}
         <TableElements
             handleUpdate={(values, reset) => onUpdate(values as T, reset)}
-            handleDelete={onDelete}
+            handleDelete={onDelete ? onDelete : () => {}}
             availableFields={availableFields as string[]}
         >
         </TableElements>
