@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProgressionRules} from "../store/actions/progression-rules/fetching-action";
 import {RootState} from "../store";
-import UseProgressionRulesActions from "../hooks/useProgressionRulesActions";
+import UseProgressionRulesActions from "../hooks/actionHooks/useProgressionRulesActions";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {Table} from "./Table";
 import BackButton from "../components/BackButton/BackButton";

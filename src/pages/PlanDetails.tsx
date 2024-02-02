@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {Table} from "./Table";
 import BackButton from "../components/BackButton/BackButton";
-import UsePlanDetailsActions from "../hooks/usePlanDetailsActions";
+import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";
 import {DetailEntity} from 'types';
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";

@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import {TbStairsUp} from "react-icons/tb";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching-action";
-import UsePartsOfPlanActions from "../hooks/usePartsOfPlanActions";
+import UsePartsOfPlanActions from "../hooks/actionHooks/usePartsOfPlanActions";
 import {PartOfPlanEntity} from 'types';
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
