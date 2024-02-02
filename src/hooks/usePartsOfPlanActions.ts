@@ -1,11 +1,11 @@
-import {sendPartsOfPlanData} from "../store/actions/parts-of-plan/sending/sending-action";
+import {sendPartsOfPlanData} from "../store/actions/parts-of-plan/sending-action";
 import {useDispatch} from "react-redux";
 import {UseModal} from "./useModal";
 import {useParams} from "react-router-dom";
 import {PartOfPlanEntity} from 'types';
-import {editPartOfPlan} from "../store/actions/parts-of-plan/updating/updating-action";
+import {editPartOfPlan} from "../store/actions/parts-of-plan/updating-action";
 import {itemsActions} from "../store/features/items/items-slice";
-import {deletePartOfPlan} from "../store/actions/parts-of-plan/deleting/deleting-action";
+import {deletePartOfPlan} from "../store/actions/parts-of-plan/deleting-action";
 
 const UsePartsOfPlanActions = () => {
 

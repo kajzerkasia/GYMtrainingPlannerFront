@@ -1,8 +1,8 @@
-import {AppDispatch, RootState} from "../../../index";
-import {isDemoEnabled} from "../../../../helpers/env";
-import {uiActions} from "../../../features/ui/ui-slice";
-import {apiUrl} from "../../../../config/api";
-import {itemsActions} from "../../../features/items/items-slice";
+import {AppDispatch, RootState} from "../../index";
+import {isDemoEnabled} from "../../../helpers/env";
+import {uiActions} from "../../features/ui/ui-slice";
+import {apiUrl} from "../../../config/api";
+import {itemsActions} from "../../features/items/items-slice";
 
 export const deleteExercise = (
     closeDemoModal: () => void

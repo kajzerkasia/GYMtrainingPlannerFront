@@ -1,10 +1,10 @@
-import {AppDispatch, RootState} from "../../../index";
-import {getAuthToken} from "../../../../helpers/auth";
-import {isDemoEnabled} from "../../../../helpers/env";
-import {uiActions} from "../../../features/ui/ui-slice";
-import {apiUrl} from "../../../../config/api";
+import {AppDispatch, RootState} from "../../index";
+import {getAuthToken} from "../../../helpers/auth";
+import {isDemoEnabled} from "../../../helpers/env";
+import {uiActions} from "../../features/ui/ui-slice";
+import {apiUrl} from "../../../config/api";
 import {json, redirect} from "react-router-dom";
-import {itemsActions} from "../../../features/items/items-slice";
+import {itemsActions} from "../../features/items/items-slice";
 import {PlanEntity} from 'types';
 
 export const sendPlanData = (

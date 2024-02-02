@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Status} from 'types';
-import {TbPlus, TbCheck} from "react-icons/tb";
+import {TbPlus, TbCheck, TbLink} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import '../../pages/Table.css';
 import {useSelector} from "react-redux";
@@ -40,15 +40,42 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                  ${field === 'pause' ? 'narrower' : ''}
             `}
         >
-            <input
-                placeholder="Wypełnij pole"
-                className={isEdited ? 'edited-input' : 'input-part'}
-                type="text"
-                name={field as string}
-                required
-                value={values[field] || ''}
-                onChange={(event) => handleChange(field, event.target.value)}
-            />
+            {field === 'url' ? (
+                <>
+                    <input
+                        placeholder="Link do filmu instruktażowego"
+                        className={isEdited ? 'edited-input' : 'input-part'}
+                        type="url"
+                        name="url"
+                        value={values.url}
+                        onChange={(event) => handleChange('url', event.target.value)}
+                    />
+                    <div className="exercise-link">
+                        <label htmlFor="url"></label>
+                        <a
+                            href={values.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {actionType === Status.Add || !values.url ? '' :
+                                <IconContext.Provider value={{className: 'react-icons-link'}}>
+                                    <TbLink/>
+                                </IconContext.Provider>
+                            }
+                        </a>
+                    </div>
+                </>
+            ) : (
+                <input
+                    placeholder="Wypełnij pole"
+                    className={isEdited ? 'edited-input' : 'input-part'}
+                    type="text"
+                    name={field as string}
+                    required
+                    value={values[field] || ''}
+                    onChange={(event) => handleChange(field, event.target.value)}
+                />
+            )}
         </td>
     );
 
