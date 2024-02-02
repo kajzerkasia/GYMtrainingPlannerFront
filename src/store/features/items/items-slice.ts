@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {PlanEntity, PartOfPlanEntity, ExerciseEntity, RuleEntity, DetailEntity} from 'types';
 
-export type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity;
+export type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity | DetailEntity | RuleEntity;
 
 export interface ItemsState {
     itemsList: Entity[];
