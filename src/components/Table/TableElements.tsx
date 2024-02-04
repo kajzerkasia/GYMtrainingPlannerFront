@@ -7,7 +7,7 @@ import {Status} from 'types';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
-import {text, textInformation} from "../../constants/partsOfPlanTableTexts";
+import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
 import UseModals from "../../hooks/useModals";
 import {Link} from "react-router-dom";
 
@@ -51,7 +51,7 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
                 onClose={closeConfirmDeleteModal}
                 onConfirm={handleConfirmDelete}
                 onCancel={closeConfirmDeleteModal}
-                modalText={text}
+                modalText={modalDeleteText}
                 confirmText="Tak"
                 cancelText="Nie"
                 icon={TbAlertTriangle}
@@ -60,7 +60,11 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
                 open={isValidationModalOpen}
                 onClose={closeValidationModal}
                 onCancel={closeValidationModal}
-                modalText={textInformation}
+                modalText={
+                    availableFields.length === 1
+                        ? modalTextSingleElementEdit
+                        : modalTextMoreElementsEdit
+                }
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />

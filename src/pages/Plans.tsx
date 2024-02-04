@@ -8,7 +8,7 @@ import PlansHead from "../components/Table/PlansHead";
 import {Table} from "./Table";
 import {PlanEntity} from 'types';
 import {TbCalendarPlus} from "react-icons/tb";
-import UsePlansActions from "../hooks/usePlansActions";
+import UsePlansActions from "../hooks/actionHooks/usePlansActions";
 
 const Plans = () => {
     const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import {Table} from "./Table";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchExercises} from "../store/actions/exercises/fetching-action";
-import UseExercisesActions from "../hooks/useExercisesActions";
+import UseExercisesActions from "../hooks/actionHooks/useExercisesActions";
 import {ExerciseEntity} from 'types';
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";

@@ -6,7 +6,7 @@ import {TableForm} from "./TableForm";
 import {Status} from 'types';
 import UseModals from "../../hooks/useModals";
 import Modal from "../Modal/Modal";
-import {textInformation} from "../../constants/partsOfPlanTableTexts";
+import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 
@@ -43,7 +43,11 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 open={isValidationModalOpen}
                 onClose={closeValidationModal}
                 onCancel={closeValidationModal}
-                modalText={textInformation}
+                modalText={
+                    availableFields.length === 1
+                        ? modalTextSingleElementAdd
+                        : modalTextMoreElementsAdd
+                }
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />
