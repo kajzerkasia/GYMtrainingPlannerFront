@@ -3,7 +3,7 @@ import {fetchPlanDetails} from "../store/actions/plan-details/fetching-action";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import {Table} from "./Table";
+import {Table} from "../components/Table/Table";
 import BackButton from "../components/BackButton/BackButton";
 import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";

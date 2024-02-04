@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Table} from "./Table";
+import {Table} from "../components/Table/Table";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchExercises} from "../store/actions/exercises/fetching-action";
