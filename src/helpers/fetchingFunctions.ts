@@ -6,7 +6,6 @@ export const fetchTrainingPlans = async (): Promise<PlanEntity[]> => {
         const response = await fetch(`${apiUrl}/api/add-plan/list`);
         const plans = await response.json();
 
-        // Przetwórz listę planów, zamieniając id na stringi
         const plansWithIdsAsString = plans.map((plan: PlanEntity) => ({
             ...plan,
             id: String(plan.id),
@@ -26,7 +25,6 @@ export const fetchPlanParts = async (planId: string): Promise<PartOfPlanEntity[]
         const response = await fetch(`${apiUrl}/api/add-part/plans?planId=${planId}`);
         const planParts = await response.json();
 
-        // Przetwórz listę części planów, zamieniając id na stringi
         const planPartsWithIdsAsString = planParts.map((part: PartOfPlanEntity) => ({
             ...part,
             id: String(part.id),

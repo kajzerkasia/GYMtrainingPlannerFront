@@ -44,7 +44,7 @@ export const Error = () => {
                         <TbMoodCry/>
                     </IconContext.Provider>
                 </PageContent>
-                <GoBack to='list' text="Powrót do strony głównej"/>
+                <GoBack to='/' text="Powrót do strony głównej"/>
             </div>
         </>
     );

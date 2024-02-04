@@ -5,7 +5,7 @@ import {fetchProgressionRules} from "../store/actions/progression-rules/fetching
 import {RootState} from "../store";
 import UseProgressionRulesActions from "../hooks/actionHooks/useProgressionRulesActions";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import {Table} from "./Table";
+import {Table} from "../components/Table/Table";
 import BackButton from "../components/BackButton/BackButton";
 import {RuleEntity} from 'types';
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";

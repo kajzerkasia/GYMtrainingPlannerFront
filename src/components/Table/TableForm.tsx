@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Status} from 'types';
 import {TbPlus, TbCheck, TbLink} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import '../../pages/Table.css';
+import './Table.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 

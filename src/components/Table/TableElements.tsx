@@ -10,6 +10,7 @@ import Modal from "../Modal/Modal";
 import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
 import UseModals from "../../hooks/useModals";
 import {Link} from "react-router-dom";
+import {getAuthToken} from "../../helpers/auth";
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -18,7 +19,7 @@ interface TableElementsProps {
     availableFields: (keyof Record<string, any>)[];
 }
 
-const TableElements = ({handleUpdate, handleDelete, availableFields, children}: TableElementsProps) => {
+const TableElements = ({handleUpdate, handleDelete, availableFields}: TableElementsProps) => {
     const dispatch = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
@@ -43,6 +44,8 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
             dispatch(itemsActions.setItemToDeleteId(id));
         }
     };
+
+    const token = getAuthToken();
 
     return (
         <>
@@ -104,7 +107,7 @@ const TableElements = ({handleUpdate, handleDelete, availableFields, children}: 
                             ) : (
                                 <td className="dots" colSpan={1}>
                                     <IconContext.Provider value={{className: 'react-icons'}}>
-                                        <Link to={`/plans/${item.slug}`}><TbDotsVertical/></Link>
+                                        <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}><TbDotsVertical/></Link>
                                     </IconContext.Provider>
                                 </td>
                             )

@@ -1,10 +1,13 @@
 import React from 'react';
-import {Form, Link, NavLink, useRouteLoaderData} from "react-router-dom";
+import {Form, Link, NavLink, useParams, useRouteLoaderData} from "react-router-dom";
 import './MainNavigation.css';
 import Logo from "../Logo/Logo";
 
 const MainNavigation = () => {
     const token = useRouteLoaderData('root');
+
+    const params = useParams();
+    console.log(params)
 
     return (
         <header className="header">
@@ -15,14 +18,14 @@ const MainNavigation = () => {
                 <ul className="list">
                     <>
                         <li>
-                            <NavLink to="/list" className={({isActive}) =>
+                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${params.slug}`}`} className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 Plany treningowe
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/calendar" className={({isActive}) =>
+                            <NavLink to={`${!token ? `/auth?mode=login` : `/calendar`}`} className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 Kalendarz
