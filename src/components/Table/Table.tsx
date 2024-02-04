@@ -1,7 +1,7 @@
-import TableElements from "../components/Table/TableElements";
-import AddTableElements from "../components/Table/AddTableElements";
+import TableElements from "./TableElements";
+import AddTableElements from "./AddTableElements";
 import React from "react";
-import RedirectLink from "../components/RedirectLink";
+import RedirectLink from "../RedirectLink";
 import './Table.css';
 
 export interface LinkProps {
