@@ -1,16 +1,16 @@
 import React, {useState} from "react";
 import './Calendar.css'
-import {CalendarAddons} from "./CalendarAddons";
-import {Accordion} from "../Accordion/Accordion";
-import {DemoSign} from "../DemoSign/DemoSign";
-import CalendarInstruction from "./CalendarInstruction";
-import Modal from "../Modal/Modal";
+import {CalendarAddons} from "../components/Calendar/CalendarAddons";
+import {Accordion} from "../components/Accordion/Accordion";
+import {DemoSign} from "../components/DemoSign/DemoSign";
+import CalendarInstruction from "../components/Calendar/CalendarInstruction";
+import Modal from "../components/Modal/Modal";
 import {TbAlertTriangle} from "react-icons/tb";
-import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
+import {UseDeleteEvent} from "../hooks/calendar/useDeleteEvent";
 import {useSelector} from "react-redux";
-import {RootState} from "../../store";
+import {RootState} from "../store";
 
-export const Calendar = () => {
+const Calendar = () => {
 
     const [showInstructions, setShowInstructions] = useState(false);
 
@@ -68,3 +68,5 @@ export const Calendar = () => {
         </>
     );
 };
+
+export default Calendar;

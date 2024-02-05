@@ -16,7 +16,7 @@ const iconComponents: { [key: string]: IconType } = {
     TbCalendarPlus,
 };
 
-export const Instruction = () => {
+const Instruction = () => {
     return (
         <div className="instruction-wrapper">
             <h2 className="instruction-h2">Jak to działa?</h2>
@@ -39,3 +39,5 @@ export const Instruction = () => {
         </div>
     )
 }
+
+export default Instruction;
