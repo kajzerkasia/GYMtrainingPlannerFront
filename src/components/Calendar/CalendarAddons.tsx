@@ -12,7 +12,7 @@ import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
 import {fetchPlanParts, fetchTrainingPlans} from "../../helpers/fetchingFunctions";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetchingTrainings/fetching-action";
-import {formatMonthName} from "../../helpers/formatMonthName";
+import {formatDateName} from "../../helpers/formatMonthName";
 
 export interface MyEvent {
     planName: string;
@@ -103,8 +103,11 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
                 defaultView="month"
                 views={["month", "day"]}
                 formats={{
-                    monthHeaderFormat: (date) => formatMonthName(moment(date).format('MMMM YYYY')),
-                    dayHeaderFormat: (date) => moment(date).format('dddd MMMM Do'),
+                    monthHeaderFormat: (date) => formatDateName(moment(date).format('MMMM YYYY')),
+                    dayHeaderFormat: (date) => {
+                        const formattedDate = moment(date).locale('pl').format('dddd D MMMM');
+                        return formatDateName(formattedDate);
+                    },
                 }}
                 dayPropGetter={(date) => {
                     const isSelectedDate = selectedDate ? moment(selectedDate).isSame(date, 'day') : false;
@@ -113,7 +116,7 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
                 messages={{
                     next: "⮞",
                     previous: "⮜",
-                    today: formatMonthName(currentMonth),
+                    today: formatDateName(currentMonth),
                     month: "Miesiąc",
                     week: "Tydzień",
                     day: "Dzień",
