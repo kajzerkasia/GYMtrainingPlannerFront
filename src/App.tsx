@@ -1,21 +1,22 @@
 import React, {lazy, Suspense} from 'react';
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import {RulesTable} from "./pages/RulesTable";
-import {Instruction} from "./components/Instruction/Instruction";
-// import {ExercisesTable, loader as exercisesLoader} from "./pages/ExercisesTable";
-import {PartsOfPlanTable} from "./pages/PartsOfPlanTable";
 import {Error} from "./pages/Error/Error";
-import {PlanDetailsTable} from "./pages/PlanDetailsTable";
-import {loader as plansLoader, action as manipulatePlanAction, PlansList} from "./pages/PlansList";
 import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import './App.css';
 import {tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
-import {Calendar} from "./components/Calendar/Calendar";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
 
-const ExercisesTable = lazy(() => import('./pages/ExercisesTable'));
+const Exercises = lazy(() => import('./pages/Exercises'));
+const Plans = lazy(() => import('./pages/Plans'));
+const PartsOfPlan = lazy(() => import('./pages/PartsOfPlan'));
+const ProgressionRules = lazy(() => import('./pages/ProgressionRules'));
+const PlanDetails = lazy(() => import('./pages/PlanDetails'));
+const Instruction = lazy(() => import('./pages/Instruction/Instruction'));
+const Calendar = lazy(() => import('./pages/Calendar'));
 
 const router = createBrowserRouter([
     {
@@ -39,31 +40,66 @@ const router = createBrowserRouter([
                 action: logoutAction,
             },
             {
-                path: 'list',
-                element: <PlansList/>,
-                loader: plansLoader,
-                action: manipulatePlanAction,
+                path: 'list/:slug',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <Plans/>
+                    </Suspense>,
             },
-            {path: 'plans/:slug', element: <PartsOfPlanTable/>},
+            {
+                path: 'plans/:slug',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <PartsOfPlan/>
+                    </Suspense>,
+            },
             {
                 path: 'exercises/:slug',
                 element:
-                    <Suspense fallback={<p>Loading...</p>}>
-                        <ExercisesTable/>
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <Exercises/>
                     </Suspense>,
-                loader: (meta) => import('./pages/ExercisesTable')
-                    .then(module => module.loader(meta))
             },
-            {path: 'rules/:slug', element: <RulesTable/>},
-            {path: 'details/:slug', element: <PlanDetailsTable/>},
-            {path: 'instruction', element: <Instruction/>},
-            {path: 'calendar', element: <Calendar/>},
+            {
+                path: 'rules/:slug',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <ProgressionRules/>
+                    </Suspense>,
+            },
+            {
+                path: 'details/:slug',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <PlanDetails/>
+                    </Suspense>,
+            },
+            {
+                path: 'instruction',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <Instruction/>
+                    </Suspense>,
+            },
+            {
+                path: 'calendar',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <Calendar/>
+                    </Suspense>,
+            },
         ],
     },
 ]);
+
+const queryClient = new QueryClient();
+
 export const App = () => {
+
     return (
-        <RouterProvider router={router}/>
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}/>
+        </QueryClientProvider>
     );
 }
 
