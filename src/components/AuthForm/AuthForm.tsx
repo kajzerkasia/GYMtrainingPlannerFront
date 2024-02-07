@@ -21,12 +21,18 @@ function AuthForm() {
                     )}
                     {data && data.message && <p>{data.message}</p>}
                 </div>
+                {!isLogin && (
+                    <p>
+                        <label htmlFor="name">{!isLogin && <span>*</span>}Imię</label>
+                        <input id="name" type="text" name="name"/>
+                    </p>
+                )}
                 <p>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{!isLogin && <span>*</span>}Email</label>
                     <input id="email" type="email" name="email" required/>
                 </p>
                 <p>
-                    <label htmlFor="image">Hasło</label>
+                    <label htmlFor="image">{!isLogin && <span>*</span>}Hasło</label>
                     <input id="password" type="password" name="password" required/>
                 </p>
                 <div className="actions">
