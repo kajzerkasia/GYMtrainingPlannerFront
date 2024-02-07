@@ -17,7 +17,7 @@ const Plans = () => {
     const params = useParams();
 
     useEffect(() => {
-        if (params.slug) {
+        if (params.userId) {
             dispatch(fetchPlansData(params) as any);
         }
     }, [dispatch, params]);
