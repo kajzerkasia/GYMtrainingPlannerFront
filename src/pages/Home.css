@@ -5,14 +5,22 @@
 }
 
 .home-container {
-    margin-top: 10rem;
+    margin-top: 5rem;
     flex-direction: column;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.h1-home {
-    margin-top: 3rem;
-    margin-bottom: 3rem;
+.home-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5rem;
 }
+
+.home-h1 {
+    margin-bottom: 0.5rem;
+}
+
