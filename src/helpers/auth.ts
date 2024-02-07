@@ -10,6 +10,7 @@ export function getTokenDuration(): number {
 
 export function getAuthToken() {
     const token = localStorage.getItem('token');
+    const email = localStorage.getItem('email');
 
     if (!token) {
         return null;
@@ -21,7 +22,10 @@ export function getAuthToken() {
         return 'EXPIRED';
     }
 
-    return token;
+    return {
+        token,
+        email,
+    }
 }
 
 export function tokenLoader() {
