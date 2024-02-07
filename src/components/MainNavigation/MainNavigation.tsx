@@ -19,7 +19,7 @@ const MainNavigation = () => {
 
     const { users } = useSelector((state: RootState) => state.items);
     const usersList = users as unknown as UserEntity;
-    const slug = usersList?.slug;
+    const userId = usersList?.id;
 
     return (
         <header className="header">
@@ -30,7 +30,7 @@ const MainNavigation = () => {
                 <ul className="list">
                     <>
                         <li>
-                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${slug}`}`} className={({isActive}) =>
+                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${userId}`}`} className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 Plany treningowe
