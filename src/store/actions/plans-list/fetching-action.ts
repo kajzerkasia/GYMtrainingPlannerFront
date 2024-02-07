@@ -11,7 +11,7 @@ export const fetchPlansData = (
 
         try {
             const usersResponse = await fetch(
-                `${apiUrl}/api/auth-user/users?slug=${params.slug}`,
+                `${apiUrl}/api/auth-user/users?id=${params.userId}`,
                 {
                     method: 'GET',
                 }
