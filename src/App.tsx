@@ -40,7 +40,7 @@ const router = createBrowserRouter([
                 action: logoutAction,
             },
             {
-                path: 'list/:slug',
+                path: 'list/:userId',
                 element:
                     <Suspense fallback={<SuspenseFallback/>}>
                         <Plans/>
