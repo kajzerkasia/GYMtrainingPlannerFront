@@ -17,7 +17,7 @@ const Home = () => {
         <div>
             <div className="home-container">
                 <header className="home-header">
-                    <h1>Witaj{userName ? ` ${userName}!` : ' w aplikacji Gym Training Planner'}</h1>
+                    <h1>Witaj{token ? ` ${userName}!` : ' w aplikacji Gym Training Planner'}</h1>
                     {token ? (
                         <p>Już teraz zarządzaj swoimi planami treningowymi</p>
                     ) : (
