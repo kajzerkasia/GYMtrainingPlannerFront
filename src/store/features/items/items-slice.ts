@@ -1,10 +1,11 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {PlanEntity, PartOfPlanEntity, ExerciseEntity, RuleEntity, DetailEntity} from 'types';
+import {PlanEntity, PartOfPlanEntity, ExerciseEntity, RuleEntity, DetailEntity, UserEntity} from 'types';
 
 export type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity | DetailEntity | RuleEntity;
 
 export interface ItemsState {
     itemsList: Entity[];
+    users: UserEntity[];
     isEdited: boolean;
     confirmDeleteItem: boolean;
     itemToDeleteId: string | null;
@@ -13,6 +14,7 @@ export interface ItemsState {
 
 const initialState: ItemsState = {
     itemsList: [],
+    users: [],
     isEdited: false,
     confirmDeleteItem: false,
     itemToDeleteId: null,
@@ -25,6 +27,9 @@ const itemsSlice = createSlice({
     reducers: {
         setItemsList: (state, action: PayloadAction<Entity[]>) => {
             state.itemsList = action.payload;
+        },
+        setUsersList: (state, action: PayloadAction<UserEntity[]>) => {
+            state.users = action.payload;
         },
         setIsLoading: (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;

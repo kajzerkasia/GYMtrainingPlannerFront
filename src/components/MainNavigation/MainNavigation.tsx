@@ -1,13 +1,25 @@
-import React from 'react';
-import {Form, Link, NavLink, useParams, useRouteLoaderData} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {Form, Link, NavLink, useRouteLoaderData} from "react-router-dom";
 import './MainNavigation.css';
 import Logo from "../Logo/Logo";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUsers} from "../../store/actions/users/fetching-action";
+import {RootState} from "../../store";
+import {UserEntity} from 'types';
 
 const MainNavigation = () => {
-    const token = useRouteLoaderData('root');
+    const token: any = useRouteLoaderData('root');
+    const dispatch = useDispatch();
 
-    const params = useParams();
-    console.log(params)
+    useEffect(() => {
+        if (token) {
+            dispatch(fetchUsers({ token }) as any);
+        }
+    }, [dispatch, token]);
+
+    const { users } = useSelector((state: RootState) => state.items);
+    const usersList = users as unknown as UserEntity;
+    const slug = usersList?.slug;
 
     return (
         <header className="header">
@@ -18,7 +30,7 @@ const MainNavigation = () => {
                 <ul className="list">
                     <>
                         <li>
-                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${params.slug}`}`} className={({isActive}) =>
+                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${slug}`}`} className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 Plany treningowe
