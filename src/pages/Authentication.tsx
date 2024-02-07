@@ -17,6 +17,12 @@ interface ActionProps {
     request: RequestData;
 }
 
+interface AuthData {
+    email: FormDataEntryValue | null;
+    password: FormDataEntryValue | null;
+    name?: FormDataEntryValue | null;
+}
+
 export async function action({request}: ActionProps) {
     const searchParams = new URL(request.url).searchParams;
     const mode = searchParams.get('mode') || 'login';
@@ -27,10 +33,18 @@ export async function action({request}: ActionProps) {
 
     const data = await request.formData();
 
-    const authData = {
+    let authData: AuthData = {
         email: data.get('email'),
         password: data.get('password'),
     };
+
+    if (mode === 'signup') {
+        const name = data.get('name');
+        authData = {
+            ...authData,
+            name: name,
+        };
+    }
 
     const response = await fetch(`${apiUrl}/api/auth-user/${mode}`, {
         method: 'POST',
