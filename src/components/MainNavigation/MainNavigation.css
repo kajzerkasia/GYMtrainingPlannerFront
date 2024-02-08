@@ -22,21 +22,11 @@
     margin: 0 1rem;
 }
 
-.header nav a:hover,
-.header nav a.active,
-.header nav button:hover,
-.header nav button:active {
-    color: #310942;
-}
-
 .header a {
     text-decoration: none;
 }
 
-.header nav a,
-.header nav li button {
-    color: #E6E6FA;
-    font-size: 1.25rem;
+.header nav li a {
     background-color: #310942;
     border: 1px solid #39114a;
     padding: 0.5rem 1.5rem;
@@ -44,9 +34,19 @@
     cursor: pointer;
 }
 
+.header nav li button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.25rem;
+    color: #E6E6FA;
+}
+
 .header nav a:hover,
-.header nav a.active,
-.header nav li button:hover {
+.header nav li a.active,
+.header nav button:hover,
+.header nav li a.active button {
     background-color: #d495e2;
     border-color: #7d448b;
+    color: #310942;
+    cursor: pointer;
 }
