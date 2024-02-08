@@ -10,17 +10,19 @@ export const addExercise = (
     values: ExerciseEntity,
     setDemoModalIsOpen: (isOpen: boolean) => void,
     setInformationModalIsOpen: (isOpen: boolean) => void,
-    params: Record<string, string | undefined>
+    params: Record<string, string | undefined>,
+    reset: () => void,
 ) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {
-        dispatch(uiActions.showNotification({
-            status: 'pending',
-            title: 'Dodawanie...',
-            message: 'Dodawanie ćwiczenia'
-        }));
 
         const addExerciseInternal = async (planPartId: string) => {
             try {
+                dispatch(uiActions.showNotification({
+                    status: 'pending',
+                    title: 'Dodawanie...',
+                    message: 'Dodawanie ćwiczenia'
+                }));
+
                 const res = await fetch(`${apiUrl}/api/add-exercise/exercises?partId=${planPartId}`, {
                     method: 'POST',
                     headers: {
@@ -37,6 +39,7 @@ export const addExercise = (
                     title: 'Sukces!',
                     message: 'Pomyślnie dodano nowe ćwiczenie!'
                 }));
+
             } catch (error) {
                 console.error("Wystąpił błąd podczas próby wysłania danych:", error);
                 dispatch(uiActions.showNotification({
@@ -45,6 +48,8 @@ export const addExercise = (
                     message: 'Wystąpił błąd podczas próby pobrania danych.'
                 }));
             }
+
+            reset();
         };
 
         if (isDemoEnabled()) {
@@ -79,9 +84,6 @@ export const addExercise = (
                     message: 'Wystąpił błąd podczas próby pobrania danych.'
                 }));
             }
-        } else {
-            values.url = 'Podaj poprawny adres URL';
-            setInformationModalIsOpen(true);
         }
     };
 };

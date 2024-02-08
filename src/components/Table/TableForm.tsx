@@ -5,6 +5,7 @@ import {IconContext} from "react-icons";
 import './Table.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import {validateURL} from "../../helpers/validateUrl";
 
 export type TableFormProps<T> = {
     onSubmit: (values: T, reset: () => void) => void | Promise<void>;
@@ -16,6 +17,7 @@ export type TableFormProps<T> = {
 
 export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, initialValues, availableFields}: TableFormProps<T>) => {
     const [values, setValues] = useState(initialValues);
+    const [urlError, setUrlError] = useState<string | null>(null);
 
     const {isEdited} = useSelector((state: RootState) => state.items);
 
@@ -28,6 +30,12 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
             ...localValues,
             [field]: value
         }));
+
+        if (field === 'url' && value && !validateURL(value)) {
+            setUrlError('Podaj poprawny adres URL');
+        } else {
+            setUrlError(null);
+        }
     };
 
     const renderInput = (field: keyof T) => (
@@ -46,9 +54,10 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                         placeholder="Link do filmu instruktażowego"
                         className={isEdited ? 'edited-input' : 'input-part'}
                         type="url"
-                        name="url"
-                        value={values.url}
-                        onChange={(event) => handleChange('url', event.target.value)}
+                        name={field as string}
+                        required
+                        value={values[field] || ''}
+                        onChange={(event) => handleChange(field, event.target.value)}
                     />
                     <div className="exercise-link">
                         <label htmlFor="url"></label>
@@ -64,6 +73,7 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                             }
                         </a>
                     </div>
+                    {urlError && <div className="error-message">{urlError}</div>}
                 </>
             ) : (
                 <input
