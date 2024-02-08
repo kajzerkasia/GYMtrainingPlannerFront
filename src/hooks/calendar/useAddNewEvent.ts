@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseAddHoursToEvent} from "./useAddHoursToEvent";
+import {useParams} from "react-router-dom";
 
 export const UseAddNewEvent = () => {
     const dispatch = useDispatch();
@@ -29,6 +30,8 @@ export const UseAddNewEvent = () => {
     } = calendarsActions;
 
     const {addHoursToEvent} = UseAddHoursToEvent();
+
+    const params = useParams();
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
@@ -79,6 +82,7 @@ export const UseAddNewEvent = () => {
                         partName: newEvent.partName,
                         startDate: startDate,
                         endDate: endDate,
+                        userId: params.userId,
                     }),
                 });
 
