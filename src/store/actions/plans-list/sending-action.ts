@@ -9,7 +9,8 @@ import {PlanEntity} from 'types';
 
 export const sendPlanData = (
     values: PlanEntity,
-    setDemoModalIsOpen: (isOpen: boolean) => void
+    setDemoModalIsOpen: (isOpen: boolean) => void,
+    params: Record<string, string | undefined>
 ) => {
     return async (dispatch: AppDispatch, getState: () => RootState) => {
         dispatch(uiActions.showNotification({
@@ -29,17 +30,13 @@ export const sendPlanData = (
                         return window.location.href = '/auth?mode=login';
                     }
 
-                    const plansData = {
-                        name: values.name
-                    };
-
                     const response = await fetch(`${apiUrl}/api/add-plan/list`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': 'Bearer ' + token,
                         },
-                        body: JSON.stringify(plansData),
+                        body: JSON.stringify({...values, userId: params.userId}),
                     });
 
                     if (response.status === 422) {

@@ -5,6 +5,7 @@ import {PlanEntity} from 'types';
 import {itemsActions} from "../../store/features/items/items-slice";
 import {editPlan} from "../../store/actions/plans-list/updating-action";
 import {deletePlan} from "../../store/actions/plans-list/deleting-action";
+import {useParams} from "react-router-dom";
 
 const UsePartsOfPlanActions = () => {
 
@@ -12,8 +13,10 @@ const UsePartsOfPlanActions = () => {
 
     const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
 
+    const params = useParams();
+
     const handleSubmit = (values: PlanEntity, reset: () => void) => {
-        dispatch(sendPlanData(values, setDemoModalIsOpen) as any);
+        dispatch(sendPlanData(values, setDemoModalIsOpen, params) as any);
         reset();
     }
 
