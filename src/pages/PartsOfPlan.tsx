@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Table} from "../components/Table/Table";
+import {TableBody} from "../components/Table/TableBody";
 import {useParams} from "react-router-dom";
 import {TbStairsUp} from "react-icons/tb";
 import {useDispatch, useSelector} from "react-redux";
@@ -43,7 +43,7 @@ const PartsOfPlan = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <PartsOfPlanTableHead/>
-                    <Table
+                    <TableBody
                         links={PARTS_OF_PLAN_LINKS}
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as PartOfPlanEntity), reset)}
                         onUpdate={async (values, reset) => handleUpdate((values as unknown as PartOfPlanEntity), reset)}

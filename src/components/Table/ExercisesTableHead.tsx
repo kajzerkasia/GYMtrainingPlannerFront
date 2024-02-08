@@ -24,7 +24,7 @@ const ExercisesTableHead = () => {
                 Wskazówki dotyczące ćwiczenia
             </th>
             <th className="tr-add">
-                Poprawne wykonanie ćwiczenia (prawidłowy link)
+                Poprawne wykonanie ćwiczenia
             </th>
         </tr>
         </thead>

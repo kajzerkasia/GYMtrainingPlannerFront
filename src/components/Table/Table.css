@@ -1,24 +1,16 @@
-.input-part {
+.input {
     border: none;
     color: #E6E6FA;
     font-size: 16px;
     text-align: center;
     width: 100%;
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Playpen Sans', sans-serif;
     background-color: transparent;
-    height: 5vh;
 }
 
 input:focus {
     outline: transparent;
     background-color: transparent;
-}
-
-h1, h2 {
-    padding-top: 1.3vh;
-    padding-bottom: 1vh;
-    font-size: 22px;
-    text-align: center;
 }
 
 .main-table {
@@ -28,18 +20,22 @@ h1, h2 {
     padding-bottom: 5vh;
 }
 
-td.input-part-add {
+td.table-form-td {
     min-width: 280px;
 }
 
-td.input-part-add.narrower {
-    min-width: 100px;
+td.table-form-td.narrower {
+    min-width: 120px;
 }
 
 td, th {
-    height: 100px;
+    height: 90px;
     padding: 15px;
     border: 1px solid #d495e2;
+}
+
+h1 {
+    font-size: 1.5rem;
 }
 
 .training-plan {

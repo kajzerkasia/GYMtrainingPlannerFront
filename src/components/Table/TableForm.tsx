@@ -41,7 +41,7 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
     const renderInput = (field: keyof T) => (
         <td
             key={field as string}
-            className={`input-part-add 
+            className={`table-form-td 
             ${field === 'order' ? 'narrower' : ''} 
             ${field === 'series' ? 'narrower' : ''}
               ${field === 'repetitions' ? 'narrower' : ''}
@@ -52,7 +52,7 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                 <>
                     <input
                         placeholder="Link do filmu instruktażowego"
-                        className={isEdited ? 'edited-input' : 'input-part'}
+                        className={isEdited ? 'edited-input' : 'input'}
                         type="url"
                         name={field as string}
                         required
@@ -77,8 +77,8 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                 </>
             ) : (
                 <input
-                    placeholder="Wypełnij pole"
-                    className={isEdited ? 'edited-input' : 'input-part'}
+                    placeholder="..."
+                    className={isEdited ? 'edited-input' : 'input'}
                     type="text"
                     name={field as string}
                     required

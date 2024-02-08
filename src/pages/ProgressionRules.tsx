@@ -5,7 +5,7 @@ import {fetchProgressionRules} from "../store/actions/progression-rules/fetching
 import {RootState} from "../store";
 import UseProgressionRulesActions from "../hooks/actionHooks/useProgressionRulesActions";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import {Table} from "../components/Table/Table";
+import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
 import {RuleEntity} from 'types';
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";
@@ -35,7 +35,7 @@ const ProgressionRules = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <ProgressionRulesTableHead/>
-                    <Table
+                    <TableBody
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as RuleEntity), reset)}
                         onUpdate={async (values, reset) => handleUpdate((values as unknown as RuleEntity), reset)}
                         onDelete={handleDelete}

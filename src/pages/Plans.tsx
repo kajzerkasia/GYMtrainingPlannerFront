@@ -5,7 +5,7 @@ import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import PlansHead from "../components/Table/PlansHead";
-import {Table} from "../components/Table/Table";
+import {TableBody} from "../components/Table/TableBody";
 import {PlanEntity} from 'types';
 import {TbCalendarPlus} from "react-icons/tb";
 import UsePlansActions from "../hooks/actionHooks/usePlansActions";
@@ -29,7 +29,7 @@ const Plans = () => {
     const PLANS_LINKS = [
         {
             icon: TbCalendarPlus,
-            path: `${!token ? `/auth?mode=login` : `/calendar`}`
+            path: `${!token ? `/auth?mode=login` : `/calendar/${params.userId}`}`
 
         }
     ]
@@ -46,7 +46,7 @@ const Plans = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <PlansHead/>
-                    <Table
+                    <TableBody
                         links={PLANS_LINKS}
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as PlanEntity), reset)}
                         onUpdate={async (values) => handleUpdate((values as unknown as PlanEntity))}
