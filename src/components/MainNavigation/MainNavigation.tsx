@@ -13,13 +13,19 @@ const MainNavigation = () => {
 
     useEffect(() => {
         if (token) {
-            dispatch(fetchUsers({ token }) as any);
+            dispatch(fetchUsers({token}) as any);
         }
     }, [dispatch, token]);
 
-    const { users } = useSelector((state: RootState) => state.items);
+    const {users} = useSelector((state: RootState) => state.items);
     const usersList = users as unknown as UserEntity;
     const userId = usersList?.id;
+
+    const checkIfAuth = () => {
+        if (!token) {
+            window.location.href = "/auth?mode=login";
+        }
+    }
 
     return (
         <header className="header">
@@ -30,17 +36,30 @@ const MainNavigation = () => {
                 <ul className="list">
                     <>
                         <li>
-                            <NavLink to={`${!token ? `/auth?mode=login` : `/list/${userId}`}`} className={({isActive}) =>
+                            <NavLink to='/' className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
-                                Plany treningowe
+                                <button>
+                                    Strona główna
+                                </button>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={`${!token ? `/auth?mode=login` : `/calendar`}`} className={({isActive}) =>
+                            <NavLink to={`/list/${userId}`} className={({isActive}) =>
+                                isActive ? "active plans" : undefined
+                            }>
+                                <button onClick={checkIfAuth}>
+                                    Plany treningowe
+                                </button>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='calendar' className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
-                                Kalendarz
+                                <button onClick={checkIfAuth}>
+                                    Kalendarz
+                                </button>
                             </NavLink>
                         </li>
                         {!token && (
@@ -51,7 +70,9 @@ const MainNavigation = () => {
                                         isActive ? "active" : undefined
                                     }
                                 >
-                                    Logowanie
+                                    <button>
+                                        Logowanie
+                                    </button>
                                 </NavLink>
                             </li>
                         )}
