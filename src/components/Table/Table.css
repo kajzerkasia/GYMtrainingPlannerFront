@@ -37,6 +37,7 @@ td.input-part-add.narrower {
 }
 
 td, th {
+    height: 100px;
     padding: 15px;
     border: 1px solid #d495e2;
 }
@@ -143,6 +144,10 @@ button {
 
 .div_loading {
     margin-bottom: 20px;
+}
+
+.error-message {
+    color: red;
 }
 
 @media (min-width: 1480px) {
