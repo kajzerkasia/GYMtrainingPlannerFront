@@ -17,7 +17,7 @@ interface TableProps<T> {
     availableFields: (keyof T)[];
 }
 
-export const Table = <T extends Record<string, string>>({links, onSubmit, onUpdate, onDelete, availableFields}: TableProps<T>) => {
+export const TableBody = <T extends Record<string, string>>({links, onSubmit, onUpdate, onDelete, availableFields}: TableProps<T>) => {
 
     const renderLink = (link: LinkProps) => (
         link && link.icon ? (

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Table} from "../components/Table/Table";
+import {TableBody} from "../components/Table/TableBody";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchExercises} from "../store/actions/exercises/fetching-action";
@@ -35,7 +35,7 @@ const Exercises = () => {
                 <DemoSign/>
                 <table className="main-table">
                     <ExercisesTableHead/>
-                    <Table
+                    <TableBody
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
                         onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
                         onDelete={handleDelete}
