@@ -16,8 +16,7 @@ const UseExercisesActions = () => {
     const params = useParams();
 
     const handleSubmit = (values: ExerciseEntity, reset: () => void) => {
-        dispatch(addExercise(values, setDemoModalIsOpen, setInformationModalIsOpen, params) as any);
-        reset();
+        dispatch(addExercise(values, setDemoModalIsOpen, setInformationModalIsOpen, params, reset) as any);
     }
 
     const handleUpdate = (values: ExerciseEntity, reset: () => void) => {
