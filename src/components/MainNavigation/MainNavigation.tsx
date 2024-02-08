@@ -54,7 +54,7 @@ const MainNavigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to='calendar' className={({isActive}) =>
+                            <NavLink to={`/calendar/${userId}`} className={({isActive}) =>
                                 isActive ? "active" : undefined
                             }>
                                 <button onClick={checkIfAuth}>

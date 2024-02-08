@@ -9,10 +9,13 @@ import {TbAlertTriangle} from "react-icons/tb";
 import {UseDeleteEvent} from "../hooks/calendar/useDeleteEvent";
 import {useSelector} from "react-redux";
 import {RootState} from "../store";
+import {useParams} from "react-router-dom";
 
 const Calendar = () => {
 
     const [showInstructions, setShowInstructions] = useState(false);
+
+    const params = useParams();
 
     const toggleInstructions = () => {
         setShowInstructions(prevShowInstructions => !prevShowInstructions);
@@ -62,6 +65,7 @@ const Calendar = () => {
                 <div style={{height: "730px"}} className="div-calendar">
                     <CalendarAddons
                         openModal={openModal}
+                        params={params}
                     />
                 </div>
             </div>

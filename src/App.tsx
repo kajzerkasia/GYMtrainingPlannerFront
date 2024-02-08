@@ -7,7 +7,6 @@ import {action as logoutAction} from './pages/Logout';
 import './App.css';
 import {tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
 
 const Exercises = lazy(() => import('./pages/Exercises'));
@@ -82,7 +81,7 @@ const router = createBrowserRouter([
                     </Suspense>,
             },
             {
-                path: 'calendar',
+                path: 'calendar/:userId',
                 element:
                     <Suspense fallback={<SuspenseFallback/>}>
                         <Calendar/>
@@ -92,14 +91,10 @@ const router = createBrowserRouter([
     },
 ]);
 
-const queryClient = new QueryClient();
-
 export const App = () => {
 
     return (
-        <QueryClientProvider client={queryClient}>
             <RouterProvider router={router}/>
-        </QueryClientProvider>
     );
 }
 

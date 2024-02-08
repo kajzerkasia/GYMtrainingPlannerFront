@@ -2,6 +2,7 @@ import {AppDispatch, RootState} from "../../index";
 import {itemsActions} from "../../features/items/items-slice";
 import {apiUrl} from "../../../config/api";
 import {uiActions} from "../../features/ui/ui-slice";
+import {calendarsActions} from "../../features/calendar/calendar-slice";
 
 export const fetchPlansData = (
     params: Record<string, string | undefined>
@@ -22,6 +23,7 @@ export const fetchPlansData = (
                     return Promise.reject('Brak planów.');
                 } else {
                     dispatch(itemsActions.setItemsList(plans));
+                    dispatch(calendarsActions.updateTrainingPlans(plans));
                     dispatch(itemsActions.setIsLoading(false));
                 }
             }
