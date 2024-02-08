@@ -9,10 +9,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../store";
 import {UseDateSelection} from "../../hooks/calendar/useDateSelection";
 import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
-import {fetchPlanParts, fetchTrainingPlans} from "../../helpers/fetchingFunctions";
+import {fetchPlanParts} from "../../helpers/fetchingFunctions";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetchingTrainings/fetching-action";
 import {formatDateName} from "../../helpers/formatMonthName";
+import {fetchPlansData} from "../../store/actions/plans-list/fetching-action";
 
 export interface MyEvent {
     planName: string;
@@ -27,9 +28,10 @@ export interface MyEvent {
 
 interface CalendarAddonsProps {
     openModal: () => void;
+    params: Record<string, string | undefined>
 }
 
-export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
+export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
 
     const {handleSelect} = UseDateSelection();
     const {handleEventClick} = UseEventHandling();
@@ -43,23 +45,18 @@ export const CalendarAddons = ({openModal}: CalendarAddonsProps) => {
     } = useSelector((state: RootState) => state.calendar);
 
     const {
-        updateTrainingPlans,
         updatePlanParts,
     } = calendarsActions;
 
     useEffect(() => {
-        const fetchTrainingPlansFromAPI = async () => {
             try {
-                const plans = await fetchTrainingPlans();
-
-                dispatch(updateTrainingPlans(plans));
+                if (params.userId) {
+                    dispatch(fetchPlansData(params) as any);
+                }
             } catch (error) {
                 console.error("Wystąpił błąd podczas pobierania danych treningowych:", error);
             }
-        };
-
-        fetchTrainingPlansFromAPI();
-    }, [dispatch, updateTrainingPlans]);
+    }, [dispatch, params]);
 
     useEffect(() => {
         if (selectedTrainingPlan !== null) {
