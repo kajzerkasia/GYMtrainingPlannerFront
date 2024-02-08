@@ -26,7 +26,8 @@
     text-decoration: none;
 }
 
-.header nav li a {
+.header nav li a,
+.header nav li form button {
     background-color: #310942;
     border: 1px solid #39114a;
     padding: 0.5rem 1.5rem;
