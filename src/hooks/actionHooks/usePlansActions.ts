@@ -6,27 +6,29 @@ import {itemsActions} from "../../store/features/items/items-slice";
 import {editPlan} from "../../store/actions/plans-list/updating-action";
 import {deletePlan} from "../../store/actions/plans-list/deleting-action";
 import {useParams} from "react-router-dom";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
+import {RootState} from "../../store";
 
 const UsePartsOfPlanActions = () => {
 
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
 
     const params = useParams();
 
     const handleSubmit = (values: PlanEntity, reset: () => void) => {
-        dispatch(sendPlanData(values, setDemoModalIsOpen, params) as any);
+        dispatch(sendPlanData(values, setDemoModalIsOpen, params));
         reset();
     }
 
     const handleUpdate = (values: PlanEntity) => {
-        dispatch(editPlan(values, setDemoModalIsOpen, setInformationModalIsOpen) as any);
+        dispatch(editPlan(values, setDemoModalIsOpen, setInformationModalIsOpen));
         dispatch(itemsActions.updateItem(values));
     }
 
     const handleDelete = () => {
-        dispatch(deletePlan(closeDemoModal) as any);
+        dispatch(deletePlan(closeDemoModal));
     }
 
     return {

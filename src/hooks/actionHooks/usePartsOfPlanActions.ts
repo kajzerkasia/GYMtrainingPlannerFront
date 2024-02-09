@@ -6,27 +6,29 @@ import {PartOfPlanEntity} from 'types';
 import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating-action";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {deletePartOfPlan} from "../../store/actions/parts-of-plan/deleting-action";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
+import {RootState} from "../../store";
 
 const UsePartsOfPlanActions = () => {
 
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
 
     const params = useParams();
 
     const handleSubmit = (values: PartOfPlanEntity, reset: () => void) => {
-        dispatch(sendPartsOfPlanData(values, setDemoModalIsOpen, params) as any);
+        dispatch(sendPartsOfPlanData(values, setDemoModalIsOpen, params));
         reset();
     }
 
     const handleUpdate = (values: PartOfPlanEntity, reset: () => void) => {
-        dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen) as any);
+        dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen));
         dispatch(itemsActions.updateItem(values));
     }
 
     const handleDelete = () => {
-        dispatch(deletePartOfPlan(closeDemoModal) as any);
+        dispatch(deletePartOfPlan(closeDemoModal));
     }
 
     return {
