@@ -3,3 +3,7 @@
     transition: color 0.4s;
     width: 30px;
 }
+
+.icon:hover {
+    color: #d495e2;
+}

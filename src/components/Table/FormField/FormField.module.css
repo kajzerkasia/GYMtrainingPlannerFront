@@ -30,3 +30,34 @@ td, th {
 h1 {
     font-size: 1.5rem;
 }
+
+button {
+    background-color: transparent;
+    color: #E6E6FA;
+    border: none;
+    cursor: pointer;
+}
+
+.td {
+    min-width: 280px;
+}
+
+td.td.narrower {
+    min-width: 120px;
+}
+
+.edited_input {
+    border: none;
+    color: #E6E6FA;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    animation: highlight 1s;
+    background-color: transparent;
+    height: 5vh;
+}
+
+.error_message {
+    color: red;
+}
