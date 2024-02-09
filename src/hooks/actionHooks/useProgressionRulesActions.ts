@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseModal} from "../useModal";
+import {UseDemoModal} from "../modal/useDemoModal";
 import {useParams} from "react-router-dom";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {RuleEntity} from 'types';
@@ -13,7 +13,7 @@ const UseProgressionRulesActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
+    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
 
     const params = useParams();
 
@@ -23,7 +23,7 @@ const UseProgressionRulesActions = () => {
     }
 
     const handleUpdate = (values: RuleEntity, reset: () => void) => {
-        dispatch(editProgressionRule(values, reset, setDemoModalIsOpen, setInformationModalIsOpen));
+        dispatch(editProgressionRule(values, reset, setDemoModalIsOpen));
         dispatch(itemsActions.updateItem(values));
     }
 

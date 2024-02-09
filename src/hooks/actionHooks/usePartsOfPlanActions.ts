@@ -1,6 +1,6 @@
 import {sendPartsOfPlanData} from "../../store/actions/parts-of-plan/sending-action";
 import {useDispatch} from "react-redux";
-import {UseModal} from "../useModal";
+import {UseDemoModal} from "../modal/useDemoModal";
 import {useParams} from "react-router-dom";
 import {PartOfPlanEntity} from 'types';
 import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating-action";
@@ -13,7 +13,7 @@ const UsePartsOfPlanActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
+    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
 
     const params = useParams();
 
@@ -23,7 +23,7 @@ const UsePartsOfPlanActions = () => {
     }
 
     const handleUpdate = (values: PartOfPlanEntity, reset: () => void) => {
-        dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen, setInformationModalIsOpen));
+        dispatch(editPartOfPlan(values, reset, setDemoModalIsOpen));
         dispatch(itemsActions.updateItem(values));
     }
 

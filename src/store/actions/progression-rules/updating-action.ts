@@ -9,7 +9,6 @@ export const editProgressionRule = (
     values: RuleEntity,
     reset: () => void,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void
 ) => {
     return async (dispatch: AppDispatch) => {
         dispatch(itemsActions.setIsEdited(false));
@@ -64,7 +63,6 @@ export const editProgressionRule = (
                 title: 'Błąd!',
                 message: 'Wprowadź poprawne dane dla zasady progresji.'
             }));
-            setInformationModalIsOpen(true);
             reset();
         }
     };

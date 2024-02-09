@@ -9,7 +9,6 @@ import {itemsActions} from "../../features/items/items-slice";
 export const addExercise = (
     values: ExerciseEntity,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void,
     params: Record<string, string | undefined>,
     reset: () => void,
 ) => {
