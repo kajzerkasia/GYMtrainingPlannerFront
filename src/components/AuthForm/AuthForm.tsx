@@ -1,5 +1,5 @@
 import {Form, Link, useSearchParams, useActionData, useNavigation} from 'react-router-dom';
-import './AuthForm.css';
+import classes from './AuthForm.module.css';
 
 function AuthForm() {
     const data: any = useActionData();
@@ -11,7 +11,7 @@ function AuthForm() {
 
     return (
         <>
-            <Form method="post" className="form">
+            <Form method="post" className={classes.form}>
                 <h1>{isLogin ? 'Zaloguj się' : 'Dodaj nowego użytkownika'}</h1>
                 <div>
                     {data && data.errors && (
@@ -35,7 +35,7 @@ function AuthForm() {
                     <label htmlFor="image">{!isLogin && <span>*</span>}Hasło</label>
                     <input id="password" type="password" name="password" required/>
                 </p>
-                <div className="actions">
+                <div className={classes.actions}>
                     <Link to={`?mode=${isLogin ? 'signup' : 'login'}`}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
                     </Link>
