@@ -4,3 +4,45 @@
     padding-top: 15vh;
     padding-bottom: 5vh;
 }
+
+@media (min-width: 1480px) {
+    .table {
+        width: 550px;
+    }
+}
+
+@media (max-height: 500px) {
+    .table {
+        padding-top: 10vh;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .table {
+        width: 100%;
+        padding-top: 2vh;
+    }
+
+    .table td {
+        display: block;
+        width: 100%;
+    }
+
+    .table td:nth-child(3),
+    .table td:nth-child(4),
+    .table td:nth-child(5) {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .table td:nth-child(1),
+    .table td:nth-child(2) {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .table td:nth-child(1) {
+        margin-top: 10vh;
+    }
+}

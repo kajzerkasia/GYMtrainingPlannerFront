@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Status} from 'types';
-import {TbPlus, TbCheck, TbLink} from "react-icons/tb";
+import {TbPlus, TbCheck} from "react-icons/tb";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {validateURL} from "../../helpers/validateUrl";
-import classes from './TableForm.module.css';
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
+import {FormField} from "./FormField/FormField";
 
 export type TableFormProps<T> = {
     onSubmit: (values: T, reset: () => void) => void | Promise<void>;
@@ -40,58 +40,18 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
     };
 
     const renderInput = (field: keyof T) => (
-        <td
+        <FormField
             key={field as string}
-            className={`${classes.td}
-            ${field === 'order' ? `${classes.narrower}` : ''} 
-            ${field === 'series' ? `${classes.narrower}` : ''}
-              ${field === 'repetitions' ? `${classes.narrower}` : ''}
-                 ${field === 'pause' ? `${classes.narrower}` : ''}
-            `}
-        >
-            {field === 'url' ? (
-                <>
-                    <input
-                        placeholder="Link do filmu instruktażowego"
-                        className={isEdited ? `${classes.edited_input}` : `${classes.input}`}
-                        type="url"
-                        name={field as string}
-                        required
-                        value={values[field] || ''}
-                        onChange={(event) => handleChange(field, event.target.value)}
-                    />
-                    <div>
-                        <label htmlFor="url"></label>
-                        <a
-                            href={values.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {actionType === Status.Add || !values.url ? '' :
-                                <IconProvider>
-                                    <TbLink/>
-                                </IconProvider>
-                            }
-                        </a>
-                    </div>
-                    {urlError && <div className={classes.error_message}>{urlError}</div>}
-                </>
-            ) : (
-                <input
-                    placeholder="..."
-                    className={isEdited ? `${classes.edited_input}` : `${classes.input}`}
-                    type="text"
-                    name={field as string}
-                    required
-                    value={values[field] || ''}
-                    onChange={(event) => handleChange(field, event.target.value)}
-                />
-            )}
-        </td>
+            field={field}
+            values={values}
+            isEdited={isEdited}
+            handleChange={handleChange}
+            urlError={urlError}
+            actionType={actionType}
+        />
     );
 
     const fieldsToRender = availableFields || Object.keys(initialValues);
-
     const inputElements = fieldsToRender.map((field) => renderInput(field as keyof T));
 
     return (
