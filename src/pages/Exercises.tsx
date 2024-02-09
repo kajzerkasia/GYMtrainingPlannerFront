@@ -9,6 +9,7 @@ import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import ExercisesTableHead from "../components/Table/ExercisesTableHead";
+import Table from "../components/Table/Table";
 
 const Exercises = () => {
 
@@ -33,7 +34,7 @@ const Exercises = () => {
         <div className="parts-wrapper">
             <div className="main-plan">
                 <DemoSign/>
-                <table className="main-table">
+                <Table>
                     <ExercisesTableHead/>
                     <TableBody
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
@@ -41,7 +42,7 @@ const Exercises = () => {
                         onDelete={handleDelete}
                         availableFields={availableFields}
                     />
-                </table>
+                </Table>
                 <BackButton/>
             </div>
         </div>

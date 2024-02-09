@@ -10,6 +10,7 @@ import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import PartsOfPlanTableHead from "../components/Table/PartsOfPlanTableHead";
+import Table from "../components/Table/Table";
 
 const PartsOfPlan = () => {
 
@@ -41,7 +42,7 @@ const PartsOfPlan = () => {
         <div className="parts-wrapper">
             <div className="main-plan">
                 <DemoSign/>
-                <table className="main-table">
+                <Table>
                     <PartsOfPlanTableHead/>
                     <TableBody
                         links={PARTS_OF_PLAN_LINKS}
@@ -50,7 +51,7 @@ const PartsOfPlan = () => {
                         onDelete={handleDelete}
                         availableFields={availableFields}
                     />
-                </table>
+                </Table>
                 <BackButton/>
             </div>
         </div>

@@ -9,6 +9,7 @@ import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
 import {RuleEntity} from 'types';
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";
+import Table from "../components/Table/Table";
 
 const ProgressionRules = () => {
 
@@ -33,7 +34,7 @@ const ProgressionRules = () => {
         <div className="parts-wrapper">
             <div className="main-plan">
                 <DemoSign/>
-                <table className="main-table">
+                <Table>
                     <ProgressionRulesTableHead/>
                     <TableBody
                         onSubmit={async (values, reset) => handleSubmit((values as unknown as RuleEntity), reset)}
@@ -41,7 +42,7 @@ const ProgressionRules = () => {
                         onDelete={handleDelete}
                         availableFields={availableFields}
                     />
-                </table>
+                </Table>
                 <BackButton/>
             </div>
         </div>

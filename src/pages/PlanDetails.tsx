@@ -9,6 +9,7 @@ import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";
 import {DetailEntity} from 'types';
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";
+import Table from "../components/Table/Table";
 
 const PlanDetails = () => {
 
@@ -31,13 +32,13 @@ const PlanDetails = () => {
         <div className="parts-wrapper">
             <div className="main-plan">
                 <DemoSign/>
-                <table className="main-table">
+                <Table>
                     <PlanDetailsTableHead/>
                     <TableBody
                         onUpdate={async (values, reset) => handleUpdate((values as unknown as DetailEntity), reset)}
                         availableFields={availableFields}
                     />
-                </table>
+                </Table>
                 <BackButton/>
             </div>
         </div>
