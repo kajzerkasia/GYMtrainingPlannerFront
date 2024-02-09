@@ -8,7 +8,12 @@ import {UseAddHoursToEvent} from "./useAddHoursToEvent";
 import {useParams} from "react-router-dom";
 
 export const UseAddNewEvent = () => {
+
     const dispatch = useDispatch();
+    const params = useParams();
+
+    const {addHoursToEvent} = UseAddHoursToEvent();
+
     const {
         events,
         trainingPlans,
@@ -29,9 +34,14 @@ export const UseAddNewEvent = () => {
         toggleAddTrainingToCalendar,
     } = calendarsActions;
 
-    const {addHoursToEvent} = UseAddHoursToEvent();
-
-    const params = useParams();
+    const resetValues = () => {
+        dispatch(selectTrainingPlan(null));
+        dispatch(selectPlanPart(null));
+        dispatch(selectDate(null));
+        dispatch(toggleAddTrainingToCalendar(false));
+        dispatch(updateStartTime(''));
+        dispatch(updateEndTime(''));
+    }
 
     const handleAddEvent = async (startTime: string, endTime: string) => {
         if (selectedTrainingPlan && selectedPlanPartId && selectedDate) {
@@ -106,12 +116,7 @@ export const UseAddNewEvent = () => {
                 };
 
                 dispatch(updateEvents([...events, newEventWithId]));
-                dispatch(selectTrainingPlan(null));
-                dispatch(selectPlanPart(null));
-                dispatch(selectDate(null));
-                dispatch(toggleAddTrainingToCalendar(false));
-                dispatch(updateStartTime(''));
-                dispatch(updateEndTime(''));
+                resetValues();
 
                 dispatch(uiActions.showNotification({
                     status: 'success',
