@@ -1,4 +1,4 @@
-.sidebar-container {
+.div_edit_training_container {
     display: flex;
     position: absolute;
     top: 55%;
@@ -15,15 +15,15 @@
     margin: 0 auto;
 }
 
-.sidebar-container h1 {
+.div_edit_training_container h1 {
     margin-bottom: 10px;
 }
 
-.sidebar-container.open {
+.div_edit_training_container.open {
     transform: translateX(0);
 }
 
-.sidebar-container.closed {
+.div_edit_training_container.closed {
     transform: translateX(100%);
 }
 
@@ -44,13 +44,13 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     cursor: pointer;
 }
 
-.sidebar-container.open input[type="time"],
-.sidebar-container.open .add-event-button {
+.div_edit_training_container.open input[type="time"],
+.div_edit_training_container.open .add_event_button {
     display: block;
     margin-bottom: 10px;
 }
 
-.label-date {
+.label_date {
     width: 60%;
     padding-right: 10px;
     box-sizing: border-box;
@@ -59,11 +59,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     text-align: left;
 }
 
-.input-date {
+.input_date {
     width: 40%;
 }
 
-.sidebar-button {
+.edit_training_button {
     margin-top: 10px;
     padding: 8px 12px;
     background-color: transparent;
@@ -74,7 +74,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: 100%;
 }
 
-.sidebar-button:hover {
+.edit_training_button:hover {
     background-color: #d495e2;
 }
 

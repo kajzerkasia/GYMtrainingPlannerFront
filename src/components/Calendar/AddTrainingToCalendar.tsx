@@ -1,9 +1,10 @@
 import React from "react";
-import './AddTrainingToCalendar.css';
+import './AddTrainingToCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import UseAddTrainingToCalendar from "../../hooks/calendar/useAddTrainingToCalendar";
+import classes from './AddTrainingToCalendar.module.css';
 
 export const AddTrainingToCalendar = () => {
 
@@ -35,7 +36,11 @@ export const AddTrainingToCalendar = () => {
 
 
     return (
-        <div className={`div_add_training_container ${isAddTrainingToCalendarOpen ? 'open' : 'closed'}`}>
+        <div
+            className={`${classes.div_add_training_container} 
+            ${isAddTrainingToCalendarOpen ?
+                `${classes.open}` : `${classes.closed}`}`
+            }>
             <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
@@ -59,33 +64,33 @@ export const AddTrainingToCalendar = () => {
                     </option>
                 ))}
             </select>
-            {timeError && <div className="error"><p>{timeError}</p></div>}
+            {timeError && <div className={classes.error}><p>{timeError}</p></div>}
             <label
-                className="label-date"
+                className={classes.label_date}
                 htmlFor="start">
                 Godzina ropoczęcia
             </label>
             <input
                 id="start"
-                className="input-date"
+                className={classes.input_date}
                 type="time"
                 value={startTime}
                 onChange={handleStartTimeChange}
             />
             <label
-                className="label-date"
+                className={classes.label_date}
                 htmlFor="end">
                 Godzina zakończenia
             </label>
             <input
                 id="end"
-                className="input-date"
+                className={classes.input_date}
                 type="time"
                 value={endTime}
                 onChange={handleEndTimeChange}
             />
             <button
-                className="add_training_button"
+                className={classes.add_training_button}
                 onClick={async () => {
                     if (isDemoMode) {
                         dispatch(toggleDemoMode(true));
@@ -101,9 +106,10 @@ export const AddTrainingToCalendar = () => {
                 Dodaj
             </button>
             <button
-                className="add_training_button"
+                className={classes.add_training_button}
                 onClick={handleAddTrainingToCalendarClose}
-            >Zamknij
+            >
+                Zamknij
             </button>
         </div>
     );

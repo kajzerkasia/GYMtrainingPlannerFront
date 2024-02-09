@@ -1,9 +1,10 @@
 import React from "react";
-import './EditTrainingFromCalendar.css';
+import classes from './EditTrainingFromCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseEditEvent} from "../../hooks/calendar/useEditEvent";
+import UseEditTrainingFromCalendar from "../../hooks/calendar/useEditTrainingFromCalendar";
 
 interface EditTrainingFromCalendarProps {
     openModal: () => void;
@@ -24,54 +25,49 @@ export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarPr
 
     const {
         toggleDemoMode,
-        toggleSidebar,
-        updateStartTime,
-        updateEndTime,
     } = calendarsActions;
-
-    const closeSidebar = () => {
-        dispatch(toggleDemoMode(false));
-        dispatch(toggleSidebar(false));
-    };
-
-    const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateStartTime(e.target.value));
-
-    const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
     const {handleEditEvent} = UseEditEvent();
 
+    const {handleStartTimeChange, handleEndTimeChange, closeSidebar} = UseEditTrainingFromCalendar();
 
 
     return (
-        <div className={`sidebar-container ${isSidebarOpen ? "open" : "closed"}`}>
+        <div className={`${classes.div_edit_training_container} ${isSidebarOpen ? `${classes.open}` : `${classes.closed}`}`}>
             <h1>{isDemoMode ? "Tryb demo: Edycja wydarzenia wyłączona" : "Edytuj trening"}</h1>
-            {timeError && <div className="error"><p>{timeError}</p></div>}
+            {timeError && (
+                <div className={classes.error}>
+                    <p>{timeError}</p>
+                </div>
+            )}
             <label
-                className="label-date"
+                className={classes.label_date}
                 htmlFor="startTime"
-            >Godzina rozpoczęcia
+            >
+                Godzina rozpoczęcia
             </label>
             <input
-                className="input-date"
+                className={classes.input_date}
                 type="time"
                 id="startTime"
                 value={startTime}
                 onChange={handleStartTimeChange}
             />
             <label
-                className="label-date"
+                className={classes.label_date}
                 htmlFor="endTime"
-            >Godzina zakończenia
+            >
+                Godzina zakończenia
             </label>
             <input
-                className="input-date"
+                className={classes.input_date}
                 type="time"
                 id="endTime"
                 value={endTime}
                 onChange={handleEndTimeChange}
             />
             <button
-                className="sidebar-button"
+                className={classes.edit_training_button}
                 onClick={async () => {
                     if (isDemoMode) {
                         dispatch(toggleDemoMode(true));
@@ -96,7 +92,7 @@ export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarPr
                 Zapisz zmiany
             </button>
             <button
-                className="sidebar-button"
+                className={classes.edit_training_button}
                 onClick={async () => {
                     if (!isDemoMode) {
                         openModal();
@@ -106,7 +102,7 @@ export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarPr
                 Usuń trening
             </button>
             <button
-                className="sidebar-button"
+                className={classes.edit_training_button}
                 onClick={closeSidebar}
             >
                 Zamknij
