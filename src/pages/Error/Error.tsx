@@ -1,10 +1,9 @@
 import React from 'react';
-import {GoBack} from "../../components/GoBack/GoBack";
 import {TbMoodCry} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import MainNavigation from "../../components/MainNavigation/MainNavigation";
 import PageContent from "../../components/PageContent/PageContent";
-import {useRouteError} from "react-router-dom";
+import {Link, useRouteError} from "react-router-dom";
 import './Error.css';
 
 interface CustomError {
@@ -44,7 +43,7 @@ export const Error = () => {
                         <TbMoodCry/>
                     </IconContext.Provider>
                 </PageContent>
-                <GoBack to='/' text="Powrót do strony głównej"/>
+                <Link to='/'>Powrót do strony głównej</Link>
             </div>
         </>
     );

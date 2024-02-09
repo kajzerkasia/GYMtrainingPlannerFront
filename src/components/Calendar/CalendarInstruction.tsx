@@ -3,7 +3,7 @@ import CalendarInstructionList from "./CalendarInstructionList";
 import {ADD_TRAINING_INSTRUCTION, DELETE_TRAINING_INSTRUCTION, EDIT_TRAINING_INSTRUCTION} from "../../constants/calendarInstruction";
 import {TbPencil, TbPlus, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
-import './CalendarInstruction.css';
+import classes from './CalendarInstruction.module.css';
 
 interface CalendarInstructionProps {
     toggleAccordion: () => void;
@@ -11,12 +11,12 @@ interface CalendarInstructionProps {
 
 const CalendarInstruction = ({toggleAccordion}: CalendarInstructionProps) => {
     return (
-        <div className="calendar-div">
-            <div className="calendar-instruction-header">
-                <h1 className="calendar-instruction-h1">Jak to działa?</h1>
+        <div className={classes.div_container}>
+            <div className={classes.header}>
+                <h1 className={classes.h1}>Jak to działa?</h1>
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     <button
-                        className="close-instruction"
+                        className={classes.button}
                         onClick={toggleAccordion}>
                         <TbX/>
                     </button>

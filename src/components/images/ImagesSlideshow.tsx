@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import Image from "../Image/Image";
 import {SLIDES} from "../../constants/slides";
-import './ImagesSlideshow.css'
+import classes from './ImagesSlideshow.module.css';
 
 export default function ImagesSlideshow() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -24,14 +24,14 @@ export default function ImagesSlideshow() {
     }, []);
 
     return (
-        <div className="slideshow">
-            <p className={`text ${textVisible ? 'visible' : 'hidden'}`}>{SLIDES[currentImageIndex].text}</p>
+        <div className={classes.slideshow}>
+            <p className={`${classes.text} ${textVisible ? `${classes.visible}` : `${classes.hidden}`}`}>{SLIDES[currentImageIndex].text}</p>
             {SLIDES.map((slide, index) => (
                 <Image
                     key={slide.text}
                     src={SLIDES[currentImageIndex].src}
                     alt="Gym photo"
-                    className={index === currentImageIndex ? 'active' : ''}
+                    className={index === currentImageIndex ? `${classes.active}` : ''}
                 />
             ))}
         </div>

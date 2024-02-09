@@ -1,8 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {CalendarSettings} from "./CalendarSettings";
-import moment from "moment";
-import "moment/locale/pl";
-import './CalendarAddons.css';
 import {AddTrainingToCalendar} from "./AddTrainingToCalendar";
 import {EditTrainingFromCalendar} from "./EditTrainingFromCalendar";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,6 +11,9 @@ import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetchingTrainings/fetching-action";
 import {formatDateName} from "../../helpers/formatMonthName";
 import {fetchPlansData} from "../../store/actions/plans-list/fetching-action";
+import moment from "moment";
+import "moment/locale/pl";
+import './CalendarAddons.css';
 
 export interface MyEvent {
     planName: string;
