@@ -1,0 +1,196 @@
+.input {
+    border: none;
+    color: #E6E6FA;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Playpen Sans', sans-serif;
+    background-color: transparent;
+}
+
+input:focus {
+    outline: transparent;
+    background-color: transparent;
+}
+
+.td {
+    min-width: 280px;
+}
+
+td.td.narrower {
+    min-width: 120px;
+}
+
+td, th {
+    height: 90px;
+    padding: 15px;
+    border: 1px solid #d495e2;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+button {
+    background-color: transparent;
+    color: #E6E6FA;
+    border: none;
+    cursor: pointer;
+}
+
+.react-icons {
+    font-size: 22px;
+    transition: color 0.4s;
+    width: 30px;
+}
+
+.react-icons:hover {
+    color: #d495e2;
+}
+
+.td-progression-rules {
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+}
+
+.edited_input {
+    border: none;
+    color: #E6E6FA;
+    font-size: 22px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Ubuntu', sans-serif;
+    animation: highlight 1s;
+    background-color: transparent;
+    height: 5vh;
+}
+
+.question {
+    animation: background-highlight 1s;
+}
+
+@keyframes highlight {
+    0% {
+        color: #E6E6FA;
+    }
+    50% {
+        color: #d495e2;
+    }
+    100% {
+        color: #E6E6FA;
+    }
+}
+
+.react-main-icon {
+    font-size: 24px;
+    vertical-align: -2px
+}
+
+.dots {
+    height: 3vh;
+}
+
+.parts-modal {
+    text-align: center;
+    margin: 25vh auto 5vh;
+    padding: 40px 40px;
+    width: 30%;
+    background-color: black;
+    font-size: 22px;
+}
+
+.parts-modal button {
+    margin-top: 7vh;
+    font-size: 22px;
+}
+
+.parts-modal h2 {
+    margin-bottom: 7vh;
+}
+
+.spinner_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    font-size: 18px;
+}
+
+.div_loading {
+    margin-bottom: 20px;
+}
+
+.error_message {
+    color: red;
+}
+
+@media (min-width: 1480px) {
+    .main-table {
+        width: 550px;
+    }
+}
+
+@media (max-height: 500px) {
+    .main-table {
+        padding-top: 10vh;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .main-table {
+        width: 100%;
+        padding-top: 2vh;
+    }
+
+    .main-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .main-table td:nth-child(3),
+    .main-table td:nth-child(4),
+    .main-table td:nth-child(5) {
+        display: inline-block;
+        width: 50%;
+    }
+
+    .main-table td:nth-child(1),
+    .main-table td:nth-child(2) {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .main-table td:nth-child(1) {
+        margin-top: 10vh;
+    }
+
+    .tr-add td {
+        width: 100%;
+    }
+
+    .training-plan {
+        height: 75px;
+    }
+
+    .dots {
+        height: 57px;
+    }
+
+    .td-progression-rules {
+        height: 57px;
+    }
+
+    .react-icons-dots {
+        vertical-align: -5px;
+    }
+
+    .add_table_icon {
+        vertical-align: -12px;
+    }
+
+}
+
+
+
