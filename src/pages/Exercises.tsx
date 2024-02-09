@@ -9,7 +9,7 @@ import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import ExercisesTableHead from "../components/Table/ExercisesTableHead";
-import Table from "../components/Table/Table";
+import Table from "../components/Table/Table/Table";
 
 const Exercises = () => {
 

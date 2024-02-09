@@ -10,7 +10,7 @@ import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import PartsOfPlanTableHead from "../components/Table/PartsOfPlanTableHead";
-import Table from "../components/Table/Table";
+import Table from "../components/Table/Table/Table";
 
 const PartsOfPlan = () => {
 

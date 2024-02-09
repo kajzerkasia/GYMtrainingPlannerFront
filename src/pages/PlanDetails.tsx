@@ -9,7 +9,7 @@ import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";
 import {DetailEntity} from 'types';
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";
-import Table from "../components/Table/Table";
+import Table from "../components/Table/Table/Table";
 
 const PlanDetails = () => {
 

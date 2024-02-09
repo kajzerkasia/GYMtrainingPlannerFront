@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {Status} from 'types';
 import {TbPlus, TbCheck, TbLink} from "react-icons/tb";
-import {IconContext} from "react-icons";
-import './Table.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {validateURL} from "../../helpers/validateUrl";
+import classes from './TableForm.module.css';
+import IconProvider from "../IconProvider/IconProvider";
+import TableData from "./TableData/TableData";
 
 export type TableFormProps<T> = {
     onSubmit: (values: T, reset: () => void) => void | Promise<void>;
@@ -41,25 +42,25 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
     const renderInput = (field: keyof T) => (
         <td
             key={field as string}
-            className={`table-form-td 
-            ${field === 'order' ? 'narrower' : ''} 
-            ${field === 'series' ? 'narrower' : ''}
-              ${field === 'repetitions' ? 'narrower' : ''}
-                 ${field === 'pause' ? 'narrower' : ''}
+            className={`${classes.td}
+            ${field === 'order' ? `${classes.narrower}` : ''} 
+            ${field === 'series' ? `${classes.narrower}` : ''}
+              ${field === 'repetitions' ? `${classes.narrower}` : ''}
+                 ${field === 'pause' ? `${classes.narrower}` : ''}
             `}
         >
             {field === 'url' ? (
                 <>
                     <input
                         placeholder="Link do filmu instruktażowego"
-                        className={isEdited ? 'edited-input' : 'input'}
+                        className={isEdited ? `${classes.edited_input}` : `${classes.input}`}
                         type="url"
                         name={field as string}
                         required
                         value={values[field] || ''}
                         onChange={(event) => handleChange(field, event.target.value)}
                     />
-                    <div className="exercise-link">
+                    <div>
                         <label htmlFor="url"></label>
                         <a
                             href={values.url}
@@ -67,18 +68,18 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
                             rel="noopener noreferrer"
                         >
                             {actionType === Status.Add || !values.url ? '' :
-                                <IconContext.Provider value={{className: 'react-icons-link'}}>
+                                <IconProvider>
                                     <TbLink/>
-                                </IconContext.Provider>
+                                </IconProvider>
                             }
                         </a>
                     </div>
-                    {urlError && <div className="error-message">{urlError}</div>}
+                    {urlError && <div className={classes.error_message}>{urlError}</div>}
                 </>
             ) : (
                 <input
                     placeholder="..."
-                    className={isEdited ? 'edited-input' : 'input'}
+                    className={isEdited ? `${classes.edited_input}` : `${classes.input}`}
                     type="text"
                     name={field as string}
                     required
@@ -96,11 +97,11 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
     return (
         <>
             {inputElements}
-            <td>
-                <IconContext.Provider value={{className: 'react-icons'}}>
+            <TableData>
+                <IconProvider>
                     <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
-                </IconContext.Provider>
-            </td>
+                </IconProvider>
+            </TableData>
         </>
     );
 };

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {TbUserCircle} from "react-icons/tb";
 import IconProvider from "../IconProvider/IconProvider";
+import TableData from "./TableData/TableData";
 
 const PlansHead = () => {
     return (
@@ -10,11 +11,11 @@ const PlansHead = () => {
             <td align="center" colSpan={3}>
                 <h1>Plany treningowe</h1>
             </td>
-            <td>
+            <TableData>
                 <IconProvider>
                     <Link to="/auth"><TbUserCircle/></Link>
                 </IconProvider>
-            </td>
+            </TableData>
         </tr>
         </thead>
     );
