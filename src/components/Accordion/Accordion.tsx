@@ -1,5 +1,5 @@
 import React from "react";
-import "./Accordion.css";
+import classes from './Accordion.module.css';
 import {IconContext} from "react-icons";
 import {TbQuestionMark} from "react-icons/tb";
 
@@ -10,25 +10,28 @@ type AccordionProps = {
     children: React.ReactNode;
 };
 
-export const Accordion = ({
-                              title,
-                              isOpen,
-                              toggleAccordion,
-                              children,
-                          }: AccordionProps) => {
+export const Accordion = ({title, isOpen, toggleAccordion, children}: AccordionProps) => {
     return (
-        <div className="accordion-container">
-            <div className="accordion">
-                <span className="accordion-title">{title}</span>
-                <span className="accordion-icon">
+        <div className={classes.accordion_container}>
+            <div className={classes.accordion}>
+                <span className={classes.accordion_title}>{title}</span>
+                <span className={classes.accordion_icon}>
                          <IconContext.Provider value={{className: 'react-icons'}}>
-                             <button onClick={toggleAccordion} className="accordion-button"><TbQuestionMark/></button>
+                             <button
+                                 onClick={toggleAccordion}
+                                 className={classes.accordion_button}>
+                                 <TbQuestionMark/>
+                             </button>
                          </IconContext.Provider>
                 </span>
             </div>
-                <div className={`accordion-content ${isOpen ? 'open' : 'closed'}`}>
-                    {children}
-                </div>
+            <div
+                className={`${classes.accordion_content} 
+                    ${isOpen ? `${classes.open}` : `${classes.closed}`}
+                    `}
+            >
+                {children}
+            </div>
         </div>
     );
 };
