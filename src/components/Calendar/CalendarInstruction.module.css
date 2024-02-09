@@ -1,4 +1,4 @@
-.calendar-div {
+.div_container {
     height: 100%;
     text-align: left;
     display: flex;
@@ -6,25 +6,25 @@
     justify-content: space-evenly;
 }
 
-.calendar-list {
+.list {
     color: #E6E6FA;
 }
 
-.calendar-list li {
+.list li {
     margin-left: 20px;
     margin-top: 5px;
 }
 
-.calendar-instruction-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.close-instruction {
+.button {
     padding: 10px 10px;
 }
 
-.calendar-instruction-h1 {
+.h1 {
     margin-left: 20px;
 }
 
