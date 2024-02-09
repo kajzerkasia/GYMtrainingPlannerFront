@@ -9,6 +9,7 @@ import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constan
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import IconProvider from "../IconProvider/IconProvider";
+import TableData from "./TableData/TableData";
 
 interface AddTableElementsProps {
     children: ReactNode;
@@ -51,11 +52,11 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />
-            <td>
+            <TableData>
                 <IconProvider>
                     <Link to="/instruction"><TbQuestionMark/></Link>
                 </IconProvider>
-            </td>
+            </TableData>
             <TableForm
                 initialValues={initialValues}
                 onSubmit={async (values, reset) => {
@@ -70,11 +71,11 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 availableFields={availableFields}
             />
             {availableFields.length === 1 && availableFields[0] === 'name' && (
-                <td>
+                <TableData>
                     <IconProvider>
                         {children}
                     </IconProvider>
-                </td>
+                </TableData>
             )}
         </tr>
     );

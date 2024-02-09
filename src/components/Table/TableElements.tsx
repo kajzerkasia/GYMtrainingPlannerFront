@@ -11,6 +11,7 @@ import UseModals from "../../hooks/useModals";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
 import IconProvider from "../IconProvider/IconProvider";
+import TableData from "./TableData/TableData";
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -74,11 +75,11 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
             {itemsList.map((item: any) => (
                 <tr key={`${item.id}`}>
                     {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
-                        <td>
+                        <TableData>
                             <IconProvider>
                                 <button onClick={() => deleteItem(item.id)}><TbX/></button>
                             </IconProvider>
-                        </td>
+                        </TableData>
                     )}
                     <TableForm
                         initialValues={item}
@@ -99,17 +100,17 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                     {(availableFields.length === 1 && availableFields[0] === 'name' && (
                         'planId' in item ?
                             (
-                                <td>
+                                <TableData>
                                     <IconProvider>
                                         <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
                                     </IconProvider>
-                                </td>
+                                </TableData>
                             ) : (
-                                <td className="dots" colSpan={1}>
+                                <TableData>
                                     <IconProvider>
                                         <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}><TbDotsVertical/></Link>
                                     </IconProvider>
-                                </td>
+                                </TableData>
                             )
                     ))}
                 </tr>

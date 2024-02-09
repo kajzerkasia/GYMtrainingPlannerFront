@@ -2,7 +2,6 @@ import TableElements from "./TableElements";
 import AddTableElements from "./AddTableElements";
 import React from "react";
 import RedirectLink from "../RedirectLink";
-import './Table.css';
 
 export interface LinkProps {
     icon: React.ComponentType<any>;
