@@ -1,0 +1,32 @@
+.input {
+    border: none;
+    color: #E6E6FA;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    font-family: 'Playpen Sans', sans-serif;
+    background-color: transparent;
+}
+
+input:focus {
+    outline: transparent;
+    background-color: transparent;
+}
+
+.td {
+    min-width: 280px;
+}
+
+td.td.narrower {
+    min-width: 120px;
+}
+
+td, th {
+    height: 90px;
+    padding: 15px;
+    border: 1px solid #d495e2;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
