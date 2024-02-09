@@ -1,5 +1,4 @@
 import React, {ReactNode} from 'react';
-import {IconContext} from "react-icons";
 import {TbAlertTriangle, TbBarbell, TbDotsVertical, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
@@ -11,7 +10,7 @@ import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} 
 import UseModals from "../../hooks/useModals";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
-import classes from './TableElements.module.css';
+import IconProvider from "../IconProvider/IconProvider";
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -76,9 +75,9 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                 <tr key={`${item.id}`}>
                     {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
                         <td>
-                            <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
+                            <IconProvider>
                                 <button onClick={() => deleteItem(item.id)}><TbX/></button>
-                            </IconContext.Provider>
+                            </IconProvider>
                         </td>
                     )}
                     <TableForm
@@ -101,15 +100,15 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                         'planId' in item ?
                             (
                                 <td>
-                                    <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
+                                    <IconProvider>
                                         <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
-                                    </IconContext.Provider>
+                                    </IconProvider>
                                 </td>
                             ) : (
                                 <td className="dots" colSpan={1}>
-                                    <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
+                                    <IconProvider>
                                         <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}><TbDotsVertical/></Link>
-                                    </IconContext.Provider>
+                                    </IconProvider>
                                 </td>
                             )
                     ))}
