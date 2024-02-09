@@ -4,10 +4,10 @@ import {Error} from "./pages/Error/Error";
 import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
-import './App.css';
 import {tokenLoader} from "./helpers/auth";
 import Home from "./pages/Home";
 import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
+import './App.css';
 
 const Exercises = lazy(() => import('./pages/Exercises'));
 const Plans = lazy(() => import('./pages/Plans'));

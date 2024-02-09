@@ -1,9 +1,9 @@
 import React from 'react';
-import './BackButton.css';
+import classes from './BackButton.module.css';
 
 const BackButton = () => {
     return (
-        <button className="btn-back" onClick={() => window.history.back()}>
+        <button className={classes.btn_back} onClick={() => window.history.back()}>
             Powrót
         </button>
     );
