@@ -1,4 +1,4 @@
-.modal-container {
+.div_modal_container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -33,13 +33,13 @@
     border: 1px solid #d495e2;
 }
 
-.icon-modal {
+.modal_icon {
     margin: 0 auto;
     font-size: 70px;
     color: #E6E6FA;
 }
 
-.modal-h1 {
+.modal_h1 {
     color: #E6E6FA;
     margin-bottom: 5vh;
 }

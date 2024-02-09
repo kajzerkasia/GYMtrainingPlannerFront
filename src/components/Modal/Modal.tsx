@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, HTMLAttributes, PropsWithChildren} from 'react';
 import {createPortal} from 'react-dom';
-import './Modal.css';
 import {IconContext, IconType} from "react-icons";
+import classes from './Modal.module.css';
 
 interface Props extends HTMLAttributes<HTMLDialogElement>, PropsWithChildren {
     open: boolean;
@@ -50,26 +50,30 @@ function Modal({
     };
 
     return createPortal(
-        <dialog className="modal" ref={dialog} onClose={onClose}>
+        <dialog
+            className={classes.modal}
+            ref={dialog}
+            onClose={onClose}
+        >
             {open ? (
-                <div className="modal-container">
+                <div className={classes.div_modal_container}>
                     {children}
                     {modalText && (
-                        <h1 className="modal-h1">{modalText}</h1>
+                        <h1 className={classes.modal_h1}>{modalText}</h1>
                     )}
                     {IconComponent && (
-                        <IconContext.Provider value={{className: "icon-modal"}}>
+                        <IconContext.Provider value={{className: `${classes.modal_icon}`}}>
                             <IconComponent/>
                         </IconContext.Provider>
                     )}
                     <div>
                         {onCancel && (
-                            <button className="btn-decline" onClick={handleCancel}>
+                            <button onClick={handleCancel}>
                                 {cancelText || 'Cancel'}
                             </button>
                         )}
                         {onConfirm && (
-                            <button className="btn-confirm" onClick={handleConfirm}>
+                            <button onClick={handleConfirm}>
                                 {confirmText || 'Confirm'}
                             </button>
                         )}
