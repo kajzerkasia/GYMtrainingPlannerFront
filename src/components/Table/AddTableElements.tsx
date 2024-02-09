@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {Status} from 'types';
-import UseValidationModal from "../../hooks/modal/useValidationModal";
+import UseValidationModal from "../../hooks/modals/useValidationModal";
 import Modal from "../Modal/Modal";
 import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
 import {useSelector} from "react-redux";

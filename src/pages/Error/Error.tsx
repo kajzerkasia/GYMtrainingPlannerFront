@@ -4,7 +4,7 @@ import {IconContext} from "react-icons";
 import MainNavigation from "../../components/MainNavigation/MainNavigation";
 import PageContent from "../../components/PageContent/PageContent";
 import {Link, useRouteError} from "react-router-dom";
-import './Error.css';
+import classes from './Error.module.css';
 
 interface CustomError {
     status: number;
@@ -27,19 +27,19 @@ export const Error = () => {
     }
 
     if (customError.status === 404) {
-        title = "Nie znaleziono strony lub zasobu.";
-        message = "Ups... Nic tutaj nie ma."
+        title = "Ups... Nic tutaj nie ma.";
+        message = "Nie znaleziono strony lub zasobu."
     }
 
     return (
         <>
             <MainNavigation/>
-            <div className="error-container">
+            <div className={classes.error_container}>
                 <PageContent
                     title={title}
                 >
                     <h1>{message}</h1>
-                    <IconContext.Provider value={{className: 'react-icons-cry'}}>
+                    <IconContext.Provider value={{className: `${classes.error_icon}`}}>
                         <TbMoodCry/>
                     </IconContext.Provider>
                 </PageContent>

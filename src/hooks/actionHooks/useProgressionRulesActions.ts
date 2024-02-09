@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modal/useDemoModal";
+import {UseDemoModal} from "../modals/useDemoModal";
 import {useParams} from "react-router-dom";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {RuleEntity} from 'types';

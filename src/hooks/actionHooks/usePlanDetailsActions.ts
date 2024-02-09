@@ -2,7 +2,7 @@ import {DetailEntity} from 'types';
 import {itemsActions} from "../../store/features/items/items-slice";
 import {editDetails} from "../../store/actions/plan-details/updating-action";
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modal/useDemoModal";
+import {UseDemoModal} from "../modals/useDemoModal";
 import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 
