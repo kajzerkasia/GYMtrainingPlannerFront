@@ -1,11 +1,10 @@
 import React from 'react';
-import classes from './ExercisesTableHead.module.css';
 
 const ExercisesTableHead = () => {
     return (
         <thead>
         <tr>
-            <td className={classes.hidden}></td>
+            <td style={{border: 'none'}}></td>
             <th>
                 Kolejność
             </th>
