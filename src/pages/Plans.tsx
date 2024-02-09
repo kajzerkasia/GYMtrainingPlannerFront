@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchPlansData} from "../store/actions/plans-list/fetching-action";
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
-import BackButton from "../components/BackButton/BackButton";
 import PlansHead from "../components/Table/PlansHead";
 import {TableBody} from "../components/Table/TableBody";
 import {PlanEntity} from 'types';
@@ -55,7 +54,6 @@ const Plans = () => {
                         availableFields={availableFields}
                     />
                 </Table>
-                <BackButton/>
             </div>
         </div>
     )
