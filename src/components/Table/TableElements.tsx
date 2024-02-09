@@ -11,6 +11,7 @@ import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} 
 import UseModals from "../../hooks/useModals";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
+import classes from './TableElements.module.css';
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -75,7 +76,7 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                 <tr key={`${item.id}`}>
                     {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
                         <td>
-                            <IconContext.Provider value={{className: 'react-icons'}}>
+                            <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
                                 <button onClick={() => deleteItem(item.id)}><TbX/></button>
                             </IconContext.Provider>
                         </td>
@@ -100,13 +101,13 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                         'planId' in item ?
                             (
                                 <td>
-                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
                                         <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
                                     </IconContext.Provider>
                                 </td>
                             ) : (
                                 <td className="dots" colSpan={1}>
-                                    <IconContext.Provider value={{className: 'react-icons'}}>
+                                    <IconContext.Provider value={{className: `${classes.edit_table_icon}`}}>
                                         <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}><TbDotsVertical/></Link>
                                     </IconContext.Provider>
                                 </td>
