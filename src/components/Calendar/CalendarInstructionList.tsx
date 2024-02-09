@@ -1,6 +1,6 @@
 import React from 'react';
 import {IconContext} from "react-icons";
-import './CalendarInstructionList.css';
+import classes from './CalendarInstructionList.module.css';
 
 interface CalendarInstructionListProps {
     title: string;
@@ -10,12 +10,12 @@ interface CalendarInstructionListProps {
 
 const CalendarInstructionList = ({title, children, array}: CalendarInstructionListProps) => {
     return (
-        <ul className="calendar-list">
-            <div className="list-container">
+        <ul className={classes.list}>
+            <div className={classes.div_container}>
                 <IconContext.Provider value={{className: 'react-icons'}}>
                     {children}
                 </IconContext.Provider>
-                <h3 className="calendar-h3">{title}</h3>
+                <h3>{title}</h3>
             </div>
             {array.map((text: string, index: number) => (
                 <li key={index}>{`${index + 1}. ${text}`}</li>
