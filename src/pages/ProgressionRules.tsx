@@ -9,7 +9,7 @@ import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
 import {RuleEntity} from 'types';
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";
-import Table from "../components/Table/Table";
+import Table from "../components/Table/Table/Table";
 
 const ProgressionRules = () => {
 

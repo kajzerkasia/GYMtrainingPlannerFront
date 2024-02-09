@@ -11,7 +11,7 @@ import {TbCalendarPlus} from "react-icons/tb";
 import UsePlansActions from "../hooks/actionHooks/usePlansActions";
 import {getAuthToken} from "../helpers/auth";
 import {useParams} from "react-router-dom";
-import Table from "../components/Table/Table";
+import Table from "../components/Table/Table/Table";
 
 const Plans = () => {
     const dispatch = useDispatch();
