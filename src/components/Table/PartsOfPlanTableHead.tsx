@@ -1,25 +1,25 @@
 import React from 'react';
-import {IconContext} from "react-icons";
 import RedirectLink from "../RedirectLink";
 import {TbDotsVertical} from "react-icons/tb";
 import {useParams} from "react-router-dom";
+import IconProvider from "../IconProvider/IconProvider";
 
 const PartsOfPlanTableHead = () => {
     const params = useParams();
 
     return (
         <thead>
-        <tr className="tr-add">
-            <td colSpan={3} className="training-plan">
-                <h1 className="h1-plan">Nazwa planu</h1>
+        <tr>
+            <td colSpan={3}>
+                <h1>Nazwa planu</h1>
             </td>
-            <td className="dots" colSpan={1}>
-                <IconContext.Provider value={{className: 'react-icons-dots'}}>
+            <td colSpan={1}>
+                <IconProvider>
                     <RedirectLink
                         icon={React.createElement(TbDotsVertical)}
                         path={`/details/${params.slug}`}
                     />
-                </IconContext.Provider>
+                </IconProvider>
             </td>
         </tr>
         </thead>
