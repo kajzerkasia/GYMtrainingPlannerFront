@@ -1,11 +1,11 @@
 import React from 'react';
-import {GoBack} from "../../components/GoBack/GoBack";
 import {TbMoodCry} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import MainNavigation from "../../components/MainNavigation/MainNavigation";
 import PageContent from "../../components/PageContent/PageContent";
 import {useRouteError} from "react-router-dom";
 import './Error.css';
+import BackButton from "../../components/BackButton/BackButton";
 
 interface CustomError {
     status: number;
@@ -44,7 +44,7 @@ export const Error = () => {
                         <TbMoodCry/>
                     </IconContext.Provider>
                 </PageContent>
-                <GoBack to='/' text="Powrót do strony głównej"/>
+                <BackButton/>
             </div>
         </>
     );
