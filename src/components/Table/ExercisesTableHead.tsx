@@ -1,29 +1,30 @@
 import React from 'react';
+import classes from './ExercisesTableHead.module.css';
 
 const ExercisesTableHead = () => {
     return (
         <thead>
         <tr>
-            <td className="hidden"></td>
-            <th className="tr-add">
+            <td className={classes.hidden}></td>
+            <th>
                 Kolejność
             </th>
-            <th className="tr-add">
+            <th>
                 Ćwiczenie
             </th>
-            <th className="tr-add">
+            <th>
                 Serie
             </th>
-            <th className="tr-add">
+            <th>
                 Powtórzenia
             </th>
-            <th className="tr-add">
+            <th>
                 Przerwa między seriami
             </th>
-            <th className="tr-add">
+            <th>
                 Wskazówki dotyczące ćwiczenia
             </th>
-            <th className="tr-add">
+            <th>
                 Poprawne wykonanie ćwiczenia
             </th>
         </tr>
