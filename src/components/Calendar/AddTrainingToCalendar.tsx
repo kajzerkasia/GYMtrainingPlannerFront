@@ -3,7 +3,7 @@ import './AddTrainingToCalendar.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseAddNewEvent} from "../../hooks/calendar/useAddNewEvent";
+import UseAddTrainingToCalendar from "../../hooks/calendar/useAddTrainingToCalendar";
 
 export const AddTrainingToCalendar = () => {
 
@@ -21,41 +21,21 @@ export const AddTrainingToCalendar = () => {
     } = useSelector((state: RootState) => state.calendar);
 
     const {
-        selectDate,
-        selectTrainingPlan,
-        selectPlanPart,
-        updateStartTime,
-        updateEndTime,
         toggleDemoMode,
-        toggleAddTrainingToCalendar,
     } = calendarsActions;
 
-    const handleTrainingPlanChange = (planId: string) => {
-        dispatch(selectTrainingPlan(planId));
-        dispatch(selectPlanPart(null));
-    };
+    const {
+        handleTrainingPlanChange,
+        handlePlanPartChange,
+        handleStartTimeChange,
+        handleEndTimeChange,
+        handleAddEvent,
+        handleAddTrainingToCalendarClose
+    } = UseAddTrainingToCalendar();
 
-    const handlePlanPartChange = (partId: string) => {
-        dispatch(selectPlanPart(partId));
-    };
-
-    const handleStartTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateStartTime(e.target.value));
-
-    const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
-
-    const {handleAddEvent} = UseAddNewEvent();
-
-    const unselectDate = () => {
-        dispatch(selectDate(null));
-    };
-
-    const handleAddTrainingToCalendarClose = () => {
-        unselectDate();
-        dispatch(toggleAddTrainingToCalendar(false));
-    };
 
     return (
-        <div className={`plan-selector-container ${isAddTrainingToCalendarOpen ? 'open' : 'closed'}`}>
+        <div className={`div_add_training_container ${isAddTrainingToCalendarOpen ? 'open' : 'closed'}`}>
             <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
@@ -105,7 +85,7 @@ export const AddTrainingToCalendar = () => {
                 onChange={handleEndTimeChange}
             />
             <button
-                className="plan-selector-button"
+                className="add_training_button"
                 onClick={async () => {
                     if (isDemoMode) {
                         dispatch(toggleDemoMode(true));
@@ -121,7 +101,7 @@ export const AddTrainingToCalendar = () => {
                 Dodaj
             </button>
             <button
-                className="plan-selector-button"
+                className="add_training_button"
                 onClick={handleAddTrainingToCalendarClose}
             >Zamknij
             </button>
