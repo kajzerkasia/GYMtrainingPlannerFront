@@ -9,6 +9,7 @@ import Modal from "../Modal/Modal";
 import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
+import classes from './AddTableElements.module.css';
 
 interface AddTableElementsProps {
     children: ReactNode;
@@ -51,8 +52,8 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />
-            <td className="question-td">
-                <IconContext.Provider value={{className: 'react-icons'}}>
+            <td>
+                <IconContext.Provider value={{className: `${classes.add_table_icon}`}}>
                     <Link to="/instruction"><TbQuestionMark/></Link>
                 </IconContext.Provider>
             </td>
@@ -70,8 +71,8 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 availableFields={availableFields}
             />
             {availableFields.length === 1 && availableFields[0] === 'name' && (
-                <td className="td-progression-rules">
-                    <IconContext.Provider value={{className: 'react-icons-progression'}}>
+                <td>
+                    <IconContext.Provider value={{className: `${classes.add_table_icon}`}}>
                         {children}
                     </IconContext.Provider>
                 </td>
