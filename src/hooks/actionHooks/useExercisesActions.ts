@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseModal} from "../useModal";
+import {UseDemoModal} from "../modal/useDemoModal";
 import {useParams} from "react-router-dom";
 import {ExerciseEntity} from 'types';
 import {addExercise} from "../../store/actions/exercises/sending-action";
@@ -13,16 +13,16 @@ const UseExercisesActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, setInformationModalIsOpen, closeDemoModal} = UseModal();
+    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
 
     const params = useParams();
 
     const handleSubmit = (values: ExerciseEntity, reset: () => void) => {
-        dispatch(addExercise(values, setDemoModalIsOpen, setInformationModalIsOpen, params, reset));
+        dispatch(addExercise(values, setDemoModalIsOpen, params, reset));
     }
 
     const handleUpdate = (values: ExerciseEntity, reset: () => void) => {
-        dispatch(editExercise(values, setDemoModalIsOpen, setInformationModalIsOpen));
+        dispatch(editExercise(values, setDemoModalIsOpen));
         dispatch(itemsActions.updateItem(values));
     }
 

@@ -9,7 +9,7 @@ export const editPartOfPlan = (
     values: PartOfPlanEntity,
     reset: () => void,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void) => {
+) => {
 
     return async (dispatch: AppDispatch) => {
         dispatch(itemsActions.setIsEdited(false));
@@ -59,7 +59,6 @@ export const editPartOfPlan = (
                 }))
             }
         } else {
-            setInformationModalIsOpen(true);
             reset();
         }
     };

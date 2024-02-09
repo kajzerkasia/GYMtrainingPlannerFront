@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {Status} from 'types';
-import UseModals from "../../hooks/useModals";
+import UseValidationModal from "../../hooks/modal/useValidationModal";
 import Modal from "../Modal/Modal";
 import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
 import {useSelector} from "react-redux";
@@ -23,7 +23,7 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
         isValidationModalOpen,
         closeValidationModal,
         openValidationModal,
-    } = UseModals();
+    } = UseValidationModal();
 
     interface ItemsState {
         itemsList: { [key: string]: string }[];

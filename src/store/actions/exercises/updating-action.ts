@@ -9,7 +9,6 @@ import {apiUrl} from "../../../config/api";
 export const editExercise = (
     values: ExerciseEntity,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void,
 ) => {
     return async (dispatch: AppDispatch) => {
         dispatch(itemsActions.setIsEdited(false));
@@ -66,9 +65,6 @@ export const editExercise = (
                     message: 'Wystąpił błąd podczas próby zaktualizowania ćwiczenia.'
                 }));
             }
-        } else {
-            values.url = 'Podaj poprawny adres URL';
-            setInformationModalIsOpen(true);
         }
     };
 };

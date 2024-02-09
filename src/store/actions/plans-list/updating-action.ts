@@ -9,7 +9,6 @@ import {PlanEntity} from 'types';
 export const editPlan = (
     values: PlanEntity,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void
 ) => {
     return async (dispatch: AppDispatch) => {
         dispatch(itemsActions.setIsEdited(false));
@@ -70,8 +69,6 @@ export const editPlan = (
                     message: 'Wystąpił błąd podczas próby zaktualizowania planu.'
                 }));
             }
-        } else {
-            setInformationModalIsOpen(true);
         }
     };
 };

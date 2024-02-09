@@ -7,11 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
 import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
-import UseModals from "../../hooks/useModals";
+import UseValidationModal from "../../hooks/modal/useValidationModal";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
+import UseConfirmDeleteModal from "../../hooks/modal/useConfirmDeleteModal";
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -26,13 +27,15 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
     const {itemsList} = useSelector((state: RootState) => state.items);
 
     const {
-        isConfirmDeleteModalOpen,
         isValidationModalOpen,
         closeValidationModal,
-        closeConfirmDeleteModal,
-        openConfirmDeleteModal,
         openValidationModal,
-    } = UseModals();
+    } = UseValidationModal();
+
+    const {isConfirmDeleteModalOpen,
+        closeConfirmDeleteModal,
+        openConfirmDeleteModal
+    } = UseConfirmDeleteModal();
 
     const handleConfirmDelete = async () => {
         handleDelete();

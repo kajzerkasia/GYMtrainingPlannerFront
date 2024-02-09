@@ -9,7 +9,6 @@ export const editDetails = (
     values: DetailEntity,
     reset: () => void,
     setDemoModalIsOpen: (isOpen: boolean) => void,
-    setInformationModalIsOpen: (isOpen: boolean) => void
 ) => {
     return async (dispatch: AppDispatch) => {
         dispatch(itemsActions.setIsEdited(false));
@@ -62,7 +61,6 @@ export const editDetails = (
                 }));
             }
         } else {
-            setInformationModalIsOpen(true);
             reset();
         }
     };
