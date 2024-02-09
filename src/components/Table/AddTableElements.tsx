@@ -1,5 +1,4 @@
 import React, {ReactNode} from 'react';
-import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark} from "react-icons/tb";
 import {TableForm} from "./TableForm";
@@ -9,7 +8,7 @@ import Modal from "../Modal/Modal";
 import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
-import classes from './AddTableElements.module.css';
+import IconProvider from "../IconProvider/IconProvider";
 
 interface AddTableElementsProps {
     children: ReactNode;
@@ -53,9 +52,9 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 icon={TbAlertTriangle}
             />
             <td>
-                <IconContext.Provider value={{className: `${classes.add_table_icon}`}}>
+                <IconProvider>
                     <Link to="/instruction"><TbQuestionMark/></Link>
-                </IconContext.Provider>
+                </IconProvider>
             </td>
             <TableForm
                 initialValues={initialValues}
@@ -72,9 +71,9 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
             />
             {availableFields.length === 1 && availableFields[0] === 'name' && (
                 <td>
-                    <IconContext.Provider value={{className: `${classes.add_table_icon}`}}>
+                    <IconProvider>
                         {children}
-                    </IconContext.Provider>
+                    </IconProvider>
                 </td>
             )}
         </tr>

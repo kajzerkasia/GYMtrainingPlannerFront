@@ -1,19 +1,19 @@
 import React from 'react';
-import {IconContext} from "react-icons";
 import {Link} from "react-router-dom";
 import {TbUserCircle} from "react-icons/tb";
+import IconProvider from "../IconProvider/IconProvider";
 
 const PlansHead = () => {
     return (
         <thead>
-        <tr className="tr-add">
-            <td className="training-plans" align="center" colSpan={3}>
-                <h1 className="h1-plan">Plany treningowe</h1>
+        <tr>
+            <td align="center" colSpan={3}>
+                <h1>Plany treningowe</h1>
             </td>
             <td>
-                <IconContext.Provider value={{className: 'react-icons'}}>
+                <IconProvider>
                     <Link to="/auth"><TbUserCircle/></Link>
-                </IconContext.Provider>
+                </IconProvider>
             </td>
         </tr>
         </thead>

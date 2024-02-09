@@ -11,6 +11,7 @@ import {TbCalendarPlus} from "react-icons/tb";
 import UsePlansActions from "../hooks/actionHooks/usePlansActions";
 import {getAuthToken} from "../helpers/auth";
 import {useParams} from "react-router-dom";
+import Table from "../components/Table/Table";
 
 const Plans = () => {
     const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const Plans = () => {
         <div className="parts-wrapper">
             <div className="main-plan">
                 <DemoSign/>
-                <table className="main-table">
+                <Table>
                     <PlansHead/>
                     <TableBody
                         links={PLANS_LINKS}
@@ -53,7 +54,7 @@ const Plans = () => {
                         onDelete={handleDelete}
                         availableFields={availableFields}
                     />
-                </table>
+                </Table>
                 <BackButton/>
             </div>
         </div>
