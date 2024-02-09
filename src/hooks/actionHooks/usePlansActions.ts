@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modal/useDemoModal";
+import {UseDemoModal} from "../modals/useDemoModal";
 import {sendPlanData} from "../../store/actions/plans-list/sending-action";
 import {PlanEntity} from 'types';
 import {itemsActions} from "../../store/features/items/items-slice";

@@ -7,12 +7,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
 import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
-import UseValidationModal from "../../hooks/modal/useValidationModal";
+import UseValidationModal from "../../hooks/modals/useValidationModal";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
-import UseConfirmDeleteModal from "../../hooks/modal/useConfirmDeleteModal";
+import UseConfirmDeleteModal from "../../hooks/modals/useConfirmDeleteModal";
 
 interface TableElementsProps {
     children?: ReactNode;

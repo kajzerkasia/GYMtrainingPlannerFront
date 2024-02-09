@@ -1,6 +1,6 @@
 import {sendPartsOfPlanData} from "../../store/actions/parts-of-plan/sending-action";
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modal/useDemoModal";
+import {UseDemoModal} from "../modals/useDemoModal";
 import {useParams} from "react-router-dom";
 import {PartOfPlanEntity} from 'types';
 import {editPartOfPlan} from "../../store/actions/parts-of-plan/updating-action";
