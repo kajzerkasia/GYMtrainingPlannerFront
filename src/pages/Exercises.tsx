@@ -31,8 +31,7 @@ const Exercises = () => {
         : ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url'];
 
     return (
-        <div className="parts-wrapper">
-            <div className="main-plan">
+        <div>
                 <DemoSign/>
                 <Table>
                     <ExercisesTableHead/>
@@ -44,7 +43,6 @@ const Exercises = () => {
                     />
                 </Table>
                 <BackButton/>
-            </div>
         </div>
     );
 };
