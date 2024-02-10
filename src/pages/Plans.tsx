@@ -41,23 +41,20 @@ const Plans = () => {
         : ['name'];
 
     return (
-        <div className="parts-wrapper">
-            <div className="main-plan">
-                <DemoSign/>
-                <Table>
-                    <PlansHead/>
-                    <TableBody
-                        links={PLANS_LINKS}
-                        onSubmit={async (values, reset) => handleSubmit((values as unknown as PlanEntity), reset)}
-                        onUpdate={async (values) => handleUpdate((values as unknown as PlanEntity))}
-                        onDelete={handleDelete}
-                        availableFields={availableFields}
-                    />
-                </Table>
-            </div>
-        </div>
-    )
-        ;
+        <>
+            <DemoSign/>
+            <Table>
+                <PlansHead/>
+                <TableBody
+                    links={PLANS_LINKS}
+                    onSubmit={async (values, reset) => handleSubmit((values as unknown as PlanEntity), reset)}
+                    onUpdate={async (values) => handleUpdate((values as unknown as PlanEntity))}
+                    onDelete={handleDelete}
+                    availableFields={availableFields}
+                />
+            </Table>
+        </>
+    );
 };
 
 export default Plans;
