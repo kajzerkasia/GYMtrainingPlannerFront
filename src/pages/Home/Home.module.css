@@ -4,7 +4,7 @@
     filter: drop-shadow(8px 8px 10px #7d448b);
 }
 
-.home-container {
+.div_home_container {
     margin-top: 5rem;
     flex-direction: column;
     display: flex;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.home-header {
+.home_header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,7 +20,7 @@
     margin-bottom: 5rem;
 }
 
-.home-h1 {
+.home_h1 {
     margin-bottom: 0.5rem;
 }
 

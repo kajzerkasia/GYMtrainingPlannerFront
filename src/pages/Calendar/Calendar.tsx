@@ -1,15 +1,15 @@
 import React, {useState} from "react";
-import './Calendar.css'
-import {CalendarAddons} from "../components/Calendar/CalendarAddons";
-import {Accordion} from "../components/Accordion/Accordion";
-import {DemoSign} from "../components/DemoSign/DemoSign";
-import CalendarInstruction from "../components/Calendar/CalendarInstruction";
-import Modal from "../components/Modal/Modal";
+import {CalendarAddons} from "../../components/Calendar/CalendarAddons";
+import {Accordion} from "../../components/Accordion/Accordion";
+import {DemoSign} from "../../components/DemoSign/DemoSign";
+import CalendarInstruction from "../../components/Calendar/CalendarInstruction";
+import Modal from "../../components/Modal/Modal";
 import {TbAlertTriangle} from "react-icons/tb";
-import {UseDeleteEvent} from "../hooks/calendar/useDeleteEvent";
+import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
 import {useSelector} from "react-redux";
-import {RootState} from "../store";
+import {RootState} from "../../store";
 import {useParams} from "react-router-dom";
+import classes from './Calendar.module.css';
 
 const Calendar = () => {
 
@@ -51,7 +51,7 @@ const Calendar = () => {
                     icon={TbAlertTriangle}
                 />
             )}
-            <div className="div-calendar-info">
+            <div className={classes.div_calendar_container}>
                 <Accordion
                     title="Kalendarz treningów"
                     isOpen={showInstructions}
@@ -62,7 +62,7 @@ const Calendar = () => {
                         toggleAccordion={toggleInstructions}
                     />
                 </Accordion>
-                <div style={{height: "730px"}} className="div-calendar">
+                <div className={classes.div_calendar}>
                     <CalendarAddons
                         openModal={openModal}
                         params={params}

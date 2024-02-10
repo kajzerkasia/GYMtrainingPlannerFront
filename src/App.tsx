@@ -5,7 +5,7 @@ import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import {tokenLoader} from "./helpers/auth";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
 import './App.css';
 
@@ -15,7 +15,7 @@ const PartsOfPlan = lazy(() => import('./pages/PartsOfPlan'));
 const ProgressionRules = lazy(() => import('./pages/ProgressionRules'));
 const PlanDetails = lazy(() => import('./pages/PlanDetails'));
 const Instruction = lazy(() => import('./pages/Instruction/Instruction'));
-const Calendar = lazy(() => import('./pages/Calendar'));
+const Calendar = lazy(() => import('./pages/Calendar/Calendar'));
 
 const router = createBrowserRouter([
     {
