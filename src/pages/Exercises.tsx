@@ -31,19 +31,19 @@ const Exercises = () => {
         : ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url'];
 
     return (
-        <div>
-                <DemoSign/>
-                <Table>
-                    <ExercisesTableHead/>
-                    <TableBody
-                        onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
-                        onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
-                        onDelete={handleDelete}
-                        availableFields={availableFields}
-                    />
-                </Table>
-                <BackButton/>
-        </div>
+        <>
+            <DemoSign/>
+            <Table>
+                <ExercisesTableHead/>
+                <TableBody
+                    onSubmit={async (values, reset) => handleSubmit((values as unknown as ExerciseEntity), reset)}
+                    onUpdate={async (values, reset) => handleUpdate((values as unknown as ExerciseEntity), reset)}
+                    onDelete={handleDelete}
+                    availableFields={availableFields}
+                />
+            </Table>
+            <BackButton/>
+        </>
     );
 };
 
