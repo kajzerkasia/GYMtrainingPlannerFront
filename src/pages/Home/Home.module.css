@@ -5,7 +5,8 @@
 }
 
 .div_home_container {
-    margin-top: 5rem;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
     flex-direction: column;
     display: flex;
     justify-content: center;
