@@ -7,9 +7,10 @@
     padding: 0.5rem 10%;
     align-items: center;
     color: white;
-    position: absolute;
-    bottom: 0;
     z-index: 1000;
+    position: absolute;
+    top: 13vh;
+    max-width: 1400px;
 }
 
 .notification h2,
