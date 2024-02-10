@@ -1,0 +1,11 @@
+.main {
+    min-height: 82vh;
+}
+
+.root_layout_container {
+    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+    min-height: 90vh;
+    margin: 5vh auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    max-width: 1400px;
+}
