@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 import AppNotification from "../components/UI/AppNotification";
 import {RootState} from "../store";
 import {getTokenDuration} from "../helpers/auth";
+import classes from './RootLayout.module.css';
 
 const RootLayout = () => {
     const notification = useSelector((state: RootState) => state.ui.notification);
@@ -30,8 +31,9 @@ const RootLayout = () => {
     }, [token, submit]);
 
     return (
-        <>
+        <div className={classes.root_layout_container}>
             <MainNavigation/>
+            <main className={classes.main}>
             <Outlet/>
             {notification && (
                 <AppNotification
@@ -40,7 +42,8 @@ const RootLayout = () => {
                     message={notification.message}
                 />
             )}
-        </>
+            </main>
+        </div>
     );
 };
 

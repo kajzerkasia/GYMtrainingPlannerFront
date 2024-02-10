@@ -1,0 +1,11 @@
+.main {
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+    min-height: 80vh;
+    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+}
+
+.root_layout_container {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    max-width: 1440px;
+}
