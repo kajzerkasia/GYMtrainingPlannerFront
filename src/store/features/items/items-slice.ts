@@ -47,10 +47,6 @@ const itemsSlice = createSlice({
             state.confirmDeleteItem = true;
             state.itemToDeleteId = null;
         },
-        handleCancelDelete: (state) => {
-            state.confirmDeleteItem = false;
-            state.itemToDeleteId = null;
-        },
         updateItem: <T extends Entity>(state: ItemsState, action: PayloadAction<T>) => {
             const updatedPart = action.payload;
             state.itemsList = state.itemsList.map((item) =>
