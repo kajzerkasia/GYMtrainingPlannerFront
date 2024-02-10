@@ -5,12 +5,12 @@ import {TbStairsUp} from "react-icons/tb";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching-action";
 import UsePartsOfPlanActions from "../hooks/actionHooks/usePartsOfPlanActions";
-import {PartOfPlanEntity} from 'types';
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
 import PartsOfPlanTableHead from "../components/Table/PartsOfPlanTableHead";
 import Table from "../components/Table/Table/Table";
+import {PartOfPlanEntity} from "../constants/types";
 
 const PartsOfPlan = () => {
 

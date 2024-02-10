@@ -1,13 +1,13 @@
 import {useDispatch} from "react-redux";
 import {UseDemoModal} from "../modals/useDemoModal";
 import {sendPlanData} from "../../store/actions/plans-list/sending-action";
-import {PlanEntity} from 'types';
 import {itemsActions} from "../../store/features/items/items-slice";
 import {editPlan} from "../../store/actions/plans-list/updating-action";
 import {deletePlan} from "../../store/actions/plans-list/deleting-action";
 import {useParams} from "react-router-dom";
 import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
+import {PlanEntity} from "../../constants/types";
 
 const UsePartsOfPlanActions = () => {
 

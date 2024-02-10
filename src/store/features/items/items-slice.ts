@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {PlanEntity, PartOfPlanEntity, ExerciseEntity, RuleEntity, DetailEntity, UserEntity} from 'types';
+import {DetailEntity, ExerciseEntity, PartOfPlanEntity, PlanEntity, RuleEntity, UserEntity} from "../../../constants/types";
 
 export type Entity = PlanEntity | PartOfPlanEntity | ExerciseEntity | DetailEntity | RuleEntity;
 

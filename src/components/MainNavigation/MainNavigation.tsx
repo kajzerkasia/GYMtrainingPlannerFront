@@ -4,8 +4,8 @@ import Logo from "../Logo/Logo";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUsers} from "../../store/actions/users/fetching-action";
 import {RootState} from "../../store";
-import {UserEntity} from 'types';
 import classes from './MainNavigation.module.css';
+import {UserEntity} from "../../constants/types";
 
 const MainNavigation = () => {
     const token: any = useRouteLoaderData('root');

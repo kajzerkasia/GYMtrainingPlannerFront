@@ -1,6 +1,6 @@
-import {MyEvent} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 import {useDispatch} from "react-redux";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
+import {MyEvent} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 
 export const UseAddHoursToEvent = () => {
 
@@ -18,7 +18,7 @@ export const UseAddHoursToEvent = () => {
             const endMinute = Number(endTime.split(":")[1]);
 
             if (startHour > endHour || (startHour === endHour && startMinute >= endMinute)) {
-                dispatch(updateTimeError("Godzina rozpoczęcia nie może być późniejsza lub równa godzinie zakończenia."));
+                dispatch(updateTimeError("Godzina rozpoczęcia nie może być późniejsza od godziny zakończenia ani równa godzinie zakończenia."));
                 return null;
             } else {
                 dispatch(updateTimeError(null));

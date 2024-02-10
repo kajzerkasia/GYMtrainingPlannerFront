@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Status} from 'types';
 import {TbPlus, TbCheck} from "react-icons/tb";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
@@ -7,6 +6,7 @@ import {validateURL} from "../../helpers/validateUrl";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
 import {FormField} from "./FormField/FormField";
+import {Status} from "../../constants/types";
 
 export type TableFormProps<T> = {
     onSubmit: (values: T, reset: () => void) => void | Promise<void>;

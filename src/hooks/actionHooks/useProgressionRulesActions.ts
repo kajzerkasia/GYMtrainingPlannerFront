@@ -2,12 +2,12 @@ import {useDispatch} from "react-redux";
 import {UseDemoModal} from "../modals/useDemoModal";
 import {useParams} from "react-router-dom";
 import {itemsActions} from "../../store/features/items/items-slice";
-import {RuleEntity} from 'types';
 import {addProgressionRule} from "../../store/actions/progression-rules/sending-action";
 import {editProgressionRule} from "../../store/actions/progression-rules/updating-action";
 import {deleteProgressionRule} from "../../store/actions/progression-rules/deleting-action";
 import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
+import {RuleEntity} from "../../constants/types";
 
 const UseProgressionRulesActions = () => {
 

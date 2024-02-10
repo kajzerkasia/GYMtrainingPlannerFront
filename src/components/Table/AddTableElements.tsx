@@ -2,7 +2,6 @@ import React, {ReactNode} from 'react';
 import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark} from "react-icons/tb";
 import {TableForm} from "./TableForm";
-import {Status} from 'types';
 import UseValidationModal from "../../hooks/modals/useValidationModal";
 import Modal from "../Modal/Modal";
 import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constants/tableModalTexts";
@@ -10,6 +9,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
+import {Status} from "../../constants/types";
 
 interface AddTableElementsProps {
     children: ReactNode;

@@ -4,8 +4,8 @@ import {
     momentLocalizer,
 } from 'react-big-calendar';
 import moment from 'moment';
-import {MyEvent} from "./CalendarAddons/CalendarAddons";
 import React from "react";
+import {MyEvent} from "./CalendarAddons/CalendarAddons";
 
 moment.locale('pl', {
     week: {

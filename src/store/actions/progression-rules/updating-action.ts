@@ -3,7 +3,7 @@ import {itemsActions} from "../../features/items/items-slice";
 import {uiActions} from "../../features/ui/ui-slice";
 import {isDemoEnabled} from "../../../helpers/env";
 import {apiUrl} from "../../../config/api";
-import {RuleEntity} from 'types';
+import {RuleEntity} from "../../../constants/types";
 
 export const editProgressionRule = (
     values: RuleEntity,
