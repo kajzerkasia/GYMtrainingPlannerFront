@@ -1,7 +1,7 @@
 import {AppThunk} from "../../index";
 import {calendarsActions} from "../../features/calendar/calendar-slice";
 import {apiUrl} from "../../../config/api";
-import {MyEvent} from "../../../components/Calendar/CalendarAddons";
+import {MyEvent} from "../../../components/Calendar/CalendarAddons/CalendarAddons";
 import moment from "moment";
 import {uiActions} from "../../features/ui/ui-slice";
 

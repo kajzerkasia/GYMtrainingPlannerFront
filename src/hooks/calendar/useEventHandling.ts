@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {MyEvent} from "../../components/Calendar/CalendarAddons";
+import {MyEvent} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {UseDateSelection} from "./useDateSelection";
 

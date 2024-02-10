@@ -1,4 +1,4 @@
-import {MyEvent} from "../../components/Calendar/CalendarAddons";
+import {MyEvent} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 import {uiActions} from "../../store/features/ui/ui-slice";
 import {apiUrl} from "../../config/api";
 import {useDispatch, useSelector} from "react-redux";
