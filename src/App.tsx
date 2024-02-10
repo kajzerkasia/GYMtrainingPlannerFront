@@ -5,7 +5,7 @@ import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import {tokenLoader} from "./helpers/auth";
-import Home from "./pages/Home";
+import Home from "./pages/Home/Home";
 import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
 import './App.css';
 
