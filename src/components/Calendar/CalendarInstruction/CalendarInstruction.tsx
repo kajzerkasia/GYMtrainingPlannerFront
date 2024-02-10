@@ -1,6 +1,6 @@
 import React from 'react';
-import CalendarInstructionList from "./CalendarInstructionList";
-import {ADD_TRAINING_INSTRUCTION, DELETE_TRAINING_INSTRUCTION, EDIT_TRAINING_INSTRUCTION} from "../../constants/calendarInstruction";
+import CalendarInstructionList from "../CalendarInstructionList/CalendarInstructionList";
+import {ADD_TRAINING_INSTRUCTION, DELETE_TRAINING_INSTRUCTION, EDIT_TRAINING_INSTRUCTION} from "../../../constants/calendarInstruction";
 import {TbPencil, TbPlus, TbX} from "react-icons/tb";
 import {IconContext} from "react-icons";
 import classes from './CalendarInstruction.module.css';

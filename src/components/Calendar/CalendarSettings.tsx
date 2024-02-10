@@ -4,7 +4,7 @@ import {
     momentLocalizer,
 } from 'react-big-calendar';
 import moment from 'moment';
-import {MyEvent} from "./CalendarAddons";
+import {MyEvent} from "./CalendarAddons/CalendarAddons";
 import React from "react";
 
 moment.locale('pl', {

@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {CalendarAddons} from "../../components/Calendar/CalendarAddons";
+import {CalendarAddons} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 import {Accordion} from "../../components/Accordion/Accordion";
 import {DemoSign} from "../../components/DemoSign/DemoSign";
-import CalendarInstruction from "../../components/Calendar/CalendarInstruction";
+import CalendarInstruction from "../../components/Calendar/CalendarInstruction/CalendarInstruction";
 import Modal from "../../components/Modal/Modal";
 import {TbAlertTriangle} from "react-icons/tb";
 import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";

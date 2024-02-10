@@ -1,8 +1,8 @@
-import {HTMLAttributes, PropsWithChildren} from "react";
+import React, {HTMLAttributes, PropsWithChildren} from "react";
 
 interface PageContentProps extends HTMLAttributes<HTMLDivElement>, PropsWithChildren {
     title: string;
-    children: any;
+    children: React.ReactNode;
 }
 
 const PageContent = ({ title, children }: PageContentProps) => (

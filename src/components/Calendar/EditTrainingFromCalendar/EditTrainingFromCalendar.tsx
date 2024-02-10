@@ -1,10 +1,10 @@
 import React from "react";
 import classes from './EditTrainingFromCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseEditEvent} from "../../hooks/calendar/useEditEvent";
-import UseEditTrainingFromCalendar from "../../hooks/calendar/useEditTrainingFromCalendar";
+import {RootState} from "../../../store";
+import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
+import {UseEditEvent} from "../../../hooks/calendar/useEditEvent";
+import UseEditTrainingFromCalendar from "../../../hooks/calendar/useEditTrainingFromCalendar";
 
 interface EditTrainingFromCalendarProps {
     openModal: () => void;

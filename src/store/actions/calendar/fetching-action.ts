@@ -1,9 +1,9 @@
-import {AppThunk} from "../../../index";
-import {calendarsActions} from "../../../features/calendar/calendar-slice";
-import {apiUrl} from "../../../../config/api";
-import {MyEvent} from "../../../../components/Calendar/CalendarAddons";
+import {AppThunk} from "../../index";
+import {calendarsActions} from "../../features/calendar/calendar-slice";
+import {apiUrl} from "../../../config/api";
+import {MyEvent} from "../../../components/Calendar/CalendarAddons/CalendarAddons";
 import moment from "moment";
-import {uiActions} from "../../../features/ui/ui-slice";
+import {uiActions} from "../../features/ui/ui-slice";
 
 export const fetchTrainingsData = (): AppThunk<void> => async (dispatch, getState) => {
     try {
@@ -36,13 +36,13 @@ export const fetchTrainingsData = (): AppThunk<void> => async (dispatch, getStat
         dispatch(calendarsActions.setIsLoading(false));
 
     } catch (error) {
-        console.error("Wystąpił błąd podczas pobierania danych eventów:", error);
+        console.error("Wystąpił błąd podczas pobierania danych o zaplanowanych treningach:", error);
         dispatch(calendarsActions.setIsLoading(false));
 
         dispatch(uiActions.showNotification({
             status: 'error',
             title: 'Błąd!',
-            message: 'Wystąpił błąd podczas pobierania danych eventów.',
+            message: 'Wystąpił błąd podczas pobierania danych o zaplanowanych treningach.',
         }));
     }
 };

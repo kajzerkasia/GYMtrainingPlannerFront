@@ -1,9 +1,9 @@
 import React from "react";
 import './AddTrainingToCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../store";
-import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import UseAddTrainingToCalendar from "../../hooks/calendar/useAddTrainingToCalendar";
+import {RootState} from "../../../store";
+import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
+import UseAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
 import classes from './AddTrainingToCalendar.module.css';
 
 export const AddTrainingToCalendar = () => {
