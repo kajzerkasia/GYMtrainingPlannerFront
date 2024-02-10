@@ -31,21 +31,19 @@ const ProgressionRules = () => {
         : ['rule'];
 
     return (
-        <div className="parts-wrapper">
-            <div className="main-plan">
-                <DemoSign/>
-                <Table>
-                    <ProgressionRulesTableHead/>
-                    <TableBody
-                        onSubmit={async (values, reset) => handleSubmit((values as unknown as RuleEntity), reset)}
-                        onUpdate={async (values, reset) => handleUpdate((values as unknown as RuleEntity), reset)}
-                        onDelete={handleDelete}
-                        availableFields={availableFields}
-                    />
-                </Table>
-                <BackButton/>
-            </div>
-        </div>
+        <>
+            <DemoSign/>
+            <Table>
+                <ProgressionRulesTableHead/>
+                <TableBody
+                    onSubmit={async (values, reset) => handleSubmit((values as unknown as RuleEntity), reset)}
+                    onUpdate={async (values, reset) => handleUpdate((values as unknown as RuleEntity), reset)}
+                    onDelete={handleDelete}
+                    availableFields={availableFields}
+                />
+            </Table>
+            <BackButton/>
+        </>
     )
 };
 
