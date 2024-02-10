@@ -34,14 +34,14 @@ const RootLayout = () => {
         <div className={classes.root_layout_container}>
             <MainNavigation/>
             <main className={classes.main}>
+                {notification && (
+                    <AppNotification
+                        status={notification.status}
+                        title={notification.title}
+                        message={notification.message}
+                    />
+                )}
             <Outlet/>
-            {notification && (
-                <AppNotification
-                    status={notification.status}
-                    title={notification.title}
-                    message={notification.message}
-                />
-            )}
             </main>
         </div>
     );
