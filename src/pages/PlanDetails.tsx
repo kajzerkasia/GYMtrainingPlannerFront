@@ -29,19 +29,17 @@ const PlanDetails = () => {
         : ['length', 'frequency', 'schedule'];
 
     return (
-        <div className="parts-wrapper">
-            <div className="main-plan">
-                <DemoSign/>
-                <Table>
-                    <PlanDetailsTableHead/>
-                    <TableBody
-                        onUpdate={async (values, reset) => handleUpdate((values as unknown as DetailEntity), reset)}
-                        availableFields={availableFields}
-                    />
-                </Table>
-                <BackButton/>
-            </div>
-        </div>
+        <>
+            <DemoSign/>
+            <Table>
+                <PlanDetailsTableHead/>
+                <TableBody
+                    onUpdate={async (values, reset) => handleUpdate((values as unknown as DetailEntity), reset)}
+                    availableFields={availableFields}
+                />
+            </Table>
+            <BackButton/>
+        </>
     )
 };
 
