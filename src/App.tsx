@@ -15,7 +15,7 @@ const PartsOfPlan = lazy(() => import('./pages/PartsOfPlan'));
 const ProgressionRules = lazy(() => import('./pages/ProgressionRules'));
 const PlanDetails = lazy(() => import('./pages/PlanDetails'));
 const Instruction = lazy(() => import('./pages/Instruction/Instruction'));
-const Calendar = lazy(() => import('./pages/Calendar'));
+const Calendar = lazy(() => import('./pages/Calendar/Calendar'));
 
 const router = createBrowserRouter([
     {

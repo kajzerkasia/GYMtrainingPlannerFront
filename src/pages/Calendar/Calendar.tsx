@@ -1,13 +1,13 @@
 import React, {useState} from "react";
-import {CalendarAddons} from "../components/Calendar/CalendarAddons";
-import {Accordion} from "../components/Accordion/Accordion";
-import {DemoSign} from "../components/DemoSign/DemoSign";
-import CalendarInstruction from "../components/Calendar/CalendarInstruction";
-import Modal from "../components/Modal/Modal";
+import {CalendarAddons} from "../../components/Calendar/CalendarAddons";
+import {Accordion} from "../../components/Accordion/Accordion";
+import {DemoSign} from "../../components/DemoSign/DemoSign";
+import CalendarInstruction from "../../components/Calendar/CalendarInstruction";
+import Modal from "../../components/Modal/Modal";
 import {TbAlertTriangle} from "react-icons/tb";
-import {UseDeleteEvent} from "../hooks/calendar/useDeleteEvent";
+import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
 import {useSelector} from "react-redux";
-import {RootState} from "../store";
+import {RootState} from "../../store";
 import {useParams} from "react-router-dom";
 import classes from './Calendar.module.css';
 
