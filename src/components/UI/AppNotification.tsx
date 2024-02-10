@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import './AppNotification.css';
 import {uiActions} from "../../store/features/ui/ui-slice";
 import {useDispatch} from "react-redux";
+import classes from './AppNotification.module.css';
 
 const AppNotification = (props: any) => {
 
@@ -10,13 +10,13 @@ const AppNotification = (props: any) => {
     let specialClasses = '';
 
     if (props.status === 'error') {
-        specialClasses = "error"
+        specialClasses = `${classes.error}`
     }
     if (props.status === 'success') {
-        specialClasses = "success"
+        specialClasses = `${classes.success}`
     }
 
-    const cssClasses = `notification ${specialClasses}`;
+    const cssClasses = `${classes.notification} ${specialClasses}`;
 
     useEffect(() => {
         const timeout = setTimeout(() => {
