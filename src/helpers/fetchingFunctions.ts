@@ -1,5 +1,5 @@
 import {apiUrl} from "../config/api";
-import {PartOfPlanEntity} from 'types';
+import {PartOfPlanEntity} from "../constants/types";
 
 export const fetchPlanParts = async (planId: string): Promise<PartOfPlanEntity[]> => {
     try {

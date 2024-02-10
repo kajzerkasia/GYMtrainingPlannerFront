@@ -2,7 +2,6 @@ import React, {ReactNode} from 'react';
 import {TbAlertTriangle, TbBarbell, TbDotsVertical, TbX} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import {itemsActions} from "../../store/features/items/items-slice";
-import {Status} from 'types';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
@@ -13,6 +12,7 @@ import {getAuthToken} from "../../helpers/auth";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
 import UseConfirmDeleteModal from "../../hooks/modals/useConfirmDeleteModal";
+import {Status} from "../../constants/types";
 
 interface TableElementsProps {
     children?: ReactNode;

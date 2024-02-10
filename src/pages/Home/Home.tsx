@@ -2,9 +2,9 @@ import React from 'react';
 import ImagesSlideshow from "../../components/ImagesSlideshow/ImagesSlideshow";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {UserEntity} from 'types';
 import {useRouteLoaderData} from "react-router-dom";
 import classes from './Home.module.css';
+import {UserEntity} from "../../constants/types";
 
 const Home = () => {
     const token: any = useRouteLoaderData('root');

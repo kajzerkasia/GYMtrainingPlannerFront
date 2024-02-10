@@ -1,7 +1,7 @@
 import classes from './FormField.module.css';
 import IconProvider from "../../IconProvider/IconProvider";
-import {Status} from 'types';
 import {TbLink} from "react-icons/tb";
+import {Status} from "../../../constants/types";
 
 interface FormFieldProps<T> {
     field: keyof T;

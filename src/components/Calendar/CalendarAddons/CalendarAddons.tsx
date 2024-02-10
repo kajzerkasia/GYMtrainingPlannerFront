@@ -1,19 +1,19 @@
 import React, {useEffect, useState} from "react";
-import {CalendarSettings} from "./CalendarSettings";
-import {AddTrainingToCalendar} from "./AddTrainingToCalendar";
-import {EditTrainingFromCalendar} from "./EditTrainingFromCalendar";
+import {CalendarSettings} from "../CalendarSettings";
 import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../store";
-import {UseDateSelection} from "../../hooks/calendar/useDateSelection";
-import {UseEventHandling} from "../../hooks/calendar/useEventHandling";
-import {fetchPlanParts} from "../../helpers/fetchingFunctions";
-import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {fetchTrainingsData} from "../../store/actions/calendar/fetchingTrainings/fetching-action";
-import {formatDateName} from "../../helpers/formatMonthName";
-import {fetchPlansData} from "../../store/actions/plans-list/fetching-action";
+import {AppDispatch, RootState} from "../../../store";
+import {UseDateSelection} from "../../../hooks/calendar/useDateSelection";
+import {UseEventHandling} from "../../../hooks/calendar/useEventHandling";
+import {fetchPlanParts} from "../../../helpers/fetchingFunctions";
+import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
+import {formatDateName} from "../../../helpers/formatMonthName";
+import {fetchPlansData} from "../../../store/actions/plans-list/fetching-action";
 import moment from "moment";
 import "moment/locale/pl";
 import './CalendarAddons.css';
+import {fetchTrainingsData} from "../../../store/actions/calendar/fetching-action";
+import {AddTrainingToCalendar} from "../AddTrainingToCalendar/AddTrainingToCalendar";
+import {EditTrainingFromCalendar} from "../EditTrainingFromCalendar/EditTrainingFromCalendar";
 
 export interface MyEvent {
     planName: string;

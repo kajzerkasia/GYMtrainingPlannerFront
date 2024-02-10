@@ -7,9 +7,9 @@ import UseProgressionRulesActions from "../hooks/actionHooks/useProgressionRules
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
-import {RuleEntity} from 'types';
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";
 import Table from "../components/Table/Table/Table";
+import {RuleEntity} from "../constants/types";
 
 const ProgressionRules = () => {
 

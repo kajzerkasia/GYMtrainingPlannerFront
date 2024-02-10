@@ -1,9 +1,9 @@
-import {DetailEntity} from 'types';
 import {AppDispatch} from "../../index";
 import {isDemoEnabled} from "../../../helpers/env";
 import {itemsActions} from "../../features/items/items-slice";
 import {uiActions} from "../../features/ui/ui-slice";
 import {apiUrl} from "../../../config/api";
+import {DetailEntity} from "../../../constants/types";
 
 export const editDetails = (
     values: DetailEntity,

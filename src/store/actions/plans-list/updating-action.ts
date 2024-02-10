@@ -4,7 +4,7 @@ import {apiUrl} from "../../../config/api";
 import {getAuthToken} from "../../../helpers/auth";
 import {isDemoEnabled} from "../../../helpers/env";
 import {AppDispatch} from "../../index";
-import {PlanEntity} from 'types';
+import {PlanEntity} from "../../../constants/types";
 
 export const editPlan = (
     values: PlanEntity,

@@ -1,10 +1,10 @@
-import {ExerciseEntity} from 'types';
 import {AppDispatch} from "../../index";
 import {itemsActions} from "../../features/items/items-slice";
 import {isDemoEnabled} from "../../../helpers/env";
 import {validateURL} from "../../../helpers/validateUrl";
 import {uiActions} from "../../features/ui/ui-slice";
 import {apiUrl} from "../../../config/api";
+import {ExerciseEntity} from "../../../constants/types";
 
 export const editExercise = (
     values: ExerciseEntity,

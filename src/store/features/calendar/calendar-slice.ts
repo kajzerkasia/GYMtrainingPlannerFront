@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {PlanEntity, PartOfPlanEntity} from 'types';
 import {MyEvent} from "../../../components/Calendar/CalendarAddons/CalendarAddons";
+import {PartOfPlanEntity, PlanEntity} from "../../../constants/types";
 
 interface CalendarState {
     events: MyEvent[];

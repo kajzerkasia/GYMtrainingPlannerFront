@@ -1,9 +1,9 @@
-import {RuleEntity} from 'types';
 import {AppDispatch, RootState} from "../../index";
 import {isDemoEnabled} from "../../../helpers/env";
 import {apiUrl} from "../../../config/api";
 import {uiActions} from "../../features/ui/ui-slice";
 import {itemsActions} from "../../features/items/items-slice";
+import {RuleEntity} from "../../../constants/types";
 
 export const addProgressionRule = (
     values: RuleEntity,

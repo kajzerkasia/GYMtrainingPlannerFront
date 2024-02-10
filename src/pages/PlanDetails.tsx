@@ -7,9 +7,9 @@ import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
 import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";
-import {DetailEntity} from 'types';
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";
 import Table from "../components/Table/Table/Table";
+import {DetailEntity} from "../constants/types";
 
 const PlanDetails = () => {
 

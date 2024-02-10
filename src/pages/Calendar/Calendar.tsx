@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {CalendarAddons} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 import {Accordion} from "../../components/Accordion/Accordion";
 import {DemoSign} from "../../components/DemoSign/DemoSign";
 import CalendarInstruction from "../../components/Calendar/CalendarInstruction/CalendarInstruction";
@@ -10,6 +9,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {useParams} from "react-router-dom";
 import classes from './Calendar.module.css';
+import {CalendarAddons} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 
 const Calendar = () => {
 
