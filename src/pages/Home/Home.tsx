@@ -1,5 +1,5 @@
 import React from 'react';
-import ImagesSlideshow from "../../components/images/ImagesSlideshow";
+import ImagesSlideshow from "../../components/ImagesSlideshow/ImagesSlideshow";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {UserEntity} from 'types';
