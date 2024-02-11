@@ -1,5 +1,9 @@
 # Gym Training Planner 🏋️‍♀️💪
 
+### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
+
+![](/public/assets/images/GTP_Home.png)
+
 ## Polish version of README:
 
 #### Trenujesz na siłowni i potrzebujesz uporządkować swój plan treningowy?
@@ -130,10 +134,6 @@ Training plan details:
 # Gym Training Planner 🏋️‍♀️💪
 
 #### This is a final project that I created as part of the "MegaK" programming course.
-
-### ❗New version of the application (under development) ❗
-
-![](/public/assets/images/GTP_Home.png)
 
 ### ❗Older version of the application ❗
 
