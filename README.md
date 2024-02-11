@@ -44,11 +44,7 @@ Składa się z następujących części i możliwości:
 
 ### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
 
-![](/public/assets/login.png)
-
-![](/public/assets/plans.png)
-
-![](/public/assets/instruction.png)
+![](/public/assets/images/GTP_Home.png)
 
 ### ❗Starsza wersja aplikacji ❗
 
@@ -137,11 +133,7 @@ Training plan details:
 
 ### ❗New version of the application (under development) ❗
 
-![](/public/assets/login.png)
-
-![](/public/assets/plans.png)
-
-![](/public/assets/instruction.png)
+![](/public/assets/images/GTP_Home.png)
 
 ### ❗Older version of the application ❗
 
