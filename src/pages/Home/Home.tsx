@@ -9,12 +9,13 @@ import {UserEntity} from "../../constants/types";
 const Home = () => {
     const token: any = useRouteLoaderData('root');
 
-    const { users } = useSelector((state: RootState) => state.items);
+    const {users} = useSelector((state: RootState) => state.items);
     const usersList = users as unknown as UserEntity;
     const userName = usersList?.name;
 
     return (
-            <div className={classes.div_home_container}>
+        <div className={classes.div_home_container}>
+            <div className={classes.home_card}>
                 <header className={classes.home_header}>
                     <h1 className={classes.home_h1}>Witaj{(token && userName) ? ` ${userName}!` : ' w aplikacji Gym Training Planner'}</h1>
                     {token ? (
@@ -27,6 +28,7 @@ const Home = () => {
                     <ImagesSlideshow/>
                 </div>
             </div>
+        </div>
     );
 };
 
