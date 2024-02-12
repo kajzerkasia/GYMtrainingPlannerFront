@@ -19,152 +19,19 @@
     align-items: center;
 }
 
-.header a {
-    text-decoration: none;
-}
-
-.header nav li a {
-    background-color: #8c5997;
-    padding: 0.5rem 1.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    position: relative;
-}
-
-.header nav a:hover,
-.header nav li a.active {
-    background-color: #8c5997;
-    border-color: #7d448b;
-    color: #310942;
-}
-
-.header nav li button,
-.buttonWithAnimation {
-    background-color: transparent;
-    border: none;
-    font-size: 1.25rem;
-    color: #E6E6FA;
-    transition: color 0.3s ease-in-out;
-    font-family: 'Playpen Sans', sans-serif;
-    z-index: 100;
-}
-
-.buttonWithAnimation {
-    overflow: hidden;
-    position: relative;
-
-    &:before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        width: 0;
-        left: 50%;
-        height: 2px;
-        background-color: #d495e2;
-        transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
-    }
-
-    &:hover {
-        color: #d495e2;
-
-        &:before {
-            width: 100%;
-            left: 0;
-        }
-    }
-
-    &.active {
-        color: #d495e2;
-
-        &:before {
-            width: 100%;
-            left: 0;
-        }
-    }
-}
-
 .header nav {
     position: relative;
 }
 
-.header nav li {
-    display: inline-block;
-    padding: 0.5rem 1.5rem;
-}
-
-.button_avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-button {
-    cursor: pointer;
-}
-
-.avatar_img {
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
 
 @media (min-width: 577px) {
 
-    .dropdownMenu {
-        position: absolute;
-        top: 95%;
-        right: 0;
-        background-color: #8c5997;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        z-index: 10;
-        max-height: 0;
-        opacity: 0;
-        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    .dropdownMenu.open {
-        max-height: 200px;
-        opacity: 1;
-    }
-
-    .dropdownMenu button {
-        display: block;
-        width: 100%;
-        padding: 10px 20px;
-        text-align: left;
-        color: #E6E6FA;
-        background: none;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    .dropdownMenu button:hover {
-        background-color: #7d448b;
-    }
-
     .header .hamburgerIcon {
-        display: none;
-    }
-
-    .logout_button {
         display: none;
     }
 }
 
 @media (max-width: 576px) {
-
-    .button_avatar {
-        display: none;
-    }
-
-    .logout_button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
     .header {
         width: 100%;
@@ -172,49 +39,21 @@ button {
         flex-direction: column;
         align-items: center;
         color: #E6E6FA;
+        height: 10.5vh;
     }
 
     .header ul {
         display: flex;
         list-style: none;
         flex-direction: column;
+        margin-top: 7px;
     }
 
     .logo_and_hamburger_container {
+        margin-top: 7px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-    }
-
-    .header nav li button,
-    .buttonWithAnimation {
-        border: 1px solid #7d448b;
-        font-size: 1.25rem;
-        color: #E6E6FA;
-        transition: color 0.3s ease-in-out;
-        font-family: 'Playpen Sans', sans-serif;
-        width: 100vw;
-        text-align: center;
-        padding: 10px 10px;
-        background-color: #8c5997;
-    }
-
-    .buttonWithAnimation::before,
-    .buttonWithAnimation::after {
-        display: none;
-    }
-
-    .header nav li a {
-        padding: 0;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        position: relative;
-        width: 100%;
-        height: 40px;
-    }
-
-    .header nav li {
-        padding: 0;
     }
 
     .header nav {
@@ -233,7 +72,8 @@ button {
         width: 30px;
         height: 3px;
         background-color: #fff;
-        margin-left: 30px;
+        margin-left: 20px;
+        margin-right: 5px;
         transition: transform 0.4s;
     }
 
