@@ -113,12 +113,20 @@ button {
 
     .dropdownMenu {
         position: absolute;
-        top: 100%;
+        top: 95%;
         right: 0;
         background-color: #8c5997;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         z-index: 10;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .dropdownMenu.open {
+        max-height: 200px;
+        opacity: 1;
     }
 
     .dropdownMenu button {

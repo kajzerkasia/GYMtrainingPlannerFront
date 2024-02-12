@@ -53,7 +53,7 @@ const MainNavigation = () => {
                 <div className={`${classes.hamburgerIcon} ${isHamburgerMenuOpen ? classes.hamburgerOpen : ''}`} onClick={toggleHamburger}></div>
             </div>
             <nav className={`${isHamburgerMenuOpen ? classes.navOpen : ''}`}>
-                <ul className={`${classes.navList} ${isHamburgerMenuOpen ? classes.mobileMenu : ''}`}>
+                <ul>
                     <li>
                         <NavLink to='/' className={({isActive}) =>
                             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
@@ -100,7 +100,7 @@ const MainNavigation = () => {
                                 <img src="/assets/images/avatar_man.png" alt="" className={classes.avatar_img}/>
                             </button>
                             {isDropdownOpen && (
-                                <div className={classes.dropdownMenu}>
+                                <div className={`${classes.dropdownMenu} ${isDropdownOpen ? classes.open : ''}`}>
                                     <Form action="/logout" method="post">
                                         <button>
                                             Wyloguj się
