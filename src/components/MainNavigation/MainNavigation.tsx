@@ -31,18 +31,19 @@ const MainNavigation = () => {
     const usersList = users as unknown as UserEntity;
     const userId = usersList?.id;
 
+    const toggleHamburger = () => {
+        setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+    }
+
     const checkIfAuth = () => {
         if (!token) {
             window.location.href = "/auth?mode=login";
         }
+        toggleHamburger();
     }
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
-    }
-
-    const toggleHamburger = () => {
-        setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
     }
 
     return (
@@ -55,7 +56,7 @@ const MainNavigation = () => {
             </div>
             <nav className={`${isHamburgerMenuOpen ? classes.navOpen : ''}`}>
                 <ul>
-                    <NavLinkButton to="/" onClick={checkIfAuth}>
+                    <NavLinkButton to="/" onClick={toggleHamburger}>
                         Strona główna
                     </NavLinkButton>
                     <NavLinkButton to={`/list/${userId}`} onClick={checkIfAuth}>
@@ -65,7 +66,7 @@ const MainNavigation = () => {
                         Kalendarz
                     </NavLinkButton>
                     {!token && (
-                        <NavLinkButton to="/auth?mode=login">
+                        <NavLinkButton to="/auth?mode=login" onClick={toggleHamburger}>
                             Logowanie
                         </NavLinkButton>
                     )}
