@@ -24,16 +24,16 @@ function AuthForm() {
                 {!isLogin && (
                     <p>
                         <label htmlFor="name">{!isLogin && <span>*</span>}Imię</label>
-                        <input id="name" type="text" name="name"/>
+                        <input id="name" type="text" name="name" autoComplete="section-blue shipping street-address"/>
                     </p>
                 )}
                 <p>
                     <label htmlFor="email">{!isLogin && <span>*</span>}Email</label>
-                    <input id="email" type="email" name="email" required/>
+                    <input id="email" type="email" name="email" required autoComplete="username"/>
                 </p>
                 <p>
-                    <label htmlFor="image">{!isLogin && <span>*</span>}Hasło</label>
-                    <input id="password" type="password" name="password" required/>
+                    <label htmlFor="password">{!isLogin && <span>*</span>}Hasło</label>
+                    <input id="password" type="password" name="password" autoComplete="current-password" required/>
                 </p>
                 <div className={classes.actions}>
                     <Link to={`?mode=${isLogin ? 'signup' : 'login'}`}>

@@ -19,9 +19,12 @@ body {
   justify-content: flex-start;
   color: #E6E6FA;
   cursor: default;
-  overflow: hidden;
   max-width: 1440px;
   margin: 0 auto;
+}
+
+@media (min-width: 1000px) {
+  overflow: hidden;
 }
 
 html {

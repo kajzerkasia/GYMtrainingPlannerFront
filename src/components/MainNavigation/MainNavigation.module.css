@@ -39,29 +39,43 @@
         flex-direction: column;
         align-items: center;
         color: #E6E6FA;
-        height: 10.5vh;
+        height: 80px;
+        margin-bottom: 30px;
+        margin-top: 0;
     }
 
     .header ul {
+        margin-top: -10px;
         display: flex;
         list-style: none;
         flex-direction: column;
-        margin-top: 7px;
     }
 
     .logo_and_hamburger_container {
         margin-top: 7px;
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
     }
 
+    .logo_and_hamburger_container::after {
+        margin-top: -15px;
+        content: '';
+        display: flex;
+        border: 1px solid #7d448b;
+        width: 100vw;
+    }
+
     .header nav {
         display: none;
+        opacity: 0;
+        transition: opacity 0.5s;
     }
 
     .header nav.navOpen {
         display: flex;
+        opacity: 1;
     }
 
     .header .hamburgerIcon {
@@ -72,8 +86,7 @@
         width: 30px;
         height: 3px;
         background-color: #fff;
-        margin-left: 20px;
-        margin-right: 5px;
+        margin: 2.8rem auto;
         transition: transform 0.4s;
     }
 
