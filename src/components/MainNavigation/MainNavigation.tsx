@@ -6,16 +6,22 @@ import {fetchUsers} from "../../store/actions/users/fetching-action";
 import {RootState} from "../../store";
 import classes from './MainNavigation.module.css';
 import {UserEntity} from "../../constants/types";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
+
+interface RouteLoaderData {
+    token: string;
+    email: string;
+}
 
 const MainNavigation = () => {
-    const token: any = useRouteLoaderData('root');
-    const dispatch = useDispatch();
+    const token = useRouteLoaderData('root') as RouteLoaderData;
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isHamburgerMenuOpen, setIsHamburgerMenuOpen] = useState(false);
 
     useEffect(() => {
         if (token) {
-            dispatch(fetchUsers({token}) as any);
+            dispatch(fetchUsers({token}));
         }
     }, [dispatch, token]);
 
@@ -46,9 +52,9 @@ const MainNavigation = () => {
                 </Link>
                 <div className={`${classes.hamburgerIcon} ${isHamburgerMenuOpen ? classes.hamburgerOpen : ''}`} onClick={toggleHamburger}></div>
             </div>
-            <nav>
+            <nav className={`${isHamburgerMenuOpen ? classes.navOpen : ''}`}>
                 <ul className={`${classes.navList} ${isHamburgerMenuOpen ? classes.mobileMenu : ''}`}>
-                    <li className={isHamburgerMenuOpen ? classes.dropdownOpen : classes.dropdownClose}>
+                    <li>
                         <NavLink to='/' className={({isActive}) =>
                             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
                         }>
@@ -57,7 +63,7 @@ const MainNavigation = () => {
                             </button>
                         </NavLink>
                     </li>
-                    <li className={isHamburgerMenuOpen ? classes.dropdownOpen : classes.dropdownClose}>
+                    <li>
                         <NavLink to={`/list/${userId}`} className={({isActive}) =>
                             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
                         }>
@@ -66,7 +72,7 @@ const MainNavigation = () => {
                             </button>
                         </NavLink>
                     </li>
-                    <li className={isHamburgerMenuOpen ? classes.dropdownOpen : classes.dropdownClose}>
+                    <li>
                         <NavLink to={`/calendar/${userId}`} className={({isActive}) =>
                             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
                         }>
@@ -101,6 +107,13 @@ const MainNavigation = () => {
                                         </button>
                                     </Form>
                                 </div>
+                            )}
+                            {isHamburgerMenuOpen && (
+                                <Form action="/logout" method="post">
+                                    <button className={classes.logout_button}>
+                                        Wyloguj się
+                                    </button>
+                                </Form>
                             )}
                         </li>
                     )}
