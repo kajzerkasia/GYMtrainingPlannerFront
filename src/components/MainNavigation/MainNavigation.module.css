@@ -109,37 +109,54 @@ button {
     border-radius: 50%;
 }
 
-.dropdownMenu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #8c5997;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    z-index: 10;
-}
+@media (min-width: 577px) {
 
-.dropdownMenu button {
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    text-align: left;
-    color: #E6E6FA;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
+    .dropdownMenu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #8c5997;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        z-index: 10;
+    }
 
-.dropdownMenu button:hover {
-    background-color: #7d448b;
-}
+    .dropdownMenu button {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        text-align: left;
+        color: #E6E6FA;
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
 
-.header .hamburgerIcon {
-    display: none;
+    .dropdownMenu button:hover {
+        background-color: #7d448b;
+    }
+
+    .header .hamburgerIcon {
+        display: none;
+    }
+
+    .logout_button {
+        display: none;
+    }
 }
 
 @media (max-width: 576px) {
+
+    .button_avatar {
+        display: none;
+    }
+
+    .logout_button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     .header {
         width: 100%;
@@ -192,21 +209,12 @@ button {
         padding: 0;
     }
 
-    .header .mobileMenu {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 8vh;
-        left: 0;
-        width: 100%;
-        background-color: #642a71;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        z-index: 100;
+    .header nav {
+        display: none;
     }
 
-    .header .mobileMenu li {
-        width: 100%;
-        text-align: center;
+    .header nav.navOpen {
+        display: flex;
     }
 
     .header .hamburgerIcon {
@@ -249,11 +257,5 @@ button {
 
     .header .hamburgerOpen {
         height: 0;
-    }
-}
-
-@media (min-width: 577px) {
-    .header .hamburgerIcon {
-        display: none;
     }
 }
