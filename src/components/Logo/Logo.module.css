@@ -9,6 +9,7 @@
 
 @media (max-width: 576px) {
     .h1 {
-        font-size: 24px;
+        font-size: 28px;
+        padding-left: 0;
     }
 }
