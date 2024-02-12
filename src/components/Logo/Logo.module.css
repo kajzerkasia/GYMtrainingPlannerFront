@@ -6,3 +6,10 @@
 .react_logo_icon {
     vertical-align: -2px;
 }
+
+@media (max-width: 576px) {
+    .h1 {
+        font-size: 20px;
+        padding-left: 2vw;
+    }
+}
