@@ -38,6 +38,10 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
+.button_mobile_only {
+    display: none;
+}
+
 @media (max-width: 576px) {
     .slideshow {
         width: 100%;
@@ -53,6 +57,7 @@
 
     .home_card {
         width: 100%;
+        height: 500px;
         padding: 1rem;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         border-radius: 0;
@@ -73,5 +78,21 @@
         font-size: 20px;
         text-align: center;
     }
+
+    .button_mobile_only {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: -1;
+        margin-top: 3rem;
+    }
+
+    .plans_btn {
+        background-color: #7d448b;
+        padding: 10px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
 }
+
 
