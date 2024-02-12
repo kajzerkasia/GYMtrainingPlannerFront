@@ -69,7 +69,7 @@ a.active {
     .button,
     .buttonWithAnimation {
         border: 1px solid #7d448b;
-        font-size: 1.25rem;
+        font-size: 24px;
         color: #E6E6FA;
         transition: color 0.3s ease-in-out;
         font-family: 'Playpen Sans', sans-serif;
