@@ -1,49 +1,38 @@
 import AuthForm from '../components/AuthForm/AuthForm';
-import {json, redirect} from "react-router-dom";
+import {json} from "react-router-dom";
 import {apiUrl} from "../config/api";
 
 function AuthenticationPage() {
-    return <AuthForm/>;
+    return <AuthForm action={(formData: FormData, mode) => action(formData, mode)}/>;
 }
 
 export default AuthenticationPage;
-
-interface RequestData {
-    formData: () => Promise<FormData>;
-    url: string;
-}
-
-interface ActionProps {
-    request: RequestData;
-}
 
 interface AuthData {
     email: FormDataEntryValue | null;
     password: FormDataEntryValue | null;
     name?: FormDataEntryValue | null;
+    image?: FormDataEntryValue | null;
 }
 
-export async function action({request}: ActionProps) {
-    const searchParams = new URL(request.url).searchParams;
-    const mode = searchParams.get('mode') || 'login';
+export async function action(formData: FormData, mode: string) {
 
     if (mode !== 'login' && mode !== 'signup') {
         throw json({message: 'Unsupported mode.'}, {status: 422});
     }
 
-    const data = await request.formData();
-
     let authData: AuthData = {
-        email: data.get('email'),
-        password: data.get('password'),
+        email: formData.get('email'),
+        password: formData.get('password'),
     };
 
     if (mode === 'signup') {
-        const name = data.get('name');
         authData = {
-            ...authData,
-            name: name,
-        };
+            email: formData.get('email'),
+            password: formData.get('password'),
+            name: formData.get('name'),
+            image: formData.get('image'),
+        }
     }
 
     const response = await fetch(`${apiUrl}/api/auth-user/${mode}`, {
@@ -70,6 +59,4 @@ export async function action({request}: ActionProps) {
     const expiration = new Date();
     expiration.setHours(expiration.getHours() + 1);
     localStorage.setItem('expiration', expiration.toISOString());
-
-    return redirect('/');
 }
