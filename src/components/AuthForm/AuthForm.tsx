@@ -1,44 +1,133 @@
-import {Form, Link, useSearchParams, useActionData, useNavigation} from 'react-router-dom';
+import {Form, useNavigate, useNavigation, useSearchParams} from 'react-router-dom';
 import classes from './AuthForm.module.css';
+import AvatarPicker from "../AvatarPicker/AvatarPicker";
+import {useEffect, useState} from "react";
+import {UseFetchImages} from "../../hooks/useFetchImages";
 
-function AuthForm() {
-    const data: any = useActionData();
+function AuthForm({ action }: { action: (formData: FormData, mode: string) => Promise<Response | undefined>}) {
     const navigation = useNavigation();
+    const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
     const isLogin = searchParams.get('mode') === 'login';
     const isSubmitting = navigation.state === 'submitting';
 
+    const [selectableImages, setSelectableImages] = useState([]);
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        name: '',
+        image: '',
+    });
+
+    function handleSelectImage(image: string) {
+        setFormData(prevData => ({...prevData, image}));
+    }
+
+    const {fetchSelectableImages} = UseFetchImages();
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const images = await fetchSelectableImages();
+                setSelectableImages(images);
+            } catch (error) {
+                console.error('Błąd podczas pobierania zdjęć:', error);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    const mode = searchParams.get('mode') || 'login';
+
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('email', formData.email);
+            formDataToSend.append('password', formData.password);
+
+            if (formData.image) {
+                formDataToSend.append('image', formData.image as string);
+            }
+
+            if (formData.name) {
+                formDataToSend.append('name', formData.name);
+            }
+
+            navigate('/');
+
+            return await action(formDataToSend, mode)
+
+
+        } catch (error) {
+            console.error('Błąd podczas wysyłania formularza:', error);
+        }
+    };
+
+    const handleLinkClick = (newMode: string) => {
+        if (window.location) {
+            window.location.href = `?mode=${newMode}`;
+        }
+    };
+
     return (
         <>
-            <Form method="post" className={classes.form}>
+            <Form method="post" className={classes.form} onSubmit={handleFormSubmit}>
                 <h1>{isLogin ? 'Zaloguj się' : 'Dodaj nowego użytkownika'}</h1>
-                <div>
-                    {data && data.errors && (
-                        <ul>
-                            {Object.values(data.errors).map((err: any) => <li key={err}>{err}</li>)}
-                        </ul>
-                    )}
-                    {data && data.message && <p>{data.message}</p>}
-                </div>
                 {!isLogin && (
                     <p>
-                        <label htmlFor="name">{!isLogin && <span>*</span>}Imię</label>
-                        <input id="name" type="text" name="name" autoComplete="section-blue shipping street-address"/>
+                        <label
+                            htmlFor="name"
+                        >{!isLogin && <span>*</span>}Imię</label>
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            autoComplete="section-blue shipping street-address"
+                        />
                     </p>
+                )}
+                {!isLogin && (
+                    <div className="control">
+                        <AvatarPicker
+                            images={selectableImages}
+                            onSelect={handleSelectImage}
+                            selectedImage={formData.image}
+                        />
+                    </div>
                 )}
                 <p>
                     <label htmlFor="email">{!isLogin && <span>*</span>}Email</label>
-                    <input id="email" type="email" name="email" required autoComplete="username"/>
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        required
+                        autoComplete="username"
+                    />
                 </p>
                 <p>
                     <label htmlFor="password">{!isLogin && <span>*</span>}Hasło</label>
-                    <input id="password" type="password" name="password" autoComplete="current-password" required/>
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={(e) => setFormData({...formData, password: e.target.value})}
+                        autoComplete="current-password" required
+                    />
                 </p>
                 <div className={classes.actions}>
-                    <Link to={`?mode=${isLogin ? 'signup' : 'login'}`}>
+                      <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
-                    </Link>
+                    </button>
                     <button disabled={isSubmitting}>{isSubmitting ? 'Zapisywanie...' : 'Zapisz'}</button>
                 </div>
             </Form>
