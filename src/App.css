@@ -7,11 +7,6 @@
   box-sizing: border-box;
 }
 
-/*html {*/
-/*  background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);*/
-/*  min-height: 100%;*/
-/*}*/
-
 body {
   font-family: 'Playpen Sans', sans-serif;
   display: flex;
