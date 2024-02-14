@@ -8,7 +8,7 @@ interface AvatarPickerProps {
 
 export default function AvatarPicker({ images, selectedImage, onSelect }: AvatarPickerProps) {
     return (
-        <div className={classes.image_picker}>
+        <div className={classes.avatar_picker}>
             <p>*Avatar</p>
             <ul>
                 {images.map((image: any) => (

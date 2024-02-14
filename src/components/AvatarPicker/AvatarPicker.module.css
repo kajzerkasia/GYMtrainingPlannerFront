@@ -1,0 +1,49 @@
+.avatar_picker {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.2rem;
+}
+
+.avatar_picker p {
+    font-family: 'Playpen Sans', sans-serif;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    color: #E6E6FA;
+}
+
+.avatar_picker ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 0.5rem;
+}
+
+.avatar_picker li {
+    width: 6rem;
+    height: 6rem;
+    border: 5px solid transparent;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.avatar_picker li.selected {
+    border-color: #d495e2;
+}
+
+.avatar_picker img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+
+@media (max-width: 576px) {
+
+    .avatar_picker p {
+        font-size: 24px;
+    }
+}
