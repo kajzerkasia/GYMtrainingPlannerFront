@@ -1,5 +1,5 @@
 import React, {lazy, Suspense} from 'react';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {ActionFunction, createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Error} from "./pages/Error/Error";
 import RootLayout from "./pages/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path: 'auth',
                 element: <Authentication/>,
-                action: authAction,
+                action: authAction as unknown as ActionFunction,
             },
             {
                 path: 'logout',
