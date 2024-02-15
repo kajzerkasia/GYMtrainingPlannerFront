@@ -1,5 +1,5 @@
 import React from 'react';
-import TableHead from "../TableHead/TableHead";
+import TableHead from "./TableHead/TableHead";
 
 const ProgressionRulesTableHead = () => {
     return (

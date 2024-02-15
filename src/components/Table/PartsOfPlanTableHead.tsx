@@ -4,7 +4,7 @@ import {TbDotsVertical} from "react-icons/tb";
 import {useParams} from "react-router-dom";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
-import TableHead from "../TableHead/TableHead";
+import TableHead from "./TableHead/TableHead";
 
 const PartsOfPlanTableHead = () => {
     const params = useParams();
