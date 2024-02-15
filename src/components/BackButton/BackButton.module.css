@@ -1,8 +1,6 @@
 .btn_back {
     font-family: 'Playpen Sans', sans-serif;
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
+    align-self: center;
     color: #E6E6FA;
     font-size: 1.25rem;
     background-color: #7d448b;
@@ -10,4 +8,10 @@
     padding: 0.5rem 1.5rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
+}
+
+@media(max-width: 576px) {
+    .btn_back {
+        margin: 3rem auto;
+    }
 }
