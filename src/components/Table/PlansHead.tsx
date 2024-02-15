@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {TbUserCircle} from "react-icons/tb";
 import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
-import TableHead from "../TableHead/TableHead";
+import TableHead from "./TableHead/TableHead";
 
 const PlansHead = () => {
     return (
