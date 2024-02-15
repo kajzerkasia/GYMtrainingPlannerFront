@@ -18,8 +18,10 @@ body {
   margin: 0 auto;
 }
 
-@media (min-width: 1000px) {
-  overflow: hidden;
+@media (min-width: 577px) {
+  body {
+    overflow: hidden;
+  }
 }
 
 html {
