@@ -5,7 +5,7 @@ import {itemsActions} from "../../store/features/items/items-slice";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
-import {modalDeleteText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
+import {modalDeleteText, modalDemoText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
 import UseValidationModal from "../../hooks/modals/useValidationModal";
 import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
@@ -13,6 +13,7 @@ import IconProvider from "../IconProvider/IconProvider";
 import TableData from "./TableData/TableData";
 import UseConfirmDeleteModal from "../../hooks/modals/useConfirmDeleteModal";
 import {Status} from "../../constants/types";
+import {UseDemoModal} from "../../hooks/modals/useDemoModal";
 
 interface TableElementsProps {
     children?: ReactNode;
@@ -38,6 +39,12 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
         openConfirmDeleteModal
     } = UseConfirmDeleteModal();
 
+    const {
+        demoModalIsOpen,
+        closeDemoModal,
+        openDemoModal
+    } = UseDemoModal();
+
     const handleConfirmDelete = async () => {
         handleDelete();
     };
@@ -54,6 +61,14 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
 
     return (
         <>
+            <Modal
+                open={demoModalIsOpen}
+                onClose={closeDemoModal}
+                onCancel={closeDemoModal}
+                modalText={modalDemoText}
+                cancelText="Rozumiem"
+                icon={TbAlertTriangle}
+            />
             <Modal
                 open={isConfirmDeleteModalOpen}
                 onClose={closeConfirmDeleteModal}
