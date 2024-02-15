@@ -53,9 +53,11 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 icon={TbAlertTriangle}
             />
             <TableData>
-                <IconProvider>
-                    <Link to="/instruction"><TbQuestionMark/></Link>
-                </IconProvider>
+                <Link to="/instruction">
+                    <IconProvider>
+                        <TbQuestionMark/>
+                    </IconProvider>
+                </Link>
             </TableData>
             <TableForm
                 initialValues={initialValues}

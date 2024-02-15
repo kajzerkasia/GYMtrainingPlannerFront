@@ -32,7 +32,8 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
         openValidationModal,
     } = UseValidationModal();
 
-    const {isConfirmDeleteModalOpen,
+    const {
+        isConfirmDeleteModalOpen,
         closeConfirmDeleteModal,
         openConfirmDeleteModal
     } = UseConfirmDeleteModal();
@@ -79,9 +80,11 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                 <tr key={`${item.id}`}>
                     {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
                         <TableData>
-                            <IconProvider>
-                                <button onClick={() => deleteItem(item.id)}><TbX/></button>
-                            </IconProvider>
+                            <button onClick={() => deleteItem(item.id)}>
+                                <IconProvider>
+                                    <TbX/>
+                                </IconProvider>
+                            </button>
                         </TableData>
                     )}
                     <TableForm
@@ -104,15 +107,19 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                         'planId' in item ?
                             (
                                 <TableData>
-                                    <IconProvider>
-                                        <Link to={`/exercises/${item.slug}`}><TbBarbell/></Link>
-                                    </IconProvider>
+                                    <Link to={`/exercises/${item.slug}`}>
+                                        <IconProvider>
+                                            <TbBarbell/>
+                                        </IconProvider>
+                                    </Link>
                                 </TableData>
                             ) : (
                                 <TableData>
-                                    <IconProvider>
-                                        <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}><TbDotsVertical/></Link>
-                                    </IconProvider>
+                                    <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}>
+                                        <IconProvider>
+                                            <TbDotsVertical/>
+                                        </IconProvider>
+                                    </Link>
                                 </TableData>
                             )
                     ))}

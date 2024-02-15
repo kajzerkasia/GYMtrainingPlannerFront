@@ -1,14 +1,15 @@
 import React from 'react';
+import TableHead from "../TableHead/TableHead";
 
 const PlanDetailsTableHead = () => {
     return (
-        <thead>
+        <TableHead>
         <tr>
             <th>Długość cyklu</th>
             <th>Częstotliwość</th>
             <th>Rozkład</th>
         </tr>
-        </thead>
+        </TableHead>
     );
 };
 
