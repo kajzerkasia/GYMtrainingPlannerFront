@@ -10,15 +10,17 @@ import BackButton from "../components/BackButton/BackButton";
 import ExercisesTableHead from "../components/Table/ExercisesTableHead";
 import Table from "../components/Table/Table/Table";
 import {ExerciseEntity} from "../constants/types";
+import FlexContainer from "../components/FlexContainer/FlexContainer";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 
 const Exercises = () => {
 
     const params = useParams();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     useEffect(() => {
         if (params.slug) {
-            dispatch(fetchExercises(params) as any);
+            dispatch(fetchExercises(params));
         }
     }, [dispatch, params]);
 
@@ -31,7 +33,7 @@ const Exercises = () => {
         : ['order', 'name', 'series', 'repetitions', 'pause', 'tips', 'url'];
 
     return (
-        <>
+        <FlexContainer>
             <DemoSign/>
             <Table>
                 <ExercisesTableHead/>
@@ -43,7 +45,7 @@ const Exercises = () => {
                 />
             </Table>
             <BackButton/>
-        </>
+        </FlexContainer>
     );
 };
 

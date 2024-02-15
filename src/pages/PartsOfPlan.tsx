@@ -11,15 +11,17 @@ import BackButton from "../components/BackButton/BackButton";
 import PartsOfPlanTableHead from "../components/Table/PartsOfPlanTableHead";
 import Table from "../components/Table/Table/Table";
 import {PartOfPlanEntity} from "../constants/types";
+import FlexContainer from "../components/FlexContainer/FlexContainer";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 
 const PartsOfPlan = () => {
 
     const params = useParams();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     useEffect(() => {
         if (params.slug) {
-            dispatch(fetchPartsOfPlanData(params) as any);
+            dispatch(fetchPartsOfPlanData(params));
         }
     }, [dispatch, params]);
 
@@ -39,7 +41,7 @@ const PartsOfPlan = () => {
         : ['name'];
 
     return (
-        <>
+        <FlexContainer>
             <DemoSign/>
             <Table>
                 <PartsOfPlanTableHead/>
@@ -52,7 +54,7 @@ const PartsOfPlan = () => {
                 />
             </Table>
             <BackButton/>
-        </>
+        </FlexContainer>
     );
 };
 

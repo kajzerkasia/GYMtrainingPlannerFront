@@ -11,14 +11,16 @@ import {getAuthToken} from "../helpers/auth";
 import {useParams} from "react-router-dom";
 import Table from "../components/Table/Table/Table";
 import {PlanEntity} from "../constants/types";
+import FlexContainer from "../components/FlexContainer/FlexContainer";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 
 const Plans = () => {
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
     const params = useParams();
 
     useEffect(() => {
         if (params.userId) {
-            dispatch(fetchPlansData(params) as any);
+            dispatch(fetchPlansData(params));
         }
     }, [dispatch, params]);
 
@@ -41,7 +43,7 @@ const Plans = () => {
         : ['name'];
 
     return (
-        <>
+        <FlexContainer>
             {token && (
                 <>
                     <DemoSign/>
@@ -57,7 +59,7 @@ const Plans = () => {
                     </Table>
                 </>
             )}
-        </>
+        </FlexContainer>
     );
 };
 

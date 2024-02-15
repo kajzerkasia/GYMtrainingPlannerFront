@@ -7,3 +7,10 @@
 .icon:hover {
     color: #d495e2;
 }
+
+@media (max-width: 576px) {
+    .icon {
+        margin-top: 0.5rem;
+        height: 30px;
+    }
+}

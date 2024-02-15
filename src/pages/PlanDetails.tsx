@@ -10,16 +10,18 @@ import {RootState} from "../store";
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";
 import Table from "../components/Table/Table/Table";
 import {DetailEntity} from "../constants/types";
+import FlexContainer from "../components/FlexContainer/FlexContainer";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 
 const PlanDetails = () => {
 
     const params = useParams();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
 
     useEffect(() => {
-        dispatch(fetchPlanDetails(params.slug) as any);
+        dispatch(fetchPlanDetails(params.slug));
     }, [dispatch, params.slug]);
 
     const {handleUpdate} = UsePlanDetailsActions();
@@ -29,7 +31,7 @@ const PlanDetails = () => {
         : ['length', 'frequency', 'schedule'];
 
     return (
-        <>
+        <FlexContainer>
             <DemoSign/>
             <Table>
                 <PlanDetailsTableHead/>
@@ -39,7 +41,7 @@ const PlanDetails = () => {
                 />
             </Table>
             <BackButton/>
-        </>
+        </FlexContainer>
     )
 };
 

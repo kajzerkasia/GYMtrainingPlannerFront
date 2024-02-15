@@ -1,7 +1,7 @@
-import classes from './FormField.module.css';
 import IconProvider from "../../IconProvider/IconProvider";
 import {TbLink} from "react-icons/tb";
 import {Status} from "../../../constants/types";
+import classes from './FormField.module.css';
 
 interface FormFieldProps<T> {
     field: keyof T;
@@ -32,7 +32,7 @@ export const FormField = <T extends Record<string, any>>({
         {field === 'url' ? (
             <>
                 <input
-                    placeholder="Link do filmu instruktażowego"
+                    placeholder="Link do filmu"
                     className={isEdited ? `${classes.edited_input}` : `${classes.input}`}
                     type="url"
                     name={field as string}

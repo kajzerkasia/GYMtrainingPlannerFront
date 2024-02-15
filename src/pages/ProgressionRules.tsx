@@ -10,17 +10,19 @@ import BackButton from "../components/BackButton/BackButton";
 import ProgressionRulesTableHead from "../components/Table/ProgressionRulesTableHead";
 import Table from "../components/Table/Table/Table";
 import {RuleEntity} from "../constants/types";
+import FlexContainer from "../components/FlexContainer/FlexContainer";
+import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 
 const ProgressionRules = () => {
 
     const params = useParams();
-    const dispatch = useDispatch();
+    const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
 
     useEffect(() => {
         if (params.slug) {
-            dispatch(fetchProgressionRules(params) as any);
+            dispatch(fetchProgressionRules(params));
         }
     }, [dispatch, params]);
 
@@ -31,7 +33,7 @@ const ProgressionRules = () => {
         : ['rule'];
 
     return (
-        <>
+        <FlexContainer>
             <DemoSign/>
             <Table>
                 <ProgressionRulesTableHead/>
@@ -43,7 +45,7 @@ const ProgressionRules = () => {
                 />
             </Table>
             <BackButton/>
-        </>
+        </FlexContainer>
     )
 };
 
