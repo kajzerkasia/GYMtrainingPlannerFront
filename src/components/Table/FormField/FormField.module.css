@@ -21,6 +21,10 @@ input:focus {
     border-radius: 5px;
 }
 
+.input::placeholder {
+    color: #d495e2;
+}
+
 td:hover {
     border: 2px solid #d495e2;
 }
