@@ -1,10 +1,11 @@
 import React from 'react';
+import TableHead from "../TableHead/TableHead";
 
 const ExercisesTableHead = () => {
     return (
-        <thead>
+        <TableHead>
         <tr>
-            <td style={{border: 'none'}}></td>
+            <td style={{border: 'none', visibility: 'hidden'}}></td>
             <th>
                 Kolejność
             </th>
@@ -27,7 +28,7 @@ const ExercisesTableHead = () => {
                 Poprawne wykonanie ćwiczenia
             </th>
         </tr>
-        </thead>
+        </TableHead>
     );
 };
 

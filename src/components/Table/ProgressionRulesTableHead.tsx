@@ -1,14 +1,15 @@
 import React from 'react';
+import TableHead from "../TableHead/TableHead";
 
 const ProgressionRulesTableHead = () => {
     return (
-        <thead>
+        <TableHead>
         <tr>
             <td colSpan={3}>
                 <h1>Zasady progresji</h1>
             </td>
         </tr>
-        </thead>
+        </TableHead>
     );
 };
 
