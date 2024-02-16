@@ -22,7 +22,7 @@ button {
         position: absolute;
         top: 105%;
         right: -1%;
-        background-color: #8c5997;
+        background-color: var(--button-color);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         z-index: 10;
@@ -41,7 +41,7 @@ button {
         width: 100%;
         padding: 10px 20px;
         text-align: left;
-        color: #E6E6FA;
+        color: var(--color-almost-white);
         background: none;
         border: none;
         cursor: pointer;
@@ -49,7 +49,7 @@ button {
     }
 
     .dropdownMenu button:hover {
-        background-color: #7d448b;
+        background-color: var(--color-primary);
     }
 }
 
@@ -61,7 +61,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #8c5997;
+    background-color: var(--button-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     width: 100%;
