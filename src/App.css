@@ -16,6 +16,9 @@
   --color-primary: #7d448b;
   --color-secondary: #642a71;
   --color-almost-white: #E6E6FA;
+  --color-light: #d495e2;
+  --button-color: #8c5997;
+  --error-color: #ff2100;
 }
 
 body {
