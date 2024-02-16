@@ -42,7 +42,7 @@
     width: 460px;
     height: 650px;
     padding: 10px;
-    background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
+    background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     z-index: 4;
     transition: 0.3s ease-out;
     border-radius: 8px;
@@ -59,9 +59,9 @@
 
 .accordion_button {
     font-size: 1.25rem;
-    background-color: #310942;
-    border: 1px solid #39114a;
+    background-color: var(--color-primary-background);
+    border: 1px solid var(--color-accessory-border);
     padding: 0.5rem 0.5rem;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    color: #E6E6FA;
+    color: var(--color-almost-white);
 }

@@ -4,8 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-image: linear-gradient(200deg, #642a71 15%, #7d448b 82%);
-    color: #E6E6FA;
+    background-image: linear-gradient(200deg, var(--color-secondary) 15%, var(--color-primary) 82%);
+    color: var(--color-almost-white);
     padding: 10px 10px;
     margin-top: 2.5rem;
 }
@@ -38,7 +38,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: #E6E6FA;
+        color: var(--color-almost-white);
         height: 80px;
         margin-bottom: 30px;
         margin-top: 0;
@@ -63,7 +63,7 @@
         margin-top: -15px;
         content: '';
         display: flex;
-        border: 1px solid #7d448b;
+        border: 1px solid var(--color-primary);
         width: 100vw;
     }
 
@@ -85,7 +85,7 @@
         z-index: 101;
         width: 30px;
         height: 3px;
-        background-color: #fff;
+        background-color: var(--color-almost-white);
         margin: 2.8rem auto;
         transition: transform 0.4s;
     }
@@ -93,7 +93,7 @@
     .header .hamburgerIcon::before,
     .header .hamburgerIcon::after {
         content: '';
-        background-color: white;
+        background-color: var(--color-almost-white);
         width: 30px;
         height: 3px;
         transition: transform 0.4s;
