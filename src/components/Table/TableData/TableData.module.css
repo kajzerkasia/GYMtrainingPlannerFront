@@ -1,5 +1,6 @@
 .td {
     width: 80px;
+    cursor: pointer;
 }
 
 .td:hover {

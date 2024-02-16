@@ -121,14 +121,15 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
                         name="password"
                         value={formData.password}
                         onChange={(e) => setFormData({...formData, password: e.target.value})}
-                        autoComplete="current-password" required
+                        autoComplete="current-password"
+                        required
                     />
                 </p>
                 <div className={classes.actions}>
                       <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
                     </button>
-                    <button disabled={isSubmitting}>{isSubmitting ? 'Zapisywanie...' : 'Zapisz'}</button>
+                    <button disabled={isSubmitting}>{isSubmitting ? 'Dodawanie...' : 'Dodaj'}</button>
                 </div>
             </Form>
         </>
