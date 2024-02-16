@@ -42,7 +42,7 @@
 .actions {
     display: flex;
     gap: 1rem;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     margin-top: 2rem;
 }
