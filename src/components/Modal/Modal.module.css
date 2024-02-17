@@ -6,7 +6,7 @@
 }
 
 .modal {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Playpen Sans', sans-serif;
     text-align: center;
     margin: 21vh auto 5vh;
     padding: 60px 50px;
@@ -26,11 +26,20 @@
 }
 
 .modal button {
-    font-family: 'Ubuntu', sans-serif;
-    margin-top: 7vh;
-    font-size: 22px;
-    padding: 22px 5vw 3vh;
-    border: 1px solid var(--color-light);
+    margin-top: 2rem;
+    border: 1px solid var(--color-primary);
+    font-size: 24px;
+    color: var(--color-almost-white);
+    transition: color 0.3s ease-in-out;
+    font-family: 'Playpen Sans', sans-serif;
+    text-align: center;
+    background-color: var(--color-primary);
+    padding: 10px 20px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.modal button:hover {
+    background-color: var(--button-color);
 }
 
 .modal_icon {
