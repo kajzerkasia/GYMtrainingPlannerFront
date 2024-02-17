@@ -55,3 +55,9 @@
     color: var(--color-almost-white);
     margin-bottom: 2rem;
 }
+
+.actions button {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    width: 150px;
+}
