@@ -5,7 +5,7 @@
 }
 
 .icon:hover {
-    color: #d495e2;
+    color: var(--color-light);
 }
 
 @media (max-width: 576px) {

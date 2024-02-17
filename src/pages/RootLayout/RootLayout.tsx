@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
-import MainNavigation from "../components/MainNavigation/MainNavigation";
+import MainNavigation from "../../components/MainNavigation/MainNavigation";
 import {Outlet, useLoaderData, useSubmit} from "react-router-dom";
 import {useSelector} from "react-redux";
-import AppNotification from "../components/UI/AppNotification";
-import {RootState} from "../store";
-import {getTokenDuration} from "../helpers/auth";
+import AppNotification from "../../components/UI/AppNotification";
+import {RootState} from "../../store";
+import {getTokenDuration} from "../../helpers/auth";
 import classes from './RootLayout.module.css';
 
 const RootLayout = () => {

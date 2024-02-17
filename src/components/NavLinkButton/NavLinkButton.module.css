@@ -3,7 +3,7 @@ button,
     background-color: transparent;
     border: none;
     font-size: 1.25rem;
-    color: #E6E6FA;
+    color: var(--color-almost-white);
     transition: color 0.3s ease-in-out;
     font-family: 'Playpen Sans', sans-serif;
     z-index: 100;
@@ -23,12 +23,12 @@ button,
         width: 0;
         left: 50%;
         height: 2px;
-        background-color: #d495e2;
+        background-color: var(--color-light);
         transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
     }
 
     &:hover {
-        color: #d495e2;
+        color: var(--color-light);
 
         &:before {
             width: 100%;
@@ -37,7 +37,7 @@ button,
     }
 
     &.active {
-        color: #d495e2;
+        color: var(--color-light);
 
         &:before {
             width: 100%;
@@ -51,7 +51,7 @@ a {
 }
 
 .buttonWithAnimation {
-    background-color: #8c5997;
+    background-color: var(--button-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     position: relative;
@@ -59,23 +59,23 @@ a {
 
 .buttonWithAnimation a:hover,
 .buttonWithAnimation a.active {
-    background-color: #8c5997;
-    border-color: #7d448b;
-    color: #310942;
+    background-color: var(--button-color);
+    border-color: var(--color-primary);
+    color: var(--color-primary-background);
 }
 
 @media (max-width: 576px) {
 
     .button,
     .buttonWithAnimation {
-        border: 1px solid #7d448b;
+        border: 1px solid var(--color-primary);
         font-size: 24px;
-        color: #E6E6FA;
+        color: var(--color-almost-white);
         transition: color 0.3s ease-in-out;
         font-family: 'Playpen Sans', sans-serif;
         width: 100vw;
         text-align: center;
-        background-color: #8c5997;
+        background-color: var(--button-color);
         padding: 10px 0;
     }
 
