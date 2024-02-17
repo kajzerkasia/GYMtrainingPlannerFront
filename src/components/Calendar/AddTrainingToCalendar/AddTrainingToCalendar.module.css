@@ -102,4 +102,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     margin-bottom: 0.4rem;
 }
 
+@media (max-width: 576px) {
+    .div_add_training_container {
+        position: absolute;
+        bottom: 10%;
+        right: 0;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: 0.3s ease-out;
+        z-index: 999;
+        text-align: center;
+        width: 100vw;
+        margin: 0 auto;
+    }
+}
+
 
