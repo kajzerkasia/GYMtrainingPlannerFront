@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import Image from "../Image/Image";
+import Image from "./Image";
 import {SLIDES} from "../../constants/slides";
 import classes from './ImagesSlideshow.module.css';
 
