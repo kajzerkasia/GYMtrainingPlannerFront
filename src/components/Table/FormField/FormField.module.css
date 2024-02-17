@@ -29,16 +29,8 @@ td:hover {
     border: 2px solid var(--color-light);
 }
 
-.td {
-    min-width: 80px;
-}
-
 tr {
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
-}
-
-td.td.narrower {
-    min-width: 120px;
 }
 
 td, th {
@@ -67,7 +59,7 @@ button {
 }
 
 td.td.narrower {
-    min-width: 100px;
+    min-width: 140px;
 }
 
 @keyframes highlight {
