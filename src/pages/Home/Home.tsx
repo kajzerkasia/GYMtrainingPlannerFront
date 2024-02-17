@@ -1,5 +1,5 @@
 import React from 'react';
-import ImagesSlideshow from "../../components/ImagesSlideshow/ImagesSlideshow";
+import ImagesSlideshow from "../../components/Images/ImagesSlideshow";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {NavLink, useRouteLoaderData} from "react-router-dom";

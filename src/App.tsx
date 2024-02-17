@@ -1,7 +1,7 @@
 import React, {lazy, Suspense} from 'react';
 import {ActionFunction, createBrowserRouter, RouterProvider} from "react-router-dom";
 import {Error} from "./pages/Error/Error";
-import RootLayout from "./pages/RootLayout";
+import RootLayout from "./pages/RootLayout/RootLayout";
 import Authentication, {action as authAction} from "./pages/Authentication";
 import {action as logoutAction} from './pages/Logout';
 import {tokenLoader} from "./helpers/auth";
