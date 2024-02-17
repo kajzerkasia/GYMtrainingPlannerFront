@@ -66,7 +66,7 @@ function Modal({
                             <IconComponent/>
                         </IconContext.Provider>
                     )}
-                    <div>
+                    <div className={classes.actions}>
                         {onCancel && (
                             <button onClick={handleCancel}>
                                 {cancelText || 'Cancel'}
