@@ -1,6 +1,6 @@
 .input {
     border: none;
-    color: #E6E6FA;
+    color: var(--color-almost-white);
     font-size: 16px;
     text-align: center;
     width: 100%;
@@ -22,11 +22,11 @@ input:focus {
 }
 
 .input::placeholder {
-    color: #d495e2;
+    color: var(--color-light);
 }
 
 td:hover {
-    border: 2px solid #d495e2;
+    border: 2px solid var(--color-light);
 }
 
 .td {
@@ -34,7 +34,7 @@ td:hover {
 }
 
 tr {
-    background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
+    background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
 }
 
 td.td.narrower {
@@ -43,7 +43,7 @@ td.td.narrower {
 
 td, th {
     height: 70px;
-    border: 1px solid #d495e2;
+    border: 1px solid var(--color-light);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -57,7 +57,7 @@ h1 {
 
 button {
     background-color: transparent;
-    color: #E6E6FA;
+    color: var(--color-almost-white);
     border: none;
     cursor: pointer;
 }
@@ -72,19 +72,19 @@ td.td.narrower {
 
 @keyframes highlight {
     0% {
-        color: #E6E6FA;
+        color: var(--color-almost-white);
     }
     50% {
-        color: #d495e2;
+        color: var(--color-light);
     }
     100% {
-        color: #E6E6FA;
+        color: var(--color-almost-white);
     }
 }
 
 .edited_input {
     border: none;
-    color: #E6E6FA;
+    color: var(--color-almost-white);
     font-size: 16px;
     text-align: center;
     width: 100%;
@@ -94,5 +94,5 @@ td.td.narrower {
 }
 
 .error_message {
-    color: red;
+    color: var(--error-color);
 }

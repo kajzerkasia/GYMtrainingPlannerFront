@@ -4,5 +4,5 @@
 }
 
 .td:hover {
-    border: 1px solid #d495e2;
+    border: 1px solid var(--color-light);
 }

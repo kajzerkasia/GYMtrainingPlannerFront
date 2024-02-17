@@ -1,9 +1,9 @@
 .list {
-    color: #E6E6FA;
+    color: var(--color-almost-white);
     list-style-type: none;
     padding: 1rem;
     border-radius: 6px;
-    background-image: linear-gradient(200deg, #39114a 15%, #310942 82%);
+    background-image: linear-gradient(200deg, var(--color-accessory-border) 15%, var(--color-primary-background) 82%);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 

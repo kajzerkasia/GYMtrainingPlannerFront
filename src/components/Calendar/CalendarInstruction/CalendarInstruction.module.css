@@ -7,7 +7,7 @@
 }
 
 .list {
-    color: #E6E6FA;
+    color: var(--color-almost-white);
 }
 
 .list li {

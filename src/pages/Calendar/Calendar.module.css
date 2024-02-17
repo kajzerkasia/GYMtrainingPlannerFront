@@ -8,7 +8,7 @@
     padding: 20px 20px;
     width: 900px;
     height: 650px;
-    background-image: linear-gradient(200deg, #7d448b 15%, #4f1866 82%);
+    background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
     font-size: 16px;
     border-radius: 8px;
