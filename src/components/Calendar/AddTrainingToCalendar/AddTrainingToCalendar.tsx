@@ -5,6 +5,7 @@ import {RootState} from "../../../store";
 import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
 import UseAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
 import classes from './AddTrainingToCalendar.module.css';
+import Button from "../../Button/Button";
 
 export const AddTrainingToCalendar = () => {
 
@@ -89,7 +90,7 @@ export const AddTrainingToCalendar = () => {
                 value={endTime}
                 onChange={handleEndTimeChange}
             />
-            <button
+            <Button
                 className={classes.add_training_button}
                 onClick={async () => {
                     if (isDemoMode) {
@@ -104,13 +105,13 @@ export const AddTrainingToCalendar = () => {
                 }}
             >
                 Dodaj
-            </button>
-            <button
+            </Button>
+            <Button
                 className={classes.add_training_button}
                 onClick={handleAddTrainingToCalendarClose}
             >
                 Zamknij
-            </button>
+            </Button>
         </div>
     );
 };
