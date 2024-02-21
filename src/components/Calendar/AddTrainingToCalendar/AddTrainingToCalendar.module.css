@@ -47,22 +47,6 @@
     color: var(--color-primary-background);
 }
 
-.add_training_button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: transparent;
-    color: var(--color-almost-white);
-    border: 1px solid var(--color-almost-white);
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-}
-
-.add_training_button:hover {
-    background-color: var(--color-light);
-}
-
 input[type="time"] {
     background-color: var(--color-almost-white);
     border: 1px solid var(--color-almost-white);;
