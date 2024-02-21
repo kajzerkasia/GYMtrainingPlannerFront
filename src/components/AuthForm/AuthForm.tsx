@@ -1,16 +1,14 @@
-import {Form, useNavigate, useNavigation, useSearchParams} from 'react-router-dom';
+import {Form, useNavigate, useSearchParams} from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import AvatarPicker from "../AvatarPicker/AvatarPicker";
 import {useEffect, useState} from "react";
 import {UseFetchImages} from "../../hooks/useFetchImages";
 
 function AuthForm({ action }: { action: (formData: FormData, mode: string) => Promise<Response | undefined>}) {
-    const navigation = useNavigation();
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
     const isLogin = searchParams.get('mode') === 'login';
-    const isSubmitting = navigation.state === 'submitting';
 
     const [selectableImages, setSelectableImages] = useState([]);
     const [formData, setFormData] = useState({
@@ -126,10 +124,10 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
                     />
                 </p>
                 <div className={classes.actions}>
-                      <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
+                    <button>{isLogin ? 'Zaloguj się' : 'Dodaj'}</button>
+                    <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
                     </button>
-                    <button disabled={isSubmitting}>{isSubmitting ? 'Dodawanie...' : 'Dodaj'}</button>
                 </div>
             </Form>
         </>
