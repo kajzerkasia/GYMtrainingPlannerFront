@@ -13,7 +13,7 @@ const NavLinkButton = ({ to, onClick, children }: NavLinkButtonProps) => {
         <NavLink to={to} className={({isActive}) =>
             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
         }>
-            <button onClick={onClick}>
+            <button onClick={onClick} className={classes.button}>
                 {children}
             </button>
         </NavLink>
