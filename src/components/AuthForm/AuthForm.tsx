@@ -124,10 +124,10 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
                     />
                 </p>
                 <div className={classes.actions}>
-                      <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
+                    <button>{isLogin ? 'Zaloguj się' : 'Dodaj'}</button>
+                    <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
                     </button>
-                    <button>{isLogin ? 'Zaloguj się' : 'Dodaj'}</button>
                 </div>
             </Form>
         </>
