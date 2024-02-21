@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import { NavLink } from 'react-router-dom';
 import classes from './NavLinkButton.module.css';
 
-const NavLinkButton = ({ to, onClick, children }: any) => {
+interface NavLinkButtonProps {
+    to: string;
+    onClick: () => void;
+    children: ReactNode;
+}
+
+const NavLinkButton = ({ to, onClick, children }: NavLinkButtonProps) => {
     return (
         <NavLink to={to} className={({isActive}) =>
             isActive ? `${classes.active} ${classes.buttonWithAnimation}` : classes.buttonWithAnimation
