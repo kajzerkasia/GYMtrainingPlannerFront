@@ -90,6 +90,7 @@ export const AddTrainingToCalendar = () => {
                 value={endTime}
                 onChange={handleEndTimeChange}
             />
+            <div className={classes.actions}>
             <Button
                 className={classes.add_training_button}
                 onClick={async () => {
@@ -112,6 +113,7 @@ export const AddTrainingToCalendar = () => {
             >
                 Zamknij
             </Button>
+            </div>
         </div>
     );
 };
