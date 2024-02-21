@@ -3,6 +3,7 @@ import classes from './AuthForm.module.css';
 import AvatarPicker from "../AvatarPicker/AvatarPicker";
 import {useEffect, useState} from "react";
 import {UseFetchImages} from "../../hooks/useFetchImages";
+import Button from "../Button/Button";
 
 function AuthForm({ action }: { action: (formData: FormData, mode: string) => Promise<Response | undefined>}) {
     const navigate = useNavigate();
@@ -124,10 +125,10 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
                     />
                 </p>
                 <div className={classes.actions}>
-                    <button>{isLogin ? 'Zaloguj się' : 'Dodaj'}</button>
-                    <button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
+                    <Button>{isLogin ? 'Zaloguj się' : 'Dodaj'}</Button>
+                    <Button onClick={() => handleLinkClick(isLogin ? 'signup' : 'login')}>
                         {isLogin ? 'Dodaj nowego użytkownika' : 'Zaloguj się'}
-                    </button>
+                    </Button>
                 </div>
             </Form>
         </>
