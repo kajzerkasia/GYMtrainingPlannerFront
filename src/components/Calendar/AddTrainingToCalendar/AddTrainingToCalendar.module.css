@@ -1,6 +1,6 @@
 .div_add_training_container {
     position: absolute;
-    top: 10%;
+    top: 15%;
     right: 0;
     transform: translateY(-50%);
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
@@ -9,10 +9,11 @@
     transition: 0.3s ease-out;
     z-index: 999;
     text-align: center;
-    width: 280px;
+    width: 300px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
+    font-family: 'Playpen Sans', sans-serif;
 }
 
 .div_add_training_container.open {
@@ -24,15 +25,17 @@
 }
 
 .div_add_training_container h1 {
-    margin-bottom: 10px;
+    font-size: 24px;
+    margin: 0 auto;
 }
 
 .div_add_training_container select {
-    margin-bottom: 10px;
+    font-family: 'Playpen Sans', sans-serif;
+    margin-top: 10px;
     background-color: transparent;
     color: var(--color-almost-white);
     border: 1px solid var(--color-almost-white);
-    padding: 8px 12px;
+    padding: 8px 10px;
     outline: none;
     cursor: pointer;
     border-radius: 4px;
@@ -42,21 +45,6 @@
 .div_add_training_container select option {
     font-size: 14px;
     color: var(--color-primary-background);
-}
-
-.add_training_button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: transparent;
-    color: var(--color-almost-white);
-    border: 1px solid var(--color-almost-white);
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.add_training_button:hover {
-    background-color: var(--color-light);
 }
 
 input[type="time"] {

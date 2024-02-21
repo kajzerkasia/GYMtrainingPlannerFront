@@ -1,6 +1,6 @@
 .form {
     max-width: 40rem;
-    margin: 10rem auto;
+    margin: 6rem auto;
     width: 600px;
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     border-radius: 8px;
@@ -47,32 +47,10 @@
     margin-top: 2rem;
 }
 
-.actions button {
-    font: inherit;
-    cursor: pointer;
-    padding: 0.5rem 1.5rem;
-    border-radius: 4px;
-    background-color: var(--color-primary);
-    color: var(--color-almost-white);
-    border: none;
-}
-
 .actions a {
     text-decoration: none;
     background-color: transparent;
     color: var(--color-light);
-}
-
-.actions button:hover {
-    background-color: var(--color-light);
-}
-
-.actions a:hover {
-    color: var(--color-almost-white);
-}
-
-ul {
-    list-style-type: none;
 }
 
 @media (max-width: 576px) {
