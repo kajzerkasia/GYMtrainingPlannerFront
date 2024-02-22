@@ -29,7 +29,6 @@
     font-size: 1rem;
     border: 1px solid var(--color-almost-white) !important;
     padding: 0.5rem 0.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     color: var(--color-almost-white) !important;
     height: 50px;
     width: 100px;
@@ -45,7 +44,6 @@
 
 .rbc-toolbar-label {
     font-size: 1.5rem !important;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
     word-spacing: 10px;
     font-family: 'Playpen Sans', sans-serif;
