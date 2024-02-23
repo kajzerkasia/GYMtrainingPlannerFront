@@ -46,6 +46,22 @@ const MainNavigation = () => {
         setIsDropdownOpen(!isDropdownOpen);
     }
 
+    let loginButton;
+
+    loginButton = (
+        <NavLinkButton to="/auth?mode=login" onClick={toggleHamburger}>
+            Logowanie
+        </NavLinkButton>
+    )
+
+    if (token) loginButton = (
+        <AvatarButton
+            onClick={toggleDropdown}
+            isDropdownOpen={isDropdownOpen}
+            isHamburgerMenuOpen={isHamburgerMenuOpen}
+        />
+    )
+
     return (
         <header className={classes.header}>
             <div className={classes.logo_and_hamburger_container}>
@@ -65,18 +81,7 @@ const MainNavigation = () => {
                     <NavLinkButton to={`/calendar/${userId}`} onClick={checkIfAuth}>
                         Kalendarz
                     </NavLinkButton>
-                    {!token && (
-                        <NavLinkButton to="/auth?mode=login" onClick={toggleHamburger}>
-                            Logowanie
-                        </NavLinkButton>
-                    )}
-                    {token && (
-                        <AvatarButton
-                            onClick={toggleDropdown}
-                            isDropdownOpen={isDropdownOpen}
-                            isHamburgerMenuOpen={isHamburgerMenuOpen}
-                        />
-                    )}
+                    {loginButton}
                 </ul>
             </nav>
         </header>
