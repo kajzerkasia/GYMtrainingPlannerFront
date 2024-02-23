@@ -2,6 +2,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
+    border: none;
+    width: 50px;
+    height: 50px;
+    margin-right: 2rem;
+    margin-left: 2rem;
 }
 
 button {

@@ -4,6 +4,7 @@ import classes from './AvatarButton.module.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {UserEntity} from "../../constants/types";
+import Button from "../Button/Button";
 
 interface AvatarButtonProps {
     onClick: () => void;
@@ -25,17 +26,17 @@ const AvatarButton = ({ onClick, isDropdownOpen, isHamburgerMenuOpen }: AvatarBu
             {isDropdownOpen && (
                 <div className={`${classes.dropdownMenu} ${isDropdownOpen ? classes.open : ''}`}>
                     <Form action="/logout" method="post">
-                        <button>
+                        <Button>
                             Wyloguj się
-                        </button>
+                        </Button>
                     </Form>
                 </div>
             )}
             {isHamburgerMenuOpen && (
                 <Form action="/logout" method="post" className={classes.mobile_only_form}>
-                    <button>
+                    <Button>
                         Wyloguj się
-                    </button>
+                    </Button>
                 </Form>
             )}
         </>
