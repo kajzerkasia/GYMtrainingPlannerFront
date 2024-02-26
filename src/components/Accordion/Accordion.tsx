@@ -1,7 +1,7 @@
 import React from "react";
 import classes from './Accordion.module.css';
-import {IconContext} from "react-icons";
 import {TbQuestionMark} from "react-icons/tb";
+import IconProvider from "../IconProvider/IconProvider";
 
 type AccordionProps = {
     title?: string;
@@ -16,13 +16,13 @@ export const Accordion = ({title, isOpen, toggleAccordion, children}: AccordionP
             <div className={classes.accordion}>
                 <span className={classes.accordion_title}>{title}</span>
                 <span className={classes.accordion_icon}>
-                         <IconContext.Provider value={{className: 'react-icons'}}>
+                         <IconProvider>
                              <button
                                  onClick={toggleAccordion}
                                  className={classes.accordion_button}>
                                  <TbQuestionMark/>
                              </button>
-                         </IconContext.Provider>
+                         </IconProvider>
                 </span>
             </div>
             <div
