@@ -14,6 +14,7 @@ import './CalendarAddons.css';
 import {fetchTrainingsData} from "../../../store/actions/calendar/fetching-action";
 import {AddTrainingToCalendar} from "../AddTrainingToCalendar/AddTrainingToCalendar";
 import {EditTrainingFromCalendar} from "../EditTrainingFromCalendar/EditTrainingFromCalendar";
+import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 
 export interface MyEvent {
     planName: string;
@@ -41,49 +42,16 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
     const {
         events,
         selectedDate,
-        selectedTrainingPlan,
+        selectedTrainingPlan
     } = useSelector((state: RootState) => state.calendar);
 
-    const {
-        updatePlanParts,
-    } = calendarsActions;
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
 
-    useEffect(() => {
-            try {
-                if (params.userId) {
-                    dispatch(fetchPlansData(params) as any);
-                }
-            } catch (error) {
-                console.error("Wystąpił błąd podczas pobierania danych treningowych:", error);
-            }
-    }, [dispatch, params]);
-
-    useEffect(() => {
-        if (selectedTrainingPlan !== null) {
-            const fetchPlanPartsFromAPI = async () => {
-                try {
-                    const planParts = await fetchPlanParts(selectedTrainingPlan);
-
-                    dispatch(updatePlanParts(planParts));
-                } catch (error) {
-                    console.error("Wystąpił błąd podczas pobierania danych części planu:", error);
-                }
-            };
-            fetchPlanPartsFromAPI();
-        }
-    }, [selectedTrainingPlan, dispatch, updatePlanParts]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                (dispatch as AppDispatch)(fetchTrainingsData(params));
-            } catch (error) {
-                console.error("Wystąpił błąd podczas pobierania danych o treningach:", error);
-            }
-        };
-
-        fetchData();
-    }, [dispatch]);
+    fetchPlansData(params);
+    fetchTrainingsData(params);
+    if (selectedTrainingPlan !== null) {
+        fetchPlanParts(selectedTrainingPlan);
+    }
 
     const [currentMonth, setCurrentMonth] = useState(moment().format('MMMM'));
 
@@ -98,7 +66,7 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
                 onSelectSlot={handleSelect}
                 onSelectEvent={handleEventClick}
                 defaultView="month"
-                views={["month", "day"]}
+                views={["month"]}
                 formats={{
                     monthHeaderFormat: (date) => formatDateName(moment(date).format('MMMM YYYY')),
                     dayHeaderFormat: (date) => {
