@@ -43,13 +43,18 @@ const MainNavigation = () => {
     }
 
     const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+        setIsDropdownOpen(prevState => !prevState);
+    }
+
+    const toggleDropdownAndHamburger = () => {
+        toggleHamburger();
+        toggleDropdown();
     }
 
     let loginButton;
 
     loginButton = (
-        <NavLinkButton to="/auth?mode=login" onClick={toggleHamburger}>
+        <NavLinkButton to="/auth?mode=login" onClick={toggleDropdownAndHamburger}>
             Logowanie
         </NavLinkButton>
     )
