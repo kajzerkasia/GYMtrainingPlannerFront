@@ -1,19 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {CalendarSettings} from "../CalendarSettings";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../store";
+import {useSelector} from "react-redux";
+import {RootState} from "../../../store";
 import {UseDateSelection} from "../../../hooks/calendar/useDateSelection";
 import {UseEventHandling} from "../../../hooks/calendar/useEventHandling";
-import {fetchPlanParts} from "../../../helpers/fetchingFunctions";
-import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
 import {formatDateName} from "../../../helpers/formatMonthName";
-import {fetchPlansData} from "../../../store/actions/plans-list/fetching-action";
 import moment from "moment";
 import "moment/locale/pl";
 import './CalendarAddons.css';
-import {fetchTrainingsData} from "../../../store/actions/calendar/fetching-action";
 import {AddTrainingToCalendar} from "../AddTrainingToCalendar/AddTrainingToCalendar";
 import {EditTrainingFromCalendar} from "../EditTrainingFromCalendar/EditTrainingFromCalendar";
+import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 
 export interface MyEvent {
     planName: string;
@@ -36,54 +33,19 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
     const {handleSelect} = UseDateSelection();
     const {handleEventClick} = UseEventHandling();
 
-    const dispatch = useDispatch();
-
     const {
         events,
         selectedDate,
-        selectedTrainingPlan,
+        selectedTrainingPlan
     } = useSelector((state: RootState) => state.calendar);
 
-    const {
-        updatePlanParts,
-    } = calendarsActions;
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
 
-    useEffect(() => {
-            try {
-                if (params.userId) {
-                    dispatch(fetchPlansData(params) as any);
-                }
-            } catch (error) {
-                console.error("Wystąpił błąd podczas pobierania danych treningowych:", error);
-            }
-    }, [dispatch, params]);
-
-    useEffect(() => {
-        if (selectedTrainingPlan !== null) {
-            const fetchPlanPartsFromAPI = async () => {
-                try {
-                    const planParts = await fetchPlanParts(selectedTrainingPlan);
-
-                    dispatch(updatePlanParts(planParts));
-                } catch (error) {
-                    console.error("Wystąpił błąd podczas pobierania danych części planu:", error);
-                }
-            };
-            fetchPlanPartsFromAPI();
-        }
-    }, [selectedTrainingPlan, dispatch, updatePlanParts]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                (dispatch as AppDispatch)(fetchTrainingsData());
-            } catch (error) {
-                console.error("Wystąpił błąd podczas pobierania danych o treningach:", error);
-            }
-        };
-
-        fetchData();
-    }, [dispatch]);
+    fetchPlansData(params);
+    fetchTrainingsData(params);
+    if (selectedTrainingPlan !== null) {
+        fetchPlanParts(selectedTrainingPlan);
+    }
 
     const [currentMonth, setCurrentMonth] = useState(moment().format('MMMM'));
 
@@ -98,7 +60,7 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
                 onSelectSlot={handleSelect}
                 onSelectEvent={handleEventClick}
                 defaultView="month"
-                views={["month", "day"]}
+                views={["month"]}
                 formats={{
                     monthHeaderFormat: (date) => formatDateName(moment(date).format('MMMM YYYY')),
                     dayHeaderFormat: (date) => {

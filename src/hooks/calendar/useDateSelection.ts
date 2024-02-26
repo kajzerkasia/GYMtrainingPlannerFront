@@ -2,9 +2,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import moment from "moment";
+import {useNavigate} from "react-router-dom";
 
 export const UseDateSelection = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const {selectedDate} = useSelector((state: RootState) => state.calendar);
 
     const unselectDate = () => {
@@ -24,6 +26,8 @@ export const UseDateSelection = () => {
             dispatch(calendarsActions.selectDate(startTimestamp));
             dispatch(calendarsActions.toggleAddTrainingToCalendar(true));
         }
+
+        navigate('/');
     };
 
     return {unselectDate, handleSelect};

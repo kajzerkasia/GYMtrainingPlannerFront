@@ -58,10 +58,9 @@
 }
 
 .accordion_button {
-    font-size: 1.25rem;
     background-color: var(--color-primary-background);
-    border: 1px solid var(--color-accessory-border);
-    padding: 0.5rem 0.5rem;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    color: var(--color-almost-white);
+}
+
+.accordion_button:hover {
+    background-color: var(--color-accessory-gradient);
 }

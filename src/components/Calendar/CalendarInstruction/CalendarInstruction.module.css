@@ -22,9 +22,14 @@
 }
 .button {
     padding: 10px 10px;
+    background-color: var(--color-primary-background);
+}
+
+.button:hover {
+    background-color: var(--color-accessory-gradient);
 }
 
 .h1 {
-    margin-left: 20px;
+    margin: 0 auto;
 }
 

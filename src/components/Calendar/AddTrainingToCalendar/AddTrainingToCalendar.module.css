@@ -1,6 +1,6 @@
 .div_add_training_container {
     position: absolute;
-    top: 15%;
+    top: 14%;
     right: 0;
     transform: translateY(-50%);
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
