@@ -43,8 +43,29 @@ const MainNavigation = () => {
     }
 
     const toggleDropdown = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+        setIsDropdownOpen(prevState => !prevState);
     }
+
+    const toggleDropdownAndHamburger = () => {
+        toggleHamburger();
+        toggleDropdown();
+    }
+
+    let loginButton;
+
+    loginButton = (
+        <NavLinkButton to="/auth?mode=login" onClick={toggleDropdownAndHamburger}>
+            Logowanie
+        </NavLinkButton>
+    )
+
+    if (token) loginButton = (
+        <AvatarButton
+            onClick={toggleDropdown}
+            isDropdownOpen={isDropdownOpen}
+            isHamburgerMenuOpen={isHamburgerMenuOpen}
+        />
+    )
 
     return (
         <header className={classes.header}>
@@ -65,18 +86,7 @@ const MainNavigation = () => {
                     <NavLinkButton to={`/calendar/${userId}`} onClick={checkIfAuth}>
                         Kalendarz
                     </NavLinkButton>
-                    {!token && (
-                        <NavLinkButton to="/auth?mode=login" onClick={toggleHamburger}>
-                            Logowanie
-                        </NavLinkButton>
-                    )}
-                    {token && (
-                        <AvatarButton
-                            onClick={toggleDropdown}
-                            isDropdownOpen={isDropdownOpen}
-                            isHamburgerMenuOpen={isHamburgerMenuOpen}
-                        />
-                    )}
+                    {loginButton}
                 </ul>
             </nav>
         </header>
