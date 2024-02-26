@@ -24,7 +24,7 @@ const AvatarButton = ({ onClick, isDropdownOpen, isHamburgerMenuOpen }: AvatarBu
                 <img src={`/assets/images/${userImage}`} alt="Avatar" className={classes.avatar_img} />
             </button>
             {isDropdownOpen && (
-                <div className={`${classes.dropdownMenu} ${isDropdownOpen ? classes.open : ''}`}>
+                <div className={`${classes.dropdownMenu} ${classes.open}`}>
                     <Form action="/logout" method="post">
                         <Button>
                             Wyloguj się
