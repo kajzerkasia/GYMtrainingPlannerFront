@@ -51,6 +51,10 @@
         flex-direction: column;
     }
 
+    .header nav ul a {
+        border-bottom: 3px solid #400d55;
+    }
+
     .logo_and_hamburger_container {
         margin-top: 7px;
         display: flex;
