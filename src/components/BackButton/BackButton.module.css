@@ -1,4 +1,8 @@
-@media(max-width: 576px) {
+.btn_back {
+    align-self: center;
+}
+
+@media (max-width: 576px) {
     .btn_back {
         margin: 3rem auto;
     }

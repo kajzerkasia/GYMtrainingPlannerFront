@@ -70,7 +70,6 @@ a {
 
     .button,
     .buttonWithAnimation {
-        border: 1px solid var(--color-primary);
         font-size: 24px;
         color: var(--color-almost-white);
         transition: color 0.3s ease-in-out;
