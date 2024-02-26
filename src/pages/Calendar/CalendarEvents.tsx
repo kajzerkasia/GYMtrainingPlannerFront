@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../store";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetching-action";
 import {useParams} from "react-router-dom";
+import classes from './CalendarEvents.module.css';
 
 const CalendarEvents = () => {
     const params = useParams();
@@ -26,7 +27,8 @@ const CalendarEvents = () => {
 
 
     return (
-        <div>
+        <div className={classes.events_container}>
+        <div className={classes.single_event}>
             {events.map((event) => (
                 <div key={event.id}>
                     <p>{event.planName}</p>
@@ -34,6 +36,7 @@ const CalendarEvents = () => {
                     <p>{event.startTime} - {event.endTime}</p>
                 </div>
             ))}
+        </div>
         </div>
     );
 };
