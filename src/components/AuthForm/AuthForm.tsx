@@ -56,10 +56,8 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
                 formDataToSend.append('name', formData.name);
             }
 
+            await action(formDataToSend, mode);
             navigate('/');
-
-            return await action(formDataToSend, mode)
-
 
         } catch (error) {
             console.error('Błąd podczas wysyłania formularza:', error);
