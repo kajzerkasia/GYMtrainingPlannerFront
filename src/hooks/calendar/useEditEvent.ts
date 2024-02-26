@@ -82,7 +82,7 @@ export const UseEditEvent = () => {
                         partName: updatedEventToUpdate.partName,
                         start: updatedEventToUpdate.start,
                         end: updatedEventToUpdate.end,
-                        title: `${updatedEventToUpdate.planName} ${updatedEventToUpdate.partName} ${startTime} - ${endTime}`,
+                        title: `${updatedEventToUpdate.planName}`,
                         startTime: startTime,
                         endTime: endTime,
                     }
