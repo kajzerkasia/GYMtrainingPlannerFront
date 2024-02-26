@@ -3,11 +3,16 @@ import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import moment from "moment";
 import {useNavigate} from "react-router-dom";
+import {UserEntity} from "../../constants/types";
 
 export const UseDateSelection = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {selectedDate} = useSelector((state: RootState) => state.calendar);
+
+    const { users } = useSelector((state: RootState) => state.items);
+    const usersList = users as unknown as UserEntity;
+    const userId = usersList?.id;
 
     const unselectDate = () => {
         dispatch(calendarsActions.selectDate(null));
@@ -27,7 +32,7 @@ export const UseDateSelection = () => {
             dispatch(calendarsActions.toggleAddTrainingToCalendar(true));
         }
 
-        navigate('/');
+        navigate(`/calendar/${userId}/trainings`);
     };
 
     return {unselectDate, handleSelect};

@@ -1,0 +1,13 @@
+.events_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.single_event {
+    text-align: center;
+    background-color: var(--color-primary);
+    width: 500px;
+    height: 100px;
+}
