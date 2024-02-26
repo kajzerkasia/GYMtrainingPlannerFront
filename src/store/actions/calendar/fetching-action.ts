@@ -5,12 +5,12 @@ import {MyEvent} from "../../../components/Calendar/CalendarAddons/CalendarAddon
 import moment from "moment";
 import {uiActions} from "../../features/ui/ui-slice";
 
-export const fetchTrainingsData = (): AppThunk<void> => async (dispatch, getState) => {
+export const fetchTrainingsData = (params: Record<string, string | undefined>): AppThunk<void> => async (dispatch, getState) => {
     try {
         dispatch(calendarsActions.setIsLoading(true));
 
         const trainingPlans = getState().calendar.trainingPlans;
-        const response = await fetch(`${apiUrl}/api/add-event/events`);
+        const response = await fetch(`${apiUrl}/api/add-event/events?userId=${params.userId}`);
         const data = await response.json();
 
         const formattedEvents: MyEvent[] = data.map((event: any) => {

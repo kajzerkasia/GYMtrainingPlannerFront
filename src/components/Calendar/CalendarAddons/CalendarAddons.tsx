@@ -76,7 +76,7 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                (dispatch as AppDispatch)(fetchTrainingsData());
+                (dispatch as AppDispatch)(fetchTrainingsData(params));
             } catch (error) {
                 console.error("Wystąpił błąd podczas pobierania danych o treningach:", error);
             }
