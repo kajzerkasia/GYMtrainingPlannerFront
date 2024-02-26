@@ -5,6 +5,7 @@ import {RootState} from "../../../store";
 import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
 import {UseEditEvent} from "../../../hooks/calendar/useEditEvent";
 import UseEditTrainingFromCalendar from "../../../hooks/calendar/useEditTrainingFromCalendar";
+import Button from "../../Button/Button";
 
 interface EditTrainingFromCalendarProps {
     openModal: () => void;
@@ -66,47 +67,49 @@ export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarPr
                 value={endTime}
                 onChange={handleEndTimeChange}
             />
-            <button
-                className={classes.edit_training_button}
-                onClick={async () => {
-                    if (isDemoMode) {
-                        dispatch(toggleDemoMode(true));
-                    } else {
-                        if (selectedEvent) {
-                            try {
-                                if (selectedEventId)
-                                    await handleEditEvent(selectedEventId, {
-                                        ...selectedEvent,
-                                        start: new Date(selectedEvent.start),
-                                        end: new Date(selectedEvent.end),
-                                        planName: selectedEvent.planName || "",
-                                        partName: selectedEvent.partName || "",
-                                    }, startTime, endTime);
-                            } catch (error) {
-                                console.error("Wystąpił błąd podczas edytowania wydarzenia:", error);
+            <div className="actions">
+                <Button
+                    className={classes.edit_training_button}
+                    onClick={async () => {
+                        if (isDemoMode) {
+                            dispatch(toggleDemoMode(true));
+                        } else {
+                            if (selectedEvent) {
+                                try {
+                                    if (selectedEventId)
+                                        await handleEditEvent(selectedEventId, {
+                                            ...selectedEvent,
+                                            start: new Date(selectedEvent.start),
+                                            end: new Date(selectedEvent.end),
+                                            planName: selectedEvent.planName || "",
+                                            partName: selectedEvent.partName || "",
+                                        }, startTime, endTime);
+                                } catch (error) {
+                                    console.error("Wystąpił błąd podczas edytowania wydarzenia:", error);
+                                }
                             }
                         }
-                    }
-                }}
-            >
-                Zapisz zmiany
-            </button>
-            <button
-                className={classes.edit_training_button}
-                onClick={async () => {
-                    if (!isDemoMode) {
-                        openModal();
-                    }
-                }}
-            >
-                Usuń trening
-            </button>
-            <button
-                className={classes.edit_training_button}
-                onClick={closeSidebar}
-            >
-                Zamknij
-            </button>
+                    }}
+                >
+                    Zapisz zmiany
+                </Button>
+                <Button
+                    className={classes.edit_training_button}
+                    onClick={async () => {
+                        if (!isDemoMode) {
+                            openModal();
+                        }
+                    }}
+                >
+                    Usuń trening
+                </Button>
+                <Button
+                    className={classes.edit_training_button}
+                    onClick={closeSidebar}
+                >
+                    Zamknij
+                </Button>
+            </div>
         </div>
     );
 };
