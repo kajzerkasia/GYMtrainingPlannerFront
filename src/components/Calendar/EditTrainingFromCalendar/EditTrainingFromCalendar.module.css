@@ -1,22 +1,25 @@
 .div_edit_training_container {
     display: flex;
     position: absolute;
-    top: 55%;
+    top: 58%;
     right: 0;
     transform: translateY(-50%);
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: 0.3s ease-out;
     z-index: 999;
     text-align: center;
+    font-family: 'Playpen Sans', sans-serif;
     flex-wrap: wrap;
-    width: 280px;
+    width: 300px;
     margin: 0 auto;
 }
 
 .div_edit_training_container h1 {
-    margin-bottom: 10px;
+    font-size: 20px;
+    margin: 0 auto 20px;
 }
 
 .div_edit_training_container.open {
@@ -47,7 +50,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .div_edit_training_container.open input[type="time"],
 .div_edit_training_container.open .add_event_button {
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .label_date {
@@ -64,14 +67,9 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .edit_training_button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: transparent;
-    color: var(--color-almost-white);
-    border: 1px solid var(--color-almost-white);;
-    border-radius: 4px;
+    margin: 10px 20px;
     cursor: pointer;
-    width: 100%;
+    width: 160px;
 }
 
 .edit_training_button:hover {
@@ -83,3 +81,4 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     color: var(--error-color);
     margin-bottom: 0.4rem;
 }
+
