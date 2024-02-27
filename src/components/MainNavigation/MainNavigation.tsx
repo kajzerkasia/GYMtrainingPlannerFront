@@ -32,7 +32,7 @@ const MainNavigation = () => {
     const userId = usersList?.id;
 
     const toggleHamburger = () => {
-        setIsHamburgerMenuOpen(!isHamburgerMenuOpen);
+        setIsHamburgerMenuOpen(prevState => !prevState);
     }
 
     const checkIfAuth = () => {
