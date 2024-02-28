@@ -2,18 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "../../store";
 import {fetchTrainingsData} from "../../store/actions/calendar/fetching-action";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import classes from './CalendarEvents.module.css';
 import BackButton from "../../components/BackButton/BackButton";
-import {AddTrainingToCalendar} from "../../components/Calendar/AddTrainingToCalendar/AddTrainingToCalendar";
 import {EditTrainingFromCalendar} from "../../components/Calendar/EditTrainingFromCalendar/EditTrainingFromCalendar";
 import {UseDateSelection} from "../../hooks/calendar/useDateSelection";
 import moment from "moment";
+import IconProvider from "../../components/IconProvider/IconProvider";
+import {TbX, TbEdit} from "react-icons/tb";
+import Button from "../../components/Button/Button";
+import FlexContainer from "../../components/FlexContainer/FlexContainer";
 
 const CalendarEvents = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const { selectedDate } = UseDateSelection();
+    const {selectedDate} = UseDateSelection();
     const [formattedDate, setFormattedDate] = useState('');
 
     useEffect(() => {
@@ -35,25 +38,37 @@ const CalendarEvents = () => {
     } = useSelector((state: RootState) => state.calendar);
 
     return (
-        <>
-            <AddTrainingToCalendar/>
-            <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
-            <div className={classes.events_container}>
-                <div className={classes.single_event}>
+        <FlexContainer>
+            <div className={classes.calendar_events_container}>
+                <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
+                <Button className={classes.btn_add}>
+                    <Link to={`/calendar/${params.userId}/trainings/add-training`}>
+                        Dodaj nowy trening
+                    </Link>
+                </Button>
+                <div className={classes.events_container}>
+                    <button className={classes.icon_button}>
+                        <IconProvider>
+                            <TbX/>
+                        </IconProvider>
+                    </button>
                     {events.map((event) => (
-                        <div key={event.id}>
+                        <div className={classes.single_event} key={event.id}>
                             <p>{event.planName}</p>
                             <p>{event.partName}</p>
                             <p>{event.startTime} - {event.endTime}</p>
                         </div>
                     ))}
+                    <button className={classes.icon_button}>
+                        <IconProvider>
+                            <TbEdit/>
+                        </IconProvider>
+                    </button>
                 </div>
-                <BackButton/>
+                <EditTrainingFromCalendar/>
             </div>
-            <EditTrainingFromCalendar
-                // openModal={openModal}
-            />
-        </>
+            <BackButton/>
+        </FlexContainer>
     );
 };
 
