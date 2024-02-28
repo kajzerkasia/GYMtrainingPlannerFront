@@ -1,8 +1,10 @@
 .events_container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
+    gap: 2rem;
 }
 
 .single_event {
@@ -10,4 +12,9 @@
     background-color: var(--color-primary);
     width: 500px;
     height: 100px;
+}
+
+.h1 {
+    margin-top: 2rem;
+    text-align: center;
 }
