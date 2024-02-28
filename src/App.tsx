@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import SuspenseFallback from "./components/SuspenseFallback/SuspenseFallback";
 import './App.css';
 import CalendarEvents from "./pages/Calendar/CalendarEvents";
+import {AddTrainingToCalendar} from "./components/Calendar/AddTrainingToCalendar/AddTrainingToCalendar";
 
 const Exercises = lazy(() => import('./pages/Exercises'));
 const Plans = lazy(() => import('./pages/Plans'));
@@ -94,7 +95,15 @@ const router = createBrowserRouter([
                     <Suspense fallback={<SuspenseFallback/>}>
                         <CalendarEvents/>
                     </Suspense>,
-            }
+            },
+            {
+                path:'calendar/:userId/trainings/add-training',
+                element:
+                    <Suspense fallback={<SuspenseFallback/>}>
+                        <AddTrainingToCalendar/>
+                    </Suspense>,
+            },
+
         ],
     },
 ]);
