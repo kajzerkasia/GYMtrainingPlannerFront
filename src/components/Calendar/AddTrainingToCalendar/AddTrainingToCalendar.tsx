@@ -17,7 +17,6 @@ export const AddTrainingToCalendar = () => {
         selectedPlanPartId,
         startTime,
         endTime,
-        isAddTrainingToCalendarOpen,
         isDemoMode,
         timeError,
     } = useSelector((state: RootState) => state.calendar);
@@ -32,16 +31,12 @@ export const AddTrainingToCalendar = () => {
         handleStartTimeChange,
         handleEndTimeChange,
         handleAddEvent,
-        handleAddTrainingToCalendarClose
     } = UseAddTrainingToCalendar();
 
 
     return (
         <div
-            className={`${classes.div_add_training_container} 
-            ${isAddTrainingToCalendarOpen ?
-                `${classes.open}` : `${classes.closed}`}`
-            }>
+            className={classes.div_add_training_container}>
             <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
             <select
                 value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
@@ -66,53 +61,51 @@ export const AddTrainingToCalendar = () => {
                 ))}
             </select>
             {timeError && <div className={classes.error}><p>{timeError}</p></div>}
-            <label
-                className={classes.label_date}
-                htmlFor="start">
-                Godzina ropoczęcia
-            </label>
-            <input
-                id="start"
-                className={classes.input_date}
-                type="time"
-                value={startTime}
-                onChange={handleStartTimeChange}
-            />
-            <label
-                className={classes.label_date}
-                htmlFor="end">
-                Godzina zakończenia
-            </label>
-            <input
-                id="end"
-                className={classes.input_date}
-                type="time"
-                value={endTime}
-                onChange={handleEndTimeChange}
-            />
+            <div className={classes.label_and_input_container}>
+                <label
+                    className={classes.label_date}
+                    htmlFor="start">
+                    Godzina ropoczęcia treningu
+                </label>
+                <input
+                    id="start"
+                    className={classes.input_date}
+                    type="time"
+                    value={startTime}
+                    onChange={handleStartTimeChange}
+                />
+            </div>
+            <div className={classes.label_and_input_container}>
+                <label
+                    className={classes.label_date}
+                    htmlFor="end">
+                    Godzina zakończenia treningu
+                </label>
+                <input
+                    id="end"
+                    className={classes.input_date}
+                    type="time"
+                    value={endTime}
+                    onChange={handleEndTimeChange}
+                />
+            </div>
             <div className={classes.actions}>
-            <Button
-                className={classes.add_training_button}
-                onClick={async () => {
-                    if (isDemoMode) {
-                        dispatch(toggleDemoMode(true));
-                    } else {
-                        try {
-                            await handleAddEvent(startTime, endTime);
-                        } catch (error) {
-                            console.error("Wystąpił błąd podczas dodawania wydarzenia:", error);
+                <Button
+                    className={classes.add_training_button}
+                    onClick={async () => {
+                        if (isDemoMode) {
+                            dispatch(toggleDemoMode(true));
+                        } else {
+                            try {
+                                await handleAddEvent(startTime, endTime);
+                            } catch (error) {
+                                console.error("Wystąpił błąd podczas dodawania wydarzenia:", error);
+                            }
                         }
-                    }
-                }}
-            >
-                Dodaj
-            </Button>
-            <Button
-                className={classes.add_training_button}
-                onClick={handleAddTrainingToCalendarClose}
-            >
-                Zamknij
-            </Button>
+                    }}
+                >
+                    Dodaj
+                </Button>
             </div>
         </div>
     );
