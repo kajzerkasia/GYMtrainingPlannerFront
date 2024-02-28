@@ -24,11 +24,10 @@ export interface MyEvent {
 }
 
 interface CalendarAddonsProps {
-    openModal: () => void;
     params: Record<string, string | undefined>
 }
 
-export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
+export const CalendarAddons = ({params}: CalendarAddonsProps) => {
 
     const {handleSelect} = UseDateSelection();
     const {handleEventClick} = UseEventHandling();
@@ -51,7 +50,6 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
 
     return (
         <>
-            <AddTrainingToCalendar/>
             <CalendarSettings
                 events={events}
                 startAccessor="start"
@@ -82,8 +80,6 @@ export const CalendarAddons = ({openModal, params}: CalendarAddonsProps) => {
                 }}
                 onNavigate={(newDate) => setCurrentMonth(moment(newDate).format('MMMM'))}
             />
-            <EditTrainingFromCalendar
-                openModal={openModal}/>
         </>
     );
 };
