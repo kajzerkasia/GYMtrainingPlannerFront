@@ -1,33 +1,21 @@
 .div_add_training_container {
-    position: absolute;
-    top: 14%;
-    right: 0;
-    transform: translateY(-50%);
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     padding: 20px;
-    transition: 0.3s ease-out;
-    z-index: 999;
     text-align: center;
-    width: 300px;
-    margin: 0 auto;
+    width: 500px;
+    margin: 5rem auto;
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     font-family: 'Playpen Sans', sans-serif;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.div_add_training_container.open {
-    transform: translateX(0);
-}
-
-.div_add_training_container.closed {
-    transform: translateX(100%);
-}
-
 .div_add_training_container h1 {
     font-size: 20px;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 .div_add_training_container select {
@@ -40,7 +28,7 @@
     outline: none;
     cursor: pointer;
     border-radius: 4px;
-    width: 100%;
+    width: 350px;
 }
 
 .div_add_training_container select option {
@@ -57,11 +45,12 @@ input[type="time"] {
 }
 
 .actions {
-    display: flex;
-    column-gap: 3.6rem;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
+    align-self: center;
+    margin-top: 2rem;
+}
+
+.add_training_button {
+    width: 100px;
 }
 
 
@@ -74,26 +63,29 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .div_add_training_container input[type="time"],
-.div_add_training_container .add_event_button {
-    align-self: flex-start;
+.div_add_training_container .add_training_button {
     margin-bottom: 20px;
+}
+
+.div_add_training_container input[type="time"] {
+    width: 100px;
 }
 
 .div_add_training_container select:nth-child(3) {
     margin-bottom: 2rem;
 }
 
+.label_and_input_container {
+    width: 350px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .label_date {
-    width: 60%;
     padding-right: 10px;
     box-sizing: border-box;
     font-size: 14px;
     margin-top: 8px;
-    text-align: left;
-}
-
-.input_date {
-    width: 40%;
 }
 
 .error {
@@ -104,13 +96,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 @media (max-width: 576px) {
     .div_add_training_container {
-        position: absolute;
-        bottom: 10%;
-        right: 0;
         padding: 20px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: 0.3s ease-out;
-        z-index: 999;
         text-align: center;
         width: 100vw;
         margin: 0 auto;
