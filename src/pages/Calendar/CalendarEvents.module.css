@@ -15,8 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2rem auto;
     gap: 2rem;
+    margin-bottom: 0.5rem;
     background-color: var(--color-primary);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     width: 500px;
@@ -30,10 +30,12 @@
 .h1 {
     margin-top: 2rem;
     text-align: center;
+    font-size: 20px;
 }
 
 .btn_add {
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .icon_button {
