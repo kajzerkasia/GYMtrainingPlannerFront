@@ -45,8 +45,11 @@ input[type="time"] {
 }
 
 .actions {
-    align-self: center;
-    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    align-items: center;
+    margin: 2rem;
 }
 
 .add_training_button {
@@ -63,7 +66,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .div_add_training_container input[type="time"],
-.div_add_training_container .add_training_button {
+.div_add_training_container {
     margin-bottom: 20px;
 }
 
