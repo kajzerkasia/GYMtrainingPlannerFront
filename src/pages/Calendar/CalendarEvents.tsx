@@ -46,25 +46,26 @@ const CalendarEvents = () => {
                         Dodaj nowy trening
                     </Link>
                 </Button>
-                <div className={classes.events_container}>
-                    <button className={classes.icon_button}>
-                        <IconProvider>
-                            <TbX/>
-                        </IconProvider>
-                    </button>
-                    {events.map((event) => (
+
+                {events.map((event) => (
+                    <div className={classes.events_container}>
+                        <Button className={classes.icon_button}>
+                            <IconProvider>
+                                <TbX/>
+                            </IconProvider>
+                        </Button>
                         <div className={classes.single_event} key={event.id}>
                             <p>{event.planName}</p>
                             <p>{event.partName}</p>
                             <p>{event.startTime} - {event.endTime}</p>
                         </div>
-                    ))}
-                    <button className={classes.icon_button}>
-                        <IconProvider>
-                            <TbEdit/>
-                        </IconProvider>
-                    </button>
-                </div>
+                        <Button className={classes.icon_button}>
+                            <IconProvider>
+                                <TbEdit/>
+                            </IconProvider>
+                        </Button>
+                    </div>
+                ))}
                 <EditTrainingFromCalendar/>
             </div>
             <BackButton/>
