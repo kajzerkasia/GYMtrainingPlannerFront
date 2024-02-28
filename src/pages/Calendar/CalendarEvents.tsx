@@ -12,30 +12,33 @@ import IconProvider from "../../components/IconProvider/IconProvider";
 import {TbX, TbEdit} from "react-icons/tb";
 import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
+import {UseFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 
 const CalendarEvents = () => {
     const params = useParams();
-    const dispatch = useDispatch();
     const {selectedDate} = UseDateSelection();
     const [formattedDate, setFormattedDate] = useState('');
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                (dispatch as AppDispatch)(fetchTrainingsData(params));
-            } catch (error) {
-                console.error("Wystąpił błąd podczas pobierania danych o treningach:", error);
-            }
-        };
-
-        fetchData();
-
         setFormattedDate(moment(selectedDate).format('D MMMM YYYY'));
-    }, [dispatch]);
+    }, []);
+
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
 
     const {
         events,
+        selectedTrainingPlan
     } = useSelector((state: RootState) => state.calendar);
+
+
+    fetchPlansData(params);
+    fetchTrainingsData(params);
+    if (selectedTrainingPlan !== null) {
+        fetchPlanParts(selectedTrainingPlan);
+    }
+
+
+    const selectedDateEvents = events.filter(event => moment(event.start).isSame(moment(selectedDate), 'day'));
 
     return (
         <FlexContainer>
@@ -47,8 +50,9 @@ const CalendarEvents = () => {
                     </Link>
                 </Button>
 
-                {events.map((event) => (
-                    <div className={classes.events_container}>
+                {selectedDateEvents.length > 0 ? selectedDateEvents.map((event) => (
+                    <div key={event.id}
+                         className={classes.events_container}>
                         <Button className={classes.icon_button}>
                             <IconProvider>
                                 <TbX/>
@@ -65,7 +69,9 @@ const CalendarEvents = () => {
                             </IconProvider>
                         </Button>
                     </div>
-                ))}
+                )) : (
+                    <p>Brak zaplanowanych treningów</p>
+                )}
                 <EditTrainingFromCalendar/>
             </div>
             <BackButton/>
