@@ -11,17 +11,7 @@
 }
 
 .rbc-today {
-    background-color: var(--color-primary);
-    background-attachment: fixed;
-}
-
-.rbc-today::after {
-    font-family: 'Playpen Sans', sans-serif;
-    content: 'dzisiaj';
-    position: absolute;
-    top: 30px;
-    left: 30px;
-    text-transform: uppercase;
+    background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
 }
 
 .rbc-btn-group {
@@ -85,9 +75,6 @@
     cursor: pointer;
 }
 
-.selected-date {
-    background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
-}
 
 .rbc-event-content {
     white-space: normal !important;
@@ -96,7 +83,13 @@
 
 .rbc-event {
     background-color: var(--color-primary) !important;
-    margin-top: 5px;
+    color: transparent;
+    height: 3px;
+    margin-top: 3px;
+}
+
+.rbc-event-content {
+    height: 3px;
 }
 
 .rbc-month-view {
