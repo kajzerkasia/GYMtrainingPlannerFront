@@ -8,12 +8,13 @@ import classes from './AddTrainingToCalendar.module.css';
 import Button from "../../Button/Button";
 import BackButton from "../../BackButton/BackButton";
 import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 export const AddTrainingToCalendar = () => {
 
     const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
     const params = useParams();
+    const navigate = useNavigate();
 
     const {
         trainingPlans,
@@ -113,6 +114,7 @@ export const AddTrainingToCalendar = () => {
                         } else {
                             try {
                                 await handleAddEvent(startTime, endTime);
+                                navigate(`/calendar/${params.userId}/trainings`);
                             } catch (error) {
                                 console.error("Wystąpił błąd podczas dodawania wydarzenia:", error);
                             }
