@@ -6,10 +6,15 @@ import {calendarsActions} from "../../../store/features/calendar/calendar-slice"
 import UseAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
 import classes from './AddTrainingToCalendar.module.css';
 import Button from "../../Button/Button";
+import BackButton from "../../BackButton/BackButton";
+import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
+import {useParams} from "react-router-dom";
 
 export const AddTrainingToCalendar = () => {
 
-    const dispatch = useDispatch();
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
+    const params = useParams();
+
     const {
         trainingPlans,
         planParts,
@@ -20,6 +25,15 @@ export const AddTrainingToCalendar = () => {
         isDemoMode,
         timeError,
     } = useSelector((state: RootState) => state.calendar);
+
+
+    fetchPlansData(params);
+    fetchTrainingsData(params);
+    if (selectedTrainingPlan !== null) {
+        fetchPlanParts(selectedTrainingPlan);
+    }
+
+    const dispatch = useDispatch();
 
     const {
         toggleDemoMode,
@@ -90,6 +104,7 @@ export const AddTrainingToCalendar = () => {
                 />
             </div>
             <div className={classes.actions}>
+                <BackButton/>
                 <Button
                     className={classes.add_training_button}
                     onClick={async () => {
