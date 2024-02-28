@@ -7,11 +7,7 @@ import {UseEditEvent} from "../../../hooks/calendar/useEditEvent";
 import UseEditTrainingFromCalendar from "../../../hooks/calendar/useEditTrainingFromCalendar";
 import Button from "../../Button/Button";
 
-interface EditTrainingFromCalendarProps {
-    openModal: () => void;
-}
-
-export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarProps) => {
+export const EditTrainingFromCalendar = () => {
 
     const dispatch = useDispatch();
     const {
@@ -95,11 +91,11 @@ export const EditTrainingFromCalendar = ({openModal}: EditTrainingFromCalendarPr
                 </Button>
                 <Button
                     className={classes.edit_training_button}
-                    onClick={async () => {
-                        if (!isDemoMode) {
-                            openModal();
-                        }
-                    }}
+                    // onClick={async () => {
+                    //     if (!isDemoMode) {
+                    //         openModal();
+                    //     }
+                    // }}
                 >
                     Usuń trening
                 </Button>

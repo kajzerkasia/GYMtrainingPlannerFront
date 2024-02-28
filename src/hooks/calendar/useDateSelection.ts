@@ -35,5 +35,5 @@ export const UseDateSelection = () => {
         navigate(`/calendar/${userId}/trainings`);
     };
 
-    return {unselectDate, handleSelect};
+    return { selectedDate, unselectDate, handleSelect };
 };

@@ -33,9 +33,6 @@ const Calendar = () => {
         setIsOpen(false);
     }
 
-    const openModal = () => {
-        setIsOpen(true);
-    }
 
     return (
         <>
@@ -64,7 +61,6 @@ const Calendar = () => {
                 </Accordion>
                 <div className={classes.div_calendar}>
                     <CalendarAddons
-                        openModal={openModal}
                         params={params}
                     />
                 </div>
