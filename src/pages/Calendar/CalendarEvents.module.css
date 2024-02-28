@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     background-color: var(--color-primary);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     width: 500px;
