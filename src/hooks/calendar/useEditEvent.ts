@@ -15,7 +15,6 @@ export const UseEditEvent = () => {
     const {
         updateEvents,
         toggleDemoMode,
-        toggleSidebar,
     } = calendarsActions;
 
     const {addHoursToEvent} = UseAddHoursToEvent();
@@ -90,7 +89,6 @@ export const UseEditEvent = () => {
             );
 
             dispatch(updateEvents(updatedEvents));
-            dispatch(toggleSidebar(false));
             dispatch(uiActions.showNotification({
                 status: 'success',
                 title: 'Sukces!',
