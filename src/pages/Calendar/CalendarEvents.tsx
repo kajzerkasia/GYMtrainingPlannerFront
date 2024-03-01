@@ -48,25 +48,34 @@ const CalendarEvents = () => {
                         Dodaj nowy trening
                     </Link>
                 </Button>
-
-                {selectedDateEvents.length > 0 ? selectedDateEvents.map((event) => (
-                    <div key={event.id}
-                         className={classes.events_container}>
-                        <Button className={classes.icon_button}>
-                            <IconProvider>
-                                <TbX/>
-                            </IconProvider>
-                        </Button>
-                        <div className={classes.single_event} key={event.id}>
-                            <p>{event.planName}</p>
-                            <p>{event.partName}</p>
-                            <p>{event.startTime} - {event.endTime}</p>
+                {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
+                    <div
+                        className={classes.container}
+                        key={event.id}
+                    >
+                        <div className={classes.round}>
+                            <p>
+                                {index + 1}
+                            </p>
                         </div>
-                        <Button className={classes.icon_button}>
-                            <IconProvider>
-                                <TbEdit/>
-                            </IconProvider>
-                        </Button>
+                        <div
+                            className={classes.events_container}>
+                            <Button className={classes.icon_button}>
+                                <IconProvider>
+                                    <TbX/>
+                                </IconProvider>
+                            </Button>
+                            <div className={classes.single_event} key={event.id}>
+                                <p>{event.planName}</p>
+                                <p>{event.partName}</p>
+                                <p>{event.startTime} - {event.endTime}</p>
+                            </div>
+                            <Button className={classes.icon_button}>
+                                <IconProvider>
+                                    <TbEdit/>
+                                </IconProvider>
+                            </Button>
+                        </div>
                     </div>
                 )) : (
                     <p>Brak zaplanowanych treningów</p>
