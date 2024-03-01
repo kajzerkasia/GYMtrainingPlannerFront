@@ -21,7 +21,7 @@ const AvatarButton = ({ onClick, isDropdownOpen, isHamburgerMenuOpen }: AvatarBu
     return (
         <>
             <button onClick={onClick} className={classes.button_avatar}>
-                <img src={`/assets/images/${userImage}`} alt="Avatar" className={classes.avatar_img} />
+                <img src={`http://localhost:3001/public/${userImage}`} alt="Avatar" className={classes.avatar_img} />
             </button>
             {isDropdownOpen && (
                 <div className={`${classes.dropdownMenu} ${classes.open}`}>
