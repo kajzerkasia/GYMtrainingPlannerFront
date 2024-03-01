@@ -28,7 +28,8 @@
 
 .form input,
 .form textarea {
-    font: inherit;
+    font-family: 'Playpen Sans', sans-serif;
+    font-size: 16px;
     padding: 0.5rem;
     background-color: var(--color-almost-white);
     border-radius: 4px;
@@ -36,6 +37,9 @@
 
 .form input:focus,
 .form textarea:focus {
+    outline: transparent;
+    font-family: 'Playpen Sans', sans-serif;
+    font-size: 16px;
     background-color: var(--color-almost-white);
 }
 
