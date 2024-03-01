@@ -14,7 +14,6 @@ export const EditTrainingFromCalendar = () => {
         startTime,
         endTime,
         selectedEvent,
-        isSidebarOpen,
         isDemoMode,
         timeError,
         selectedEventId,
@@ -26,11 +25,11 @@ export const EditTrainingFromCalendar = () => {
 
     const {handleEditEvent} = UseEditEvent();
 
-    const {handleStartTimeChange, handleEndTimeChange, closeSidebar} = UseEditTrainingFromCalendar();
+    const {handleStartTimeChange, handleEndTimeChange} = UseEditTrainingFromCalendar();
 
 
     return (
-        <div className={`${classes.div_edit_training_container} ${isSidebarOpen ? `${classes.open}` : `${classes.closed}`}`}>
+        <div className={`${classes.div_edit_training_container} ${classes.open}`}>
             <h1>{isDemoMode ? "Tryb demo: Edycja wydarzenia wyłączona" : "Edytuj trening"}</h1>
             {timeError && (
                 <div className={classes.error}>
@@ -98,12 +97,6 @@ export const EditTrainingFromCalendar = () => {
                     // }}
                 >
                     Usuń trening
-                </Button>
-                <Button
-                    className={classes.edit_training_button}
-                    onClick={closeSidebar}
-                >
-                    Zamknij
                 </Button>
             </div>
         </div>
