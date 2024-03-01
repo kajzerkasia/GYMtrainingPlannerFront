@@ -44,24 +44,22 @@ const CalendarEvents = () => {
         <FlexContainer>
             <div className={classes.calendar_events_container}>
                 <div className={classes.header_container}>
-                <div>
                     <img src={img} alt=""/>
-                </div>
-                <header className={classes.header}>
-                    <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
-                    <div className={classes.actions}>
-                        <Button>
-                            <Link to={`/calendar/${params.userId}/trainings/add-training`}>
-                                Dodaj nowy trening
-                            </Link>
-                        </Button>
-                        <Button>
-                            <Link to={`/calendar/${params.userId}`}>
-                                Powrót do kalendarza
-                            </Link>
-                        </Button>
-                    </div>
-                </header>
+                    <header className={classes.header}>
+                        <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
+                        <div className={classes.actions}>
+                            <Button>
+                                <Link to={`/calendar/${params.userId}/trainings/add-training`}>
+                                    Dodaj nowy trening
+                                </Link>
+                            </Button>
+                            <Button>
+                                <Link to={`/calendar/${params.userId}`}>
+                                    Powrót do kalendarza
+                                </Link>
+                            </Button>
+                        </div>
+                    </header>
                 </div>
                 {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
                     <div
@@ -93,9 +91,11 @@ const CalendarEvents = () => {
                         </div>
                     </div>
                 )) : (
-                    <p>Brak zaplanowanych treningów</p>
+                    <div className={classes.arrow_container}>
+                        <div className={classes.arrow}></div>
+                        <p>Brak zaplanowanych treningów</p>
+                    </div>
                 )}
-                {/*<EditTrainingFromCalendar/>*/}
             </div>
         </FlexContainer>
     );
