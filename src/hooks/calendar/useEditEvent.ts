@@ -3,10 +3,10 @@ import {apiUrl} from "../../config/api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseAddHoursToEvent} from "./useAddHoursToEvent";
+import {useAddHoursToEvent} from "./useAddHoursToEvent";
 import {uiActions} from "../../store/features/ui/ui-slice";
 
-export const UseEditEvent = () => {
+export const useEditEvent = () => {
     const dispatch = useDispatch();
     const {
         events,
@@ -17,7 +17,7 @@ export const UseEditEvent = () => {
         toggleDemoMode,
     } = calendarsActions;
 
-    const {addHoursToEvent} = UseAddHoursToEvent();
+    const {addHoursToEvent} = useAddHoursToEvent();
 
     const handleEditEvent = async (
         id: string,

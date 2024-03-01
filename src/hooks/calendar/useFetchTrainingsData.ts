@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {useParams} from "react-router-dom";
 
-export const UseFetchTrainingsData = () => {
+export const useFetchTrainingsData = () => {
 
     const dispatch = useDispatch();
     const params = useParams();
