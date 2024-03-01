@@ -6,11 +6,9 @@ import {useDispatch} from "react-redux";
 const UseAddTrainingToCalendar = () => {
 
     const {
-        selectDate,
         selectPlanPart,
         updateStartTime,
         updateEndTime,
-        toggleAddTrainingToCalendar,
     } = calendarsActions;
 
     const {
@@ -28,15 +26,6 @@ const UseAddTrainingToCalendar = () => {
 
     const {handleAddEvent} = UseAddNewEvent();
 
-    const unselectDate = () => {
-        dispatch(selectDate(null));
-    };
-
-    const handleAddTrainingToCalendarClose = () => {
-        unselectDate();
-        dispatch(toggleAddTrainingToCalendar(false));
-    };
-
     const handleTrainingPlanChange = (planId: string) => {
         dispatch(selectTrainingPlan(planId));
         dispatch(selectPlanPart(null));
@@ -47,8 +36,6 @@ const UseAddTrainingToCalendar = () => {
         handleStartTimeChange,
         handleEndTimeChange,
         handleAddEvent,
-        unselectDate,
-        handleAddTrainingToCalendarClose,
         handleTrainingPlanChange,
     }
 };

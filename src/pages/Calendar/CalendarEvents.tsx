@@ -1,42 +1,42 @@
 import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../store";
-import {fetchTrainingsData} from "../../store/actions/calendar/fetching-action";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
 import {Link, useParams} from "react-router-dom";
 import classes from './CalendarEvents.module.css';
 import BackButton from "../../components/BackButton/BackButton";
-import {EditTrainingFromCalendar} from "../../components/Calendar/EditTrainingFromCalendar/EditTrainingFromCalendar";
-import {UseDateSelection} from "../../hooks/calendar/useDateSelection";
 import moment from "moment";
 import IconProvider from "../../components/IconProvider/IconProvider";
 import {TbX, TbEdit} from "react-icons/tb";
 import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
 import {UseFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
+import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
 
 const CalendarEvents = () => {
     const params = useParams();
-    const {selectedDate} = UseDateSelection();
-    const [formattedDate, setFormattedDate] = useState('');
-
-    useEffect(() => {
-        setFormattedDate(moment(selectedDate).format('D MMMM YYYY'));
-    }, []);
-
-    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
 
     const {
         events,
-        selectedTrainingPlan
     } = useSelector((state: RootState) => state.calendar);
 
+    const [formattedDate, setFormattedDate] = useState('');
 
-    fetchPlansData(params);
+    const storedSelectedDate = localStorage.getItem('selectedDate');
+    const selectedDate = storedSelectedDate ? parseInt(storedSelectedDate, 10) : null;
+
+    useEffect(() => {
+        const selectedMonth = moment(selectedDate).month();
+        const selectedYear = moment(selectedDate).year();
+
+        const formattedDate = `${moment(selectedDate).format('D')} ${POLISH_MONTH_NAMES[selectedMonth]} ${selectedYear}`;
+
+        setFormattedDate(formattedDate);
+    }, [selectedDate]);
+
+
+    const {fetchTrainingsData} = UseFetchTrainingsData();
+
     fetchTrainingsData(params);
-    if (selectedTrainingPlan !== null) {
-        fetchPlanParts(selectedTrainingPlan);
-    }
-
 
     const selectedDateEvents = events.filter(event => moment(event.start).isSame(moment(selectedDate), 'day'));
 
@@ -72,7 +72,7 @@ const CalendarEvents = () => {
                 )) : (
                     <p>Brak zaplanowanych treningów</p>
                 )}
-                <EditTrainingFromCalendar/>
+                {/*<EditTrainingFromCalendar/>*/}
             </div>
             <BackButton/>
         </FlexContainer>

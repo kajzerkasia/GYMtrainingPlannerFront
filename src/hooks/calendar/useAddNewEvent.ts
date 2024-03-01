@@ -31,14 +31,12 @@ export const UseAddNewEvent = () => {
         updateStartTime,
         updateEndTime,
         toggleDemoMode,
-        toggleAddTrainingToCalendar,
     } = calendarsActions;
 
     const resetValues = () => {
         dispatch(selectTrainingPlan(null));
         dispatch(selectPlanPart(null));
         dispatch(selectDate(null));
-        dispatch(toggleAddTrainingToCalendar(false));
         dispatch(updateStartTime(''));
         dispatch(updateEndTime(''));
     }

@@ -15,7 +15,6 @@ export const UseDeleteEvent = () => {
         updateEvents,
         selectEvent,
         toggleDemoMode,
-        toggleSidebar,
     } = calendarsActions;
 
     const handleDeleteEvent = async (id: string) => {
@@ -45,7 +44,6 @@ export const UseDeleteEvent = () => {
             }
 
             dispatch(updateEvents((events.filter(event => event.id !== id))));
-            dispatch(toggleSidebar(false));
             dispatch(selectEvent(null));
             dispatch(uiActions.showNotification({
                 status: 'success',
