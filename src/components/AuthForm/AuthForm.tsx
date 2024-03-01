@@ -2,7 +2,7 @@ import {Form, useNavigate, useSearchParams} from 'react-router-dom';
 import classes from './AuthForm.module.css';
 import AvatarPicker from "../AvatarPicker/AvatarPicker";
 import {useEffect, useState} from "react";
-import {UseFetchImages} from "../../hooks/useFetchImages";
+import {useFetchImages} from "../../hooks/useFetchImages";
 import Button from "../Button/Button";
 
 function AuthForm({ action }: { action: (formData: FormData, mode: string) => Promise<Response | undefined>}) {
@@ -23,7 +23,7 @@ function AuthForm({ action }: { action: (formData: FormData, mode: string) => Pr
         setFormData(prevData => ({...prevData, image}));
     }
 
-    const {fetchSelectableImages} = UseFetchImages();
+    const {fetchSelectableImages} = useFetchImages();
 
     useEffect(() => {
         async function fetchData() {

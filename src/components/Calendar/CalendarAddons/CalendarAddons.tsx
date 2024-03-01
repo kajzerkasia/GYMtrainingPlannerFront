@@ -2,15 +2,13 @@ import React, {useState} from "react";
 import {CalendarSettings} from "../CalendarSettings";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../store";
-import {UseDateSelection} from "../../../hooks/calendar/useDateSelection";
-import {UseEventHandling} from "../../../hooks/calendar/useEventHandling";
+import {useDateSelection} from "../../../hooks/calendar/useDateSelection";
+import {useEventHandling} from "../../../hooks/calendar/useEventHandling";
 import {formatDateName} from "../../../helpers/formatMonthName";
 import moment from "moment";
 import "moment/locale/pl";
 import './CalendarAddons.css';
-import {AddTrainingToCalendar} from "../AddTrainingToCalendar/AddTrainingToCalendar";
-import {EditTrainingFromCalendar} from "../EditTrainingFromCalendar/EditTrainingFromCalendar";
-import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
+import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 
 export interface MyEvent {
     planName: string;
@@ -29,8 +27,8 @@ interface CalendarAddonsProps {
 
 export const CalendarAddons = ({params}: CalendarAddonsProps) => {
 
-    const {handleSelect} = UseDateSelection();
-    const {handleEventClick} = UseEventHandling();
+    const {handleSelect} = useDateSelection();
+    const {handleEventClick} = useEventHandling();
 
     const {
         events,
@@ -38,7 +36,7 @@ export const CalendarAddons = ({params}: CalendarAddonsProps) => {
         selectedTrainingPlan
     } = useSelector((state: RootState) => state.calendar);
 
-    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = useFetchTrainingsData();
 
     fetchPlansData(params);
     fetchTrainingsData(params);
