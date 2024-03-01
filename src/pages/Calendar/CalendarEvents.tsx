@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {Link, useParams} from "react-router-dom";
 import classes from './CalendarEvents.module.css';
-import BackButton from "../../components/BackButton/BackButton";
 import moment from "moment";
 import IconProvider from "../../components/IconProvider/IconProvider";
 import {TbX, TbEdit} from "react-icons/tb";
@@ -74,7 +73,11 @@ const CalendarEvents = () => {
                 )}
                 {/*<EditTrainingFromCalendar/>*/}
             </div>
-            <BackButton/>
+            <Button>
+                <Link to={`/calendar/${params.userId}`}>
+                    Powrót
+                </Link>
+            </Button>
         </FlexContainer>
     );
 };
