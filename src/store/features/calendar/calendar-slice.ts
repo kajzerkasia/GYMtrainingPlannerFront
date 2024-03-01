@@ -15,8 +15,6 @@ interface CalendarState {
     selectedEventId: string | null;
     isDemoMode: boolean;
     timeError: string | null;
-    isAddTrainingToCalendarOpen: boolean;
-    isSidebarOpen: boolean;
     isLoading: boolean;
 }
 
@@ -33,8 +31,6 @@ const initialState: CalendarState = {
     selectedEventId: null,
     isDemoMode: false,
     timeError: null,
-    isAddTrainingToCalendarOpen: false,
-    isSidebarOpen: false,
     isLoading: true,
 };
 
@@ -78,12 +74,6 @@ const calendarSlice = createSlice({
         },
         updateTimeError: (state, action: PayloadAction<string | null>) => {
             state.timeError = action.payload;
-        },
-        toggleAddTrainingToCalendar: (state, action: PayloadAction<boolean>) => {
-            state.isAddTrainingToCalendarOpen = action.payload;
-        },
-        toggleSidebar: (state, action: PayloadAction<boolean>) => {
-            state.isSidebarOpen = action.payload;
         },
         setIsLoading: (state, action: PayloadAction<boolean>) => {
             state.isLoading = action.payload;
