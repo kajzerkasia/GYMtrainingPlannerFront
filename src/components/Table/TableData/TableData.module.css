@@ -4,5 +4,6 @@
 }
 
 .td:hover {
-    border: 1px solid var(--color-light);
+    border: none;
+    background-color: var(--button-color);
 }
