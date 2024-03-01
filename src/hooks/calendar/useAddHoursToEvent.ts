@@ -2,7 +2,7 @@ import {useDispatch} from "react-redux";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {MyEvent} from "../../components/Calendar/CalendarAddons/CalendarAddons";
 
-export const UseAddHoursToEvent = () => {
+export const useAddHoursToEvent = () => {
 
     const dispatch = useDispatch();
 

@@ -9,7 +9,7 @@ import IconProvider from "../../components/IconProvider/IconProvider";
 import {TbX, TbEdit} from "react-icons/tb";
 import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
-import {UseFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
+import {useFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
 
 const CalendarEvents = () => {
@@ -34,7 +34,7 @@ const CalendarEvents = () => {
     }, [selectedDate]);
 
 
-    const {fetchTrainingsData} = UseFetchTrainingsData();
+    const {fetchTrainingsData} = useFetchTrainingsData();
 
     fetchTrainingsData(params);
 

@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
-import UsePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
+import usePlanDetailsActions from "../hooks/actionHooks/usePlanDetailsActions";
 import {RootState} from "../store";
 import PlanDetailsTableHead from "../components/Table/PlanDetailsTableHead";
 import Table from "../components/Table/Table/Table";
@@ -24,7 +24,7 @@ const PlanDetails = () => {
         dispatch(fetchPlanDetails(params.slug));
     }, [dispatch, params.slug]);
 
-    const {handleUpdate} = UsePlanDetailsActions();
+    const {handleUpdate} = usePlanDetailsActions();
 
     const availableFields = itemsList && itemsList.length > 0
         ? ['length', 'frequency', 'schedule']

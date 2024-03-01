@@ -1,9 +1,9 @@
 import React from "react";
-import {UseAddNewEvent} from "./useAddNewEvent";
+import {useAddNewEvent} from "./useAddNewEvent";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {useDispatch} from "react-redux";
 
-const UseAddTrainingToCalendar = () => {
+const useAddTrainingToCalendar = () => {
 
     const {
         selectPlanPart,
@@ -24,7 +24,7 @@ const UseAddTrainingToCalendar = () => {
 
     const handleEndTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => dispatch(updateEndTime(e.target.value));
 
-    const {handleAddEvent} = UseAddNewEvent();
+    const {handleAddEvent} = useAddNewEvent();
 
     const handleTrainingPlanChange = (planId: string) => {
         dispatch(selectTrainingPlan(planId));
@@ -40,4 +40,4 @@ const UseAddTrainingToCalendar = () => {
     }
 };
 
-export default UseAddTrainingToCalendar;
+export default useAddTrainingToCalendar;

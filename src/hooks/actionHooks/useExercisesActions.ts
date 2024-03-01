@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modals/useDemoModal";
+import {useDemoModal} from "../modals/useDemoModal";
 import {useParams} from "react-router-dom";
 import {addExercise} from "../../store/actions/exercises/sending-action";
 import {itemsActions} from "../../store/features/items/items-slice";
@@ -9,11 +9,11 @@ import {RootState} from "../../store";
 import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {ExerciseEntity} from "../../constants/types";
 
-const UseExercisesActions = () => {
+const useExercisesActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
+    const {setDemoModalIsOpen, closeDemoModal} = useDemoModal();
 
     const params = useParams();
 
@@ -37,4 +37,4 @@ const UseExercisesActions = () => {
     }
 };
 
-export default UseExercisesActions;
+export default useExercisesActions;

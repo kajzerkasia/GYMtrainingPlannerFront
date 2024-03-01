@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchProgressionRules} from "../store/actions/progression-rules/fetching-action";
 import {RootState} from "../store";
-import UseProgressionRulesActions from "../hooks/actionHooks/useProgressionRulesActions";
+import useProgressionRulesActions from "../hooks/actionHooks/useProgressionRulesActions";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import {TableBody} from "../components/Table/TableBody";
 import BackButton from "../components/BackButton/BackButton";
@@ -26,7 +26,7 @@ const ProgressionRules = () => {
         }
     }, [dispatch, params]);
 
-    const {handleSubmit, handleUpdate, handleDelete} = UseProgressionRulesActions();
+    const {handleSubmit, handleUpdate, handleDelete} = useProgressionRulesActions();
 
     const availableFields = itemsList && itemsList.length > 0
         ? ['rule']

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const UseValidationModal = () => {
+const useValidationModal = () => {
 
     const [isValidationModalOpen, setIsValidationModalOpen] = useState(false);
 
@@ -19,4 +19,4 @@ const UseValidationModal = () => {
     }
 };
 
-export default UseValidationModal;
+export default useValidationModal;

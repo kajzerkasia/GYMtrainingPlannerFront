@@ -5,10 +5,9 @@ import {useNavigate} from "react-router-dom";
 import {UserEntity} from "../../constants/types";
 import {useState} from "react";
 
-export const UseDateSelection = () => {
+export const useDateSelection = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const {selectedDate} = useSelector((state: RootState) => state.calendar);
 
     const {users} = useSelector((state: RootState) => state.items);
     const usersList = users as unknown as UserEntity;

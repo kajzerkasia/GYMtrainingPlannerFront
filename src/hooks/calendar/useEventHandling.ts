@@ -5,7 +5,7 @@ import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {useNavigate} from "react-router-dom";
 import {UserEntity} from "../../constants/types";
 
-export const UseEventHandling = () => {
+export const useEventHandling = () => {
     const dispatch = useDispatch();
     const {
         selectedEventId,

@@ -3,8 +3,8 @@ import classes from './EditTrainingFromCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
-import {UseEditEvent} from "../../../hooks/calendar/useEditEvent";
-import UseEditTrainingFromCalendar from "../../../hooks/calendar/useEditTrainingFromCalendar";
+import {useEditEvent} from "../../../hooks/calendar/useEditEvent";
+import useEditTrainingFromCalendar from "../../../hooks/calendar/useEditTrainingFromCalendar";
 import Button from "../../Button/Button";
 
 export const EditTrainingFromCalendar = () => {
@@ -23,9 +23,9 @@ export const EditTrainingFromCalendar = () => {
         toggleDemoMode,
     } = calendarsActions;
 
-    const {handleEditEvent} = UseEditEvent();
+    const {handleEditEvent} = useEditEvent();
 
-    const {handleStartTimeChange, handleEndTimeChange} = UseEditTrainingFromCalendar();
+    const {handleStartTimeChange, handleEndTimeChange} = useEditTrainingFromCalendar();
 
 
     return (

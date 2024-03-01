@@ -4,15 +4,15 @@ import {apiUrl} from "../../config/api";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
-import {UseAddHoursToEvent} from "./useAddHoursToEvent";
+import {useAddHoursToEvent} from "./useAddHoursToEvent";
 import {useParams} from "react-router-dom";
 
-export const UseAddNewEvent = () => {
+export const useAddNewEvent = () => {
 
     const dispatch = useDispatch();
     const params = useParams();
 
-    const {addHoursToEvent} = UseAddHoursToEvent();
+    const {addHoursToEvent} = useAddHoursToEvent();
 
     const {
         events,

@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-const UseConfirmDeleteModal = () => {
+const useConfirmDeleteModal = () => {
 
     const [isConfirmDeleteModalOpen, setIsConfirmDeleteModalOpen] = useState(false);
     const openConfirmDeleteModal = () => {
@@ -18,4 +18,4 @@ const UseConfirmDeleteModal = () => {
     }
 };
 
-export default UseConfirmDeleteModal;
+export default useConfirmDeleteModal;

@@ -4,7 +4,7 @@ import {RootState} from "../../store";
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {uiActions} from "../../store/features/ui/ui-slice";
 
-export const UseDeleteEvent = () => {
+export const useDeleteEvent = () => {
 
     const dispatch = useDispatch();
     const {

@@ -49,6 +49,6 @@ const CalendarInstruction = ({toggleAccordion}: CalendarInstructionProps) => {
             </CalendarInstructionList>
         </div>
     );
-};
+}
 
 export default CalendarInstruction;

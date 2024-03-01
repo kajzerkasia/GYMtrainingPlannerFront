@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modals/useDemoModal";
+import {useDemoModal} from "../modals/useDemoModal";
 import {useParams} from "react-router-dom";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {addProgressionRule} from "../../store/actions/progression-rules/sending-action";
@@ -9,11 +9,11 @@ import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 import {RuleEntity} from "../../constants/types";
 
-const UseProgressionRulesActions = () => {
+const useProgressionRulesActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
+    const {setDemoModalIsOpen, closeDemoModal} = useDemoModal();
 
     const params = useParams();
 
@@ -38,4 +38,4 @@ const UseProgressionRulesActions = () => {
     }
 };
 
-export default UseProgressionRulesActions;
+export default useProgressionRulesActions;
