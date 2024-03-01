@@ -3,16 +3,16 @@ import './AddTrainingToCalendar.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
-import UseAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
+import useAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
 import classes from './AddTrainingToCalendar.module.css';
 import Button from "../../Button/Button";
 import BackButton from "../../BackButton/BackButton";
-import {UseFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
+import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 import {useNavigate, useParams} from "react-router-dom";
 
 export const AddTrainingToCalendar = () => {
 
-    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = UseFetchTrainingsData();
+    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = useFetchTrainingsData();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export const AddTrainingToCalendar = () => {
         handleStartTimeChange,
         handleEndTimeChange,
         handleAddEvent,
-    } = UseAddTrainingToCalendar();
+    } = useAddTrainingToCalendar();
 
 
     return (

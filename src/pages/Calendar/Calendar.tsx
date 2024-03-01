@@ -4,7 +4,7 @@ import {DemoSign} from "../../components/DemoSign/DemoSign";
 import CalendarInstruction from "../../components/Calendar/CalendarInstruction/CalendarInstruction";
 import Modal from "../../components/Modal/Modal";
 import {TbAlertTriangle} from "react-icons/tb";
-import {UseDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
+import {useDeleteEvent} from "../../hooks/calendar/useDeleteEvent";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {useParams} from "react-router-dom";
@@ -25,7 +25,7 @@ const Calendar = () => {
         selectedEventId,
     } = useSelector((state: RootState) => state.calendar);
 
-    const {handleDeleteEvent} = UseDeleteEvent();
+    const {handleDeleteEvent} = useDeleteEvent();
 
     const [isOpen, setIsOpen] = useState(false);
 

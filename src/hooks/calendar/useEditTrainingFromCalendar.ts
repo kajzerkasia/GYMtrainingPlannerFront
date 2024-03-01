@@ -2,7 +2,7 @@ import React from 'react';
 import {calendarsActions} from "../../store/features/calendar/calendar-slice";
 import {useDispatch} from "react-redux";
 
-const UseEditTrainingFromCalendar = () => {
+const useEditTrainingFromCalendar = () => {
 
     const dispatch = useDispatch();
 
@@ -21,4 +21,4 @@ const UseEditTrainingFromCalendar = () => {
     }
 };
 
-export default UseEditTrainingFromCalendar;
+export default useEditTrainingFromCalendar;

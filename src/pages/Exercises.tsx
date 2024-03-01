@@ -3,7 +3,7 @@ import {TableBody} from "../components/Table/TableBody";
 import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchExercises} from "../store/actions/exercises/fetching-action";
-import UseExercisesActions from "../hooks/actionHooks/useExercisesActions";
+import useExercisesActions from "../hooks/actionHooks/useExercisesActions";
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
@@ -24,7 +24,7 @@ const Exercises = () => {
         }
     }, [dispatch, params]);
 
-    const {handleSubmit, handleUpdate, handleDelete} = UseExercisesActions();
+    const {handleSubmit, handleUpdate, handleDelete} = useExercisesActions();
 
     const {itemsList} = useSelector((state: RootState) => state.items);
 

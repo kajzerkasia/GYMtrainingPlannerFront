@@ -1,5 +1,5 @@
 import {useDispatch} from "react-redux";
-import {UseDemoModal} from "../modals/useDemoModal";
+import {useDemoModal} from "../modals/useDemoModal";
 import {sendPlanData} from "../../store/actions/plans-list/sending-action";
 import {itemsActions} from "../../store/features/items/items-slice";
 import {editPlan} from "../../store/actions/plans-list/updating-action";
@@ -9,11 +9,11 @@ import {Action, ThunkDispatch} from "@reduxjs/toolkit";
 import {RootState} from "../../store";
 import {PlanEntity} from "../../constants/types";
 
-const UsePartsOfPlanActions = () => {
+const usePartsOfPlanActions = () => {
 
     const dispatch: ThunkDispatch<RootState, undefined, Action<any>> = useDispatch();
 
-    const {setDemoModalIsOpen, closeDemoModal} = UseDemoModal();
+    const {setDemoModalIsOpen, closeDemoModal} = useDemoModal();
 
     const params = useParams();
 
@@ -38,4 +38,4 @@ const UsePartsOfPlanActions = () => {
     }
 };
 
-export default UsePartsOfPlanActions;
+export default usePartsOfPlanActions;

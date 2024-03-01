@@ -4,7 +4,7 @@ import {useParams} from "react-router-dom";
 import {TbStairsUp} from "react-icons/tb";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPartsOfPlanData} from "../store/actions/parts-of-plan/fetching-action";
-import UsePartsOfPlanActions from "../hooks/actionHooks/usePartsOfPlanActions";
+import usePartsOfPlanActions from "../hooks/actionHooks/usePartsOfPlanActions";
 import {RootState} from "../store";
 import {DemoSign} from "../components/DemoSign/DemoSign";
 import BackButton from "../components/BackButton/BackButton";
@@ -34,7 +34,7 @@ const PartsOfPlan = () => {
         }
     ]
 
-    const {handleSubmit, handleUpdate, handleDelete} = UsePartsOfPlanActions();
+    const {handleSubmit, handleUpdate, handleDelete} = usePartsOfPlanActions();
 
     const availableFields = itemsList && itemsList.length > 0
         ? ['name']

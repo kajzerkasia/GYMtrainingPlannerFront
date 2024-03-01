@@ -1,6 +1,6 @@
 import {apiUrl} from "../config/api";
 
-export const UseFetchImages = () => {
+export const useFetchImages = () => {
     async function fetchSelectableImages() {
         try {
             const response = await fetch(`${apiUrl}/api/auth-user/images`);
