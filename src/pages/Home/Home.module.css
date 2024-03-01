@@ -34,7 +34,7 @@
     justify-content: center;
     background-image: linear-gradient(200deg, var(--color-primary) 15%, var(--color-primary-gradient) 82%);
     border-radius: 8px;
-    padding: 2rem;
+    padding: 2rem 0 4rem;
     width: 900px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
