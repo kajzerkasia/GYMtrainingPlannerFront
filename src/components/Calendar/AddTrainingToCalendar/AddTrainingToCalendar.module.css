@@ -59,6 +59,7 @@ input[type="time"] {
 
 input[type="time"]:focus {
     outline: transparent;
+    background-color: var(--color-almost-white);
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
