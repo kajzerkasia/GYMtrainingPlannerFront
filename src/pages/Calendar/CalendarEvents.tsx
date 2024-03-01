@@ -10,6 +10,7 @@ import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
 import {useFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
+import img from '../../images/resized-hantel.png';
 
 const CalendarEvents = () => {
     const params = useParams();
@@ -42,12 +43,26 @@ const CalendarEvents = () => {
     return (
         <FlexContainer>
             <div className={classes.calendar_events_container}>
-                <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
-                <Button className={classes.btn_add}>
-                    <Link to={`/calendar/${params.userId}/trainings/add-training`}>
-                        Dodaj nowy trening
-                    </Link>
-                </Button>
+                <div className={classes.header_container}>
+                <div>
+                    <img src={img} alt=""/>
+                </div>
+                <header className={classes.header}>
+                    <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
+                    <div className={classes.actions}>
+                        <Button>
+                            <Link to={`/calendar/${params.userId}/trainings/add-training`}>
+                                Dodaj nowy trening
+                            </Link>
+                        </Button>
+                        <Button>
+                            <Link to={`/calendar/${params.userId}`}>
+                                Powrót do kalendarza
+                            </Link>
+                        </Button>
+                    </div>
+                </header>
+                </div>
                 {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
                     <div
                         className={classes.container}
@@ -82,11 +97,6 @@ const CalendarEvents = () => {
                 )}
                 {/*<EditTrainingFromCalendar/>*/}
             </div>
-            <Button>
-                <Link to={`/calendar/${params.userId}`}>
-                    Powrót
-                </Link>
-            </Button>
         </FlexContainer>
     );
 };
