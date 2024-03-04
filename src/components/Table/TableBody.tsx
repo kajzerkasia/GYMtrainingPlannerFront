@@ -39,6 +39,7 @@ export const TableBody = <T extends Record<string, string>>({links, onSubmit, on
             <AddTableElements
                 handleSubmit={(values, reset) => onSubmit && onSubmit(values as T, reset)}
                 availableFields={availableFields as string[]}
+                links={links}
             >
                 {links && renderLink(links[0])}
             </AddTableElements>
