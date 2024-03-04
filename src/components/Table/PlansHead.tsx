@@ -1,8 +1,7 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 import {TbUserCircle} from "react-icons/tb";
 import IconProvider from "../IconProvider/IconProvider";
-import TableData from "./TableData/TableData";
+import TableButtonContainer, {VariantOption} from "./TableButton/TableButtonContainer";
 import TableHead from "./TableHead/TableHead";
 
 const PlansHead = () => {
@@ -12,13 +11,14 @@ const PlansHead = () => {
                 <td align="center" colSpan={3}>
                     <h1>Plany treningowe</h1>
                 </td>
-                <TableData>
-                    <Link to="/auth">
-                        <IconProvider>
-                            <TbUserCircle/>
-                        </IconProvider>
-                    </Link>
-                </TableData>
+                <TableButtonContainer
+                    elementVariant={VariantOption.link}
+                    to="/auth"
+                >
+                    <IconProvider>
+                        <TbUserCircle/>
+                    </IconProvider>
+                </TableButtonContainer>
             </tr>
         </TableHead>
     );

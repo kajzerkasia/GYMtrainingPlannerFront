@@ -1,9 +1,10 @@
-.td {
-    width: 80px;
+.table_data {
+    width: 70px;
+    height: 70px;
     cursor: pointer;
 }
 
-.td:hover {
+.table_data:hover {
     border: none;
     background-color: var(--button-color);
 }
