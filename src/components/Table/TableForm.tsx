@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {validateURL} from "../../helpers/validateUrl";
 import IconProvider from "../IconProvider/IconProvider";
-import TableData from "./TableData/TableData";
+import TableButtonContainer, {VariantOption} from "./TableButton/TableButtonContainer";
 import {FormField} from "./FormField/FormField";
 import {Status} from "../../constants/types";
 
@@ -57,11 +57,14 @@ export const TableForm = <T extends Record<string, any>>({onSubmit, actionType, 
     return (
         <>
             {inputElements}
-            <TableData>
+            <TableButtonContainer
+                elementVariant={VariantOption.button}
+                onClick={() => onSubmit(values, reset)}
+            >
                 <IconProvider>
-                    <button type='button' onClick={() => onSubmit(values, reset)}>{actionType === Status.Add ? <TbPlus/> : <TbCheck/>}</button>
+                    {actionType === Status.Add ? <TbPlus/> : <TbCheck/>}
                 </IconProvider>
-            </TableData>
+            </TableButtonContainer>
         </>
     );
 };

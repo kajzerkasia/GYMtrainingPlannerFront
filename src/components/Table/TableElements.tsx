@@ -7,10 +7,9 @@ import {RootState} from "../../store";
 import Modal from "../Modal/Modal";
 import {modalDeleteText, modalDemoText, modalTextMoreElementsEdit, modalTextSingleElementEdit} from "../../constants/tableModalTexts";
 import useValidationModal from "../../hooks/modals/useValidationModal";
-import {Link} from "react-router-dom";
 import {getAuthToken} from "../../helpers/auth";
 import IconProvider from "../IconProvider/IconProvider";
-import TableData from "./TableData/TableData";
+import TableButtonContainer, {VariantOption} from "./TableButton/TableButtonContainer";
 import useConfirmDeleteModal from "../../hooks/modals/useConfirmDeleteModal";
 import {Status} from "../../constants/types";
 import {useDemoModal} from "../../hooks/modals/useDemoModal";
@@ -42,7 +41,6 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
     const {
         demoModalIsOpen,
         closeDemoModal,
-        openDemoModal
     } = useDemoModal();
 
     const handleConfirmDelete = async () => {
@@ -94,13 +92,14 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
             {itemsList.map((item: any) => (
                 <tr key={`${item.id}`}>
                     {!availableFields.every(field => ['length', 'frequency', 'schedule'].includes(field as string)) && (
-                        <TableData>
-                            <button onClick={() => deleteItem(item.id)}>
-                                <IconProvider>
-                                    <TbX/>
-                                </IconProvider>
-                            </button>
-                        </TableData>
+                        <TableButtonContainer
+                            onClick={() => deleteItem(item.id)}
+                            elementVariant={VariantOption.button}
+                        >
+                            <IconProvider>
+                                <TbX/>
+                            </IconProvider>
+                        </TableButtonContainer>
                     )}
                     <TableForm
                         initialValues={item}
@@ -121,21 +120,23 @@ const TableElements = ({handleUpdate, handleDelete, availableFields}: TableEleme
                     {(availableFields.length === 1 && availableFields[0] === 'name' && (
                         'planId' in item ?
                             (
-                                <TableData>
-                                    <Link to={`/exercises/${item.slug}`}>
-                                        <IconProvider>
-                                            <TbBarbell/>
-                                        </IconProvider>
-                                    </Link>
-                                </TableData>
+                                <TableButtonContainer
+                                    elementVariant={VariantOption.link}
+                                    to={`/exercises/${item.slug}`}
+                                >
+                                    <IconProvider>
+                                        <TbBarbell/>
+                                    </IconProvider>
+                                </TableButtonContainer>
                             ) : (
-                                <TableData>
-                                    <Link to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}>
-                                        <IconProvider>
-                                            <TbDotsVertical/>
-                                        </IconProvider>
-                                    </Link>
-                                </TableData>
+                                <TableButtonContainer
+                                    elementVariant={VariantOption.link}
+                                    to={`${!token ? `/auth?mode=login` : `/plans/${item.slug}`}`}
+                                >
+                                    <IconProvider>
+                                        <TbDotsVertical/>
+                                    </IconProvider>
+                                </TableButtonContainer>
                             )
                     ))}
                 </tr>

@@ -1,5 +1,4 @@
 import React, {ReactNode} from 'react';
-import {Link} from "react-router-dom";
 import {TbAlertTriangle, TbQuestionMark} from "react-icons/tb";
 import {TableForm} from "./TableForm";
 import useValidationModal from "../../hooks/modals/useValidationModal";
@@ -8,16 +7,18 @@ import {modalTextMoreElementsAdd, modalTextSingleElementAdd} from "../../constan
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import IconProvider from "../IconProvider/IconProvider";
-import TableData from "./TableData/TableData";
+import TableButtonContainer, {VariantOption} from "./TableButton/TableButtonContainer";
 import {Status} from "../../constants/types";
+import {LinkProps} from "./TableBody";
 
 interface AddTableElementsProps {
     children: ReactNode;
     handleSubmit: (values: Record<string, string>, reset: () => void) => void | Promise<void>;
     availableFields: (keyof Record<string, any>)[];
+    links?: LinkProps[];
 }
 
-const AddTableElements = ({children, handleSubmit, availableFields}: AddTableElementsProps) => {
+const AddTableElements = ({children, handleSubmit, availableFields, links}: AddTableElementsProps) => {
 
     const {
         isValidationModalOpen,
@@ -52,13 +53,14 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 cancelText="Rozumiem"
                 icon={TbAlertTriangle}
             />
-            <TableData>
-                <Link to="/instruction">
-                    <IconProvider>
-                        <TbQuestionMark/>
-                    </IconProvider>
-                </Link>
-            </TableData>
+            <TableButtonContainer
+                elementVariant={VariantOption.link}
+                to="/instruction"
+            >
+                <IconProvider>
+                    <TbQuestionMark/>
+                </IconProvider>
+            </TableButtonContainer>
             <TableForm
                 initialValues={initialValues}
                 onSubmit={async (values, reset) => {
@@ -72,12 +74,15 @@ const AddTableElements = ({children, handleSubmit, availableFields}: AddTableEle
                 actionType={Status.Add}
                 availableFields={availableFields}
             />
-            {availableFields.length === 1 && availableFields[0] === 'name' && (
-                <TableData>
+            {availableFields.length === 1 && availableFields[0] === 'name' && links && (
+                <TableButtonContainer
+                    elementVariant={VariantOption.link}
+                    to={links[0].path}
+                >
                     <IconProvider>
                         {children}
                     </IconProvider>
-                </TableData>
+                </TableButtonContainer>
             )}
         </tr>
     );
