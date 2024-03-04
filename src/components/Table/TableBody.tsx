@@ -2,6 +2,10 @@ import TableElements from "./TableElements";
 import AddTableElements from "./AddTableElements";
 import React from "react";
 import RedirectLink from "../RedirectLink";
+import {useSelector} from "react-redux";
+import {RootState} from "../../store";
+import classes from "./TableBody.module.css";
+import ArrowContainer from "../ArrowContainer/ArrowContainer";
 
 export interface LinkProps {
     icon: React.ComponentType<any>;
@@ -17,6 +21,8 @@ interface TableProps<T> {
 }
 
 export const TableBody = <T extends Record<string, string>>({links, onSubmit, onUpdate, onDelete, availableFields}: TableProps<T>) => {
+
+    const {itemsList} = useSelector((state: RootState) => state.items);
 
     const renderLink = (link: LinkProps) => (
         link && link.icon ? (
@@ -37,12 +43,20 @@ export const TableBody = <T extends Record<string, string>>({links, onSubmit, on
                 {links && renderLink(links[0])}
             </AddTableElements>
         )}
-        <TableElements
-            handleUpdate={(values, reset) => onUpdate(values as T, reset)}
-            handleDelete={onDelete ? onDelete : () => {}}
-            availableFields={availableFields as string[]}
-        >
-        </TableElements>
+        {itemsList.length > 0 ? (
+            <TableElements
+                handleUpdate={(values, reset) => onUpdate(values as T, reset)}
+                handleDelete={onDelete ? onDelete : () => {
+                }}
+                availableFields={availableFields as string[]}
+            />
+        ) : (
+            <td colSpan={availableFields.length + 3} className={classes.td_empty}>
+                <ArrowContainer
+                    text="Trochę tutaj pusto... Może chcesz coś dodać?"
+                />
+            </td>
+        )}
         </tbody>
     )
 }
