@@ -11,6 +11,7 @@ import FlexContainer from "../../components/FlexContainer/FlexContainer";
 import {useFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
 import img from '../../images/resized-hantel.png';
+import ArrowContainer from "../../components/ArrowContainer/ArrowContainer";
 
 const CalendarEvents = () => {
     const params = useParams();
@@ -91,10 +92,9 @@ const CalendarEvents = () => {
                         </div>
                     </div>
                 )) : (
-                    <div className={classes.arrow_container}>
-                        <div className={classes.arrow}></div>
-                        <p>Brak zaplanowanych treningów</p>
-                    </div>
+                    <ArrowContainer
+                        text="Brak zaplanowanych treningów"
+                    />
                 )}
             </div>
         </FlexContainer>

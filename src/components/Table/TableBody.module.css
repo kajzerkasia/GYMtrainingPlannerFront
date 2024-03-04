@@ -1,0 +1,11 @@
+.td_empty {
+    background-color: var(--color-primary);
+    opacity: 0.5;
+    height: 200px;
+    margin-top: 2rem;
+}
+
+.td_empty:hover {
+    border: none;
+}
+
