@@ -1,9 +1,0 @@
-.td {
-    width: 80px;
-    cursor: pointer;
-}
-
-.td:hover {
-    border: none;
-    background-color: var(--button-color);
-}
