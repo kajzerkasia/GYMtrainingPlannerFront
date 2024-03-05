@@ -97,3 +97,9 @@
 }
 
 
+@media (min-width: 768px) and (max-width: 1400px) {
+    .home_card {
+        width: 100vw;
+        border-radius: 0;
+    }
+}
