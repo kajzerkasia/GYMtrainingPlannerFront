@@ -77,7 +77,6 @@ const AddTableElements = ({children, handleSubmit, availableFields, links}: AddT
             {availableFields.length === 1 && availableFields[0] === 'name' && links && (
                 <TableButtonContainer
                     elementVariant={VariantOption.link}
-                    to={links[0].path}
                 >
                     <IconProvider>
                         {children}
