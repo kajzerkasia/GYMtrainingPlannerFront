@@ -52,11 +52,13 @@ export const TableBody = <T extends Record<string, string>>({links, onSubmit, on
                 availableFields={availableFields as string[]}
             />
         ) : (
-            <td colSpan={availableFields.length + 3} className={classes.td_empty}>
-                <ArrowContainer
-                    text="Trochę tutaj pusto... Może chcesz coś dodać?"
-                />
-            </td>
+            <tr>
+                <td colSpan={availableFields.length + 3} className={classes.td_empty}>
+                    <ArrowContainer
+                        text="Trochę tutaj pusto... Może chcesz coś dodać?"
+                    />
+                </td>
+            </tr>
         )}
         </tbody>
     )

@@ -22,7 +22,7 @@ button {
     margin-left: 20px;
 }
 
-@media (min-width: 577px) {
+@media (min-width: 769px) {
 
     .dropdownMenu {
         position: absolute;
@@ -76,7 +76,7 @@ button {
     font-size: 24px;
 }
 
-@media (max-width: 576px) {
+@media (min-width: 577px) and (max-width: 768px) {
 
     .button_avatar {
         display: none;
@@ -85,10 +85,42 @@ button {
     .mobile_only_form {
         display: flex;
     }
+
+    .mobile_only_form button {
+        background-color: var(--button-color);
+        border: none;
+        color: var(--color-almost-white);
+        transition: color 0.3s ease-in-out;
+        font-family: 'Poiret One', sans-serif;
+        z-index: 100;
+        padding: 5px 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        font-size: 16px;
+        margin: 0.25rem auto;
+        min-width: 110px;
+        height: 46px;
+    }
 }
 
-@media (min-width: 577px) {
+@media (min-width: 769px) {
     .mobile_only_form {
         display: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1400px) {
+
+    .button_avatar {
+        margin-right: 0;
+        margin-left: 15px;
+    }
+
+    .avatar_img {
+        width: 40px;
+        height: 40px;
+        margin-left: 0;
     }
 }

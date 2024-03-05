@@ -63,7 +63,6 @@ const MainNavigation = () => {
         <AvatarButton
             onClick={toggleDropdown}
             isDropdownOpen={isDropdownOpen}
-            isHamburgerMenuOpen={isHamburgerMenuOpen}
         />
     )
 

@@ -94,3 +94,12 @@ a {
         height: 40px;
     }
 }
+
+@media (min-width: 768px) and (max-width: 1400px) {
+    .button,
+    .buttonWithAnimation {
+        margin: 0.25rem auto;
+        font-size: 16px;
+        min-width: 175px;
+    }
+}
