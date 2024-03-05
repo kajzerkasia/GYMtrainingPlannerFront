@@ -36,6 +36,11 @@ const TableButtonContainer = ({children, onClick, to, elementVariant}: TableData
                     </TableButton>
                 </Link>
             )}
+            {elementVariant === 'LINK' && !to && (
+                <TableButton>
+                    {children}
+                </TableButton>
+            )}
         </td>
     );
 };
