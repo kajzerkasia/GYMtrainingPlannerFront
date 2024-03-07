@@ -10,9 +10,8 @@ import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
 import {useFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
-import img from '../../images/resized-hantel.png';
 import ArrowContainer from "../../components/ArrowContainer/ArrowContainer";
-import CalendarEventsButtons from "./CalendarEventsButtons";
+import CalendarEventsHeader from "./CalendarEventsHeader";
 
 const CalendarEvents = () => {
     const params = useParams();
@@ -45,13 +44,9 @@ const CalendarEvents = () => {
     return (
         <FlexContainer>
             <div className={classes.calendar_events_container}>
-                <div className={classes.header_container}>
-                    <img src={img} alt=""/>
-                    <header className={classes.header}>
-                        <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
-                        <CalendarEventsButtons/>
-                    </header>
-                </div>
+                <CalendarEventsHeader
+                    chosenDate={formattedDate}
+                />
                 {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
                     <div
                         className={classes.container}
