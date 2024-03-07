@@ -1,12 +1,11 @@
 import React from 'react';
 import classes from "./CalendarSingleEvent.module.css";
-import Button from "../../components/Button/Button";
-import IconProvider from "../../components/IconProvider/IconProvider";
-import {TbEdit, TbX} from "react-icons/tb";
-import ArrowContainer from "../../components/ArrowContainer/ArrowContainer";
+import ArrowContainer from "../../../components/ArrowContainer/ArrowContainer";
 import moment from "moment/moment";
 import {useSelector} from "react-redux";
-import {RootState} from "../../store";
+import {RootState} from "../../../store";
+import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 
 interface CalendarSingleEventProps {
     selectedDate: number | null;
@@ -35,21 +34,13 @@ const CalendarSingleEvent = ({selectedDate}: CalendarSingleEventProps) => {
                     <div
                         className={classes.events_container}
                     >
-                        <Button className={classes.icon_button}>
-                            <IconProvider>
-                                <TbX/>
-                            </IconProvider>
-                        </Button>
+                        <DeleteButton/>
                         <div className={classes.single_event} key={event.id}>
                             <p>{event.planName}</p>
                             <p>{event.partName}</p>
                             <p>{event.startTime} - {event.endTime}</p>
                         </div>
-                        <Button className={classes.icon_button}>
-                            <IconProvider>
-                                <TbEdit/>
-                            </IconProvider>
-                        </Button>
+                        <EditButton/>
                     </div>
                 </div>
             )) : (
