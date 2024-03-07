@@ -2,7 +2,7 @@
 
 ### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
 
-![](/public/assets/images/GTP_Home.png)
+![](/public/assets/images/home_page.png)
 
 ## Polish version of README:
 
@@ -48,13 +48,7 @@ Składa się z następujących części i możliwości:
 
 ### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
 
-![](/public/assets/images/GTP_Home.png)
-
-### ❗Starsza wersja aplikacji ❗
-
-#### Kliknij w screen poniżej aby przejść do filmu, który przedstawia działanie aplikacji. ⬇️⬇️⬇️
-
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/bYCs57uR3gE)
+![](/public/assets/images/home_page.png)
 
 ## Zastosowane technologie:
 
@@ -134,12 +128,6 @@ Training plan details:
 # Gym Training Planner 🏋️‍♀️💪
 
 #### This is a final project that I created as part of the "MegaK" programming course.
-
-### ❗Older version of the application ❗
-
-#### Click on the screen below to go to the video that shows how the application works. ⬇️⬇️⬇️
-
-[![Watch the video](/public/assets/gym-training-planner-preview.png)](https://youtu.be/bYCs57uR3gE)
 
 ## Technologies used
 
