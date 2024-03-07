@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import {RootState} from "../../../store";
 import DeleteButton from "./DeleteButton";
 import EditButton from "./EditButton";
+import EventOrderMarker from "./EventOrderMarker";
 
 interface CalendarSingleEventProps {
     selectedDate: number | null;
@@ -26,11 +27,9 @@ const CalendarSingleEvent = ({selectedDate}: CalendarSingleEventProps) => {
                     key={event.id}
                     className={classes.container}
                 >
-                    <div className={classes.round}>
-                        <p>
-                            {index + 1}
-                        </p>
-                    </div>
+                    <EventOrderMarker>
+                        {index + 1}
+                    </EventOrderMarker>
                     <div
                         className={classes.events_container}
                     >
