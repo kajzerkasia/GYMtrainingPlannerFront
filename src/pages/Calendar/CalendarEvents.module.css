@@ -53,22 +53,6 @@
     margin-right: 2rem;
 }
 
-.actions {
-    display: flex;
-    width: 440px;
-    height: 100px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.actions button {
-    background-color: var(--color-secondary);
-    border: 1px solid var(--color-secondary);
-}
-
-.actions button:hover {
-    background-color: var(--color-primary);
-}
 
 .header_container img {
     width: 120px;
