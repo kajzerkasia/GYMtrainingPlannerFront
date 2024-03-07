@@ -1,0 +1,12 @@
+.round {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-image: linear-gradient(200deg, var(--color-secondary-violet) 15%, var(--color-accessory-gradient) 82%);
+    align-self: center;
+    margin-bottom: 1rem;
+    margin-right: 2rem;
+}
