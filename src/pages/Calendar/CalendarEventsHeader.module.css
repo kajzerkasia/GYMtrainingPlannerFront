@@ -2,7 +2,8 @@
     width: 120px;
     height: 120px;
     margin-right: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-top: -30px;
+    z-index: 1;
 }
 
 
@@ -14,4 +15,35 @@
 .h1 {
     text-align: center;
     font-size: 20px;
+}
+
+.wave {
+    margin-top: -65px;
+    transform: rotate(1deg);
+    width: 650px;
+    height: 75px;
+    background-repeat: no-repeat;
+    background-image: url('../../images/bgc_wave.png');
+    padding-bottom: 20px;
+}
+
+.wave_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+.main_container {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 650px;
+    height: 180px;
+    background-color: var(--color-secondary);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-top: -10px;
 }
