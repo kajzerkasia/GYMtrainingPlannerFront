@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import classes from './CalendarEvents.module.css';
 import moment from "moment";
 import IconProvider from "../../components/IconProvider/IconProvider";
@@ -10,8 +10,8 @@ import Button from "../../components/Button/Button";
 import FlexContainer from "../../components/FlexContainer/FlexContainer";
 import {useFetchTrainingsData} from "../../hooks/calendar/useFetchTrainingsData";
 import {POLISH_MONTH_NAMES} from "../../constants/polishMonthNames";
-import img from '../../images/resized-hantel.png';
 import ArrowContainer from "../../components/ArrowContainer/ArrowContainer";
+import CalendarEventsHeader from "./CalendarEventsHeader";
 
 const CalendarEvents = () => {
     const params = useParams();
@@ -44,24 +44,9 @@ const CalendarEvents = () => {
     return (
         <FlexContainer>
             <div className={classes.calendar_events_container}>
-                <div className={classes.header_container}>
-                    <img src={img} alt=""/>
-                    <header className={classes.header}>
-                        <h1 className={classes.h1}>Treningi zaplanowane na {formattedDate}</h1>
-                        <div className={classes.actions}>
-                            <Button>
-                                <Link to={`/calendar/${params.userId}/trainings/add-training`}>
-                                    Dodaj nowy trening
-                                </Link>
-                            </Button>
-                            <Button>
-                                <Link to={`/calendar/${params.userId}`}>
-                                    Powrót do kalendarza
-                                </Link>
-                            </Button>
-                        </div>
-                    </header>
-                </div>
+                <CalendarEventsHeader
+                    chosenDate={formattedDate}
+                />
                 {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
                     <div
                         className={classes.container}
