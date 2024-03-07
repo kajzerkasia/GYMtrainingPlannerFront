@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from "./CalendarEvents.module.css";
+import classes from "./CalendarSingleEvent.module.css";
 import Button from "../../components/Button/Button";
 import IconProvider from "../../components/IconProvider/IconProvider";
 import {TbEdit, TbX} from "react-icons/tb";
