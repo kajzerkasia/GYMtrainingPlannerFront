@@ -21,7 +21,7 @@ const CalendarSingleEvent = ({selectedDate}: CalendarSingleEventProps) => {
     const selectedDateEvents = events.filter(event => moment(event.start).isSame(moment(selectedDate), 'day'));
 
     return (
-        <>
+        <div className={classes.events}>
             {selectedDateEvents.length > 0 ? selectedDateEvents.map((event, index) => (
                 <div
                     key={event.id}
@@ -47,7 +47,7 @@ const CalendarSingleEvent = ({selectedDate}: CalendarSingleEventProps) => {
                     text="Brak zaplanowanych treningów"
                 />
             )}
-        </>
+        </div>
     );
 };
 

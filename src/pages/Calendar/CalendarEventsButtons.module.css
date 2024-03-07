@@ -4,13 +4,16 @@
     height: 100px;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
 }
 
 .actions button {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     border: 1px solid var(--color-secondary);
+    z-index: 1;
 }
 
 .actions button:hover {
-    background-color: var(--color-primary);
+    background-color: var(--button-color);
 }
