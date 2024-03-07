@@ -3,6 +3,7 @@
 ### ❗Nowa wresja aplikacji (w trakcie tworzenia) ❗
 
 ![](/public/assets/images/home_page.png)
+![trainings.png](public%2Fassets%2Fimages%2Ftrainings.png)
 
 ## Polish version of README:
 
