@@ -42,7 +42,7 @@ export const addProgressionRule = (
                     dispatch(uiActions.showNotification({
                         status: 'success',
                         title: 'Sukces!',
-                        message: 'Pomyślnie dodano nową zasadę progresji!'
+                        message: 'Pomyślnie dodano nową zasadę progresji'
                     }));
                 }
             } catch (error) {
