@@ -21,10 +21,20 @@ const AvatarButton = ({onClick, isDropdownOpen}: AvatarButtonProps) => {
     return (
         <>
             <div className={classes.avatar_container}>
-                <button onClick={onClick} className={classes.button_avatar}>
-                    <img src={`http://localhost:3001/public/${userImage}`} alt="Avatar" className={classes.avatar_img}/>
+                <button
+                    onClick={onClick}
+                    className={classes.button_avatar}
+                >
+                    <img
+                        src={`http://localhost:3001/public/${userImage}`}
+                        alt="Avatar"
+                        className={classes.avatar_img}
+                    />
                 </button>
-                <button onClick={onClick} className={classes.button_dots}>
+                <button
+                    onClick={onClick}
+                    className={classes.button_arrow}
+                >
                     <IconProvider>
                         <TbPlayerPlay/>
                     </IconProvider>
@@ -32,6 +42,7 @@ const AvatarButton = ({onClick, isDropdownOpen}: AvatarButtonProps) => {
             </div>
             <LogoutButton
                 isDropdownOpen={isDropdownOpen}
+                onClick={onClick}
             />
         </>
     );

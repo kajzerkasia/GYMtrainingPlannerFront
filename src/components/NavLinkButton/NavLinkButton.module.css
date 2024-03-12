@@ -98,8 +98,19 @@ a {
 @media (min-width: 768px) and (max-width: 1400px) {
     .button,
     .buttonWithAnimation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: 0.25rem auto;
-        font-size: 16px;
-        min-width: 175px;
+        font-size: 28px;
+        min-width: 200px;
+        height: 8vh;
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1400px) {
+    .button,
+    .buttonWithAnimation {
+        min-width: 300px;
     }
 }

@@ -46,9 +46,9 @@
 @media (max-width: 576px) {
     .slideshow {
         width: 100%;
-        filter: none;
         height: 250px;
         text-align: center;
+        margin-top: 4rem;
     }
 
     .div_home_container {
