@@ -6,7 +6,7 @@
     border: none;
     width: 50px;
     height: 50px;
-    margin-right: 2rem;
+    margin-right: 1rem;
     margin-left: 2rem;
 }
 
@@ -19,94 +19,33 @@ button {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    margin-left: 20px;
+    margin-left: -30px;
+    margin-bottom: 30px;
+    margin-top: 10px;
 }
 
-@media (min-width: 769px) {
-
-    .dropdownMenu {
-        position: absolute;
-        top: 105%;
-        right: -1%;
-        background-color: var(--button-color);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-        z-index: 10;
-        max-height: 0;
-        opacity: 0;
-        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-    }
-
-    .dropdownMenu.open {
-        max-height: 200px;
-        opacity: 1;
-    }
-
-    .dropdownMenu button {
-        display: block;
-        width: 100%;
-        padding: 10px 20px;
-        text-align: left;
-        color: var(--color-almost-white);
-        background: none;
-        border: none;
-        cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-    }
-
-    .dropdownMenu button:hover {
-        background-color: var(--color-primary);
-    }
-}
-
-.mobile_only_form {
-    width: 100%;
-}
-
-.mobile_only_form button {
+.avatar_container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    background-color: var(--button-color);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    width: 100%;
-    padding: 20px 0;
-    z-index: 101;
-    font-size: 24px;
+    /* Taken from SVGBackgrounds.com */
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1350" fill="%239259A0"><path d="m283.83 277.46 198.65-107.82C913.39-64.25 1454.42 42.97 1757.99 422.41l74.66 93.32c150.29 187.85 86.36 463.14-132.18 569.23l-239.4 116.21C974.84 1437.2 384.66 1251.75 130.43 783.05c-98.3-181.23-30.11-405.99 153.4-505.59Z"></path></svg>');
+    background-repeat: no-repeat;
+    width: 105px;
+    height: 90px;
+    margin-top: 18px;
+}
+
+.button_dots {
+    background-color: transparent;
+    border: none;
+    color: var(--color-almost-white);
+    margin-top: -15px;
+    margin-left: -30px;
+    transform: rotate(90deg);
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
-
     .button_avatar {
-        display: none;
-    }
-
-    .mobile_only_form {
-        display: flex;
-    }
-
-    .mobile_only_form button {
-        background-color: var(--button-color);
-        border: none;
-        color: var(--color-almost-white);
-        transition: color 0.3s ease-in-out;
-        font-family: 'Poiret One', sans-serif;
-        z-index: 100;
-        padding: 5px 10px;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-        position: relative;
-        text-align: center;
-        font-size: 16px;
-        margin: 0.25rem auto;
-        min-width: 110px;
-        height: 46px;
-    }
-}
-
-@media (min-width: 769px) {
-    .mobile_only_form {
         display: none;
     }
 }
