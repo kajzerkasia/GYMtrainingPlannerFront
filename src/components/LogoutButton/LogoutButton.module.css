@@ -3,30 +3,25 @@
 }
 
 .mobile_only_form button {
+    font-family: "Playpen Sans", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--button-color);
+    color: var(--color-almost-white);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     width: 100%;
     padding: 20px 0;
     z-index: 101;
     font-size: 24px;
-}
-
-.dropdownMenu {
-    margin-top: -1.25rem;
-}
-
-.dropdownMenu button {
-    font-family: "Poiret One", sans-serif;
-    font-size: 1.25rem;
+    border: none;
 }
 
 @media (min-width: 769px) {
 
     .dropdownMenu {
+        margin-top: -1.25rem;
         position: absolute;
         top: 105%;
         right: -1%;
@@ -46,6 +41,8 @@
 
     .dropdownMenu button {
         display: block;
+        font-family: "Poiret One", sans-serif;
+        font-size: 1.25rem;
         width: 100%;
         padding: 10px 20px;
         text-align: left;
