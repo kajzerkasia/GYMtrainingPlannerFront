@@ -50,8 +50,6 @@ button {
     margin-left: -27px;
 }
 
-
-
 @media (max-width: 768px) {
     .avatar_container {
         display: none;
