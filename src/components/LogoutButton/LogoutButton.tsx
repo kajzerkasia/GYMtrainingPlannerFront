@@ -16,30 +16,27 @@ const LogoutButton = ({isDropdownOpen, onClick}: LogoutButtonProps) => {
 
     return (
         <>
-            {isDropdownOpen ? (
-                <div className={`${classes.dropdownMenu} ${classes.open}`}>
-                    <Form
-                        action="/logout"
-                        method="post"
-                        onSubmit={handleClick}
-                    >
-                        <Button>
-                            Wyloguj się
-                        </Button>
-                    </Form>
-                </div>
-            ) : (
+            <div className={`${classes.dropdownMenu} ${isDropdownOpen ? classes.open : classes.close}`}>
                 <Form
                     action="/logout"
                     method="post"
-                    className={classes.mobile_only_form}
                     onSubmit={handleClick}
                 >
-                    <button>
+                    <Button>
                         Wyloguj się
-                    </button>
+                    </Button>
                 </Form>
-            )}
+            </div>
+            <Form
+                action="/logout"
+                method="post"
+                className={classes.mobile_only_form}
+                onSubmit={handleClick}
+            >
+                <button>
+                    Wyloguj się
+                </button>
+            </Form>
         </>
     );
 };
