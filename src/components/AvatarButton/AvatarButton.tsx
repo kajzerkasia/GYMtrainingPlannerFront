@@ -33,7 +33,12 @@ const AvatarButton = ({onClick, isDropdownOpen}: AvatarButtonProps) => {
                 </button>
                 <button
                     onClick={onClick}
-                    className={classes.button_arrow}
+                    className={`
+                    ${classes.button_arrow} 
+                    ${isDropdownOpen ?
+                        classes.arrow_down
+                        : classes.button_arrow}
+                        `}
                 >
                     <IconProvider>
                         <TbPlayerPlay/>

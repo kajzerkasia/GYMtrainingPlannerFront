@@ -1,10 +1,5 @@
-.mobile_only_form {
-    width: 100%;
-}
-
 .mobile_only_form button {
     font-family: "Playpen Sans", sans-serif;
-    display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--button-color);
@@ -16,9 +11,32 @@
     z-index: 101;
     font-size: 24px;
     border: none;
+    display: none;
 }
 
 @media (min-width: 769px) {
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeOutUp {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+    }
 
     .dropdownMenu {
         margin-top: -1.25rem;
@@ -31,12 +49,12 @@
         z-index: 10;
         max-height: 0;
         opacity: 0;
-        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
     }
 
     .dropdownMenu.open {
         max-height: 200px;
         opacity: 1;
+        animation: fadeInDown 0.3s ease forwards;
     }
 
     .dropdownMenu button {
@@ -50,7 +68,7 @@
         background: none;
         border: none;
         cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
+        transition: background-color 0.3s ease;
     }
 
     .dropdownMenu button:hover {
@@ -58,32 +76,35 @@
     }
 }
 
-@media (min-width: 577px) and (max-width: 768px) {
+@media (max-width: 576px) {
+
+    .dropdownMenu {
+        display: none;
+    }
 
     .mobile_only_form {
         display: flex;
+        width: 100%;
     }
 
     .mobile_only_form button {
-        background-color: var(--button-color);
+        display: flex;
         border: none;
-        color: var(--color-almost-white);
-        transition: color 0.3s ease-in-out;
-        font-family: 'Poiret One', sans-serif;
         z-index: 100;
-        padding: 5px 10px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         cursor: pointer;
         position: relative;
         text-align: center;
-        font-size: 16px;
-        margin: 0.25rem auto;
+        margin: 0 auto;
         min-width: 110px;
         height: 46px;
+        font-size: 24px;
+        width: 100vw;
+        padding: 40px 0;
     }
 }
 
-@media (min-width: 769px) {
+@media (min-width: 577px) {
     .mobile_only_form {
         display: none;
     }
