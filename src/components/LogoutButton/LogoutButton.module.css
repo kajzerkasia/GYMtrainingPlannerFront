@@ -1,0 +1,93 @@
+.mobile_only_form {
+    width: 100%;
+}
+
+.mobile_only_form button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--button-color);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 101;
+    font-size: 24px;
+}
+
+.dropdownMenu {
+    margin-top: -1.25rem;
+}
+
+.dropdownMenu button {
+    font-family: "Poiret One", sans-serif;
+    font-size: 1.25rem;
+}
+
+@media (min-width: 769px) {
+
+    .dropdownMenu {
+        position: absolute;
+        top: 105%;
+        right: -1%;
+        background-color: var(--button-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        z-index: 10;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+
+    .dropdownMenu.open {
+        max-height: 200px;
+        opacity: 1;
+    }
+
+    .dropdownMenu button {
+        display: block;
+        width: 100%;
+        padding: 10px 20px;
+        text-align: left;
+        color: var(--color-almost-white);
+        background: none;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    .dropdownMenu button:hover {
+        background-color: var(--color-primary);
+    }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+
+    .mobile_only_form {
+        display: flex;
+    }
+
+    .mobile_only_form button {
+        background-color: var(--button-color);
+        border: none;
+        color: var(--color-almost-white);
+        transition: color 0.3s ease-in-out;
+        font-family: 'Poiret One', sans-serif;
+        z-index: 100;
+        padding: 5px 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        position: relative;
+        text-align: center;
+        font-size: 16px;
+        margin: 0.25rem auto;
+        min-width: 110px;
+        height: 46px;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile_only_form {
+        display: none;
+    }
+}

@@ -60,7 +60,7 @@ export const sendPlanData = (
                     dispatch(uiActions.showNotification({
                         status: 'success',
                         title: 'Sukces!',
-                        message: 'Pomyślnie dodano nowy plan!'
+                        message: 'Pomyślnie dodano nowy plan treningowy'
                     }));
 
                 } catch (error) {

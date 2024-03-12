@@ -39,6 +39,11 @@ export const addProgressionRule = (
 
                     const data = await res.json();
                     dispatch(itemsActions.setItemsList([...getState().items.itemsList, data]));
+                    dispatch(uiActions.showNotification({
+                        status: 'success',
+                        title: 'Sukces!',
+                        message: 'Pomyślnie dodano nową zasadę progresji'
+                    }));
                 }
             } catch (error) {
                 console.error("Wystąpił błąd podczas próby wysłania danych:", error);
