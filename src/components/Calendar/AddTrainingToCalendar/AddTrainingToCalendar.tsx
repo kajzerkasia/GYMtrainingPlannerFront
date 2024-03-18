@@ -10,10 +10,11 @@ import BackButton from "../../BackButton/BackButton";
 import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 import {useNavigate, useParams} from "react-router-dom";
 import Select from "./Select";
+import {Header} from "./Header";
 
 export const AddTrainingToCalendar = () => {
 
-    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = useFetchTrainingsData();
+    const {fetchPlansData, fetchTrainingsData, fetchPlanParts} = useFetchTrainingsData();
     const params = useParams();
     const navigate = useNavigate();
 
@@ -52,7 +53,9 @@ export const AddTrainingToCalendar = () => {
     return (
         <div
             className={classes.div_add_training_container}>
-            <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
+            <Header
+                headerText="Dodaj trening"
+            />
             <Select
                 optionText="Wybierz plan treningowy"
                 selectValue={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
