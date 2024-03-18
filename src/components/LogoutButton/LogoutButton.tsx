@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from "./LogoutButton.module.css";
-import {Form} from "react-router-dom";
-import Button from "../Button/Button";
+import LogoutForm from "../LogoutForm/LogoutForm";
 
 interface LogoutButtonProps {
     isDropdownOpen: boolean;
@@ -10,33 +9,17 @@ interface LogoutButtonProps {
 
 const LogoutButton = ({isDropdownOpen, onClick}: LogoutButtonProps) => {
 
-    const handleClick = () => {
-        onClick();
-    };
-
     return (
         <>
             <div className={`${classes.dropdownMenu} ${isDropdownOpen ? classes.open : classes.close}`}>
-                <Form
-                    action="/logout"
-                    method="post"
-                    onSubmit={handleClick}
-                >
-                    <Button>
-                        Wyloguj się
-                    </Button>
-                </Form>
+                <LogoutForm
+                    onClick={onClick}
+                />
             </div>
-            <Form
-                action="/logout"
-                method="post"
+            <LogoutForm
+                onClick={onClick}
                 className={classes.mobile_only_form}
-                onSubmit={handleClick}
-            >
-                <button>
-                    Wyloguj się
-                </button>
-            </Form>
+            />
         </>
     );
 };

@@ -9,6 +9,7 @@ import Button from "../../Button/Button";
 import BackButton from "../../BackButton/BackButton";
 import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 import {useNavigate, useParams} from "react-router-dom";
+import Select from "./Select";
 
 export const AddTrainingToCalendar = () => {
 
@@ -48,33 +49,32 @@ export const AddTrainingToCalendar = () => {
         handleAddEvent,
     } = useAddTrainingToCalendar();
 
-
     return (
         <div
             className={classes.div_add_training_container}>
             <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
-            <select
-                value={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
+            <Select
+                optionText="Wybierz plan treningowy"
+                selectValue={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
                 onChange={(e) => handleTrainingPlanChange(e.target.value)}
             >
-                <option value="">Wybierz plan treningowy</option>
                 {trainingPlans.map((plan) => (
                     <option key={plan.id} value={plan.id}>
                         {plan.name}
                     </option>
                 ))}
-            </select>
-            <select
-                value={selectedPlanPartId !== null ? selectedPlanPartId : ''}
+            </Select>
+            <Select
+                optionText="Wybierz część planu"
+                selectValue={selectedPlanPartId !== null ? selectedPlanPartId : ''}
                 onChange={(e) => handlePlanPartChange(e.target.value)}
             >
-                <option value="">Wybierz część planu</option>
                 {planParts.map((part) => (
                     <option key={part.id} value={part.id}>
                         {part.name}
                     </option>
                 ))}
-            </select>
+            </Select>
             {timeError && <div className={classes.error}><p>{timeError}</p></div>}
             <div className={classes.label_and_input_container}>
                 <label

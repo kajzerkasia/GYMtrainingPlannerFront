@@ -12,6 +12,7 @@
     font-size: 24px;
     border: none;
     display: none;
+    border-radius: 0;
 }
 
 @media (min-width: 769px) {
@@ -52,9 +53,17 @@
     }
 
     .dropdownMenu.open {
+        animation: fadeInDown 0.3s ease forwards;
+    }
+
+    .dropdownMenu.close {
+        animation: fadeOutUp 0.3s ease forwards;
+    }
+
+    .dropdownMenu.open,
+    .dropdownMenu.close {
         max-height: 200px;
         opacity: 1;
-        animation: fadeInDown 0.3s ease forwards;
     }
 
     .dropdownMenu button {
