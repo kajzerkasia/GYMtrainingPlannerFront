@@ -11,6 +11,7 @@ import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsDa
 import {useNavigate, useParams} from "react-router-dom";
 import {Header} from "./Header";
 import {Selects} from "./Selects";
+import {LabelInputContainers} from "./LabelInputContainers";
 
 export const AddTrainingToCalendar = () => {
 
@@ -40,8 +41,6 @@ export const AddTrainingToCalendar = () => {
     } = calendarsActions;
 
     const {
-        handleStartTimeChange,
-        handleEndTimeChange,
         handleAddEvent,
     } = useAddTrainingToCalendar();
 
@@ -53,34 +52,7 @@ export const AddTrainingToCalendar = () => {
             />
             <Selects/>
             {timeError && <div className={classes.error}><p>{timeError}</p></div>}
-            <div className={classes.label_and_input_container}>
-                <label
-                    className={classes.label_date}
-                    htmlFor="start">
-                    Godzina ropoczęcia treningu
-                </label>
-                <input
-                    id="start"
-                    className={classes.input_date}
-                    type="time"
-                    value={startTime}
-                    onChange={handleStartTimeChange}
-                />
-            </div>
-            <div className={classes.label_and_input_container}>
-                <label
-                    className={classes.label_date}
-                    htmlFor="end">
-                    Godzina zakończenia treningu
-                </label>
-                <input
-                    id="end"
-                    className={classes.input_date}
-                    type="time"
-                    value={endTime}
-                    onChange={handleEndTimeChange}
-                />
-            </div>
+            <LabelInputContainers/>
             <div className={classes.actions}>
                 <BackButton/>
                 <Button
