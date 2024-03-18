@@ -9,19 +9,18 @@ import Button from "../../Button/Button";
 import BackButton from "../../BackButton/BackButton";
 import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 import {useNavigate, useParams} from "react-router-dom";
-import Select from "./Select";
+import {Header} from "./Header";
+import {Selects} from "./Selects";
+import {LabelInputContainers} from "./LabelInputContainers";
 
 export const AddTrainingToCalendar = () => {
 
-    const { fetchPlansData, fetchTrainingsData, fetchPlanParts } = useFetchTrainingsData();
+    const {fetchPlansData, fetchTrainingsData, fetchPlanParts} = useFetchTrainingsData();
     const params = useParams();
     const navigate = useNavigate();
 
     const {
-        trainingPlans,
-        planParts,
         selectedTrainingPlan,
-        selectedPlanPartId,
         startTime,
         endTime,
         isDemoMode,
@@ -42,68 +41,18 @@ export const AddTrainingToCalendar = () => {
     } = calendarsActions;
 
     const {
-        handleTrainingPlanChange,
-        handlePlanPartChange,
-        handleStartTimeChange,
-        handleEndTimeChange,
         handleAddEvent,
     } = useAddTrainingToCalendar();
 
     return (
         <div
             className={classes.div_add_training_container}>
-            <h1>{isDemoMode ? "Tryb demo: Dodawanie wydarzenia wyłączone" : "Dodaj trening"}</h1>
-            <Select
-                optionText="Wybierz plan treningowy"
-                selectValue={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
-                onChange={(e) => handleTrainingPlanChange(e.target.value)}
-            >
-                {trainingPlans.map((plan) => (
-                    <option key={plan.id} value={plan.id}>
-                        {plan.name}
-                    </option>
-                ))}
-            </Select>
-            <Select
-                optionText="Wybierz część planu"
-                selectValue={selectedPlanPartId !== null ? selectedPlanPartId : ''}
-                onChange={(e) => handlePlanPartChange(e.target.value)}
-            >
-                {planParts.map((part) => (
-                    <option key={part.id} value={part.id}>
-                        {part.name}
-                    </option>
-                ))}
-            </Select>
+            <Header
+                headerText="Dodaj trening"
+            />
+            <Selects/>
             {timeError && <div className={classes.error}><p>{timeError}</p></div>}
-            <div className={classes.label_and_input_container}>
-                <label
-                    className={classes.label_date}
-                    htmlFor="start">
-                    Godzina ropoczęcia treningu
-                </label>
-                <input
-                    id="start"
-                    className={classes.input_date}
-                    type="time"
-                    value={startTime}
-                    onChange={handleStartTimeChange}
-                />
-            </div>
-            <div className={classes.label_and_input_container}>
-                <label
-                    className={classes.label_date}
-                    htmlFor="end">
-                    Godzina zakończenia treningu
-                </label>
-                <input
-                    id="end"
-                    className={classes.input_date}
-                    type="time"
-                    value={endTime}
-                    onChange={handleEndTimeChange}
-                />
-            </div>
+            <LabelInputContainers/>
             <div className={classes.actions}>
                 <BackButton/>
                 <Button
