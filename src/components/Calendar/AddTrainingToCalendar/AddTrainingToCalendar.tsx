@@ -9,8 +9,8 @@ import Button from "../../Button/Button";
 import BackButton from "../../BackButton/BackButton";
 import {useFetchTrainingsData} from "../../../hooks/calendar/useFetchTrainingsData";
 import {useNavigate, useParams} from "react-router-dom";
-import Select from "./Select";
 import {Header} from "./Header";
+import {Selects} from "./Selects";
 
 export const AddTrainingToCalendar = () => {
 
@@ -19,10 +19,7 @@ export const AddTrainingToCalendar = () => {
     const navigate = useNavigate();
 
     const {
-        trainingPlans,
-        planParts,
         selectedTrainingPlan,
-        selectedPlanPartId,
         startTime,
         endTime,
         isDemoMode,
@@ -43,8 +40,6 @@ export const AddTrainingToCalendar = () => {
     } = calendarsActions;
 
     const {
-        handleTrainingPlanChange,
-        handlePlanPartChange,
         handleStartTimeChange,
         handleEndTimeChange,
         handleAddEvent,
@@ -56,28 +51,7 @@ export const AddTrainingToCalendar = () => {
             <Header
                 headerText="Dodaj trening"
             />
-            <Select
-                optionText="Wybierz plan treningowy"
-                selectValue={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
-                onChange={(e) => handleTrainingPlanChange(e.target.value)}
-            >
-                {trainingPlans.map((plan) => (
-                    <option key={plan.id} value={plan.id}>
-                        {plan.name}
-                    </option>
-                ))}
-            </Select>
-            <Select
-                optionText="Wybierz część planu"
-                selectValue={selectedPlanPartId !== null ? selectedPlanPartId : ''}
-                onChange={(e) => handlePlanPartChange(e.target.value)}
-            >
-                {planParts.map((part) => (
-                    <option key={part.id} value={part.id}>
-                        {part.name}
-                    </option>
-                ))}
-            </Select>
+            <Selects/>
             {timeError && <div className={classes.error}><p>{timeError}</p></div>}
             <div className={classes.label_and_input_container}>
                 <label
