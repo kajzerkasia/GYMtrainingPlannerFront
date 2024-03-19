@@ -1,4 +1,4 @@
-import React from 'react';
+import classes from './TimeInput.module.css';
 
 interface InputProps {
     id: string;
@@ -9,6 +9,7 @@ interface InputProps {
 const TimeInput = ({id, inputValue, onChange}: InputProps) => {
     return (
         <input
+            className={classes.input}
             id={id}
             type="time"
             value={inputValue}

@@ -1,0 +1,16 @@
+.input {
+    background-color: var(--color-almost-white);
+    border: 1px solid var(--color-almost-white);;
+    color: var(--color-primary-background);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.input:focus {
+    outline: transparent;
+    background-color: var(--color-almost-white);
+}
+
+.input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+}

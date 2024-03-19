@@ -30,7 +30,7 @@ export const AddTrainingContainer = () => {
 
     return (
         <div
-            className={classes.div_add_training_container}>
+            className={classes.div_container}>
             <Header
                 headerText="Dodaj trening"
             />

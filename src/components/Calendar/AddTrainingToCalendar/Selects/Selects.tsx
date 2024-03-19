@@ -3,6 +3,7 @@ import Select from "./Select";
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store";
 import useAddTrainingToCalendar from "../../../../hooks/calendar/useAddTrainingToCalendar";
+import classes from "./Selects.module.css";
 
 const Selects = () => {
 
@@ -21,6 +22,7 @@ const Selects = () => {
     return (
         <>
             <Select
+                className={classes.select}
                 optionText="Wybierz plan treningowy"
                 selectValue={selectedTrainingPlan !== null ? selectedTrainingPlan : ''}
                 onChange={(e) => handleTrainingPlanChange(e.target.value)}
@@ -32,6 +34,7 @@ const Selects = () => {
                 ))}
             </Select>
             <Select
+                className={classes.select}
                 optionText="Wybierz część planu"
                 selectValue={selectedPlanPartId !== null ? selectedPlanPartId : ''}
                 onChange={(e) => handlePlanPartChange(e.target.value)}
