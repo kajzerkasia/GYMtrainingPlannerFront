@@ -52,11 +52,6 @@ input[type="time"] {
     margin: 2rem;
 }
 
-.add_training_button {
-    width: 100px;
-}
-
-
 input[type="time"]:focus {
     outline: transparent;
     background-color: var(--color-almost-white);
@@ -83,13 +78,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     width: 350px;
     display: flex;
     justify-content: space-between;
-}
-
-.label_date {
-    padding-right: 10px;
-    box-sizing: border-box;
-    font-size: 14px;
-    margin-top: 8px;
 }
 
 .error {

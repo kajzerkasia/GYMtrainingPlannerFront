@@ -1,4 +1,4 @@
-import classes from "./AddTrainingToCalendar.module.css";
+import classes from "./Label.module.css";
 
 interface LabelProps {
     labelHtmlFor: string;
@@ -9,7 +9,8 @@ const Label = ({labelHtmlFor, children}: LabelProps) => {
     return (
         <label
             className={classes.label_date}
-            htmlFor={labelHtmlFor}>
+            htmlFor={labelHtmlFor}
+        >
             {children}
         </label>
     );
