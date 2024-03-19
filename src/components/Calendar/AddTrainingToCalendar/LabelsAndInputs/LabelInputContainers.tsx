@@ -1,8 +1,8 @@
 import React from 'react';
 import {LabelInputContainer} from "./LabelInputContainer";
-import useAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
+import useAddTrainingToCalendar from "../../../../hooks/calendar/useAddTrainingToCalendar";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../store";
+import {RootState} from "../../../../store";
 
 const LabelInputContainers = () => {
 
