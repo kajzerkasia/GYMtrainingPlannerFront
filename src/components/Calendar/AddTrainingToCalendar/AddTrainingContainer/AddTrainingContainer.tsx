@@ -1,15 +1,14 @@
 import React from "react";
-import './AddTrainingContainer.module.css';
 import {useSelector} from "react-redux";
 import {RootState} from "../../../../store";
-import classes from './AddTrainingContainer.module.css';
-import BackButton from "../../../BackButton/BackButton";
 import {useFetchTrainingsData} from "../../../../hooks/calendar/useFetchTrainingsData";
 import {useParams} from "react-router-dom";
 import {Header} from "../Header";
 import {Selects} from "../Selects/Selects";
 import {LabelInputContainers} from "../LabelsAndInputs/LabelInputContainers";
-import {AddButton} from "../AddButton";
+import {ActionButtons} from "../ActionButtons/ActionButtons";
+import {TimeError} from "../TimeError/TimeError";
+import {Container} from "../Container/Container";
 
 export const AddTrainingContainer = () => {
 
@@ -18,9 +17,7 @@ export const AddTrainingContainer = () => {
 
     const {
         selectedTrainingPlan,
-        timeError,
     } = useSelector((state: RootState) => state.calendar);
-
 
     fetchPlansData(params);
     fetchTrainingsData(params);
@@ -29,18 +26,12 @@ export const AddTrainingContainer = () => {
     }
 
     return (
-        <div
-            className={classes.div_container}>
-            <Header
-                headerText="Dodaj trening"
-            />
+        <Container>
+            <Header headerText="Dodaj trening"/>
             <Selects/>
-            {timeError && <div className={classes.error}><p>{timeError}</p></div>}
+            <TimeError/>
             <LabelInputContainers/>
-            <div className={classes.actions}>
-                <BackButton/>
-                <AddButton/>
-            </div>
-        </div>
+            <ActionButtons/>
+        </Container>
     );
 };
