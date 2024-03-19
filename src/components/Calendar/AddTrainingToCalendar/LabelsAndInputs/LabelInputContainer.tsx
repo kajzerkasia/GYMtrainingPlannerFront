@@ -1,7 +1,7 @@
 import React from 'react';
-import classes from "../AddTrainingContainer/AddTrainingContainer.module.css";
 import Label from "../Label/Label";
-import {TimeInput} from "../TimeInput";
+import {TimeInput} from "../TimeInput/TimeInput";
+import classes from './LabelInputContainer.module.css';
 
 interface LabelInputContainerProps {
     labelHtmlFor: string;
