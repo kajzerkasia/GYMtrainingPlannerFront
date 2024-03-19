@@ -1,11 +1,10 @@
 import React from 'react';
-import classes from "../AddTrainingContainer/AddTrainingContainer.module.css";
-import Button from "../../../Button/Button";
+import Button from "../../Button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../../store";
+import {RootState} from "../../../store";
 import {useNavigate, useParams} from "react-router-dom";
-import {calendarsActions} from "../../../../store/features/calendar/calendar-slice";
-import useAddTrainingToCalendar from "../../../../hooks/calendar/useAddTrainingToCalendar";
+import {calendarsActions} from "../../../store/features/calendar/calendar-slice";
+import useAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
 
 const AddButton = () => {
     const dispatch = useDispatch();
@@ -28,7 +27,6 @@ const AddButton = () => {
 
     return (
         <Button
-            className={classes.add_training_button}
             onClick={async () => {
                 if (isDemoMode) {
                     dispatch(toggleDemoMode(true));
