@@ -1,8 +1,8 @@
 import React from 'react';
 import Select from "./Select";
 import {useSelector} from "react-redux";
-import {RootState} from "../../../store";
-import useAddTrainingToCalendar from "../../../hooks/calendar/useAddTrainingToCalendar";
+import {RootState} from "../../../../store";
+import useAddTrainingToCalendar from "../../../../hooks/calendar/useAddTrainingToCalendar";
 
 const Selects = () => {
 
