@@ -1,0 +1,7 @@
+.actions {
+    display: flex;
+    justify-content: space-between;
+    width: 350px;
+    align-items: center;
+    margin: 2rem;
+}
