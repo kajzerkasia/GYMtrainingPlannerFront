@@ -19,7 +19,6 @@ export const useDateSelection = () => {
     const handleSelect = ({start}: { start: Date }) => {
 
         const startTimestamp = start.getTime();
-        console.log(startTimestamp)
 
         dispatch(calendarsActions.selectDate(startTimestamp));
         setSelectedDate(startTimestamp);
