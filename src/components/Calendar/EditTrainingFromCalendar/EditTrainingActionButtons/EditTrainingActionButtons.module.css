@@ -1,0 +1,12 @@
+.actions {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    align-items: flex-end;
+    row-gap: 1.5rem;
+}
+
+.actions button {
+    width: 70%;
+    align-self: flex-end;
+}
